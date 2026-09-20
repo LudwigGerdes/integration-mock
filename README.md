@@ -6,7 +6,7 @@
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](LICENSE)
 [![n8n 2.38](https://img.shields.io/badge/n8n-2.38-ea4b71)](#compatibility)
 
-![integration-mock serving a pack: start, enable, url, a 200, a loud 501 with a hint, and the log](docs/demo/quickstart.gif)
+![integration-mock serving a pack: start, enable, url, a 200, a loud 501 with a hint, and the log](https://raw.githubusercontent.com/LudwigGerdes/integration-mock/main/docs/demo/quickstart.gif)
 
 <details><summary>Text transcript</summary>
 
@@ -42,7 +42,7 @@ Every HTTP Request node and every native integration node in an n8n workflow cal
 
 ## Quickstart
 
-Nothing is sent anywhere. From npm (from the 0.1.0 release on — the name is a placeholder until then), one self-contained package, no build step:
+Nothing is sent anywhere. From npm, one self-contained package, no build step:
 
 ```
 $ npx integration-mock start          # or: npm install -D integration-mock
@@ -169,9 +169,9 @@ http://127.0.0.1:8080/weather
 
 Set the HTTP Request node's URL to `http://127.0.0.1:8080/weather/dev/weather` instead of `https://api.example.com/dev/weather`. The pack answers, the request is logged exactly as in proxy mode, and an unmatched route fails loud with a 501 whose `hint` names the next command. Base-URL serving is active for every enabled pack regardless of `on`/`off` — `off` governs interception, where traffic arrives whether or not you meant it; pointing a URL at the mock is explicit.
 
-![An n8n HTTP Request node pointed at the mock's base URL, with the pack's weather JSON in the output panel and "source": "integration-mock" proving where it came from](docs/images/n8n-http-request-mock.png)
+![An n8n HTTP Request node pointed at the mock's base URL, with the pack's weather JSON in the output panel and "source": "integration-mock" proving where it came from](https://raw.githubusercontent.com/LudwigGerdes/integration-mock/main/docs/images/n8n-http-request-mock.png)
 
-![The same workflow after Execute workflow: both nodes green, one item through, no vendor contacted](docs/images/n8n-execution-success.png)
+![The same workflow after Execute workflow: both nodes green, one item through, no vendor contacted](https://raw.githubusercontent.com/LudwigGerdes/integration-mock/main/docs/images/n8n-execution-success.png)
 
 It requires that you can change the URL the node calls:
 
@@ -201,7 +201,7 @@ This split is a Cloud limitation, not a limit of the mock: interception works at
 
 ### Fault injection
 
-![Fault injection: a 503 once, then a 200, and the log marking the fault](docs/images/integration-mock-shot-3.png)
+![Fault injection: a 503 once, then a 200, and the log marking the fault](https://raw.githubusercontent.com/LudwigGerdes/integration-mock/main/docs/images/integration-mock-shot-3.png)
 
 ```
 $ integration-mock faults set weather --status 503 --once
@@ -227,7 +227,7 @@ $ integration-mock log --limit 3
 
 `packs build` needs OpenAPI. For a vendor that publishes none, scaffold and author instead. The scaffold ships a working route and a 404 route so both shapes are visible, and a pack created while the daemon runs is served the moment it is enabled:
 
-![Authoring a pack in four commands: init, the generated routes file, validate, curl](docs/images/integration-mock-final-1.png)
+![Authoring a pack in four commands: init, the generated routes file, validate, curl](https://raw.githubusercontent.com/LudwigGerdes/integration-mock/main/docs/images/integration-mock-final-1.png)
 
 ```
 $ integration-mock packs init acme --domain api.acme.test
