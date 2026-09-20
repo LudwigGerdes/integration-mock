@@ -1,0 +1,8 @@
+{
+  "id": "pandadoc",
+  "domains": [
+    "api.pandadoc.com"
+  ],
+  "prefix": "/pandadoc",
+  "source": "openapi"
+}

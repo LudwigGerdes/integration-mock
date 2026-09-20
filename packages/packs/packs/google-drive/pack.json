@@ -1,0 +1,8 @@
+{
+  "id": "google-drive",
+  "domains": [
+    "www.googleapis.com"
+  ],
+  "prefix": "/google-drive",
+  "source": "openapi"
+}

@@ -1,0 +1,8 @@
+{
+  "id": "gmail",
+  "domains": [
+    "gmail.googleapis.com"
+  ],
+  "prefix": "/gmail",
+  "source": "openapi"
+}

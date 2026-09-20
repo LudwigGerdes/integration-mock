@@ -1,0 +1,8 @@
+{
+  "id": "github",
+  "domains": [
+    "api.github.com"
+  ],
+  "prefix": "/github",
+  "source": "openapi"
+}

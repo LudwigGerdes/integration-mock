@@ -1,0 +1,8 @@
+{
+  "id": "twilio",
+  "domains": [
+    "api.twilio.com"
+  ],
+  "prefix": "/twilio",
+  "source": "openapi"
+}

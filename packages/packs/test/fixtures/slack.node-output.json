@@ -1,0 +1,14 @@
+{
+  "_note": "hand-authored from documented n8n Slack node v2.2 output shapes; replace with a real capture",
+  "message/post": [
+    { "ok": true, "channel": "C123", "ts": "1725000000.000100", "message": { "text": "a@example.com", "type": "message" } },
+    { "ok": true, "channel": "C123", "ts": "1725000000.000200", "message": { "text": "b@example.com", "type": "message" } }
+  ],
+  "channel/getAll": [
+    { "id": "C1", "name": "general", "is_channel": true },
+    { "id": "C2", "name": "alerts", "is_channel": true }
+  ],
+  "user/info": [
+    { "id": "U1", "name": "ludwig", "profile": { "email": "l@example.com" } }
+  ]
+}

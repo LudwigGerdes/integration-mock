@@ -1,0 +1,409 @@
+[
+  {
+    "id": "openai:POST:/v1/audio/transcriptions#0",
+    "match": {
+      "method": "POST",
+      "path": "/v1/audio/transcriptions"
+    },
+    "respond": {
+      "status": 200,
+      "body": {
+        "text": "s248672"
+      }
+    }
+  },
+  {
+    "id": "openai:POST:/v1/audio/translations#0",
+    "match": {
+      "method": "POST",
+      "path": "/v1/audio/translations"
+    },
+    "respond": {
+      "status": 200,
+      "body": {
+        "text": "s76003"
+      }
+    }
+  },
+  {
+    "id": "openai:POST:/v1/chat/completions#0",
+    "match": {
+      "method": "POST",
+      "path": "/v1/chat/completions"
+    },
+    "respond": {
+      "status": 200,
+      "body": {
+        "choices": [
+          {
+            "finish_reason": "s420064",
+            "index": 272,
+            "message": {
+              "content": "s201844",
+              "role": "system"
+            }
+          }
+        ],
+        "created": 704,
+        "id": "s193338",
+        "model": "s675762",
+        "object": "s812807",
+        "usage": {
+          "completion_tokens": 469,
+          "prompt_tokens": 667,
+          "total_tokens": 598
+        }
+      }
+    }
+  },
+  {
+    "id": "openai:POST:/v1/completions#0",
+    "match": {
+      "method": "POST",
+      "path": "/v1/completions"
+    },
+    "respond": {
+      "status": 200,
+      "body": {
+        "choices": [
+          {
+            "finish_reason": "s874134",
+            "index": 382,
+            "logprobs": {
+              "text_offset": [
+                895
+              ],
+              "token_logprobs": [
+                2.41
+              ],
+              "tokens": [
+                "s569651"
+              ],
+              "top_logprobs": [
+                {}
+              ]
+            },
+            "text": "s941735"
+          }
+        ],
+        "created": 507,
+        "id": "s580427",
+        "model": "s619981",
+        "object": "s16795",
+        "usage": {
+          "completion_tokens": 4,
+          "prompt_tokens": 339,
+          "total_tokens": 175
+        }
+      }
+    }
+  },
+  {
+    "id": "openai:POST:/v1/edits#0",
+    "match": {
+      "method": "POST",
+      "path": "/v1/edits"
+    },
+    "respond": {
+      "status": 200,
+      "body": {
+        "choices": [
+          {
+            "finish_reason": "s829743",
+            "index": 937,
+            "logprobs": {
+              "text_offset": [
+                772
+              ],
+              "token_logprobs": [
+                95.2
+              ],
+              "tokens": [
+                "s517650"
+              ],
+              "top_logprobs": [
+                {}
+              ]
+            },
+            "text": "s156498"
+          }
+        ],
+        "created": 3,
+        "object": "s432680",
+        "usage": {
+          "completion_tokens": 70,
+          "prompt_tokens": 264,
+          "total_tokens": 354
+        }
+      }
+    }
+  },
+  {
+    "id": "openai:POST:/v1/embeddings#0",
+    "match": {
+      "method": "POST",
+      "path": "/v1/embeddings"
+    },
+    "respond": {
+      "status": 200,
+      "body": {
+        "data": [
+          {
+            "embedding": [
+              41.57
+            ],
+            "index": 198,
+            "object": "s12864"
+          }
+        ],
+        "model": "s679755",
+        "object": "s727166",
+        "usage": {
+          "prompt_tokens": 234,
+          "total_tokens": 490
+        }
+      }
+    }
+  },
+  {
+    "id": "openai:GET:/v1/files#0",
+    "match": {
+      "method": "GET",
+      "path": "/v1/files"
+    },
+    "respond": {
+      "status": 200,
+      "body": {
+        "data": [
+          {}
+        ],
+        "object": "s581373"
+      }
+    }
+  },
+  {
+    "id": "openai:POST:/v1/files#0",
+    "match": {
+      "method": "POST",
+      "path": "/v1/files"
+    },
+    "respond": {
+      "status": 200,
+      "body": {}
+    }
+  },
+  {
+    "id": "openai:GET:/v1/files/:file_id#0",
+    "match": {
+      "method": "GET",
+      "path": "/v1/files/:file_id"
+    },
+    "respond": {
+      "status": 200,
+      "body": {}
+    }
+  },
+  {
+    "id": "openai:DELETE:/v1/files/:file_id#0",
+    "match": {
+      "method": "DELETE",
+      "path": "/v1/files/:file_id"
+    },
+    "respond": {
+      "status": 200,
+      "body": {
+        "deleted": false,
+        "id": "s213148",
+        "object": "s762785"
+      }
+    }
+  },
+  {
+    "id": "openai:GET:/v1/files/:file_id/content#0",
+    "match": {
+      "method": "GET",
+      "path": "/v1/files/:file_id/content"
+    },
+    "respond": {
+      "status": 200,
+      "body": "s365656"
+    }
+  },
+  {
+    "id": "openai:GET:/v1/fine-tunes#0",
+    "match": {
+      "method": "GET",
+      "path": "/v1/fine-tunes"
+    },
+    "respond": {
+      "status": 200,
+      "body": {
+        "data": [
+          {}
+        ],
+        "object": "s96521"
+      }
+    }
+  },
+  {
+    "id": "openai:POST:/v1/fine-tunes#0",
+    "match": {
+      "method": "POST",
+      "path": "/v1/fine-tunes"
+    },
+    "respond": {
+      "status": 200,
+      "body": {}
+    }
+  },
+  {
+    "id": "openai:GET:/v1/fine-tunes/:fine_tune_id#0",
+    "match": {
+      "method": "GET",
+      "path": "/v1/fine-tunes/:fine_tune_id"
+    },
+    "respond": {
+      "status": 200,
+      "body": {}
+    }
+  },
+  {
+    "id": "openai:POST:/v1/fine-tunes/:fine_tune_id/cancel#0",
+    "match": {
+      "method": "POST",
+      "path": "/v1/fine-tunes/:fine_tune_id/cancel"
+    },
+    "respond": {
+      "status": 200,
+      "body": {}
+    }
+  },
+  {
+    "id": "openai:GET:/v1/fine-tunes/:fine_tune_id/events#0",
+    "match": {
+      "method": "GET",
+      "path": "/v1/fine-tunes/:fine_tune_id/events"
+    },
+    "respond": {
+      "status": 200,
+      "body": {
+        "data": [
+          {}
+        ],
+        "object": "s336508"
+      }
+    }
+  },
+  {
+    "id": "openai:POST:/v1/images/edits#0",
+    "match": {
+      "method": "POST",
+      "path": "/v1/images/edits"
+    },
+    "respond": {
+      "status": 200,
+      "body": {}
+    }
+  },
+  {
+    "id": "openai:POST:/v1/images/generations#0",
+    "match": {
+      "method": "POST",
+      "path": "/v1/images/generations"
+    },
+    "respond": {
+      "status": 200,
+      "body": {}
+    }
+  },
+  {
+    "id": "openai:POST:/v1/images/variations#0",
+    "match": {
+      "method": "POST",
+      "path": "/v1/images/variations"
+    },
+    "respond": {
+      "status": 200,
+      "body": {}
+    }
+  },
+  {
+    "id": "openai:GET:/v1/models#0",
+    "match": {
+      "method": "GET",
+      "path": "/v1/models"
+    },
+    "respond": {
+      "status": 200,
+      "body": {
+        "data": [
+          {}
+        ],
+        "object": "s710873"
+      }
+    }
+  },
+  {
+    "id": "openai:GET:/v1/models/:model#0",
+    "match": {
+      "method": "GET",
+      "path": "/v1/models/:model"
+    },
+    "respond": {
+      "status": 200,
+      "body": {}
+    }
+  },
+  {
+    "id": "openai:DELETE:/v1/models/:model#0",
+    "match": {
+      "method": "DELETE",
+      "path": "/v1/models/:model"
+    },
+    "respond": {
+      "status": 200,
+      "body": {
+        "deleted": true,
+        "id": "s682253",
+        "object": "s891556"
+      }
+    }
+  },
+  {
+    "id": "openai:POST:/v1/moderations#0",
+    "match": {
+      "method": "POST",
+      "path": "/v1/moderations"
+    },
+    "respond": {
+      "status": 200,
+      "body": {
+        "id": "s779582",
+        "model": "s602358",
+        "results": [
+          {
+            "categories": {
+              "hate": false,
+              "hate/threatening": false,
+              "self-harm": false,
+              "sexual": true,
+              "sexual/minors": false,
+              "violence": true,
+              "violence/graphic": false
+            },
+            "category_scores": {
+              "hate": 11.64,
+              "hate/threatening": 58.43,
+              "self-harm": 84.39,
+              "sexual": 72.31,
+              "sexual/minors": 13.55,
+              "violence": 68.41,
+              "violence/graphic": 14.97
+            },
+            "flagged": false
+          }
+        ]
+      }
+    }
+  }
+]

@@ -1,0 +1,8 @@
+{
+  "id": "microsoft-graph",
+  "domains": [
+    "graph.microsoft.com"
+  ],
+  "prefix": "/microsoft-graph",
+  "source": "openapi"
+}

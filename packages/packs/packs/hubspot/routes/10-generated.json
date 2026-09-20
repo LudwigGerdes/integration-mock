@@ -1,0 +1,1058 @@
+[
+  {
+    "id": "hubspot:POST:/oauth/v1/token#auth",
+    "match": {
+      "method": "POST",
+      "path": "/oauth/v1/token"
+    },
+    "respond": {
+      "status": 200,
+      "body": {
+        "access_token": "mock-access-token",
+        "token_type": "Bearer",
+        "expires_in": 3600,
+        "refresh_token": "mock-refresh-token",
+        "scope": ""
+      }
+    }
+  },
+  {
+    "id": "hubspot:GET:/crm/v3/objects/contacts#0",
+    "match": {
+      "method": "GET",
+      "path": "/crm/v3/objects/contacts"
+    },
+    "respond": {
+      "status": 200,
+      "body": {
+        "paging": {
+          "next": {
+            "after": "NTI1Cg%3D%3D",
+            "link": "?after=NTI1Cg%3D%3D"
+          }
+        },
+        "results": [
+          {
+            "archived": true,
+            "archivedAt": "2026-01-01T00:00:00.000Z",
+            "associations": {},
+            "createdAt": "2026-01-01T00:00:00.000Z",
+            "id": "s162881",
+            "objectWriteTraceId": "s518931",
+            "properties": {},
+            "propertiesWithHistory": {},
+            "updatedAt": "2026-01-01T00:00:00.000Z",
+            "url": "s506624",
+            "warnings": [
+              {
+                "category": "s770383",
+                "context": {},
+                "message": "s25509"
+              }
+            ]
+          }
+        ]
+      }
+    }
+  },
+  {
+    "id": "hubspot:POST:/crm/v3/objects/contacts#0",
+    "match": {
+      "method": "POST",
+      "path": "/crm/v3/objects/contacts"
+    },
+    "respond": {
+      "status": 201,
+      "body": {
+        "archived": false,
+        "createdAt": "2019-10-30T03:30:17.883Z",
+        "id": "512",
+        "properties": {
+          "property_checkbox": "false",
+          "property_date": "1572480000000",
+          "property_dropdown": "choice_b",
+          "property_multiple_checkboxes": "chocolate;strawberry",
+          "property_number": "17",
+          "property_radio": "option_1",
+          "property_string": "value"
+        },
+        "updatedAt": "2019-12-07T16:50:06.678Z"
+      }
+    }
+  },
+  {
+    "id": "hubspot:POST:/crm/v3/objects/contacts/batch/archive#0",
+    "match": {
+      "method": "POST",
+      "path": "/crm/v3/objects/contacts/batch/archive"
+    },
+    "respond": {
+      "status": 204
+    }
+  },
+  {
+    "id": "hubspot:POST:/crm/v3/objects/contacts/batch/create#0",
+    "match": {
+      "method": "POST",
+      "path": "/crm/v3/objects/contacts/batch/create"
+    },
+    "respond": {
+      "status": 201,
+      "body": {
+        "completedAt": "2026-01-01T00:00:00.000Z",
+        "links": {},
+        "requestedAt": "2026-01-01T00:00:00.000Z",
+        "results": [
+          {
+            "archived": false,
+            "createdAt": "2019-10-30T03:30:17.883Z",
+            "id": "512",
+            "properties": {
+              "property_checkbox": "false",
+              "property_date": "1572480000000",
+              "property_dropdown": "choice_b",
+              "property_multiple_checkboxes": "chocolate;strawberry",
+              "property_number": "17",
+              "property_radio": "option_1",
+              "property_string": "value"
+            },
+            "updatedAt": "2019-12-07T16:50:06.678Z"
+          }
+        ],
+        "startedAt": "2026-01-01T00:00:00.000Z",
+        "status": "CANCELED"
+      }
+    }
+  },
+  {
+    "id": "hubspot:POST:/crm/v3/objects/contacts/batch/read#0",
+    "match": {
+      "method": "POST",
+      "path": "/crm/v3/objects/contacts/batch/read"
+    },
+    "respond": {
+      "status": 200,
+      "body": {
+        "completedAt": "2026-01-01T00:00:00.000Z",
+        "links": {},
+        "requestedAt": "2026-01-01T00:00:00.000Z",
+        "results": [
+          {
+            "archived": false,
+            "createdAt": "2019-10-30T03:30:17.883Z",
+            "id": "512",
+            "properties": {
+              "property_checkbox": "false",
+              "property_date": "1572480000000",
+              "property_dropdown": "choice_b",
+              "property_multiple_checkboxes": "chocolate;strawberry",
+              "property_number": "17",
+              "property_radio": "option_1",
+              "property_string": "value"
+            },
+            "updatedAt": "2019-12-07T16:50:06.678Z"
+          }
+        ],
+        "startedAt": "2026-01-01T00:00:00.000Z",
+        "status": "CANCELED"
+      }
+    }
+  },
+  {
+    "id": "hubspot:POST:/crm/v3/objects/contacts/batch/update#0",
+    "match": {
+      "method": "POST",
+      "path": "/crm/v3/objects/contacts/batch/update"
+    },
+    "respond": {
+      "status": 200,
+      "body": {
+        "completedAt": "2026-01-01T00:00:00.000Z",
+        "links": {},
+        "requestedAt": "2026-01-01T00:00:00.000Z",
+        "results": [
+          {
+            "archived": false,
+            "createdAt": "2019-10-30T03:30:17.883Z",
+            "id": "512",
+            "properties": {
+              "property_checkbox": "false",
+              "property_date": "1572480000000",
+              "property_dropdown": "choice_b",
+              "property_multiple_checkboxes": "chocolate;strawberry",
+              "property_number": "17",
+              "property_radio": "option_1",
+              "property_string": "value"
+            },
+            "updatedAt": "2019-12-07T16:50:06.678Z"
+          }
+        ],
+        "startedAt": "2026-01-01T00:00:00.000Z",
+        "status": "CANCELED"
+      }
+    }
+  },
+  {
+    "id": "hubspot:POST:/crm/v3/objects/contacts/batch/upsert#0",
+    "match": {
+      "method": "POST",
+      "path": "/crm/v3/objects/contacts/batch/upsert"
+    },
+    "respond": {
+      "status": 200,
+      "body": {
+        "completedAt": "2026-01-01T00:00:00.000Z",
+        "links": {},
+        "requestedAt": "2026-01-01T00:00:00.000Z",
+        "results": [
+          {
+            "archived": true,
+            "archivedAt": "2026-01-01T00:00:00.000Z",
+            "createdAt": "2026-01-01T00:00:00.000Z",
+            "id": "s186376",
+            "new": true,
+            "objectWriteTraceId": "s596075",
+            "properties": {},
+            "propertiesWithHistory": {},
+            "updatedAt": "2026-01-01T00:00:00.000Z",
+            "url": "s745410",
+            "warnings": [
+              {
+                "category": "s837378",
+                "context": {},
+                "message": "s337091"
+              }
+            ]
+          }
+        ],
+        "startedAt": "2026-01-01T00:00:00.000Z",
+        "status": "CANCELED"
+      }
+    }
+  },
+  {
+    "id": "hubspot:POST:/crm/v3/objects/contacts/gdpr-delete#0",
+    "match": {
+      "method": "POST",
+      "path": "/crm/v3/objects/contacts/gdpr-delete"
+    },
+    "respond": {
+      "status": 204
+    }
+  },
+  {
+    "id": "hubspot:POST:/crm/v3/objects/contacts/merge#0",
+    "match": {
+      "method": "POST",
+      "path": "/crm/v3/objects/contacts/merge"
+    },
+    "respond": {
+      "status": 200,
+      "body": {
+        "archived": false,
+        "createdAt": "2019-10-30T03:30:17.883Z",
+        "id": "512",
+        "properties": {
+          "property_checkbox": "false",
+          "property_date": "1572480000000",
+          "property_dropdown": "choice_b",
+          "property_multiple_checkboxes": "chocolate;strawberry",
+          "property_number": "17",
+          "property_radio": "option_1",
+          "property_string": "value"
+        },
+        "updatedAt": "2019-12-07T16:50:06.678Z"
+      }
+    }
+  },
+  {
+    "id": "hubspot:POST:/crm/v3/objects/contacts/search#0",
+    "match": {
+      "method": "POST",
+      "path": "/crm/v3/objects/contacts/search"
+    },
+    "respond": {
+      "status": 200,
+      "body": {
+        "paging": {
+          "next": {
+            "after": "NTI1Cg%3D%3D",
+            "link": "?after=NTI1Cg%3D%3D"
+          },
+          "prev": {
+            "before": "s757652",
+            "link": "s434940"
+          }
+        },
+        "results": [
+          {
+            "archived": false,
+            "createdAt": "2019-10-30T03:30:17.883Z",
+            "id": "512",
+            "properties": {
+              "property_checkbox": "false",
+              "property_date": "1572480000000",
+              "property_dropdown": "choice_b",
+              "property_multiple_checkboxes": "chocolate;strawberry",
+              "property_number": "17",
+              "property_radio": "option_1",
+              "property_string": "value"
+            },
+            "updatedAt": "2019-12-07T16:50:06.678Z"
+          }
+        ],
+        "total": 574
+      }
+    }
+  },
+  {
+    "id": "hubspot:GET:/crm/v3/objects/contacts/:contactId#0",
+    "match": {
+      "method": "GET",
+      "path": "/crm/v3/objects/contacts/:contactId"
+    },
+    "respond": {
+      "status": 200,
+      "body": {
+        "archived": false,
+        "archivedAt": "2026-01-01T00:00:00.000Z",
+        "associations": {},
+        "createdAt": "2026-01-01T00:00:00.000Z",
+        "id": "s371464",
+        "objectWriteTraceId": "s907212",
+        "properties": {},
+        "propertiesWithHistory": {},
+        "updatedAt": "2026-01-01T00:00:00.000Z",
+        "url": "s484899",
+        "warnings": [
+          {
+            "category": "s358731",
+            "context": {},
+            "message": "s38248"
+          }
+        ]
+      }
+    }
+  },
+  {
+    "id": "hubspot:PATCH:/crm/v3/objects/contacts/:contactId#0",
+    "match": {
+      "method": "PATCH",
+      "path": "/crm/v3/objects/contacts/:contactId"
+    },
+    "respond": {
+      "status": 200,
+      "body": {
+        "archived": false,
+        "createdAt": "2019-10-30T03:30:17.883Z",
+        "id": "512",
+        "properties": {
+          "property_checkbox": "false",
+          "property_date": "1572480000000",
+          "property_dropdown": "choice_b",
+          "property_multiple_checkboxes": "chocolate;strawberry",
+          "property_number": "17",
+          "property_radio": "option_1",
+          "property_string": "value"
+        },
+        "updatedAt": "2019-12-07T16:50:06.678Z"
+      }
+    }
+  },
+  {
+    "id": "hubspot:DELETE:/crm/v3/objects/contacts/:contactId#0",
+    "match": {
+      "method": "DELETE",
+      "path": "/crm/v3/objects/contacts/:contactId"
+    },
+    "respond": {
+      "status": 204
+    }
+  },
+  {
+    "id": "hubspot:GET:/crm/v3/objects/companies#0",
+    "match": {
+      "method": "GET",
+      "path": "/crm/v3/objects/companies"
+    },
+    "respond": {
+      "status": 200,
+      "body": {
+        "paging": {
+          "next": {
+            "after": "NTI1Cg%3D%3D",
+            "link": "?after=NTI1Cg%3D%3D"
+          }
+        },
+        "results": [
+          {
+            "archived": true,
+            "archivedAt": "2026-01-01T00:00:00.000Z",
+            "associations": {},
+            "createdAt": "2026-01-01T00:00:00.000Z",
+            "id": "s336001",
+            "objectWriteTraceId": "s795886",
+            "properties": {},
+            "propertiesWithHistory": {},
+            "updatedAt": "2026-01-01T00:00:00.000Z",
+            "url": "s174346",
+            "warnings": [
+              {
+                "category": "s528821",
+                "context": {},
+                "message": "s514440"
+              }
+            ]
+          }
+        ]
+      }
+    }
+  },
+  {
+    "id": "hubspot:POST:/crm/v3/objects/companies#0",
+    "match": {
+      "method": "POST",
+      "path": "/crm/v3/objects/companies"
+    },
+    "respond": {
+      "status": 201,
+      "body": {
+        "archived": false,
+        "createdAt": "2019-10-30T03:30:17.883Z",
+        "id": "512",
+        "properties": {
+          "property_checkbox": "false",
+          "property_date": "1572480000000",
+          "property_dropdown": "choice_b",
+          "property_multiple_checkboxes": "chocolate;strawberry",
+          "property_number": "17",
+          "property_radio": "option_1",
+          "property_string": "value"
+        },
+        "updatedAt": "2019-12-07T16:50:06.678Z"
+      }
+    }
+  },
+  {
+    "id": "hubspot:POST:/crm/v3/objects/companies/batch/archive#0",
+    "match": {
+      "method": "POST",
+      "path": "/crm/v3/objects/companies/batch/archive"
+    },
+    "respond": {
+      "status": 204
+    }
+  },
+  {
+    "id": "hubspot:POST:/crm/v3/objects/companies/batch/create#0",
+    "match": {
+      "method": "POST",
+      "path": "/crm/v3/objects/companies/batch/create"
+    },
+    "respond": {
+      "status": 201,
+      "body": {
+        "completedAt": "2026-01-01T00:00:00.000Z",
+        "links": {},
+        "requestedAt": "2026-01-01T00:00:00.000Z",
+        "results": [
+          {
+            "archived": false,
+            "createdAt": "2019-10-30T03:30:17.883Z",
+            "id": "512",
+            "properties": {
+              "property_checkbox": "false",
+              "property_date": "1572480000000",
+              "property_dropdown": "choice_b",
+              "property_multiple_checkboxes": "chocolate;strawberry",
+              "property_number": "17",
+              "property_radio": "option_1",
+              "property_string": "value"
+            },
+            "updatedAt": "2019-12-07T16:50:06.678Z"
+          }
+        ],
+        "startedAt": "2026-01-01T00:00:00.000Z",
+        "status": "CANCELED"
+      }
+    }
+  },
+  {
+    "id": "hubspot:POST:/crm/v3/objects/companies/batch/read#0",
+    "match": {
+      "method": "POST",
+      "path": "/crm/v3/objects/companies/batch/read"
+    },
+    "respond": {
+      "status": 200,
+      "body": {
+        "completedAt": "2026-01-01T00:00:00.000Z",
+        "links": {},
+        "requestedAt": "2026-01-01T00:00:00.000Z",
+        "results": [
+          {
+            "archived": false,
+            "createdAt": "2019-10-30T03:30:17.883Z",
+            "id": "512",
+            "properties": {
+              "property_checkbox": "false",
+              "property_date": "1572480000000",
+              "property_dropdown": "choice_b",
+              "property_multiple_checkboxes": "chocolate;strawberry",
+              "property_number": "17",
+              "property_radio": "option_1",
+              "property_string": "value"
+            },
+            "updatedAt": "2019-12-07T16:50:06.678Z"
+          }
+        ],
+        "startedAt": "2026-01-01T00:00:00.000Z",
+        "status": "CANCELED"
+      }
+    }
+  },
+  {
+    "id": "hubspot:POST:/crm/v3/objects/companies/batch/update#0",
+    "match": {
+      "method": "POST",
+      "path": "/crm/v3/objects/companies/batch/update"
+    },
+    "respond": {
+      "status": 200,
+      "body": {
+        "completedAt": "2026-01-01T00:00:00.000Z",
+        "links": {},
+        "requestedAt": "2026-01-01T00:00:00.000Z",
+        "results": [
+          {
+            "archived": false,
+            "createdAt": "2019-10-30T03:30:17.883Z",
+            "id": "512",
+            "properties": {
+              "property_checkbox": "false",
+              "property_date": "1572480000000",
+              "property_dropdown": "choice_b",
+              "property_multiple_checkboxes": "chocolate;strawberry",
+              "property_number": "17",
+              "property_radio": "option_1",
+              "property_string": "value"
+            },
+            "updatedAt": "2019-12-07T16:50:06.678Z"
+          }
+        ],
+        "startedAt": "2026-01-01T00:00:00.000Z",
+        "status": "CANCELED"
+      }
+    }
+  },
+  {
+    "id": "hubspot:POST:/crm/v3/objects/companies/batch/upsert#0",
+    "match": {
+      "method": "POST",
+      "path": "/crm/v3/objects/companies/batch/upsert"
+    },
+    "respond": {
+      "status": 200,
+      "body": {
+        "completedAt": "2026-01-01T00:00:00.000Z",
+        "links": {},
+        "requestedAt": "2026-01-01T00:00:00.000Z",
+        "results": [
+          {
+            "archived": true,
+            "archivedAt": "2026-01-01T00:00:00.000Z",
+            "createdAt": "2026-01-01T00:00:00.000Z",
+            "id": "s726378",
+            "new": false,
+            "objectWriteTraceId": "s227968",
+            "properties": {},
+            "propertiesWithHistory": {},
+            "updatedAt": "2026-01-01T00:00:00.000Z",
+            "url": "s28770",
+            "warnings": [
+              {
+                "category": "s596249",
+                "context": {},
+                "message": "s177588"
+              }
+            ]
+          }
+        ],
+        "startedAt": "2026-01-01T00:00:00.000Z",
+        "status": "CANCELED"
+      }
+    }
+  },
+  {
+    "id": "hubspot:POST:/crm/v3/objects/companies/merge#0",
+    "match": {
+      "method": "POST",
+      "path": "/crm/v3/objects/companies/merge"
+    },
+    "respond": {
+      "status": 200,
+      "body": {
+        "archived": false,
+        "createdAt": "2019-10-30T03:30:17.883Z",
+        "id": "512",
+        "properties": {
+          "property_checkbox": "false",
+          "property_date": "1572480000000",
+          "property_dropdown": "choice_b",
+          "property_multiple_checkboxes": "chocolate;strawberry",
+          "property_number": "17",
+          "property_radio": "option_1",
+          "property_string": "value"
+        },
+        "updatedAt": "2019-12-07T16:50:06.678Z"
+      }
+    }
+  },
+  {
+    "id": "hubspot:POST:/crm/v3/objects/companies/search#0",
+    "match": {
+      "method": "POST",
+      "path": "/crm/v3/objects/companies/search"
+    },
+    "respond": {
+      "status": 200,
+      "body": {
+        "paging": {
+          "next": {
+            "after": "NTI1Cg%3D%3D",
+            "link": "?after=NTI1Cg%3D%3D"
+          },
+          "prev": {
+            "before": "s208241",
+            "link": "s518320"
+          }
+        },
+        "results": [
+          {
+            "archived": false,
+            "createdAt": "2019-10-30T03:30:17.883Z",
+            "id": "512",
+            "properties": {
+              "property_checkbox": "false",
+              "property_date": "1572480000000",
+              "property_dropdown": "choice_b",
+              "property_multiple_checkboxes": "chocolate;strawberry",
+              "property_number": "17",
+              "property_radio": "option_1",
+              "property_string": "value"
+            },
+            "updatedAt": "2019-12-07T16:50:06.678Z"
+          }
+        ],
+        "total": 830
+      }
+    }
+  },
+  {
+    "id": "hubspot:GET:/crm/v3/objects/companies/:companyId#0",
+    "match": {
+      "method": "GET",
+      "path": "/crm/v3/objects/companies/:companyId"
+    },
+    "respond": {
+      "status": 200,
+      "body": {
+        "archived": false,
+        "archivedAt": "2026-01-01T00:00:00.000Z",
+        "associations": {},
+        "createdAt": "2026-01-01T00:00:00.000Z",
+        "id": "s95981",
+        "objectWriteTraceId": "s578635",
+        "properties": {},
+        "propertiesWithHistory": {},
+        "updatedAt": "2026-01-01T00:00:00.000Z",
+        "url": "s279240",
+        "warnings": [
+          {
+            "category": "s630954",
+            "context": {},
+            "message": "s536177"
+          }
+        ]
+      }
+    }
+  },
+  {
+    "id": "hubspot:PATCH:/crm/v3/objects/companies/:companyId#0",
+    "match": {
+      "method": "PATCH",
+      "path": "/crm/v3/objects/companies/:companyId"
+    },
+    "respond": {
+      "status": 200,
+      "body": {
+        "archived": false,
+        "createdAt": "2019-10-30T03:30:17.883Z",
+        "id": "512",
+        "properties": {
+          "property_checkbox": "false",
+          "property_date": "1572480000000",
+          "property_dropdown": "choice_b",
+          "property_multiple_checkboxes": "chocolate;strawberry",
+          "property_number": "17",
+          "property_radio": "option_1",
+          "property_string": "value"
+        },
+        "updatedAt": "2019-12-07T16:50:06.678Z"
+      }
+    }
+  },
+  {
+    "id": "hubspot:DELETE:/crm/v3/objects/companies/:companyId#0",
+    "match": {
+      "method": "DELETE",
+      "path": "/crm/v3/objects/companies/:companyId"
+    },
+    "respond": {
+      "status": 204
+    }
+  },
+  {
+    "id": "hubspot:GET:/crm/v3/objects/0-3#0",
+    "match": {
+      "method": "GET",
+      "path": "/crm/v3/objects/0-3"
+    },
+    "respond": {
+      "status": 200,
+      "body": {
+        "paging": {
+          "next": {
+            "after": "NTI1Cg%3D%3D",
+            "link": "?after=NTI1Cg%3D%3D"
+          }
+        },
+        "results": [
+          {
+            "archived": true,
+            "archivedAt": "2026-01-01T00:00:00.000Z",
+            "associations": {},
+            "createdAt": "2026-01-01T00:00:00.000Z",
+            "id": "s325639",
+            "objectWriteTraceId": "s237073",
+            "properties": {},
+            "propertiesWithHistory": {},
+            "updatedAt": "2026-01-01T00:00:00.000Z",
+            "url": "s229636",
+            "warnings": [
+              {
+                "category": "s956522",
+                "context": {},
+                "message": "s438706"
+              }
+            ]
+          }
+        ]
+      }
+    }
+  },
+  {
+    "id": "hubspot:POST:/crm/v3/objects/0-3#0",
+    "match": {
+      "method": "POST",
+      "path": "/crm/v3/objects/0-3"
+    },
+    "respond": {
+      "status": 201,
+      "body": {
+        "archived": false,
+        "createdAt": "2019-10-30T03:30:17.883Z",
+        "id": "512",
+        "properties": {
+          "property_checkbox": "false",
+          "property_date": "1572480000000",
+          "property_dropdown": "choice_b",
+          "property_multiple_checkboxes": "chocolate;strawberry",
+          "property_number": "17",
+          "property_radio": "option_1",
+          "property_string": "value"
+        },
+        "updatedAt": "2019-12-07T16:50:06.678Z"
+      }
+    }
+  },
+  {
+    "id": "hubspot:POST:/crm/v3/objects/0-3/batch/archive#0",
+    "match": {
+      "method": "POST",
+      "path": "/crm/v3/objects/0-3/batch/archive"
+    },
+    "respond": {
+      "status": 204
+    }
+  },
+  {
+    "id": "hubspot:POST:/crm/v3/objects/0-3/batch/create#0",
+    "match": {
+      "method": "POST",
+      "path": "/crm/v3/objects/0-3/batch/create"
+    },
+    "respond": {
+      "status": 201,
+      "body": {
+        "completedAt": "2026-01-01T00:00:00.000Z",
+        "links": {},
+        "requestedAt": "2026-01-01T00:00:00.000Z",
+        "results": [
+          {
+            "archived": false,
+            "createdAt": "2019-10-30T03:30:17.883Z",
+            "id": "512",
+            "properties": {
+              "property_checkbox": "false",
+              "property_date": "1572480000000",
+              "property_dropdown": "choice_b",
+              "property_multiple_checkboxes": "chocolate;strawberry",
+              "property_number": "17",
+              "property_radio": "option_1",
+              "property_string": "value"
+            },
+            "updatedAt": "2019-12-07T16:50:06.678Z"
+          }
+        ],
+        "startedAt": "2026-01-01T00:00:00.000Z",
+        "status": "CANCELED"
+      }
+    }
+  },
+  {
+    "id": "hubspot:POST:/crm/v3/objects/0-3/batch/read#0",
+    "match": {
+      "method": "POST",
+      "path": "/crm/v3/objects/0-3/batch/read"
+    },
+    "respond": {
+      "status": 200,
+      "body": {
+        "completedAt": "2026-01-01T00:00:00.000Z",
+        "links": {},
+        "requestedAt": "2026-01-01T00:00:00.000Z",
+        "results": [
+          {
+            "archived": false,
+            "createdAt": "2019-10-30T03:30:17.883Z",
+            "id": "512",
+            "properties": {
+              "property_checkbox": "false",
+              "property_date": "1572480000000",
+              "property_dropdown": "choice_b",
+              "property_multiple_checkboxes": "chocolate;strawberry",
+              "property_number": "17",
+              "property_radio": "option_1",
+              "property_string": "value"
+            },
+            "updatedAt": "2019-12-07T16:50:06.678Z"
+          }
+        ],
+        "startedAt": "2026-01-01T00:00:00.000Z",
+        "status": "CANCELED"
+      }
+    }
+  },
+  {
+    "id": "hubspot:POST:/crm/v3/objects/0-3/batch/update#0",
+    "match": {
+      "method": "POST",
+      "path": "/crm/v3/objects/0-3/batch/update"
+    },
+    "respond": {
+      "status": 200,
+      "body": {
+        "completedAt": "2026-01-01T00:00:00.000Z",
+        "links": {},
+        "requestedAt": "2026-01-01T00:00:00.000Z",
+        "results": [
+          {
+            "archived": false,
+            "createdAt": "2019-10-30T03:30:17.883Z",
+            "id": "512",
+            "properties": {
+              "property_checkbox": "false",
+              "property_date": "1572480000000",
+              "property_dropdown": "choice_b",
+              "property_multiple_checkboxes": "chocolate;strawberry",
+              "property_number": "17",
+              "property_radio": "option_1",
+              "property_string": "value"
+            },
+            "updatedAt": "2019-12-07T16:50:06.678Z"
+          }
+        ],
+        "startedAt": "2026-01-01T00:00:00.000Z",
+        "status": "CANCELED"
+      }
+    }
+  },
+  {
+    "id": "hubspot:POST:/crm/v3/objects/0-3/batch/upsert#0",
+    "match": {
+      "method": "POST",
+      "path": "/crm/v3/objects/0-3/batch/upsert"
+    },
+    "respond": {
+      "status": 200,
+      "body": {
+        "completedAt": "2026-01-01T00:00:00.000Z",
+        "links": {},
+        "requestedAt": "2026-01-01T00:00:00.000Z",
+        "results": [
+          {
+            "archived": false,
+            "archivedAt": "2026-01-01T00:00:00.000Z",
+            "createdAt": "2026-01-01T00:00:00.000Z",
+            "id": "s890584",
+            "new": true,
+            "objectWriteTraceId": "s990771",
+            "properties": {},
+            "propertiesWithHistory": {},
+            "updatedAt": "2026-01-01T00:00:00.000Z",
+            "url": "s987409",
+            "warnings": [
+              {
+                "category": "s364131",
+                "context": {},
+                "message": "s918147"
+              }
+            ]
+          }
+        ],
+        "startedAt": "2026-01-01T00:00:00.000Z",
+        "status": "CANCELED"
+      }
+    }
+  },
+  {
+    "id": "hubspot:POST:/crm/v3/objects/0-3/merge#0",
+    "match": {
+      "method": "POST",
+      "path": "/crm/v3/objects/0-3/merge"
+    },
+    "respond": {
+      "status": 200,
+      "body": {
+        "archived": false,
+        "createdAt": "2019-10-30T03:30:17.883Z",
+        "id": "512",
+        "properties": {
+          "property_checkbox": "false",
+          "property_date": "1572480000000",
+          "property_dropdown": "choice_b",
+          "property_multiple_checkboxes": "chocolate;strawberry",
+          "property_number": "17",
+          "property_radio": "option_1",
+          "property_string": "value"
+        },
+        "updatedAt": "2019-12-07T16:50:06.678Z"
+      }
+    }
+  },
+  {
+    "id": "hubspot:POST:/crm/v3/objects/0-3/search#0",
+    "match": {
+      "method": "POST",
+      "path": "/crm/v3/objects/0-3/search"
+    },
+    "respond": {
+      "status": 200,
+      "body": {
+        "paging": {
+          "next": {
+            "after": "NTI1Cg%3D%3D",
+            "link": "?after=NTI1Cg%3D%3D"
+          },
+          "prev": {
+            "before": "s173114",
+            "link": "s686554"
+          }
+        },
+        "results": [
+          {
+            "archived": false,
+            "createdAt": "2019-10-30T03:30:17.883Z",
+            "id": "512",
+            "properties": {
+              "property_checkbox": "false",
+              "property_date": "1572480000000",
+              "property_dropdown": "choice_b",
+              "property_multiple_checkboxes": "chocolate;strawberry",
+              "property_number": "17",
+              "property_radio": "option_1",
+              "property_string": "value"
+            },
+            "updatedAt": "2019-12-07T16:50:06.678Z"
+          }
+        ],
+        "total": 716
+      }
+    }
+  },
+  {
+    "id": "hubspot:GET:/crm/v3/objects/0-3/:dealId#0",
+    "match": {
+      "method": "GET",
+      "path": "/crm/v3/objects/0-3/:dealId"
+    },
+    "respond": {
+      "status": 200,
+      "body": {
+        "archived": true,
+        "archivedAt": "2026-01-01T00:00:00.000Z",
+        "associations": {},
+        "createdAt": "2026-01-01T00:00:00.000Z",
+        "id": "s892385",
+        "objectWriteTraceId": "s123156",
+        "properties": {},
+        "propertiesWithHistory": {},
+        "updatedAt": "2026-01-01T00:00:00.000Z",
+        "url": "s995859",
+        "warnings": [
+          {
+            "category": "s826177",
+            "context": {},
+            "message": "s5968"
+          }
+        ]
+      }
+    }
+  },
+  {
+    "id": "hubspot:PATCH:/crm/v3/objects/0-3/:dealId#0",
+    "match": {
+      "method": "PATCH",
+      "path": "/crm/v3/objects/0-3/:dealId"
+    },
+    "respond": {
+      "status": 200,
+      "body": {
+        "archived": false,
+        "createdAt": "2019-10-30T03:30:17.883Z",
+        "id": "512",
+        "properties": {
+          "property_checkbox": "false",
+          "property_date": "1572480000000",
+          "property_dropdown": "choice_b",
+          "property_multiple_checkboxes": "chocolate;strawberry",
+          "property_number": "17",
+          "property_radio": "option_1",
+          "property_string": "value"
+        },
+        "updatedAt": "2019-12-07T16:50:06.678Z"
+      }
+    }
+  },
+  {
+    "id": "hubspot:DELETE:/crm/v3/objects/0-3/:dealId#0",
+    "match": {
+      "method": "DELETE",
+      "path": "/crm/v3/objects/0-3/:dealId"
+    },
+    "respond": {
+      "status": 204
+    }
+  }
+]

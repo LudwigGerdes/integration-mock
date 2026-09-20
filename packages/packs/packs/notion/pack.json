@@ -1,0 +1,8 @@
+{
+  "id": "notion",
+  "domains": [
+    "api.notion.com"
+  ],
+  "prefix": "/notion",
+  "source": "openapi"
+}

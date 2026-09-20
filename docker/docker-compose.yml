@@ -1,0 +1,53 @@
+services:
+  mock:
+    build:
+      # Defaults are the checkout: build the workspace from the repo root.
+      # Installed from npm there is no workspace, so `integration-mock up` sets
+      # these three to build from the package itself (docker/Dockerfile.package)
+      # and to mount the project you ran it from.
+      context: ${INTEGRATION_MOCK_BUILD_CONTEXT:-..}
+      dockerfile: ${INTEGRATION_MOCK_DOCKERFILE:-packages/proxy/Dockerfile}
+    volumes:
+      - mockdata:/data
+      - ${INTEGRATION_MOCK_PROJECT_DIR:-..}/.integration-mock:/app/.integration-mock
+    ports:
+      - "8080:8080"
+      # The image sets INTEGRATION_MOCK_ADMIN_BIND=0.0.0.0, so the admin API requires a
+      # bearer token (minted at daemon start, written to /data/proxy.json).
+      # Still published to the host loopback: the token authenticates, it does
+      # not authorise exposure.
+      - "127.0.0.1:8081:8081"
+    healthcheck:
+      # n8n must not boot before the CA it is told to trust exists.
+      test: ["CMD", "test", "-f", "/data/ca.pem"]
+      interval: 2s
+      timeout: 2s
+      retries: 30
+
+  n8n:
+    # Pinned, per suite invariant I1: `latest` silently resolved to 1.44.1 on a
+    # machine with an old cached image, while this project targets 2.38.3.
+    image: docker.n8n.io/n8nio/n8n:${N8N_VERSION:-2.38.3}
+    depends_on:
+      mock:
+        condition: service_healthy
+    environment:
+      HTTP_PROXY: http://mock:8080
+      HTTPS_PROXY: http://mock:8080
+      NO_PROXY: localhost,127.0.0.1,mock
+      NODE_EXTRA_CA_CERTS: /data/ca.pem
+      N8N_HOST: localhost
+      WEBHOOK_URL: http://localhost:5690/
+      GENERIC_TIMEZONE: UTC
+    volumes:
+      - n8ndata:/home/node/.n8n
+      - mockdata:/data:ro
+    ports:
+      # 5690, not the obvious 5679: n8n's own task broker binds 5679, so any
+      # developer already running n8n locally collides on that port.
+      # Override with INTEGRATION_MOCK_N8N_PORT=... integration-mock up
+      - "${INTEGRATION_MOCK_N8N_PORT:-5690}:5678"
+
+volumes:
+  mockdata: {}
+  n8ndata: {}

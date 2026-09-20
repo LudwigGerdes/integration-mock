@@ -1,0 +1,8 @@
+{
+  "id": "slack",
+  "domains": [
+    "slack.com"
+  ],
+  "prefix": "/slack",
+  "source": "openapi"
+}

@@ -1,0 +1,48 @@
+name: packs-refresh
+
+# Vendors change their OpenAPI specs without telling anyone. This job notices,
+# regenerates, and opens a PR so the change is reviewed rather than absorbed.
+on:
+  schedule:
+    - cron: '0 6 * * 1'
+  workflow_dispatch:
+
+jobs:
+  refresh:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 20
+
+      - name: Install and build
+        run: |
+          corepack enable
+          pnpm install --frozen-lockfile
+          pnpm -r build
+
+      # Refreshes every `vendored: true` source, rewrites the specs whose sha
+      # moved, and rebuilds only those packs. Unchanged vendors cost one request.
+      - name: Refresh vendor specs
+        run: node packages/cli/dist/bin.js packs update | tee /tmp/update.log
+
+      # Regenerated rather than hand-maintained: a vendor whose URL has died
+      # shows up here as `ok: NO` instead of failing the job, so one dead link
+      # never blocks the other twenty-nine from refreshing.
+      - name: Re-run the audit
+        run: node packages/cli/dist/bin.js packs audit --out docs/vendor-audit.md
+
+      # The signal worth waking someone for: a spec change that broke a pack's
+      # smoke test means the vendor altered something we depend on.
+      - name: Test
+        run: pnpm test
+
+      - uses: peter-evans/create-pull-request@v6
+        with:
+          branch: packs/refresh
+          title: 'chore(packs): refresh vendor specs'
+          body-path: /tmp/update.log
+          commit-message: 'chore(packs): refresh vendor specs'
+          labels: dependencies

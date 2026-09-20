@@ -1,0 +1,8 @@
+{
+  "id": "clickup",
+  "domains": [
+    "polls.apiblueprint.org"
+  ],
+  "prefix": "/clickup",
+  "source": "openapi"
+}

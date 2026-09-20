@@ -1,0 +1,22 @@
+node_modules/
+dist/
+.integration-mock/snapshots/
+*.log
+.DS_Store
+
+# assembled by prepack for the published tarball
+packages/cli/packs/
+packages/cli/schema/
+packages/cli/docker/
+packages/cli/skills/
+packages/cli/sources.yaml
+packages/cli/LICENSE
+packages/cli/NOTICE
+packages/cli/THIRD_PARTY_NOTICES.md
+packages/cli/README.md
+
+# npm pack output
+*.tgz
+
+# local runtime state (which packs you enabled); .integration-mock/packs/weather is a tracked example pack
+.integration-mock/config.json

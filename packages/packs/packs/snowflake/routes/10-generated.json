@@ -1,0 +1,260 @@
+[
+  {
+    "id": "snowflake:POST:/api/v2/statements#0",
+    "match": {
+      "method": "POST",
+      "path": "/api/v2/statements"
+    },
+    "respond": {
+      "status": 200,
+      "body": {
+        "code": "000123",
+        "createdOn": 1597090533987,
+        "data": [
+          [
+            "customer1",
+            "1234 A Avenue",
+            "98765",
+            "2019-08-10 23:56:34.123"
+          ],
+          [
+            "customer2",
+            "987 B Street",
+            "98765",
+            "2019-08-11 09:45:12.890"
+          ],
+          [
+            "customer3",
+            "8777 C Blvd",
+            "98765",
+            "2019-08-12 10:23:51.999"
+          ],
+          [
+            "customer4",
+            "64646 D Circle",
+            "98765",
+            "2019-08-13 01:54:32.000"
+          ]
+        ],
+        "message": "successfully executed",
+        "resultSetMetaData": {
+          "format": "jsonv2",
+          "nullable": true,
+          "numRows": 100,
+          "parameters": {
+            "binary_output_format": "HEX",
+            "date_output_format": "YYYY-MM-DD",
+            "multi_statement_count": 4,
+            "time_output_format": "HH24:MI:SS",
+            "timestamp_ltz_output_format": "YYYY-MM-DD HH24:MI:SS.FF6",
+            "timestamp_ntz_output_format": "YYYY-MM-DD HH24:MI:SS.FF6",
+            "timestamp_output_format": "YYYY-MM-DD HH24:MI:SS.FF6",
+            "timestamp_tz_output_format": "YYYY-MM-DDTHH24:MI:SS.FF6 TZHTZM"
+          },
+          "partitionInfo": [
+            {
+              "compressedSize": 37436824,
+              "rowCount": 1324,
+              "uncompressedSize": 1343787384
+            }
+          ],
+          "rowType": [
+            {
+              "name": "ROWNUM",
+              "type": "FIXED",
+              "length": 0,
+              "precision": 38,
+              "scale": 0,
+              "nullable": false
+            },
+            {
+              "name": "ACCOUNT_ID",
+              "type": "FIXED",
+              "length": 0,
+              "precision": 38,
+              "scale": 0,
+              "nullable": false
+            },
+            {
+              "name": "ACCOUNT_NAME",
+              "type": "TEXT",
+              "length": 1024,
+              "precision": 0,
+              "scale": 0,
+              "nullable": false
+            },
+            {
+              "name": "ADDRESS",
+              "type": "TEXT",
+              "length": 16777216,
+              "precision": 0,
+              "scale": 0,
+              "nullable": true
+            },
+            {
+              "name": "ZIP",
+              "type": "TEXT",
+              "length": 100,
+              "precision": 0,
+              "scale": 0,
+              "nullable": true
+            },
+            {
+              "name": "CREATED_ON",
+              "type": "TIMESTAMP_NTZ",
+              "length": 0,
+              "precision": 0,
+              "scale": 3,
+              "nullable": false
+            }
+          ]
+        },
+        "sqlState": "42601",
+        "statementHandle": "536fad38-b564-4dc5-9892-a4543504df6c",
+        "statementStatusUrl": "https://example.com",
+        "stats": {
+          "numDuplicateRowsUpdated": 20,
+          "numRowsDeleted": 8,
+          "numRowsInserted": 12,
+          "numRowsUpdated": 9
+        }
+      }
+    }
+  },
+  {
+    "id": "snowflake:GET:/api/v2/statements/:statementHandle#0",
+    "match": {
+      "method": "GET",
+      "path": "/api/v2/statements/:statementHandle"
+    },
+    "respond": {
+      "status": 200,
+      "body": {
+        "code": "000123",
+        "createdOn": 1597090533987,
+        "data": [
+          [
+            "customer1",
+            "1234 A Avenue",
+            "98765",
+            "2019-08-10 23:56:34.123"
+          ],
+          [
+            "customer2",
+            "987 B Street",
+            "98765",
+            "2019-08-11 09:45:12.890"
+          ],
+          [
+            "customer3",
+            "8777 C Blvd",
+            "98765",
+            "2019-08-12 10:23:51.999"
+          ],
+          [
+            "customer4",
+            "64646 D Circle",
+            "98765",
+            "2019-08-13 01:54:32.000"
+          ]
+        ],
+        "message": "successfully executed",
+        "resultSetMetaData": {
+          "format": "jsonv2",
+          "nullable": true,
+          "numRows": 100,
+          "parameters": {
+            "binary_output_format": "HEX",
+            "date_output_format": "YYYY-MM-DD",
+            "multi_statement_count": 4,
+            "time_output_format": "HH24:MI:SS",
+            "timestamp_ltz_output_format": "YYYY-MM-DD HH24:MI:SS.FF6",
+            "timestamp_ntz_output_format": "YYYY-MM-DD HH24:MI:SS.FF6",
+            "timestamp_output_format": "YYYY-MM-DD HH24:MI:SS.FF6",
+            "timestamp_tz_output_format": "YYYY-MM-DDTHH24:MI:SS.FF6 TZHTZM"
+          },
+          "partitionInfo": [
+            {
+              "compressedSize": 37436824,
+              "rowCount": 1324,
+              "uncompressedSize": 1343787384
+            }
+          ],
+          "rowType": [
+            {
+              "name": "ROWNUM",
+              "type": "FIXED",
+              "length": 0,
+              "precision": 38,
+              "scale": 0,
+              "nullable": false
+            },
+            {
+              "name": "ACCOUNT_ID",
+              "type": "FIXED",
+              "length": 0,
+              "precision": 38,
+              "scale": 0,
+              "nullable": false
+            },
+            {
+              "name": "ACCOUNT_NAME",
+              "type": "TEXT",
+              "length": 1024,
+              "precision": 0,
+              "scale": 0,
+              "nullable": false
+            },
+            {
+              "name": "ADDRESS",
+              "type": "TEXT",
+              "length": 16777216,
+              "precision": 0,
+              "scale": 0,
+              "nullable": true
+            },
+            {
+              "name": "ZIP",
+              "type": "TEXT",
+              "length": 100,
+              "precision": 0,
+              "scale": 0,
+              "nullable": true
+            },
+            {
+              "name": "CREATED_ON",
+              "type": "TIMESTAMP_NTZ",
+              "length": 0,
+              "precision": 0,
+              "scale": 3,
+              "nullable": false
+            }
+          ]
+        },
+        "sqlState": "42601",
+        "statementHandle": "536fad38-b564-4dc5-9892-a4543504df6c",
+        "statementStatusUrl": "https://example.com",
+        "stats": {
+          "numDuplicateRowsUpdated": 20,
+          "numRowsDeleted": 8,
+          "numRowsInserted": 12,
+          "numRowsUpdated": 9
+        }
+      }
+    }
+  },
+  {
+    "id": "snowflake:POST:/api/v2/statements/:statementHandle/cancel#0",
+    "match": {
+      "method": "POST",
+      "path": "/api/v2/statements/:statementHandle/cancel"
+    },
+    "respond": {
+      "status": 200,
+      "body": {
+        "message": "successfully canceled",
+        "statementHandle": "536fad38-b564-4dc5-9892-a4543504df6c"
+      }
+    }
+  }
+]

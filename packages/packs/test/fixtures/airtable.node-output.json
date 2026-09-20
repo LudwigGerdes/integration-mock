@@ -1,0 +1,12 @@
+{
+  "_note": "hand-authored from n8n Airtable node v2 output; replace with real capture",
+  "search": [
+    { "id": "rec1", "createdTime": "2026-01-01T00:00:00.000Z", "fields": { "Name": "A" } }
+  ],
+  "create": [
+    { "id": "rec2", "createdTime": "2026-01-02T00:00:00.000Z", "fields": { "Name": "B" } }
+  ],
+  "simplified": [
+    { "Name": "C" }
+  ]
+}

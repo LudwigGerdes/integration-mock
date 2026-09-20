@@ -1,0 +1,5279 @@
+[
+  {
+    "id": "twilio:GET:/2010-04-01/Accounts.json#0",
+    "match": {
+      "method": "GET",
+      "path": "/2010-04-01/Accounts.json"
+    },
+    "respond": {
+      "status": 200,
+      "body": {
+        "accounts": [
+          {
+            "auth_token": "s51039",
+            "date_created": "s544748",
+            "date_updated": "s218579",
+            "friendly_name": "s952550",
+            "owner_account_sid": "s582990",
+            "sid": "s262091",
+            "status": "active",
+            "subresource_uris": {},
+            "type": "Trial",
+            "uri": "s87224"
+          }
+        ],
+        "end": 154,
+        "first_page_uri": "https://example.com",
+        "next_page_uri": "https://example.com",
+        "page": 111,
+        "page_size": 127,
+        "previous_page_uri": "https://example.com",
+        "start": 205,
+        "uri": "https://example.com"
+      }
+    }
+  },
+  {
+    "id": "twilio:POST:/2010-04-01/Accounts.json#0",
+    "match": {
+      "method": "POST",
+      "path": "/2010-04-01/Accounts.json"
+    },
+    "respond": {
+      "status": 201,
+      "body": {
+        "auth_token": "s302268",
+        "date_created": "s245194",
+        "date_updated": "s620367",
+        "friendly_name": "s841499",
+        "owner_account_sid": "s512433",
+        "sid": "s441686",
+        "status": "active",
+        "subresource_uris": {},
+        "type": "Trial",
+        "uri": "s909055"
+      }
+    }
+  },
+  {
+    "id": "twilio:GET:/2010-04-01/Accounts/:AccountSid/Addresses.json#0",
+    "match": {
+      "method": "GET",
+      "path": "/2010-04-01/Accounts/:AccountSid/Addresses.json"
+    },
+    "respond": {
+      "status": 200,
+      "body": {
+        "addresses": [
+          {
+            "account_sid": "s718224",
+            "city": "s115543",
+            "customer_name": "s901575",
+            "date_created": "s386437",
+            "date_updated": "s386001",
+            "emergency_enabled": false,
+            "friendly_name": "s584653",
+            "iso_country": "s721782",
+            "postal_code": "s965960",
+            "region": "s774943",
+            "sid": "s17229",
+            "street": "s851373",
+            "street_secondary": "s238358",
+            "uri": "s925809",
+            "validated": false,
+            "verified": true
+          }
+        ],
+        "end": 926,
+        "first_page_uri": "https://example.com",
+        "next_page_uri": "https://example.com",
+        "page": 596,
+        "page_size": 84,
+        "previous_page_uri": "https://example.com",
+        "start": 780,
+        "uri": "https://example.com"
+      }
+    }
+  },
+  {
+    "id": "twilio:POST:/2010-04-01/Accounts/:AccountSid/Addresses.json#0",
+    "match": {
+      "method": "POST",
+      "path": "/2010-04-01/Accounts/:AccountSid/Addresses.json"
+    },
+    "respond": {
+      "status": 201,
+      "body": {
+        "account_sid": "s403159",
+        "city": "s711047",
+        "customer_name": "s852152",
+        "date_created": "s235938",
+        "date_updated": "s271487",
+        "emergency_enabled": true,
+        "friendly_name": "s545578",
+        "iso_country": "s389310",
+        "postal_code": "s589023",
+        "region": "s715873",
+        "sid": "s566466",
+        "street": "s156969",
+        "street_secondary": "s383905",
+        "uri": "s613316",
+        "validated": true,
+        "verified": true
+      }
+    }
+  },
+  {
+    "id": "twilio:GET:/2010-04-01/Accounts/:AccountSid/Addresses/:AddressSid/DependentPhoneNumbers.json#0",
+    "match": {
+      "method": "GET",
+      "path": "/2010-04-01/Accounts/:AccountSid/Addresses/:AddressSid/DependentPhoneNumbers.json"
+    },
+    "respond": {
+      "status": 200,
+      "body": {
+        "dependent_phone_numbers": [
+          {
+            "account_sid": "s957466",
+            "address_requirements": "none",
+            "api_version": "s335111",
+            "capabilities": {},
+            "date_created": "s498822",
+            "date_updated": "s653142",
+            "emergency_address_sid": "s639491",
+            "emergency_status": "Active",
+            "friendly_name": "s941676",
+            "phone_number": "s467894",
+            "sid": "s398926",
+            "sms_application_sid": "s477558",
+            "sms_fallback_method": "HEAD",
+            "sms_fallback_url": "https://example.com",
+            "sms_method": "HEAD",
+            "sms_url": "https://example.com",
+            "status_callback": "https://example.com",
+            "status_callback_method": "HEAD",
+            "trunk_sid": "s832662",
+            "uri": "s99542",
+            "voice_application_sid": "s420301",
+            "voice_caller_id_lookup": true,
+            "voice_fallback_method": "HEAD",
+            "voice_fallback_url": "https://example.com",
+            "voice_method": "HEAD",
+            "voice_url": "https://example.com"
+          }
+        ],
+        "end": 7,
+        "first_page_uri": "https://example.com",
+        "next_page_uri": "https://example.com",
+        "page": 115,
+        "page_size": 291,
+        "previous_page_uri": "https://example.com",
+        "start": 562,
+        "uri": "https://example.com"
+      }
+    }
+  },
+  {
+    "id": "twilio:GET:/2010-04-01/Accounts/:AccountSid/Addresses/:Sid.json#0",
+    "match": {
+      "method": "GET",
+      "path": "/2010-04-01/Accounts/:AccountSid/Addresses/:Sid.json"
+    },
+    "respond": {
+      "status": 200,
+      "body": {
+        "account_sid": "s413317",
+        "city": "s729463",
+        "customer_name": "s653482",
+        "date_created": "s598728",
+        "date_updated": "s333341",
+        "emergency_enabled": false,
+        "friendly_name": "s296290",
+        "iso_country": "s470287",
+        "postal_code": "s581890",
+        "region": "s705299",
+        "sid": "s830336",
+        "street": "s481685",
+        "street_secondary": "s260602",
+        "uri": "s816660",
+        "validated": false,
+        "verified": true
+      }
+    }
+  },
+  {
+    "id": "twilio:POST:/2010-04-01/Accounts/:AccountSid/Addresses/:Sid.json#0",
+    "match": {
+      "method": "POST",
+      "path": "/2010-04-01/Accounts/:AccountSid/Addresses/:Sid.json"
+    },
+    "respond": {
+      "status": 200,
+      "body": {
+        "account_sid": "s883165",
+        "city": "s677367",
+        "customer_name": "s877363",
+        "date_created": "s700122",
+        "date_updated": "s640808",
+        "emergency_enabled": true,
+        "friendly_name": "s627777",
+        "iso_country": "s209601",
+        "postal_code": "s194130",
+        "region": "s491656",
+        "sid": "s822918",
+        "street": "s756578",
+        "street_secondary": "s432320",
+        "uri": "s156635",
+        "validated": true,
+        "verified": true
+      }
+    }
+  },
+  {
+    "id": "twilio:DELETE:/2010-04-01/Accounts/:AccountSid/Addresses/:Sid.json#0",
+    "match": {
+      "method": "DELETE",
+      "path": "/2010-04-01/Accounts/:AccountSid/Addresses/:Sid.json"
+    },
+    "respond": {
+      "status": 204
+    }
+  },
+  {
+    "id": "twilio:GET:/2010-04-01/Accounts/:AccountSid/Applications.json#0",
+    "match": {
+      "method": "GET",
+      "path": "/2010-04-01/Accounts/:AccountSid/Applications.json"
+    },
+    "respond": {
+      "status": 200,
+      "body": {
+        "applications": [
+          {
+            "account_sid": "s332213",
+            "api_version": "s698958",
+            "date_created": "s15500",
+            "date_updated": "s242212",
+            "friendly_name": "s756658",
+            "message_status_callback": "https://example.com",
+            "public_application_connect_enabled": true,
+            "sid": "s363080",
+            "sms_fallback_method": "HEAD",
+            "sms_fallback_url": "https://example.com",
+            "sms_method": "HEAD",
+            "sms_status_callback": "https://example.com",
+            "sms_url": "https://example.com",
+            "status_callback": "https://example.com",
+            "status_callback_method": "HEAD",
+            "uri": "s755739",
+            "voice_caller_id_lookup": true,
+            "voice_fallback_method": "HEAD",
+            "voice_fallback_url": "https://example.com",
+            "voice_method": "HEAD",
+            "voice_url": "https://example.com"
+          }
+        ],
+        "end": 515,
+        "first_page_uri": "https://example.com",
+        "next_page_uri": "https://example.com",
+        "page": 462,
+        "page_size": 176,
+        "previous_page_uri": "https://example.com",
+        "start": 60,
+        "uri": "https://example.com"
+      }
+    }
+  },
+  {
+    "id": "twilio:POST:/2010-04-01/Accounts/:AccountSid/Applications.json#0",
+    "match": {
+      "method": "POST",
+      "path": "/2010-04-01/Accounts/:AccountSid/Applications.json"
+    },
+    "respond": {
+      "status": 201,
+      "body": {
+        "account_sid": "s649531",
+        "api_version": "s485686",
+        "date_created": "s872222",
+        "date_updated": "s599647",
+        "friendly_name": "s943728",
+        "message_status_callback": "https://example.com",
+        "public_application_connect_enabled": false,
+        "sid": "s732177",
+        "sms_fallback_method": "HEAD",
+        "sms_fallback_url": "https://example.com",
+        "sms_method": "HEAD",
+        "sms_status_callback": "https://example.com",
+        "sms_url": "https://example.com",
+        "status_callback": "https://example.com",
+        "status_callback_method": "HEAD",
+        "uri": "s56397",
+        "voice_caller_id_lookup": false,
+        "voice_fallback_method": "HEAD",
+        "voice_fallback_url": "https://example.com",
+        "voice_method": "HEAD",
+        "voice_url": "https://example.com"
+      }
+    }
+  },
+  {
+    "id": "twilio:GET:/2010-04-01/Accounts/:AccountSid/Applications/:Sid.json#0",
+    "match": {
+      "method": "GET",
+      "path": "/2010-04-01/Accounts/:AccountSid/Applications/:Sid.json"
+    },
+    "respond": {
+      "status": 200,
+      "body": {
+        "account_sid": "s579904",
+        "api_version": "s250773",
+        "date_created": "s465782",
+        "date_updated": "s492967",
+        "friendly_name": "s984040",
+        "message_status_callback": "https://example.com",
+        "public_application_connect_enabled": false,
+        "sid": "s18455",
+        "sms_fallback_method": "HEAD",
+        "sms_fallback_url": "https://example.com",
+        "sms_method": "HEAD",
+        "sms_status_callback": "https://example.com",
+        "sms_url": "https://example.com",
+        "status_callback": "https://example.com",
+        "status_callback_method": "HEAD",
+        "uri": "s672886",
+        "voice_caller_id_lookup": true,
+        "voice_fallback_method": "HEAD",
+        "voice_fallback_url": "https://example.com",
+        "voice_method": "HEAD",
+        "voice_url": "https://example.com"
+      }
+    }
+  },
+  {
+    "id": "twilio:POST:/2010-04-01/Accounts/:AccountSid/Applications/:Sid.json#0",
+    "match": {
+      "method": "POST",
+      "path": "/2010-04-01/Accounts/:AccountSid/Applications/:Sid.json"
+    },
+    "respond": {
+      "status": 200,
+      "body": {
+        "account_sid": "s893676",
+        "api_version": "s587049",
+        "date_created": "s374291",
+        "date_updated": "s485326",
+        "friendly_name": "s329960",
+        "message_status_callback": "https://example.com",
+        "public_application_connect_enabled": false,
+        "sid": "s406631",
+        "sms_fallback_method": "HEAD",
+        "sms_fallback_url": "https://example.com",
+        "sms_method": "HEAD",
+        "sms_status_callback": "https://example.com",
+        "sms_url": "https://example.com",
+        "status_callback": "https://example.com",
+        "status_callback_method": "HEAD",
+        "uri": "s936815",
+        "voice_caller_id_lookup": false,
+        "voice_fallback_method": "HEAD",
+        "voice_fallback_url": "https://example.com",
+        "voice_method": "HEAD",
+        "voice_url": "https://example.com"
+      }
+    }
+  },
+  {
+    "id": "twilio:DELETE:/2010-04-01/Accounts/:AccountSid/Applications/:Sid.json#0",
+    "match": {
+      "method": "DELETE",
+      "path": "/2010-04-01/Accounts/:AccountSid/Applications/:Sid.json"
+    },
+    "respond": {
+      "status": 204
+    }
+  },
+  {
+    "id": "twilio:GET:/2010-04-01/Accounts/:AccountSid/AuthorizedConnectApps.json#0",
+    "match": {
+      "method": "GET",
+      "path": "/2010-04-01/Accounts/:AccountSid/AuthorizedConnectApps.json"
+    },
+    "respond": {
+      "status": 200,
+      "body": {
+        "authorized_connect_apps": [
+          {
+            "account_sid": "s905319",
+            "connect_app_company_name": "s234158",
+            "connect_app_description": "s632785",
+            "connect_app_friendly_name": "s283732",
+            "connect_app_homepage_url": "https://example.com",
+            "connect_app_sid": "s200744",
+            "date_created": "s314151",
+            "date_updated": "s118829",
+            "permissions": [
+              "get-all"
+            ],
+            "uri": "s147320"
+          }
+        ],
+        "end": 702,
+        "first_page_uri": "https://example.com",
+        "next_page_uri": "https://example.com",
+        "page": 48,
+        "page_size": 778,
+        "previous_page_uri": "https://example.com",
+        "start": 592,
+        "uri": "https://example.com"
+      }
+    }
+  },
+  {
+    "id": "twilio:GET:/2010-04-01/Accounts/:AccountSid/AuthorizedConnectApps/:ConnectAppSid.json#0",
+    "match": {
+      "method": "GET",
+      "path": "/2010-04-01/Accounts/:AccountSid/AuthorizedConnectApps/:ConnectAppSid.json"
+    },
+    "respond": {
+      "status": 200,
+      "body": {
+        "account_sid": "s784210",
+        "connect_app_company_name": "s433380",
+        "connect_app_description": "s742043",
+        "connect_app_friendly_name": "s522116",
+        "connect_app_homepage_url": "https://example.com",
+        "connect_app_sid": "s632043",
+        "date_created": "s453949",
+        "date_updated": "s560600",
+        "permissions": [
+          "get-all"
+        ],
+        "uri": "s128903"
+      }
+    }
+  },
+  {
+    "id": "twilio:GET:/2010-04-01/Accounts/:AccountSid/AvailablePhoneNumbers.json#0",
+    "match": {
+      "method": "GET",
+      "path": "/2010-04-01/Accounts/:AccountSid/AvailablePhoneNumbers.json"
+    },
+    "respond": {
+      "status": 200,
+      "body": {
+        "countries": [
+          {
+            "beta": true,
+            "country": "s663816",
+            "country_code": "s700851",
+            "subresource_uris": {},
+            "uri": "https://example.com"
+          }
+        ],
+        "end": 251,
+        "first_page_uri": "https://example.com",
+        "next_page_uri": "https://example.com",
+        "page": 605,
+        "page_size": 516,
+        "previous_page_uri": "https://example.com",
+        "start": 219,
+        "uri": "https://example.com"
+      }
+    }
+  },
+  {
+    "id": "twilio:GET:/2010-04-01/Accounts/:AccountSid/AvailablePhoneNumbers/:CountryCode.json#0",
+    "match": {
+      "method": "GET",
+      "path": "/2010-04-01/Accounts/:AccountSid/AvailablePhoneNumbers/:CountryCode.json"
+    },
+    "respond": {
+      "status": 200,
+      "body": {
+        "beta": false,
+        "country": "s91332",
+        "country_code": "s424125",
+        "subresource_uris": {},
+        "uri": "https://example.com"
+      }
+    }
+  },
+  {
+    "id": "twilio:GET:/2010-04-01/Accounts/:AccountSid/AvailablePhoneNumbers/:CountryCode/Local.json#0",
+    "match": {
+      "method": "GET",
+      "path": "/2010-04-01/Accounts/:AccountSid/AvailablePhoneNumbers/:CountryCode/Local.json"
+    },
+    "respond": {
+      "status": 200,
+      "body": {
+        "available_phone_numbers": [
+          {
+            "address_requirements": "s530871",
+            "beta": false,
+            "capabilities": {
+              "fax": true,
+              "mms": false,
+              "sms": false,
+              "voice": true
+            },
+            "friendly_name": "s137563",
+            "iso_country": "s840909",
+            "lata": "s298609",
+            "latitude": 92.37,
+            "locality": "s589823",
+            "longitude": 66.51,
+            "phone_number": "s731838",
+            "postal_code": "s67163",
+            "rate_center": "s380629",
+            "region": "s508565"
+          }
+        ],
+        "end": 726,
+        "first_page_uri": "https://example.com",
+        "next_page_uri": "https://example.com",
+        "page": 796,
+        "page_size": 2,
+        "previous_page_uri": "https://example.com",
+        "start": 707,
+        "uri": "https://example.com"
+      }
+    }
+  },
+  {
+    "id": "twilio:GET:/2010-04-01/Accounts/:AccountSid/AvailablePhoneNumbers/:CountryCode/MachineToMachine.json#0",
+    "match": {
+      "method": "GET",
+      "path": "/2010-04-01/Accounts/:AccountSid/AvailablePhoneNumbers/:CountryCode/MachineToMachine.json"
+    },
+    "respond": {
+      "status": 200,
+      "body": {
+        "available_phone_numbers": [
+          {
+            "address_requirements": "s440214",
+            "beta": true,
+            "capabilities": {
+              "fax": true,
+              "mms": false,
+              "sms": true,
+              "voice": false
+            },
+            "friendly_name": "s309178",
+            "iso_country": "s797126",
+            "lata": "s187627",
+            "latitude": 83.59,
+            "locality": "s692072",
+            "longitude": 85.55,
+            "phone_number": "s608514",
+            "postal_code": "s896756",
+            "rate_center": "s790372",
+            "region": "s368012"
+          }
+        ],
+        "end": 918,
+        "first_page_uri": "https://example.com",
+        "next_page_uri": "https://example.com",
+        "page": 802,
+        "page_size": 581,
+        "previous_page_uri": "https://example.com",
+        "start": 147,
+        "uri": "https://example.com"
+      }
+    }
+  },
+  {
+    "id": "twilio:GET:/2010-04-01/Accounts/:AccountSid/AvailablePhoneNumbers/:CountryCode/Mobile.json#0",
+    "match": {
+      "method": "GET",
+      "path": "/2010-04-01/Accounts/:AccountSid/AvailablePhoneNumbers/:CountryCode/Mobile.json"
+    },
+    "respond": {
+      "status": 200,
+      "body": {
+        "available_phone_numbers": [
+          {
+            "address_requirements": "s788976",
+            "beta": true,
+            "capabilities": {
+              "fax": false,
+              "mms": false,
+              "sms": true,
+              "voice": false
+            },
+            "friendly_name": "s100806",
+            "iso_country": "s789208",
+            "lata": "s336038",
+            "latitude": 80.94,
+            "locality": "s356275",
+            "longitude": 78.74,
+            "phone_number": "s509104",
+            "postal_code": "s558693",
+            "rate_center": "s965923",
+            "region": "s211494"
+          }
+        ],
+        "end": 651,
+        "first_page_uri": "https://example.com",
+        "next_page_uri": "https://example.com",
+        "page": 645,
+        "page_size": 100,
+        "previous_page_uri": "https://example.com",
+        "start": 468,
+        "uri": "https://example.com"
+      }
+    }
+  },
+  {
+    "id": "twilio:GET:/2010-04-01/Accounts/:AccountSid/AvailablePhoneNumbers/:CountryCode/National.json#0",
+    "match": {
+      "method": "GET",
+      "path": "/2010-04-01/Accounts/:AccountSid/AvailablePhoneNumbers/:CountryCode/National.json"
+    },
+    "respond": {
+      "status": 200,
+      "body": {
+        "available_phone_numbers": [
+          {
+            "address_requirements": "s305341",
+            "beta": false,
+            "capabilities": {
+              "fax": false,
+              "mms": true,
+              "sms": true,
+              "voice": true
+            },
+            "friendly_name": "s251010",
+            "iso_country": "s162570",
+            "lata": "s512454",
+            "latitude": 47.59,
+            "locality": "s706198",
+            "longitude": 59.32,
+            "phone_number": "s905037",
+            "postal_code": "s526326",
+            "rate_center": "s270684",
+            "region": "s850194"
+          }
+        ],
+        "end": 702,
+        "first_page_uri": "https://example.com",
+        "next_page_uri": "https://example.com",
+        "page": 590,
+        "page_size": 773,
+        "previous_page_uri": "https://example.com",
+        "start": 611,
+        "uri": "https://example.com"
+      }
+    }
+  },
+  {
+    "id": "twilio:GET:/2010-04-01/Accounts/:AccountSid/AvailablePhoneNumbers/:CountryCode/SharedCost.json#0",
+    "match": {
+      "method": "GET",
+      "path": "/2010-04-01/Accounts/:AccountSid/AvailablePhoneNumbers/:CountryCode/SharedCost.json"
+    },
+    "respond": {
+      "status": 200,
+      "body": {
+        "available_phone_numbers": [
+          {
+            "address_requirements": "s294034",
+            "beta": false,
+            "capabilities": {
+              "fax": false,
+              "mms": false,
+              "sms": false,
+              "voice": true
+            },
+            "friendly_name": "s956423",
+            "iso_country": "s324307",
+            "lata": "s491557",
+            "latitude": 29.88,
+            "locality": "s522852",
+            "longitude": 62.29,
+            "phone_number": "s737625",
+            "postal_code": "s471308",
+            "rate_center": "s493991",
+            "region": "s492469"
+          }
+        ],
+        "end": 427,
+        "first_page_uri": "https://example.com",
+        "next_page_uri": "https://example.com",
+        "page": 756,
+        "page_size": 75,
+        "previous_page_uri": "https://example.com",
+        "start": 629,
+        "uri": "https://example.com"
+      }
+    }
+  },
+  {
+    "id": "twilio:GET:/2010-04-01/Accounts/:AccountSid/AvailablePhoneNumbers/:CountryCode/TollFree.json#0",
+    "match": {
+      "method": "GET",
+      "path": "/2010-04-01/Accounts/:AccountSid/AvailablePhoneNumbers/:CountryCode/TollFree.json"
+    },
+    "respond": {
+      "status": 200,
+      "body": {
+        "available_phone_numbers": [
+          {
+            "address_requirements": "s682675",
+            "beta": true,
+            "capabilities": {
+              "fax": false,
+              "mms": false,
+              "sms": false,
+              "voice": false
+            },
+            "friendly_name": "s884409",
+            "iso_country": "s406023",
+            "lata": "s157321",
+            "latitude": 43.79,
+            "locality": "s637887",
+            "longitude": 38.35,
+            "phone_number": "s543403",
+            "postal_code": "s442488",
+            "rate_center": "s857269",
+            "region": "s362190"
+          }
+        ],
+        "end": 68,
+        "first_page_uri": "https://example.com",
+        "next_page_uri": "https://example.com",
+        "page": 46,
+        "page_size": 286,
+        "previous_page_uri": "https://example.com",
+        "start": 93,
+        "uri": "https://example.com"
+      }
+    }
+  },
+  {
+    "id": "twilio:GET:/2010-04-01/Accounts/:AccountSid/AvailablePhoneNumbers/:CountryCode/Voip.json#0",
+    "match": {
+      "method": "GET",
+      "path": "/2010-04-01/Accounts/:AccountSid/AvailablePhoneNumbers/:CountryCode/Voip.json"
+    },
+    "respond": {
+      "status": 200,
+      "body": {
+        "available_phone_numbers": [
+          {
+            "address_requirements": "s248192",
+            "beta": false,
+            "capabilities": {
+              "fax": false,
+              "mms": false,
+              "sms": false,
+              "voice": false
+            },
+            "friendly_name": "s980231",
+            "iso_country": "s868973",
+            "lata": "s282876",
+            "latitude": 7.32,
+            "locality": "s580133",
+            "longitude": 68.44,
+            "phone_number": "s203708",
+            "postal_code": "s221905",
+            "rate_center": "s900099",
+            "region": "s174262"
+          }
+        ],
+        "end": 383,
+        "first_page_uri": "https://example.com",
+        "next_page_uri": "https://example.com",
+        "page": 977,
+        "page_size": 266,
+        "previous_page_uri": "https://example.com",
+        "start": 843,
+        "uri": "https://example.com"
+      }
+    }
+  },
+  {
+    "id": "twilio:GET:/2010-04-01/Accounts/:AccountSid/Balance.json#0",
+    "match": {
+      "method": "GET",
+      "path": "/2010-04-01/Accounts/:AccountSid/Balance.json"
+    },
+    "respond": {
+      "status": 200,
+      "body": {
+        "account_sid": "s676449",
+        "balance": "s500974",
+        "currency": "s989836"
+      }
+    }
+  },
+  {
+    "id": "twilio:GET:/2010-04-01/Accounts/:AccountSid/Calls.json#0",
+    "match": {
+      "method": "GET",
+      "path": "/2010-04-01/Accounts/:AccountSid/Calls.json"
+    },
+    "respond": {
+      "status": 200,
+      "body": {
+        "calls": [
+          {
+            "account_sid": "s773376",
+            "answered_by": "s97344",
+            "api_version": "s988383",
+            "caller_name": "s335457",
+            "date_created": "s975512",
+            "date_updated": "s49480",
+            "direction": "s973467",
+            "duration": "s913340",
+            "end_time": "s353988",
+            "forwarded_from": "s323733",
+            "from": "s153359",
+            "from_formatted": "s255123",
+            "group_sid": "s630117",
+            "parent_call_sid": "s26877",
+            "phone_number_sid": "s987556",
+            "price": "s516194",
+            "price_unit": "s9420",
+            "queue_time": "s801397",
+            "sid": "s955869",
+            "start_time": "s273179",
+            "status": "queued",
+            "subresource_uris": {},
+            "to": "s880824",
+            "to_formatted": "s679468",
+            "trunk_sid": "s498815",
+            "uri": "s922516"
+          }
+        ],
+        "end": 609,
+        "first_page_uri": "https://example.com",
+        "next_page_uri": "https://example.com",
+        "page": 242,
+        "page_size": 9,
+        "previous_page_uri": "https://example.com",
+        "start": 902,
+        "uri": "https://example.com"
+      }
+    }
+  },
+  {
+    "id": "twilio:POST:/2010-04-01/Accounts/:AccountSid/Calls.json#0",
+    "match": {
+      "method": "POST",
+      "path": "/2010-04-01/Accounts/:AccountSid/Calls.json"
+    },
+    "respond": {
+      "status": 201,
+      "body": {
+        "account_sid": "s991191",
+        "answered_by": "s267478",
+        "api_version": "s898709",
+        "caller_name": "s382587",
+        "date_created": "s12267",
+        "date_updated": "s705289",
+        "direction": "s976493",
+        "duration": "s141377",
+        "end_time": "s271461",
+        "forwarded_from": "s941269",
+        "from": "s925807",
+        "from_formatted": "s783759",
+        "group_sid": "s308756",
+        "parent_call_sid": "s957680",
+        "phone_number_sid": "s825581",
+        "price": "s262425",
+        "price_unit": "s659165",
+        "queue_time": "s781561",
+        "sid": "s260345",
+        "start_time": "s626055",
+        "status": "queued",
+        "subresource_uris": {},
+        "to": "s26293",
+        "to_formatted": "s172964",
+        "trunk_sid": "s312549",
+        "uri": "s620738"
+      }
+    }
+  },
+  {
+    "id": "twilio:POST:/2010-04-01/Accounts/:AccountSid/Calls/FeedbackSummary.json#0",
+    "match": {
+      "method": "POST",
+      "path": "/2010-04-01/Accounts/:AccountSid/Calls/FeedbackSummary.json"
+    },
+    "respond": {
+      "status": 201,
+      "body": {
+        "account_sid": "s679229",
+        "call_count": 922,
+        "call_feedback_count": 772,
+        "date_created": "s161087",
+        "date_updated": "s82829",
+        "end_date": "2026-01-01",
+        "include_subaccounts": false,
+        "issues": [
+          {}
+        ],
+        "quality_score_average": 16.84,
+        "quality_score_median": 14.11,
+        "quality_score_standard_deviation": 4.36,
+        "sid": "s77529",
+        "start_date": "2026-01-01",
+        "status": "queued"
+      }
+    }
+  },
+  {
+    "id": "twilio:GET:/2010-04-01/Accounts/:AccountSid/Calls/FeedbackSummary/:Sid.json#0",
+    "match": {
+      "method": "GET",
+      "path": "/2010-04-01/Accounts/:AccountSid/Calls/FeedbackSummary/:Sid.json"
+    },
+    "respond": {
+      "status": 200,
+      "body": {
+        "account_sid": "s984149",
+        "call_count": 364,
+        "call_feedback_count": 336,
+        "date_created": "s934444",
+        "date_updated": "s512061",
+        "end_date": "2026-01-01",
+        "include_subaccounts": false,
+        "issues": [
+          {}
+        ],
+        "quality_score_average": 36.87,
+        "quality_score_median": 88.16,
+        "quality_score_standard_deviation": 15.12,
+        "sid": "s562408",
+        "start_date": "2026-01-01",
+        "status": "queued"
+      }
+    }
+  },
+  {
+    "id": "twilio:DELETE:/2010-04-01/Accounts/:AccountSid/Calls/FeedbackSummary/:Sid.json#0",
+    "match": {
+      "method": "DELETE",
+      "path": "/2010-04-01/Accounts/:AccountSid/Calls/FeedbackSummary/:Sid.json"
+    },
+    "respond": {
+      "status": 204
+    }
+  },
+  {
+    "id": "twilio:GET:/2010-04-01/Accounts/:AccountSid/Calls/:CallSid/Events.json#0",
+    "match": {
+      "method": "GET",
+      "path": "/2010-04-01/Accounts/:AccountSid/Calls/:CallSid/Events.json"
+    },
+    "respond": {
+      "status": 200,
+      "body": {
+        "end": 922,
+        "events": [
+          {
+            "request": {},
+            "response": {}
+          }
+        ],
+        "first_page_uri": "https://example.com",
+        "next_page_uri": "https://example.com",
+        "page": 534,
+        "page_size": 838,
+        "previous_page_uri": "https://example.com",
+        "start": 371,
+        "uri": "https://example.com"
+      }
+    }
+  },
+  {
+    "id": "twilio:GET:/2010-04-01/Accounts/:AccountSid/Calls/:CallSid/Feedback.json#0",
+    "match": {
+      "method": "GET",
+      "path": "/2010-04-01/Accounts/:AccountSid/Calls/:CallSid/Feedback.json"
+    },
+    "respond": {
+      "status": 200,
+      "body": {
+        "account_sid": "s456794",
+        "date_created": "s750117",
+        "date_updated": "s568394",
+        "issues": [
+          "audio-latency"
+        ],
+        "quality_score": 962,
+        "sid": "s889881"
+      }
+    }
+  },
+  {
+    "id": "twilio:POST:/2010-04-01/Accounts/:AccountSid/Calls/:CallSid/Feedback.json#0",
+    "match": {
+      "method": "POST",
+      "path": "/2010-04-01/Accounts/:AccountSid/Calls/:CallSid/Feedback.json"
+    },
+    "respond": {
+      "status": 200,
+      "body": {
+        "account_sid": "s73525",
+        "date_created": "s78345",
+        "date_updated": "s435019",
+        "issues": [
+          "audio-latency"
+        ],
+        "quality_score": 787,
+        "sid": "s619877"
+      }
+    }
+  },
+  {
+    "id": "twilio:GET:/2010-04-01/Accounts/:AccountSid/Calls/:CallSid/Notifications.json#0",
+    "match": {
+      "method": "GET",
+      "path": "/2010-04-01/Accounts/:AccountSid/Calls/:CallSid/Notifications.json"
+    },
+    "respond": {
+      "status": 200,
+      "body": {
+        "end": 537,
+        "first_page_uri": "https://example.com",
+        "next_page_uri": "https://example.com",
+        "notifications": [
+          {
+            "account_sid": "s962204",
+            "api_version": "s219429",
+            "call_sid": "s271782",
+            "date_created": "s620566",
+            "date_updated": "s569776",
+            "error_code": "s346645",
+            "log": "s733717",
+            "message_date": "s283586",
+            "message_text": "s95878",
+            "more_info": "https://example.com",
+            "request_method": "HEAD",
+            "request_url": "https://example.com",
+            "sid": "s102540",
+            "uri": "s886105"
+          }
+        ],
+        "page": 548,
+        "page_size": 831,
+        "previous_page_uri": "https://example.com",
+        "start": 621,
+        "uri": "https://example.com"
+      }
+    }
+  },
+  {
+    "id": "twilio:GET:/2010-04-01/Accounts/:AccountSid/Calls/:CallSid/Notifications/:Sid.json#0",
+    "match": {
+      "method": "GET",
+      "path": "/2010-04-01/Accounts/:AccountSid/Calls/:CallSid/Notifications/:Sid.json"
+    },
+    "respond": {
+      "status": 200,
+      "body": {
+        "account_sid": "s784481",
+        "api_version": "s572372",
+        "call_sid": "s747156",
+        "date_created": "s597278",
+        "date_updated": "s359733",
+        "error_code": "s76036",
+        "log": "s324491",
+        "message_date": "s132919",
+        "message_text": "s19138",
+        "more_info": "https://example.com",
+        "request_method": "HEAD",
+        "request_url": "https://example.com",
+        "request_variables": "s745459",
+        "response_body": "s486654",
+        "response_headers": "s619603",
+        "sid": "s835149",
+        "uri": "s16964"
+      }
+    }
+  },
+  {
+    "id": "twilio:POST:/2010-04-01/Accounts/:AccountSid/Calls/:CallSid/Payments.json#0",
+    "match": {
+      "method": "POST",
+      "path": "/2010-04-01/Accounts/:AccountSid/Calls/:CallSid/Payments.json"
+    },
+    "respond": {
+      "status": 201,
+      "body": {
+        "account_sid": "s384539",
+        "call_sid": "s542808",
+        "date_created": "s276780",
+        "date_updated": "s276701",
+        "sid": "s315362",
+        "uri": "s752513"
+      }
+    }
+  },
+  {
+    "id": "twilio:POST:/2010-04-01/Accounts/:AccountSid/Calls/:CallSid/Payments/:Sid.json#0",
+    "match": {
+      "method": "POST",
+      "path": "/2010-04-01/Accounts/:AccountSid/Calls/:CallSid/Payments/:Sid.json"
+    },
+    "respond": {
+      "status": 202,
+      "body": {
+        "account_sid": "s117555",
+        "call_sid": "s392022",
+        "date_created": "s703455",
+        "date_updated": "s818835",
+        "sid": "s2264",
+        "uri": "s512747"
+      }
+    }
+  },
+  {
+    "id": "twilio:GET:/2010-04-01/Accounts/:AccountSid/Calls/:CallSid/Recordings.json#0",
+    "match": {
+      "method": "GET",
+      "path": "/2010-04-01/Accounts/:AccountSid/Calls/:CallSid/Recordings.json"
+    },
+    "respond": {
+      "status": 200,
+      "body": {
+        "end": 647,
+        "first_page_uri": "https://example.com",
+        "next_page_uri": "https://example.com",
+        "page": 485,
+        "page_size": 141,
+        "previous_page_uri": "https://example.com",
+        "recordings": [
+          {
+            "account_sid": "s224214",
+            "api_version": "s573669",
+            "call_sid": "s857061",
+            "channels": 373,
+            "conference_sid": "s857281",
+            "date_created": "s302275",
+            "date_updated": "s118559",
+            "duration": "s520737",
+            "encryption_details": {},
+            "error_code": 590,
+            "price": 44.88,
+            "price_unit": "s577551",
+            "sid": "s65628",
+            "source": "DialVerb",
+            "start_time": "s986414",
+            "status": "in-progress",
+            "track": "s336192",
+            "uri": "s17836"
+          }
+        ],
+        "start": 32,
+        "uri": "https://example.com"
+      }
+    }
+  },
+  {
+    "id": "twilio:POST:/2010-04-01/Accounts/:AccountSid/Calls/:CallSid/Recordings.json#0",
+    "match": {
+      "method": "POST",
+      "path": "/2010-04-01/Accounts/:AccountSid/Calls/:CallSid/Recordings.json"
+    },
+    "respond": {
+      "status": 201,
+      "body": {
+        "account_sid": "s208322",
+        "api_version": "s886734",
+        "call_sid": "s566558",
+        "channels": 513,
+        "conference_sid": "s65214",
+        "date_created": "s576063",
+        "date_updated": "s336061",
+        "duration": "s795823",
+        "encryption_details": {},
+        "error_code": 703,
+        "price": 87.92,
+        "price_unit": "s845730",
+        "sid": "s238570",
+        "source": "DialVerb",
+        "start_time": "s408854",
+        "status": "in-progress",
+        "track": "s343712",
+        "uri": "s575797"
+      }
+    }
+  },
+  {
+    "id": "twilio:GET:/2010-04-01/Accounts/:AccountSid/Calls/:CallSid/Recordings/:Sid.json#0",
+    "match": {
+      "method": "GET",
+      "path": "/2010-04-01/Accounts/:AccountSid/Calls/:CallSid/Recordings/:Sid.json"
+    },
+    "respond": {
+      "status": 200,
+      "body": {
+        "account_sid": "s312000",
+        "api_version": "s296261",
+        "call_sid": "s835733",
+        "channels": 244,
+        "conference_sid": "s812946",
+        "date_created": "s724379",
+        "date_updated": "s190946",
+        "duration": "s682886",
+        "encryption_details": {},
+        "error_code": 307,
+        "price": 97.11,
+        "price_unit": "s736806",
+        "sid": "s197841",
+        "source": "DialVerb",
+        "start_time": "s441558",
+        "status": "in-progress",
+        "track": "s15343",
+        "uri": "s76460"
+      }
+    }
+  },
+  {
+    "id": "twilio:POST:/2010-04-01/Accounts/:AccountSid/Calls/:CallSid/Recordings/:Sid.json#0",
+    "match": {
+      "method": "POST",
+      "path": "/2010-04-01/Accounts/:AccountSid/Calls/:CallSid/Recordings/:Sid.json"
+    },
+    "respond": {
+      "status": 200,
+      "body": {
+        "account_sid": "s618990",
+        "api_version": "s377117",
+        "call_sid": "s286075",
+        "channels": 237,
+        "conference_sid": "s435151",
+        "date_created": "s863820",
+        "date_updated": "s231105",
+        "duration": "s850892",
+        "encryption_details": {},
+        "error_code": 825,
+        "price": 47.31,
+        "price_unit": "s50663",
+        "sid": "s913467",
+        "source": "DialVerb",
+        "start_time": "s766890",
+        "status": "in-progress",
+        "track": "s195843",
+        "uri": "s185448"
+      }
+    }
+  },
+  {
+    "id": "twilio:DELETE:/2010-04-01/Accounts/:AccountSid/Calls/:CallSid/Recordings/:Sid.json#0",
+    "match": {
+      "method": "DELETE",
+      "path": "/2010-04-01/Accounts/:AccountSid/Calls/:CallSid/Recordings/:Sid.json"
+    },
+    "respond": {
+      "status": 204
+    }
+  },
+  {
+    "id": "twilio:POST:/2010-04-01/Accounts/:AccountSid/Calls/:CallSid/Siprec.json#0",
+    "match": {
+      "method": "POST",
+      "path": "/2010-04-01/Accounts/:AccountSid/Calls/:CallSid/Siprec.json"
+    },
+    "respond": {
+      "status": 201,
+      "body": {
+        "account_sid": "s274070",
+        "call_sid": "s200886",
+        "date_updated": "s56624",
+        "name": "s448297",
+        "sid": "s253797",
+        "status": "in-progress",
+        "uri": "s671789"
+      }
+    }
+  },
+  {
+    "id": "twilio:POST:/2010-04-01/Accounts/:AccountSid/Calls/:CallSid/Siprec/:Sid.json#0",
+    "match": {
+      "method": "POST",
+      "path": "/2010-04-01/Accounts/:AccountSid/Calls/:CallSid/Siprec/:Sid.json"
+    },
+    "respond": {
+      "status": 200,
+      "body": {
+        "account_sid": "s264911",
+        "call_sid": "s211690",
+        "date_updated": "s500028",
+        "name": "s269879",
+        "sid": "s251283",
+        "status": "in-progress",
+        "uri": "s461603"
+      }
+    }
+  },
+  {
+    "id": "twilio:POST:/2010-04-01/Accounts/:AccountSid/Calls/:CallSid/Streams.json#0",
+    "match": {
+      "method": "POST",
+      "path": "/2010-04-01/Accounts/:AccountSid/Calls/:CallSid/Streams.json"
+    },
+    "respond": {
+      "status": 201,
+      "body": {
+        "account_sid": "s278740",
+        "call_sid": "s3451",
+        "date_updated": "s784614",
+        "name": "s546659",
+        "sid": "s140677",
+        "status": "in-progress",
+        "uri": "s788657"
+      }
+    }
+  },
+  {
+    "id": "twilio:POST:/2010-04-01/Accounts/:AccountSid/Calls/:CallSid/Streams/:Sid.json#0",
+    "match": {
+      "method": "POST",
+      "path": "/2010-04-01/Accounts/:AccountSid/Calls/:CallSid/Streams/:Sid.json"
+    },
+    "respond": {
+      "status": 200,
+      "body": {
+        "account_sid": "s95576",
+        "call_sid": "s840301",
+        "date_updated": "s430122",
+        "name": "s13091",
+        "sid": "s907619",
+        "status": "in-progress",
+        "uri": "s518526"
+      }
+    }
+  },
+  {
+    "id": "twilio:POST:/2010-04-01/Accounts/:AccountSid/Calls/:CallSid/UserDefinedMessageSubscriptions.json#0",
+    "match": {
+      "method": "POST",
+      "path": "/2010-04-01/Accounts/:AccountSid/Calls/:CallSid/UserDefinedMessageSubscriptions.json"
+    },
+    "respond": {
+      "status": 201,
+      "body": {
+        "account_sid": "s955313",
+        "call_sid": "s869107",
+        "date_created": "s51417",
+        "sid": "s898141",
+        "uri": "s699961"
+      }
+    }
+  },
+  {
+    "id": "twilio:DELETE:/2010-04-01/Accounts/:AccountSid/Calls/:CallSid/UserDefinedMessageSubscriptions/:Sid.json#0",
+    "match": {
+      "method": "DELETE",
+      "path": "/2010-04-01/Accounts/:AccountSid/Calls/:CallSid/UserDefinedMessageSubscriptions/:Sid.json"
+    },
+    "respond": {
+      "status": 204
+    }
+  },
+  {
+    "id": "twilio:POST:/2010-04-01/Accounts/:AccountSid/Calls/:CallSid/UserDefinedMessages.json#0",
+    "match": {
+      "method": "POST",
+      "path": "/2010-04-01/Accounts/:AccountSid/Calls/:CallSid/UserDefinedMessages.json"
+    },
+    "respond": {
+      "status": 201,
+      "body": {
+        "account_sid": "s980169",
+        "call_sid": "s751648",
+        "date_created": "s130675",
+        "sid": "s325428"
+      }
+    }
+  },
+  {
+    "id": "twilio:GET:/2010-04-01/Accounts/:AccountSid/Calls/:Sid.json#0",
+    "match": {
+      "method": "GET",
+      "path": "/2010-04-01/Accounts/:AccountSid/Calls/:Sid.json"
+    },
+    "respond": {
+      "status": 200,
+      "body": {
+        "account_sid": "s108985",
+        "answered_by": "s310668",
+        "api_version": "s804692",
+        "caller_name": "s325069",
+        "date_created": "s812080",
+        "date_updated": "s377911",
+        "direction": "s103951",
+        "duration": "s771663",
+        "end_time": "s340650",
+        "forwarded_from": "s72281",
+        "from": "s81038",
+        "from_formatted": "s451169",
+        "group_sid": "s447910",
+        "parent_call_sid": "s282875",
+        "phone_number_sid": "s284492",
+        "price": "s263926",
+        "price_unit": "s290668",
+        "queue_time": "s268974",
+        "sid": "s563554",
+        "start_time": "s814208",
+        "status": "queued",
+        "subresource_uris": {},
+        "to": "s14041",
+        "to_formatted": "s109086",
+        "trunk_sid": "s777412",
+        "uri": "s866405"
+      }
+    }
+  },
+  {
+    "id": "twilio:POST:/2010-04-01/Accounts/:AccountSid/Calls/:Sid.json#0",
+    "match": {
+      "method": "POST",
+      "path": "/2010-04-01/Accounts/:AccountSid/Calls/:Sid.json"
+    },
+    "respond": {
+      "status": 200,
+      "body": {
+        "account_sid": "s675137",
+        "answered_by": "s167345",
+        "api_version": "s589177",
+        "caller_name": "s678361",
+        "date_created": "s483452",
+        "date_updated": "s483888",
+        "direction": "s198030",
+        "duration": "s114650",
+        "end_time": "s564376",
+        "forwarded_from": "s437284",
+        "from": "s958374",
+        "from_formatted": "s795708",
+        "group_sid": "s787276",
+        "parent_call_sid": "s312898",
+        "phone_number_sid": "s377834",
+        "price": "s403439",
+        "price_unit": "s700826",
+        "queue_time": "s898174",
+        "sid": "s423917",
+        "start_time": "s450518",
+        "status": "queued",
+        "subresource_uris": {},
+        "to": "s208695",
+        "to_formatted": "s17829",
+        "trunk_sid": "s555674",
+        "uri": "s327015"
+      }
+    }
+  },
+  {
+    "id": "twilio:DELETE:/2010-04-01/Accounts/:AccountSid/Calls/:Sid.json#0",
+    "match": {
+      "method": "DELETE",
+      "path": "/2010-04-01/Accounts/:AccountSid/Calls/:Sid.json"
+    },
+    "respond": {
+      "status": 204
+    }
+  },
+  {
+    "id": "twilio:GET:/2010-04-01/Accounts/:AccountSid/Conferences.json#0",
+    "match": {
+      "method": "GET",
+      "path": "/2010-04-01/Accounts/:AccountSid/Conferences.json"
+    },
+    "respond": {
+      "status": 200,
+      "body": {
+        "conferences": [
+          {
+            "account_sid": "s694378",
+            "api_version": "s48424",
+            "call_sid_ending_conference": "s461922",
+            "date_created": "s240242",
+            "date_updated": "s866306",
+            "friendly_name": "s869251",
+            "reason_conference_ended": "conference-ended-via-api",
+            "region": "s666503",
+            "sid": "s621689",
+            "status": "init",
+            "subresource_uris": {},
+            "uri": "s912044"
+          }
+        ],
+        "end": 266,
+        "first_page_uri": "https://example.com",
+        "next_page_uri": "https://example.com",
+        "page": 180,
+        "page_size": 208,
+        "previous_page_uri": "https://example.com",
+        "start": 861,
+        "uri": "https://example.com"
+      }
+    }
+  },
+  {
+    "id": "twilio:GET:/2010-04-01/Accounts/:AccountSid/Conferences/:ConferenceSid/Participants.json#0",
+    "match": {
+      "method": "GET",
+      "path": "/2010-04-01/Accounts/:AccountSid/Conferences/:ConferenceSid/Participants.json"
+    },
+    "respond": {
+      "status": 200,
+      "body": {
+        "end": 733,
+        "first_page_uri": "https://example.com",
+        "next_page_uri": "https://example.com",
+        "page": 830,
+        "page_size": 142,
+        "participants": [
+          {
+            "account_sid": "s23034",
+            "call_sid": "s322142",
+            "call_sid_to_coach": "s196919",
+            "coaching": true,
+            "conference_sid": "s812046",
+            "date_created": "s125336",
+            "date_updated": "s892120",
+            "end_conference_on_exit": true,
+            "hold": false,
+            "label": "s360710",
+            "muted": true,
+            "start_conference_on_enter": true,
+            "status": "queued",
+            "uri": "s247661"
+          }
+        ],
+        "previous_page_uri": "https://example.com",
+        "start": 0,
+        "uri": "https://example.com"
+      }
+    }
+  },
+  {
+    "id": "twilio:POST:/2010-04-01/Accounts/:AccountSid/Conferences/:ConferenceSid/Participants.json#0",
+    "match": {
+      "method": "POST",
+      "path": "/2010-04-01/Accounts/:AccountSid/Conferences/:ConferenceSid/Participants.json"
+    },
+    "respond": {
+      "status": 201,
+      "body": {
+        "account_sid": "s836240",
+        "call_sid": "s598405",
+        "call_sid_to_coach": "s636683",
+        "coaching": true,
+        "conference_sid": "s267764",
+        "date_created": "s231439",
+        "date_updated": "s178581",
+        "end_conference_on_exit": false,
+        "hold": true,
+        "label": "s823438",
+        "muted": false,
+        "start_conference_on_enter": true,
+        "status": "queued",
+        "uri": "s646827"
+      }
+    }
+  },
+  {
+    "id": "twilio:GET:/2010-04-01/Accounts/:AccountSid/Conferences/:ConferenceSid/Participants/:CallSid.json#0",
+    "match": {
+      "method": "GET",
+      "path": "/2010-04-01/Accounts/:AccountSid/Conferences/:ConferenceSid/Participants/:CallSid.json"
+    },
+    "respond": {
+      "status": 200,
+      "body": {
+        "account_sid": "s129917",
+        "call_sid": "s29708",
+        "call_sid_to_coach": "s798506",
+        "coaching": true,
+        "conference_sid": "s523589",
+        "date_created": "s55478",
+        "date_updated": "s283237",
+        "end_conference_on_exit": true,
+        "hold": false,
+        "label": "s633939",
+        "muted": false,
+        "start_conference_on_enter": false,
+        "status": "queued",
+        "uri": "s539711"
+      }
+    }
+  },
+  {
+    "id": "twilio:POST:/2010-04-01/Accounts/:AccountSid/Conferences/:ConferenceSid/Participants/:CallSid.json#0",
+    "match": {
+      "method": "POST",
+      "path": "/2010-04-01/Accounts/:AccountSid/Conferences/:ConferenceSid/Participants/:CallSid.json"
+    },
+    "respond": {
+      "status": 200,
+      "body": {
+        "account_sid": "s602032",
+        "call_sid": "s984797",
+        "call_sid_to_coach": "s593665",
+        "coaching": true,
+        "conference_sid": "s356743",
+        "date_created": "s900482",
+        "date_updated": "s749643",
+        "end_conference_on_exit": false,
+        "hold": true,
+        "label": "s312827",
+        "muted": false,
+        "start_conference_on_enter": true,
+        "status": "queued",
+        "uri": "s173705"
+      }
+    }
+  },
+  {
+    "id": "twilio:DELETE:/2010-04-01/Accounts/:AccountSid/Conferences/:ConferenceSid/Participants/:CallSid.json#0",
+    "match": {
+      "method": "DELETE",
+      "path": "/2010-04-01/Accounts/:AccountSid/Conferences/:ConferenceSid/Participants/:CallSid.json"
+    },
+    "respond": {
+      "status": 204
+    }
+  },
+  {
+    "id": "twilio:GET:/2010-04-01/Accounts/:AccountSid/Conferences/:ConferenceSid/Recordings.json#0",
+    "match": {
+      "method": "GET",
+      "path": "/2010-04-01/Accounts/:AccountSid/Conferences/:ConferenceSid/Recordings.json"
+    },
+    "respond": {
+      "status": 200,
+      "body": {
+        "end": 238,
+        "first_page_uri": "https://example.com",
+        "next_page_uri": "https://example.com",
+        "page": 435,
+        "page_size": 397,
+        "previous_page_uri": "https://example.com",
+        "recordings": [
+          {
+            "account_sid": "s235848",
+            "api_version": "s426791",
+            "call_sid": "s247144",
+            "channels": 420,
+            "conference_sid": "s575609",
+            "date_created": "s628814",
+            "date_updated": "s990659",
+            "duration": "s781136",
+            "encryption_details": {},
+            "error_code": 422,
+            "price": "s253515",
+            "price_unit": "s515186",
+            "sid": "s258978",
+            "source": "DialVerb",
+            "start_time": "s214702",
+            "status": "in-progress",
+            "uri": "s705123"
+          }
+        ],
+        "start": 747,
+        "uri": "https://example.com"
+      }
+    }
+  },
+  {
+    "id": "twilio:GET:/2010-04-01/Accounts/:AccountSid/Conferences/:ConferenceSid/Recordings/:Sid.json#0",
+    "match": {
+      "method": "GET",
+      "path": "/2010-04-01/Accounts/:AccountSid/Conferences/:ConferenceSid/Recordings/:Sid.json"
+    },
+    "respond": {
+      "status": 200,
+      "body": {
+        "account_sid": "s261459",
+        "api_version": "s405009",
+        "call_sid": "s661761",
+        "channels": 942,
+        "conference_sid": "s748324",
+        "date_created": "s6007",
+        "date_updated": "s451439",
+        "duration": "s264059",
+        "encryption_details": {},
+        "error_code": 18,
+        "price": "s676254",
+        "price_unit": "s992772",
+        "sid": "s532732",
+        "source": "DialVerb",
+        "start_time": "s396506",
+        "status": "in-progress",
+        "uri": "s353431"
+      }
+    }
+  },
+  {
+    "id": "twilio:POST:/2010-04-01/Accounts/:AccountSid/Conferences/:ConferenceSid/Recordings/:Sid.json#0",
+    "match": {
+      "method": "POST",
+      "path": "/2010-04-01/Accounts/:AccountSid/Conferences/:ConferenceSid/Recordings/:Sid.json"
+    },
+    "respond": {
+      "status": 200,
+      "body": {
+        "account_sid": "s301258",
+        "api_version": "s505990",
+        "call_sid": "s170961",
+        "channels": 740,
+        "conference_sid": "s584207",
+        "date_created": "s891768",
+        "date_updated": "s666927",
+        "duration": "s450567",
+        "encryption_details": {},
+        "error_code": 240,
+        "price": "s929917",
+        "price_unit": "s1754",
+        "sid": "s529354",
+        "source": "DialVerb",
+        "start_time": "s60009",
+        "status": "in-progress",
+        "uri": "s734241"
+      }
+    }
+  },
+  {
+    "id": "twilio:DELETE:/2010-04-01/Accounts/:AccountSid/Conferences/:ConferenceSid/Recordings/:Sid.json#0",
+    "match": {
+      "method": "DELETE",
+      "path": "/2010-04-01/Accounts/:AccountSid/Conferences/:ConferenceSid/Recordings/:Sid.json"
+    },
+    "respond": {
+      "status": 204
+    }
+  },
+  {
+    "id": "twilio:GET:/2010-04-01/Accounts/:AccountSid/Conferences/:Sid.json#0",
+    "match": {
+      "method": "GET",
+      "path": "/2010-04-01/Accounts/:AccountSid/Conferences/:Sid.json"
+    },
+    "respond": {
+      "status": 200,
+      "body": {
+        "account_sid": "s423466",
+        "api_version": "s382336",
+        "call_sid_ending_conference": "s945933",
+        "date_created": "s390308",
+        "date_updated": "s475754",
+        "friendly_name": "s899208",
+        "reason_conference_ended": "conference-ended-via-api",
+        "region": "s764420",
+        "sid": "s119171",
+        "status": "init",
+        "subresource_uris": {},
+        "uri": "s306403"
+      }
+    }
+  },
+  {
+    "id": "twilio:POST:/2010-04-01/Accounts/:AccountSid/Conferences/:Sid.json#0",
+    "match": {
+      "method": "POST",
+      "path": "/2010-04-01/Accounts/:AccountSid/Conferences/:Sid.json"
+    },
+    "respond": {
+      "status": 200,
+      "body": {
+        "account_sid": "s518420",
+        "api_version": "s585080",
+        "call_sid_ending_conference": "s365514",
+        "date_created": "s337534",
+        "date_updated": "s166434",
+        "friendly_name": "s293384",
+        "reason_conference_ended": "conference-ended-via-api",
+        "region": "s375397",
+        "sid": "s438782",
+        "status": "init",
+        "subresource_uris": {},
+        "uri": "s232169"
+      }
+    }
+  },
+  {
+    "id": "twilio:GET:/2010-04-01/Accounts/:AccountSid/ConnectApps.json#0",
+    "match": {
+      "method": "GET",
+      "path": "/2010-04-01/Accounts/:AccountSid/ConnectApps.json"
+    },
+    "respond": {
+      "status": 200,
+      "body": {
+        "connect_apps": [
+          {
+            "account_sid": "s999286",
+            "authorize_redirect_url": "https://example.com",
+            "company_name": "s223468",
+            "deauthorize_callback_method": "HEAD",
+            "deauthorize_callback_url": "https://example.com",
+            "description": "s409620",
+            "friendly_name": "s255123",
+            "homepage_url": "https://example.com",
+            "permissions": [
+              "get-all"
+            ],
+            "sid": "s480630",
+            "uri": "s209191"
+          }
+        ],
+        "end": 687,
+        "first_page_uri": "https://example.com",
+        "next_page_uri": "https://example.com",
+        "page": 65,
+        "page_size": 880,
+        "previous_page_uri": "https://example.com",
+        "start": 84,
+        "uri": "https://example.com"
+      }
+    }
+  },
+  {
+    "id": "twilio:GET:/2010-04-01/Accounts/:AccountSid/ConnectApps/:Sid.json#0",
+    "match": {
+      "method": "GET",
+      "path": "/2010-04-01/Accounts/:AccountSid/ConnectApps/:Sid.json"
+    },
+    "respond": {
+      "status": 200,
+      "body": {
+        "account_sid": "s558700",
+        "authorize_redirect_url": "https://example.com",
+        "company_name": "s958559",
+        "deauthorize_callback_method": "HEAD",
+        "deauthorize_callback_url": "https://example.com",
+        "description": "s523097",
+        "friendly_name": "s26085",
+        "homepage_url": "https://example.com",
+        "permissions": [
+          "get-all"
+        ],
+        "sid": "s36230",
+        "uri": "s451670"
+      }
+    }
+  },
+  {
+    "id": "twilio:POST:/2010-04-01/Accounts/:AccountSid/ConnectApps/:Sid.json#0",
+    "match": {
+      "method": "POST",
+      "path": "/2010-04-01/Accounts/:AccountSid/ConnectApps/:Sid.json"
+    },
+    "respond": {
+      "status": 200,
+      "body": {
+        "account_sid": "s32307",
+        "authorize_redirect_url": "https://example.com",
+        "company_name": "s344384",
+        "deauthorize_callback_method": "HEAD",
+        "deauthorize_callback_url": "https://example.com",
+        "description": "s804818",
+        "friendly_name": "s884755",
+        "homepage_url": "https://example.com",
+        "permissions": [
+          "get-all"
+        ],
+        "sid": "s781695",
+        "uri": "s389590"
+      }
+    }
+  },
+  {
+    "id": "twilio:DELETE:/2010-04-01/Accounts/:AccountSid/ConnectApps/:Sid.json#0",
+    "match": {
+      "method": "DELETE",
+      "path": "/2010-04-01/Accounts/:AccountSid/ConnectApps/:Sid.json"
+    },
+    "respond": {
+      "status": 204
+    }
+  },
+  {
+    "id": "twilio:GET:/2010-04-01/Accounts/:AccountSid/IncomingPhoneNumbers.json#0",
+    "match": {
+      "method": "GET",
+      "path": "/2010-04-01/Accounts/:AccountSid/IncomingPhoneNumbers.json"
+    },
+    "respond": {
+      "status": 200,
+      "body": {
+        "end": 173,
+        "first_page_uri": "https://example.com",
+        "incoming_phone_numbers": [
+          {
+            "account_sid": "s788336",
+            "address_requirements": "none",
+            "address_sid": "s394440",
+            "api_version": "s867323",
+            "beta": true,
+            "bundle_sid": "s335164",
+            "capabilities": {
+              "fax": true,
+              "mms": false,
+              "sms": false,
+              "voice": true
+            },
+            "date_created": "s771701",
+            "date_updated": "s435688",
+            "emergency_address_sid": "s769899",
+            "emergency_address_status": "registered",
+            "emergency_status": "Active",
+            "friendly_name": "s82734",
+            "identity_sid": "s667215",
+            "origin": "s483302",
+            "phone_number": "s163821",
+            "sid": "s537022",
+            "sms_application_sid": "s14931",
+            "sms_fallback_method": "HEAD",
+            "sms_fallback_url": "https://example.com",
+            "sms_method": "HEAD",
+            "sms_url": "https://example.com",
+            "status": "s509304",
+            "status_callback": "https://example.com",
+            "status_callback_method": "HEAD",
+            "trunk_sid": "s7594",
+            "uri": "s8426",
+            "voice_application_sid": "s392671",
+            "voice_caller_id_lookup": false,
+            "voice_fallback_method": "HEAD",
+            "voice_fallback_url": "https://example.com",
+            "voice_method": "HEAD",
+            "voice_receive_mode": "voice",
+            "voice_url": "https://example.com"
+          }
+        ],
+        "next_page_uri": "https://example.com",
+        "page": 994,
+        "page_size": 603,
+        "previous_page_uri": "https://example.com",
+        "start": 955,
+        "uri": "https://example.com"
+      }
+    }
+  },
+  {
+    "id": "twilio:POST:/2010-04-01/Accounts/:AccountSid/IncomingPhoneNumbers.json#0",
+    "match": {
+      "method": "POST",
+      "path": "/2010-04-01/Accounts/:AccountSid/IncomingPhoneNumbers.json"
+    },
+    "respond": {
+      "status": 201,
+      "body": {
+        "account_sid": "s462402",
+        "address_requirements": "none",
+        "address_sid": "s687937",
+        "api_version": "s695582",
+        "beta": true,
+        "bundle_sid": "s751311",
+        "capabilities": {
+          "fax": true,
+          "mms": true,
+          "sms": true,
+          "voice": false
+        },
+        "date_created": "s311809",
+        "date_updated": "s81563",
+        "emergency_address_sid": "s584741",
+        "emergency_address_status": "registered",
+        "emergency_status": "Active",
+        "friendly_name": "s973656",
+        "identity_sid": "s966334",
+        "origin": "s129024",
+        "phone_number": "s828814",
+        "sid": "s932255",
+        "sms_application_sid": "s699927",
+        "sms_fallback_method": "HEAD",
+        "sms_fallback_url": "https://example.com",
+        "sms_method": "HEAD",
+        "sms_url": "https://example.com",
+        "status": "s348749",
+        "status_callback": "https://example.com",
+        "status_callback_method": "HEAD",
+        "trunk_sid": "s766266",
+        "uri": "s785336",
+        "voice_application_sid": "s560956",
+        "voice_caller_id_lookup": true,
+        "voice_fallback_method": "HEAD",
+        "voice_fallback_url": "https://example.com",
+        "voice_method": "HEAD",
+        "voice_receive_mode": "voice",
+        "voice_url": "https://example.com"
+      }
+    }
+  },
+  {
+    "id": "twilio:GET:/2010-04-01/Accounts/:AccountSid/IncomingPhoneNumbers/Local.json#0",
+    "match": {
+      "method": "GET",
+      "path": "/2010-04-01/Accounts/:AccountSid/IncomingPhoneNumbers/Local.json"
+    },
+    "respond": {
+      "status": 200,
+      "body": {
+        "end": 829,
+        "first_page_uri": "https://example.com",
+        "incoming_phone_numbers": [
+          {
+            "account_sid": "s276606",
+            "address_requirements": "none",
+            "address_sid": "s373989",
+            "api_version": "s187871",
+            "beta": true,
+            "bundle_sid": "s211856",
+            "capabilities": {
+              "fax": true,
+              "mms": true,
+              "sms": true,
+              "voice": true
+            },
+            "date_created": "s938067",
+            "date_updated": "s817285",
+            "emergency_address_sid": "s997492",
+            "emergency_address_status": "registered",
+            "emergency_status": "Active",
+            "friendly_name": "s896801",
+            "identity_sid": "s800460",
+            "origin": "s767861",
+            "phone_number": "s413570",
+            "sid": "s967626",
+            "sms_application_sid": "s223827",
+            "sms_fallback_method": "HEAD",
+            "sms_fallback_url": "https://example.com",
+            "sms_method": "HEAD",
+            "sms_url": "https://example.com",
+            "status": "s569773",
+            "status_callback": "https://example.com",
+            "status_callback_method": "HEAD",
+            "trunk_sid": "s327344",
+            "uri": "s586235",
+            "voice_application_sid": "s223548",
+            "voice_caller_id_lookup": true,
+            "voice_fallback_method": "HEAD",
+            "voice_fallback_url": "https://example.com",
+            "voice_method": "HEAD",
+            "voice_receive_mode": "voice",
+            "voice_url": "https://example.com"
+          }
+        ],
+        "next_page_uri": "https://example.com",
+        "page": 608,
+        "page_size": 90,
+        "previous_page_uri": "https://example.com",
+        "start": 85,
+        "uri": "https://example.com"
+      }
+    }
+  },
+  {
+    "id": "twilio:POST:/2010-04-01/Accounts/:AccountSid/IncomingPhoneNumbers/Local.json#0",
+    "match": {
+      "method": "POST",
+      "path": "/2010-04-01/Accounts/:AccountSid/IncomingPhoneNumbers/Local.json"
+    },
+    "respond": {
+      "status": 201,
+      "body": {
+        "account_sid": "s918081",
+        "address_requirements": "none",
+        "address_sid": "s609874",
+        "api_version": "s422454",
+        "beta": true,
+        "bundle_sid": "s646475",
+        "capabilities": {
+          "fax": true,
+          "mms": false,
+          "sms": false,
+          "voice": true
+        },
+        "date_created": "s557187",
+        "date_updated": "s369779",
+        "emergency_address_sid": "s570627",
+        "emergency_address_status": "registered",
+        "emergency_status": "Active",
+        "friendly_name": "s852948",
+        "identity_sid": "s632725",
+        "origin": "s590467",
+        "phone_number": "s535746",
+        "sid": "s363427",
+        "sms_application_sid": "s328475",
+        "sms_fallback_method": "HEAD",
+        "sms_fallback_url": "https://example.com",
+        "sms_method": "HEAD",
+        "sms_url": "https://example.com",
+        "status": "s58446",
+        "status_callback": "https://example.com",
+        "status_callback_method": "HEAD",
+        "trunk_sid": "s369862",
+        "uri": "s287075",
+        "voice_application_sid": "s40486",
+        "voice_caller_id_lookup": true,
+        "voice_fallback_method": "HEAD",
+        "voice_fallback_url": "https://example.com",
+        "voice_method": "HEAD",
+        "voice_receive_mode": "voice",
+        "voice_url": "https://example.com"
+      }
+    }
+  },
+  {
+    "id": "twilio:GET:/2010-04-01/Accounts/:AccountSid/IncomingPhoneNumbers/Mobile.json#0",
+    "match": {
+      "method": "GET",
+      "path": "/2010-04-01/Accounts/:AccountSid/IncomingPhoneNumbers/Mobile.json"
+    },
+    "respond": {
+      "status": 200,
+      "body": {
+        "end": 187,
+        "first_page_uri": "https://example.com",
+        "incoming_phone_numbers": [
+          {
+            "account_sid": "s482443",
+            "address_requirements": "none",
+            "address_sid": "s655903",
+            "api_version": "s400022",
+            "beta": false,
+            "bundle_sid": "s556228",
+            "capabilities": {
+              "fax": false,
+              "mms": false,
+              "sms": false,
+              "voice": true
+            },
+            "date_created": "s896522",
+            "date_updated": "s896042",
+            "emergency_address_sid": "s53454",
+            "emergency_address_status": "registered",
+            "emergency_status": "Active",
+            "friendly_name": "s255990",
+            "identity_sid": "s936901",
+            "origin": "s505571",
+            "phone_number": "s516695",
+            "sid": "s205255",
+            "sms_application_sid": "s4945",
+            "sms_fallback_method": "HEAD",
+            "sms_fallback_url": "https://example.com",
+            "sms_method": "HEAD",
+            "sms_url": "https://example.com",
+            "status": "s195174",
+            "status_callback": "https://example.com",
+            "status_callback_method": "HEAD",
+            "trunk_sid": "s896333",
+            "uri": "s995823",
+            "voice_application_sid": "s723497",
+            "voice_caller_id_lookup": false,
+            "voice_fallback_method": "HEAD",
+            "voice_fallback_url": "https://example.com",
+            "voice_method": "HEAD",
+            "voice_receive_mode": "voice",
+            "voice_url": "https://example.com"
+          }
+        ],
+        "next_page_uri": "https://example.com",
+        "page": 907,
+        "page_size": 636,
+        "previous_page_uri": "https://example.com",
+        "start": 486,
+        "uri": "https://example.com"
+      }
+    }
+  },
+  {
+    "id": "twilio:POST:/2010-04-01/Accounts/:AccountSid/IncomingPhoneNumbers/Mobile.json#0",
+    "match": {
+      "method": "POST",
+      "path": "/2010-04-01/Accounts/:AccountSid/IncomingPhoneNumbers/Mobile.json"
+    },
+    "respond": {
+      "status": 201,
+      "body": {
+        "account_sid": "s561536",
+        "address_requirements": "none",
+        "address_sid": "s151168",
+        "api_version": "s893163",
+        "beta": true,
+        "bundle_sid": "s974456",
+        "capabilities": {
+          "fax": false,
+          "mms": false,
+          "sms": false,
+          "voice": true
+        },
+        "date_created": "s370079",
+        "date_updated": "s712064",
+        "emergency_address_sid": "s41928",
+        "emergency_address_status": "registered",
+        "emergency_status": "Active",
+        "friendly_name": "s624828",
+        "identity_sid": "s128912",
+        "origin": "s219863",
+        "phone_number": "s258511",
+        "sid": "s977232",
+        "sms_application_sid": "s741554",
+        "sms_fallback_method": "HEAD",
+        "sms_fallback_url": "https://example.com",
+        "sms_method": "HEAD",
+        "sms_url": "https://example.com",
+        "status": "s321732",
+        "status_callback": "https://example.com",
+        "status_callback_method": "HEAD",
+        "trunk_sid": "s644536",
+        "uri": "s460032",
+        "voice_application_sid": "s695435",
+        "voice_caller_id_lookup": true,
+        "voice_fallback_method": "HEAD",
+        "voice_fallback_url": "https://example.com",
+        "voice_method": "HEAD",
+        "voice_receive_mode": "voice",
+        "voice_url": "https://example.com"
+      }
+    }
+  },
+  {
+    "id": "twilio:GET:/2010-04-01/Accounts/:AccountSid/IncomingPhoneNumbers/TollFree.json#0",
+    "match": {
+      "method": "GET",
+      "path": "/2010-04-01/Accounts/:AccountSid/IncomingPhoneNumbers/TollFree.json"
+    },
+    "respond": {
+      "status": 200,
+      "body": {
+        "end": 684,
+        "first_page_uri": "https://example.com",
+        "incoming_phone_numbers": [
+          {
+            "account_sid": "s578687",
+            "address_requirements": "none",
+            "address_sid": "s287888",
+            "api_version": "s91654",
+            "beta": false,
+            "bundle_sid": "s287560",
+            "capabilities": {
+              "fax": true,
+              "mms": true,
+              "sms": true,
+              "voice": true
+            },
+            "date_created": "s24263",
+            "date_updated": "s286073",
+            "emergency_address_sid": "s34914",
+            "emergency_address_status": "registered",
+            "emergency_status": "Active",
+            "friendly_name": "s696327",
+            "identity_sid": "s864607",
+            "origin": "s745869",
+            "phone_number": "s620716",
+            "sid": "s302012",
+            "sms_application_sid": "s278564",
+            "sms_fallback_method": "HEAD",
+            "sms_fallback_url": "https://example.com",
+            "sms_method": "HEAD",
+            "sms_url": "https://example.com",
+            "status": "s704918",
+            "status_callback": "https://example.com",
+            "status_callback_method": "HEAD",
+            "trunk_sid": "s257366",
+            "uri": "s570044",
+            "voice_application_sid": "s638564",
+            "voice_caller_id_lookup": false,
+            "voice_fallback_method": "HEAD",
+            "voice_fallback_url": "https://example.com",
+            "voice_method": "HEAD",
+            "voice_receive_mode": "voice",
+            "voice_url": "https://example.com"
+          }
+        ],
+        "next_page_uri": "https://example.com",
+        "page": 653,
+        "page_size": 337,
+        "previous_page_uri": "https://example.com",
+        "start": 380,
+        "uri": "https://example.com"
+      }
+    }
+  },
+  {
+    "id": "twilio:POST:/2010-04-01/Accounts/:AccountSid/IncomingPhoneNumbers/TollFree.json#0",
+    "match": {
+      "method": "POST",
+      "path": "/2010-04-01/Accounts/:AccountSid/IncomingPhoneNumbers/TollFree.json"
+    },
+    "respond": {
+      "status": 201,
+      "body": {
+        "account_sid": "s195647",
+        "address_requirements": "none",
+        "address_sid": "s328498",
+        "api_version": "s838501",
+        "beta": true,
+        "bundle_sid": "s837631",
+        "capabilities": {
+          "fax": true,
+          "mms": true,
+          "sms": false,
+          "voice": true
+        },
+        "date_created": "s357968",
+        "date_updated": "s13387",
+        "emergency_address_sid": "s724347",
+        "emergency_address_status": "registered",
+        "emergency_status": "Active",
+        "friendly_name": "s73501",
+        "identity_sid": "s854785",
+        "origin": "s649704",
+        "phone_number": "s437954",
+        "sid": "s176085",
+        "sms_application_sid": "s575965",
+        "sms_fallback_method": "HEAD",
+        "sms_fallback_url": "https://example.com",
+        "sms_method": "HEAD",
+        "sms_url": "https://example.com",
+        "status": "s971990",
+        "status_callback": "https://example.com",
+        "status_callback_method": "HEAD",
+        "trunk_sid": "s292091",
+        "uri": "s53397",
+        "voice_application_sid": "s203920",
+        "voice_caller_id_lookup": true,
+        "voice_fallback_method": "HEAD",
+        "voice_fallback_url": "https://example.com",
+        "voice_method": "HEAD",
+        "voice_receive_mode": "voice",
+        "voice_url": "https://example.com"
+      }
+    }
+  },
+  {
+    "id": "twilio:GET:/2010-04-01/Accounts/:AccountSid/IncomingPhoneNumbers/:ResourceSid/AssignedAddOns.json#0",
+    "match": {
+      "method": "GET",
+      "path": "/2010-04-01/Accounts/:AccountSid/IncomingPhoneNumbers/:ResourceSid/AssignedAddOns.json"
+    },
+    "respond": {
+      "status": 200,
+      "body": {
+        "assigned_add_ons": [
+          {
+            "account_sid": "s410269",
+            "configuration": {},
+            "date_created": "s121925",
+            "date_updated": "s473575",
+            "description": "s169445",
+            "friendly_name": "s290840",
+            "resource_sid": "s531407",
+            "sid": "s607667",
+            "subresource_uris": {},
+            "unique_name": "s896303",
+            "uri": "s128698"
+          }
+        ],
+        "end": 982,
+        "first_page_uri": "https://example.com",
+        "next_page_uri": "https://example.com",
+        "page": 175,
+        "page_size": 682,
+        "previous_page_uri": "https://example.com",
+        "start": 807,
+        "uri": "https://example.com"
+      }
+    }
+  },
+  {
+    "id": "twilio:POST:/2010-04-01/Accounts/:AccountSid/IncomingPhoneNumbers/:ResourceSid/AssignedAddOns.json#0",
+    "match": {
+      "method": "POST",
+      "path": "/2010-04-01/Accounts/:AccountSid/IncomingPhoneNumbers/:ResourceSid/AssignedAddOns.json"
+    },
+    "respond": {
+      "status": 201,
+      "body": {
+        "account_sid": "s519478",
+        "configuration": {},
+        "date_created": "s884141",
+        "date_updated": "s533431",
+        "description": "s15615",
+        "friendly_name": "s888031",
+        "resource_sid": "s424725",
+        "sid": "s735971",
+        "subresource_uris": {},
+        "unique_name": "s262210",
+        "uri": "s724574"
+      }
+    }
+  },
+  {
+    "id": "twilio:GET:/2010-04-01/Accounts/:AccountSid/IncomingPhoneNumbers/:ResourceSid/AssignedAddOns/:AssignedAddOnSid/Extensions.json#0",
+    "match": {
+      "method": "GET",
+      "path": "/2010-04-01/Accounts/:AccountSid/IncomingPhoneNumbers/:ResourceSid/AssignedAddOns/:AssignedAddOnSid/Extensions.json"
+    },
+    "respond": {
+      "status": 200,
+      "body": {
+        "end": 436,
+        "extensions": [
+          {
+            "account_sid": "s7301",
+            "assigned_add_on_sid": "s193860",
+            "enabled": true,
+            "friendly_name": "s247936",
+            "product_name": "s113727",
+            "resource_sid": "s326903",
+            "sid": "s875166",
+            "unique_name": "s577772",
+            "uri": "s898347"
+          }
+        ],
+        "first_page_uri": "https://example.com",
+        "next_page_uri": "https://example.com",
+        "page": 705,
+        "page_size": 206,
+        "previous_page_uri": "https://example.com",
+        "start": 413,
+        "uri": "https://example.com"
+      }
+    }
+  },
+  {
+    "id": "twilio:GET:/2010-04-01/Accounts/:AccountSid/IncomingPhoneNumbers/:ResourceSid/AssignedAddOns/:AssignedAddOnSid/Extensions/:Sid.json#0",
+    "match": {
+      "method": "GET",
+      "path": "/2010-04-01/Accounts/:AccountSid/IncomingPhoneNumbers/:ResourceSid/AssignedAddOns/:AssignedAddOnSid/Extensions/:Sid.json"
+    },
+    "respond": {
+      "status": 200,
+      "body": {
+        "account_sid": "s681684",
+        "assigned_add_on_sid": "s691186",
+        "enabled": true,
+        "friendly_name": "s381568",
+        "product_name": "s41129",
+        "resource_sid": "s632897",
+        "sid": "s120059",
+        "unique_name": "s71282",
+        "uri": "s382502"
+      }
+    }
+  },
+  {
+    "id": "twilio:GET:/2010-04-01/Accounts/:AccountSid/IncomingPhoneNumbers/:ResourceSid/AssignedAddOns/:Sid.json#0",
+    "match": {
+      "method": "GET",
+      "path": "/2010-04-01/Accounts/:AccountSid/IncomingPhoneNumbers/:ResourceSid/AssignedAddOns/:Sid.json"
+    },
+    "respond": {
+      "status": 200,
+      "body": {
+        "account_sid": "s258349",
+        "configuration": {},
+        "date_created": "s466303",
+        "date_updated": "s58330",
+        "description": "s702597",
+        "friendly_name": "s491109",
+        "resource_sid": "s957117",
+        "sid": "s972830",
+        "subresource_uris": {},
+        "unique_name": "s801952",
+        "uri": "s176099"
+      }
+    }
+  },
+  {
+    "id": "twilio:DELETE:/2010-04-01/Accounts/:AccountSid/IncomingPhoneNumbers/:ResourceSid/AssignedAddOns/:Sid.json#0",
+    "match": {
+      "method": "DELETE",
+      "path": "/2010-04-01/Accounts/:AccountSid/IncomingPhoneNumbers/:ResourceSid/AssignedAddOns/:Sid.json"
+    },
+    "respond": {
+      "status": 204
+    }
+  },
+  {
+    "id": "twilio:GET:/2010-04-01/Accounts/:AccountSid/IncomingPhoneNumbers/:Sid.json#0",
+    "match": {
+      "method": "GET",
+      "path": "/2010-04-01/Accounts/:AccountSid/IncomingPhoneNumbers/:Sid.json"
+    },
+    "respond": {
+      "status": 200,
+      "body": {
+        "account_sid": "s120537",
+        "address_requirements": "none",
+        "address_sid": "s817142",
+        "api_version": "s811156",
+        "beta": false,
+        "bundle_sid": "s484886",
+        "capabilities": {
+          "fax": true,
+          "mms": true,
+          "sms": true,
+          "voice": true
+        },
+        "date_created": "s318755",
+        "date_updated": "s873498",
+        "emergency_address_sid": "s963209",
+        "emergency_address_status": "registered",
+        "emergency_status": "Active",
+        "friendly_name": "s411883",
+        "identity_sid": "s25552",
+        "origin": "s888053",
+        "phone_number": "s942128",
+        "sid": "s614749",
+        "sms_application_sid": "s729038",
+        "sms_fallback_method": "HEAD",
+        "sms_fallback_url": "https://example.com",
+        "sms_method": "HEAD",
+        "sms_url": "https://example.com",
+        "status": "s644180",
+        "status_callback": "https://example.com",
+        "status_callback_method": "HEAD",
+        "trunk_sid": "s358545",
+        "uri": "s636991",
+        "voice_application_sid": "s553753",
+        "voice_caller_id_lookup": true,
+        "voice_fallback_method": "HEAD",
+        "voice_fallback_url": "https://example.com",
+        "voice_method": "HEAD",
+        "voice_receive_mode": "voice",
+        "voice_url": "https://example.com"
+      }
+    }
+  },
+  {
+    "id": "twilio:POST:/2010-04-01/Accounts/:AccountSid/IncomingPhoneNumbers/:Sid.json#0",
+    "match": {
+      "method": "POST",
+      "path": "/2010-04-01/Accounts/:AccountSid/IncomingPhoneNumbers/:Sid.json"
+    },
+    "respond": {
+      "status": 200,
+      "body": {
+        "account_sid": "s121853",
+        "address_requirements": "none",
+        "address_sid": "s313437",
+        "api_version": "s781955",
+        "beta": true,
+        "bundle_sid": "s32124",
+        "capabilities": {
+          "fax": true,
+          "mms": true,
+          "sms": false,
+          "voice": false
+        },
+        "date_created": "s831512",
+        "date_updated": "s576954",
+        "emergency_address_sid": "s506723",
+        "emergency_address_status": "registered",
+        "emergency_status": "Active",
+        "friendly_name": "s99998",
+        "identity_sid": "s423058",
+        "origin": "s347252",
+        "phone_number": "s525743",
+        "sid": "s493141",
+        "sms_application_sid": "s273452",
+        "sms_fallback_method": "HEAD",
+        "sms_fallback_url": "https://example.com",
+        "sms_method": "HEAD",
+        "sms_url": "https://example.com",
+        "status": "s625083",
+        "status_callback": "https://example.com",
+        "status_callback_method": "HEAD",
+        "trunk_sid": "s308028",
+        "uri": "s804341",
+        "voice_application_sid": "s177762",
+        "voice_caller_id_lookup": false,
+        "voice_fallback_method": "HEAD",
+        "voice_fallback_url": "https://example.com",
+        "voice_method": "HEAD",
+        "voice_receive_mode": "voice",
+        "voice_url": "https://example.com"
+      }
+    }
+  },
+  {
+    "id": "twilio:DELETE:/2010-04-01/Accounts/:AccountSid/IncomingPhoneNumbers/:Sid.json#0",
+    "match": {
+      "method": "DELETE",
+      "path": "/2010-04-01/Accounts/:AccountSid/IncomingPhoneNumbers/:Sid.json"
+    },
+    "respond": {
+      "status": 204
+    }
+  },
+  {
+    "id": "twilio:GET:/2010-04-01/Accounts/:AccountSid/Keys.json#0",
+    "match": {
+      "method": "GET",
+      "path": "/2010-04-01/Accounts/:AccountSid/Keys.json"
+    },
+    "respond": {
+      "status": 200,
+      "body": {
+        "end": 122,
+        "first_page_uri": "https://example.com",
+        "keys": [
+          {
+            "date_created": "s625974",
+            "date_updated": "s886702",
+            "friendly_name": "s215306",
+            "sid": "s437098"
+          }
+        ],
+        "next_page_uri": "https://example.com",
+        "page": 718,
+        "page_size": 582,
+        "previous_page_uri": "https://example.com",
+        "start": 621,
+        "uri": "https://example.com"
+      }
+    }
+  },
+  {
+    "id": "twilio:POST:/2010-04-01/Accounts/:AccountSid/Keys.json#0",
+    "match": {
+      "method": "POST",
+      "path": "/2010-04-01/Accounts/:AccountSid/Keys.json"
+    },
+    "respond": {
+      "status": 201,
+      "body": {
+        "date_created": "s115333",
+        "date_updated": "s431",
+        "friendly_name": "s781149",
+        "secret": "s123645",
+        "sid": "s677378"
+      }
+    }
+  },
+  {
+    "id": "twilio:GET:/2010-04-01/Accounts/:AccountSid/Keys/:Sid.json#0",
+    "match": {
+      "method": "GET",
+      "path": "/2010-04-01/Accounts/:AccountSid/Keys/:Sid.json"
+    },
+    "respond": {
+      "status": 200,
+      "body": {
+        "date_created": "s86396",
+        "date_updated": "s909612",
+        "friendly_name": "s654158",
+        "sid": "s976237"
+      }
+    }
+  },
+  {
+    "id": "twilio:POST:/2010-04-01/Accounts/:AccountSid/Keys/:Sid.json#0",
+    "match": {
+      "method": "POST",
+      "path": "/2010-04-01/Accounts/:AccountSid/Keys/:Sid.json"
+    },
+    "respond": {
+      "status": 200,
+      "body": {
+        "date_created": "s961838",
+        "date_updated": "s726428",
+        "friendly_name": "s260463",
+        "sid": "s749071"
+      }
+    }
+  },
+  {
+    "id": "twilio:DELETE:/2010-04-01/Accounts/:AccountSid/Keys/:Sid.json#0",
+    "match": {
+      "method": "DELETE",
+      "path": "/2010-04-01/Accounts/:AccountSid/Keys/:Sid.json"
+    },
+    "respond": {
+      "status": 204
+    }
+  },
+  {
+    "id": "twilio:GET:/2010-04-01/Accounts/:AccountSid/Messages.json#0",
+    "match": {
+      "method": "GET",
+      "path": "/2010-04-01/Accounts/:AccountSid/Messages.json"
+    },
+    "respond": {
+      "status": 200,
+      "body": {
+        "end": 384,
+        "first_page_uri": "https://example.com",
+        "messages": [
+          {
+            "account_sid": "s346692",
+            "api_version": "s616560",
+            "body": "s659220",
+            "date_created": "s188580",
+            "date_sent": "s357914",
+            "date_updated": "s866275",
+            "direction": "inbound",
+            "error_code": 998,
+            "error_message": "s986347",
+            "from": "s511052",
+            "messaging_service_sid": "s258667",
+            "num_media": "s783119",
+            "num_segments": "s139693",
+            "price": "s535856",
+            "price_unit": "s346709",
+            "sid": "s386569",
+            "status": "queued",
+            "subresource_uris": {},
+            "to": "s913595",
+            "uri": "s563707"
+          }
+        ],
+        "next_page_uri": "https://example.com",
+        "page": 946,
+        "page_size": 132,
+        "previous_page_uri": "https://example.com",
+        "start": 728,
+        "uri": "https://example.com"
+      }
+    }
+  },
+  {
+    "id": "twilio:POST:/2010-04-01/Accounts/:AccountSid/Messages.json#0",
+    "match": {
+      "method": "POST",
+      "path": "/2010-04-01/Accounts/:AccountSid/Messages.json"
+    },
+    "respond": {
+      "status": 201,
+      "body": {
+        "account_sid": "s955923",
+        "api_version": "s888025",
+        "body": "s479156",
+        "date_created": "s587992",
+        "date_sent": "s119695",
+        "date_updated": "s70999",
+        "direction": "inbound",
+        "error_code": 365,
+        "error_message": "s846035",
+        "from": "s664789",
+        "messaging_service_sid": "s289229",
+        "num_media": "s852642",
+        "num_segments": "s478613",
+        "price": "s211692",
+        "price_unit": "s875399",
+        "sid": "s113430",
+        "status": "queued",
+        "subresource_uris": {},
+        "to": "s54334",
+        "uri": "s259422"
+      }
+    }
+  },
+  {
+    "id": "twilio:POST:/2010-04-01/Accounts/:AccountSid/Messages/:MessageSid/Feedback.json#0",
+    "match": {
+      "method": "POST",
+      "path": "/2010-04-01/Accounts/:AccountSid/Messages/:MessageSid/Feedback.json"
+    },
+    "respond": {
+      "status": 201,
+      "body": {
+        "account_sid": "s673808",
+        "date_created": "s325840",
+        "date_updated": "s344346",
+        "message_sid": "s258588",
+        "outcome": "confirmed",
+        "uri": "s624928"
+      }
+    }
+  },
+  {
+    "id": "twilio:GET:/2010-04-01/Accounts/:AccountSid/Messages/:MessageSid/Media.json#0",
+    "match": {
+      "method": "GET",
+      "path": "/2010-04-01/Accounts/:AccountSid/Messages/:MessageSid/Media.json"
+    },
+    "respond": {
+      "status": 200,
+      "body": {
+        "end": 413,
+        "first_page_uri": "https://example.com",
+        "media_list": [
+          {
+            "account_sid": "s103713",
+            "content_type": "s728644",
+            "date_created": "s205638",
+            "date_updated": "s539544",
+            "parent_sid": "s245982",
+            "sid": "s921604",
+            "uri": "s548696"
+          }
+        ],
+        "next_page_uri": "https://example.com",
+        "page": 955,
+        "page_size": 339,
+        "previous_page_uri": "https://example.com",
+        "start": 137,
+        "uri": "https://example.com"
+      }
+    }
+  },
+  {
+    "id": "twilio:GET:/2010-04-01/Accounts/:AccountSid/Messages/:MessageSid/Media/:Sid.json#0",
+    "match": {
+      "method": "GET",
+      "path": "/2010-04-01/Accounts/:AccountSid/Messages/:MessageSid/Media/:Sid.json"
+    },
+    "respond": {
+      "status": 200,
+      "body": {
+        "account_sid": "s462221",
+        "content_type": "s468251",
+        "date_created": "s641579",
+        "date_updated": "s928498",
+        "parent_sid": "s471660",
+        "sid": "s296679",
+        "uri": "s728108"
+      }
+    }
+  },
+  {
+    "id": "twilio:DELETE:/2010-04-01/Accounts/:AccountSid/Messages/:MessageSid/Media/:Sid.json#0",
+    "match": {
+      "method": "DELETE",
+      "path": "/2010-04-01/Accounts/:AccountSid/Messages/:MessageSid/Media/:Sid.json"
+    },
+    "respond": {
+      "status": 204
+    }
+  },
+  {
+    "id": "twilio:GET:/2010-04-01/Accounts/:AccountSid/Messages/:Sid.json#0",
+    "match": {
+      "method": "GET",
+      "path": "/2010-04-01/Accounts/:AccountSid/Messages/:Sid.json"
+    },
+    "respond": {
+      "status": 200,
+      "body": {
+        "account_sid": "s179891",
+        "api_version": "s107235",
+        "body": "s495966",
+        "date_created": "s251129",
+        "date_sent": "s728913",
+        "date_updated": "s354433",
+        "direction": "inbound",
+        "error_code": 269,
+        "error_message": "s226585",
+        "from": "s239701",
+        "messaging_service_sid": "s762416",
+        "num_media": "s572917",
+        "num_segments": "s515818",
+        "price": "s657079",
+        "price_unit": "s80914",
+        "sid": "s657209",
+        "status": "queued",
+        "subresource_uris": {},
+        "to": "s441839",
+        "uri": "s155769"
+      }
+    }
+  },
+  {
+    "id": "twilio:POST:/2010-04-01/Accounts/:AccountSid/Messages/:Sid.json#0",
+    "match": {
+      "method": "POST",
+      "path": "/2010-04-01/Accounts/:AccountSid/Messages/:Sid.json"
+    },
+    "respond": {
+      "status": 200,
+      "body": {
+        "account_sid": "s751109",
+        "api_version": "s260016",
+        "body": "s77980",
+        "date_created": "s226982",
+        "date_sent": "s38923",
+        "date_updated": "s380456",
+        "direction": "inbound",
+        "error_code": 502,
+        "error_message": "s621201",
+        "from": "s371201",
+        "messaging_service_sid": "s322662",
+        "num_media": "s423799",
+        "num_segments": "s330899",
+        "price": "s472141",
+        "price_unit": "s318923",
+        "sid": "s455718",
+        "status": "queued",
+        "subresource_uris": {},
+        "to": "s587282",
+        "uri": "s241944"
+      }
+    }
+  },
+  {
+    "id": "twilio:DELETE:/2010-04-01/Accounts/:AccountSid/Messages/:Sid.json#0",
+    "match": {
+      "method": "DELETE",
+      "path": "/2010-04-01/Accounts/:AccountSid/Messages/:Sid.json"
+    },
+    "respond": {
+      "status": 204
+    }
+  },
+  {
+    "id": "twilio:GET:/2010-04-01/Accounts/:AccountSid/Notifications.json#0",
+    "match": {
+      "method": "GET",
+      "path": "/2010-04-01/Accounts/:AccountSid/Notifications.json"
+    },
+    "respond": {
+      "status": 200,
+      "body": {
+        "end": 25,
+        "first_page_uri": "https://example.com",
+        "next_page_uri": "https://example.com",
+        "notifications": [
+          {
+            "account_sid": "s134094",
+            "api_version": "s82578",
+            "call_sid": "s536142",
+            "date_created": "s609625",
+            "date_updated": "s899663",
+            "error_code": "s33233",
+            "log": "s97703",
+            "message_date": "s429486",
+            "message_text": "s98524",
+            "more_info": "https://example.com",
+            "request_method": "HEAD",
+            "request_url": "https://example.com",
+            "sid": "s680657",
+            "uri": "s579769"
+          }
+        ],
+        "page": 392,
+        "page_size": 333,
+        "previous_page_uri": "https://example.com",
+        "start": 422,
+        "uri": "https://example.com"
+      }
+    }
+  },
+  {
+    "id": "twilio:GET:/2010-04-01/Accounts/:AccountSid/Notifications/:Sid.json#0",
+    "match": {
+      "method": "GET",
+      "path": "/2010-04-01/Accounts/:AccountSid/Notifications/:Sid.json"
+    },
+    "respond": {
+      "status": 200,
+      "body": {
+        "account_sid": "s907260",
+        "api_version": "s362917",
+        "call_sid": "s169466",
+        "date_created": "s661206",
+        "date_updated": "s338884",
+        "error_code": "s919842",
+        "log": "s111167",
+        "message_date": "s194099",
+        "message_text": "s948507",
+        "more_info": "https://example.com",
+        "request_method": "HEAD",
+        "request_url": "https://example.com",
+        "request_variables": "s250953",
+        "response_body": "s901507",
+        "response_headers": "s188292",
+        "sid": "s529720",
+        "uri": "s362175"
+      }
+    }
+  },
+  {
+    "id": "twilio:GET:/2010-04-01/Accounts/:AccountSid/OutgoingCallerIds.json#0",
+    "match": {
+      "method": "GET",
+      "path": "/2010-04-01/Accounts/:AccountSid/OutgoingCallerIds.json"
+    },
+    "respond": {
+      "status": 200,
+      "body": {
+        "end": 247,
+        "first_page_uri": "https://example.com",
+        "next_page_uri": "https://example.com",
+        "outgoing_caller_ids": [
+          {
+            "account_sid": "s191908",
+            "date_created": "s696655",
+            "date_updated": "s56430",
+            "friendly_name": "s992586",
+            "phone_number": "s712386",
+            "sid": "s19668",
+            "uri": "s348610"
+          }
+        ],
+        "page": 41,
+        "page_size": 790,
+        "previous_page_uri": "https://example.com",
+        "start": 910,
+        "uri": "https://example.com"
+      }
+    }
+  },
+  {
+    "id": "twilio:POST:/2010-04-01/Accounts/:AccountSid/OutgoingCallerIds.json#0",
+    "match": {
+      "method": "POST",
+      "path": "/2010-04-01/Accounts/:AccountSid/OutgoingCallerIds.json"
+    },
+    "respond": {
+      "status": 201,
+      "body": {
+        "account_sid": "s859449",
+        "call_sid": "s197162",
+        "friendly_name": "s310622",
+        "phone_number": "s666248",
+        "validation_code": "s216516"
+      }
+    }
+  },
+  {
+    "id": "twilio:GET:/2010-04-01/Accounts/:AccountSid/OutgoingCallerIds/:Sid.json#0",
+    "match": {
+      "method": "GET",
+      "path": "/2010-04-01/Accounts/:AccountSid/OutgoingCallerIds/:Sid.json"
+    },
+    "respond": {
+      "status": 200,
+      "body": {
+        "account_sid": "s60542",
+        "date_created": "s156804",
+        "date_updated": "s727447",
+        "friendly_name": "s188814",
+        "phone_number": "s524311",
+        "sid": "s680194",
+        "uri": "s109396"
+      }
+    }
+  },
+  {
+    "id": "twilio:POST:/2010-04-01/Accounts/:AccountSid/OutgoingCallerIds/:Sid.json#0",
+    "match": {
+      "method": "POST",
+      "path": "/2010-04-01/Accounts/:AccountSid/OutgoingCallerIds/:Sid.json"
+    },
+    "respond": {
+      "status": 200,
+      "body": {
+        "account_sid": "s721549",
+        "date_created": "s483892",
+        "date_updated": "s444933",
+        "friendly_name": "s757683",
+        "phone_number": "s298366",
+        "sid": "s207151",
+        "uri": "s296659"
+      }
+    }
+  },
+  {
+    "id": "twilio:DELETE:/2010-04-01/Accounts/:AccountSid/OutgoingCallerIds/:Sid.json#0",
+    "match": {
+      "method": "DELETE",
+      "path": "/2010-04-01/Accounts/:AccountSid/OutgoingCallerIds/:Sid.json"
+    },
+    "respond": {
+      "status": 204
+    }
+  },
+  {
+    "id": "twilio:GET:/2010-04-01/Accounts/:AccountSid/Queues.json#0",
+    "match": {
+      "method": "GET",
+      "path": "/2010-04-01/Accounts/:AccountSid/Queues.json"
+    },
+    "respond": {
+      "status": 200,
+      "body": {
+        "end": 302,
+        "first_page_uri": "https://example.com",
+        "next_page_uri": "https://example.com",
+        "page": 193,
+        "page_size": 215,
+        "previous_page_uri": "https://example.com",
+        "queues": [
+          {
+            "account_sid": "s259574",
+            "average_wait_time": 595,
+            "current_size": 873,
+            "date_created": "s785100",
+            "date_updated": "s128881",
+            "friendly_name": "s760687",
+            "max_size": 340,
+            "sid": "s492628",
+            "uri": "s378468"
+          }
+        ],
+        "start": 783,
+        "uri": "https://example.com"
+      }
+    }
+  },
+  {
+    "id": "twilio:POST:/2010-04-01/Accounts/:AccountSid/Queues.json#0",
+    "match": {
+      "method": "POST",
+      "path": "/2010-04-01/Accounts/:AccountSid/Queues.json"
+    },
+    "respond": {
+      "status": 201,
+      "body": {
+        "account_sid": "s790931",
+        "average_wait_time": 498,
+        "current_size": 807,
+        "date_created": "s744125",
+        "date_updated": "s446223",
+        "friendly_name": "s249963",
+        "max_size": 721,
+        "sid": "s210719",
+        "uri": "s205435"
+      }
+    }
+  },
+  {
+    "id": "twilio:GET:/2010-04-01/Accounts/:AccountSid/Queues/:QueueSid/Members.json#0",
+    "match": {
+      "method": "GET",
+      "path": "/2010-04-01/Accounts/:AccountSid/Queues/:QueueSid/Members.json"
+    },
+    "respond": {
+      "status": 200,
+      "body": {
+        "end": 133,
+        "first_page_uri": "https://example.com",
+        "next_page_uri": "https://example.com",
+        "page": 387,
+        "page_size": 0,
+        "previous_page_uri": "https://example.com",
+        "queue_members": [
+          {
+            "call_sid": "s72993",
+            "date_enqueued": "s451861",
+            "position": 946,
+            "queue_sid": "s404146",
+            "uri": "s25350",
+            "wait_time": 436
+          }
+        ],
+        "start": 367,
+        "uri": "https://example.com"
+      }
+    }
+  },
+  {
+    "id": "twilio:GET:/2010-04-01/Accounts/:AccountSid/Queues/:QueueSid/Members/:CallSid.json#0",
+    "match": {
+      "method": "GET",
+      "path": "/2010-04-01/Accounts/:AccountSid/Queues/:QueueSid/Members/:CallSid.json"
+    },
+    "respond": {
+      "status": 200,
+      "body": {
+        "call_sid": "s418531",
+        "date_enqueued": "s344688",
+        "position": 963,
+        "queue_sid": "s669828",
+        "uri": "s662261",
+        "wait_time": 801
+      }
+    }
+  },
+  {
+    "id": "twilio:POST:/2010-04-01/Accounts/:AccountSid/Queues/:QueueSid/Members/:CallSid.json#0",
+    "match": {
+      "method": "POST",
+      "path": "/2010-04-01/Accounts/:AccountSid/Queues/:QueueSid/Members/:CallSid.json"
+    },
+    "respond": {
+      "status": 200,
+      "body": {
+        "call_sid": "s482945",
+        "date_enqueued": "s181782",
+        "position": 991,
+        "queue_sid": "s207626",
+        "uri": "s181997",
+        "wait_time": 104
+      }
+    }
+  },
+  {
+    "id": "twilio:GET:/2010-04-01/Accounts/:AccountSid/Queues/:Sid.json#0",
+    "match": {
+      "method": "GET",
+      "path": "/2010-04-01/Accounts/:AccountSid/Queues/:Sid.json"
+    },
+    "respond": {
+      "status": 200,
+      "body": {
+        "account_sid": "s117446",
+        "average_wait_time": 922,
+        "current_size": 16,
+        "date_created": "s646141",
+        "date_updated": "s293026",
+        "friendly_name": "s928869",
+        "max_size": 325,
+        "sid": "s945225",
+        "uri": "s8711"
+      }
+    }
+  },
+  {
+    "id": "twilio:POST:/2010-04-01/Accounts/:AccountSid/Queues/:Sid.json#0",
+    "match": {
+      "method": "POST",
+      "path": "/2010-04-01/Accounts/:AccountSid/Queues/:Sid.json"
+    },
+    "respond": {
+      "status": 200,
+      "body": {
+        "account_sid": "s342769",
+        "average_wait_time": 422,
+        "current_size": 972,
+        "date_created": "s946058",
+        "date_updated": "s959809",
+        "friendly_name": "s430963",
+        "max_size": 814,
+        "sid": "s927525",
+        "uri": "s633566"
+      }
+    }
+  },
+  {
+    "id": "twilio:DELETE:/2010-04-01/Accounts/:AccountSid/Queues/:Sid.json#0",
+    "match": {
+      "method": "DELETE",
+      "path": "/2010-04-01/Accounts/:AccountSid/Queues/:Sid.json"
+    },
+    "respond": {
+      "status": 204
+    }
+  },
+  {
+    "id": "twilio:GET:/2010-04-01/Accounts/:AccountSid/Recordings.json#0",
+    "match": {
+      "method": "GET",
+      "path": "/2010-04-01/Accounts/:AccountSid/Recordings.json"
+    },
+    "respond": {
+      "status": 200,
+      "body": {
+        "end": 263,
+        "first_page_uri": "https://example.com",
+        "next_page_uri": "https://example.com",
+        "page": 989,
+        "page_size": 419,
+        "previous_page_uri": "https://example.com",
+        "recordings": [
+          {
+            "account_sid": "s340085",
+            "api_version": "s580305",
+            "call_sid": "s790766",
+            "channels": 889,
+            "conference_sid": "s727971",
+            "date_created": "s93788",
+            "date_updated": "s440040",
+            "duration": "s566269",
+            "encryption_details": {},
+            "error_code": 780,
+            "media_url": "https://example.com",
+            "price": "s556168",
+            "price_unit": "s924727",
+            "sid": "s705310",
+            "source": "DialVerb",
+            "start_time": "s222771",
+            "status": "in-progress",
+            "subresource_uris": {},
+            "uri": "s373089"
+          }
+        ],
+        "start": 629,
+        "uri": "https://example.com"
+      }
+    }
+  },
+  {
+    "id": "twilio:GET:/2010-04-01/Accounts/:AccountSid/Recordings/:RecordingSid/Transcriptions.json#0",
+    "match": {
+      "method": "GET",
+      "path": "/2010-04-01/Accounts/:AccountSid/Recordings/:RecordingSid/Transcriptions.json"
+    },
+    "respond": {
+      "status": 200,
+      "body": {
+        "end": 78,
+        "first_page_uri": "https://example.com",
+        "next_page_uri": "https://example.com",
+        "page": 525,
+        "page_size": 406,
+        "previous_page_uri": "https://example.com",
+        "start": 235,
+        "transcriptions": [
+          {
+            "account_sid": "s19806",
+            "api_version": "s744428",
+            "date_created": "s530255",
+            "date_updated": "s342313",
+            "duration": "s667452",
+            "price": 11.14,
+            "price_unit": "s309218",
+            "recording_sid": "s62920",
+            "sid": "s311182",
+            "status": "in-progress",
+            "transcription_text": "s979780",
+            "type": "s22133",
+            "uri": "s979950"
+          }
+        ],
+        "uri": "https://example.com"
+      }
+    }
+  },
+  {
+    "id": "twilio:GET:/2010-04-01/Accounts/:AccountSid/Recordings/:RecordingSid/Transcriptions/:Sid.json#0",
+    "match": {
+      "method": "GET",
+      "path": "/2010-04-01/Accounts/:AccountSid/Recordings/:RecordingSid/Transcriptions/:Sid.json"
+    },
+    "respond": {
+      "status": 200,
+      "body": {
+        "account_sid": "s145235",
+        "api_version": "s109964",
+        "date_created": "s252086",
+        "date_updated": "s281687",
+        "duration": "s595307",
+        "price": 23.39,
+        "price_unit": "s630407",
+        "recording_sid": "s983593",
+        "sid": "s911138",
+        "status": "in-progress",
+        "transcription_text": "s945051",
+        "type": "s334936",
+        "uri": "s389317"
+      }
+    }
+  },
+  {
+    "id": "twilio:DELETE:/2010-04-01/Accounts/:AccountSid/Recordings/:RecordingSid/Transcriptions/:Sid.json#0",
+    "match": {
+      "method": "DELETE",
+      "path": "/2010-04-01/Accounts/:AccountSid/Recordings/:RecordingSid/Transcriptions/:Sid.json"
+    },
+    "respond": {
+      "status": 204
+    }
+  },
+  {
+    "id": "twilio:GET:/2010-04-01/Accounts/:AccountSid/Recordings/:ReferenceSid/AddOnResults.json#0",
+    "match": {
+      "method": "GET",
+      "path": "/2010-04-01/Accounts/:AccountSid/Recordings/:ReferenceSid/AddOnResults.json"
+    },
+    "respond": {
+      "status": 200,
+      "body": {
+        "add_on_results": [
+          {
+            "account_sid": "s247123",
+            "add_on_configuration_sid": "s679005",
+            "add_on_sid": "s140733",
+            "date_completed": "s468711",
+            "date_created": "s731654",
+            "date_updated": "s257357",
+            "reference_sid": "s855735",
+            "sid": "s731619",
+            "status": "canceled",
+            "subresource_uris": {}
+          }
+        ],
+        "end": 853,
+        "first_page_uri": "https://example.com",
+        "next_page_uri": "https://example.com",
+        "page": 174,
+        "page_size": 581,
+        "previous_page_uri": "https://example.com",
+        "start": 911,
+        "uri": "https://example.com"
+      }
+    }
+  },
+  {
+    "id": "twilio:GET:/2010-04-01/Accounts/:AccountSid/Recordings/:ReferenceSid/AddOnResults/:AddOnResultSid/Payloads.json#0",
+    "match": {
+      "method": "GET",
+      "path": "/2010-04-01/Accounts/:AccountSid/Recordings/:ReferenceSid/AddOnResults/:AddOnResultSid/Payloads.json"
+    },
+    "respond": {
+      "status": 200,
+      "body": {
+        "end": 539,
+        "first_page_uri": "https://example.com",
+        "next_page_uri": "https://example.com",
+        "page": 728,
+        "page_size": 102,
+        "payloads": [
+          {
+            "account_sid": "s853086",
+            "add_on_configuration_sid": "s470122",
+            "add_on_result_sid": "s86670",
+            "add_on_sid": "s105904",
+            "content_type": "s939701",
+            "date_created": "s276476",
+            "date_updated": "s228854",
+            "label": "s302331",
+            "reference_sid": "s114165",
+            "sid": "s268046",
+            "subresource_uris": {}
+          }
+        ],
+        "previous_page_uri": "https://example.com",
+        "start": 372,
+        "uri": "https://example.com"
+      }
+    }
+  },
+  {
+    "id": "twilio:GET:/2010-04-01/Accounts/:AccountSid/Recordings/:ReferenceSid/AddOnResults/:AddOnResultSid/Payloads/:Sid.json#0",
+    "match": {
+      "method": "GET",
+      "path": "/2010-04-01/Accounts/:AccountSid/Recordings/:ReferenceSid/AddOnResults/:AddOnResultSid/Payloads/:Sid.json"
+    },
+    "respond": {
+      "status": 200,
+      "body": {
+        "account_sid": "s891965",
+        "add_on_configuration_sid": "s895168",
+        "add_on_result_sid": "s550925",
+        "add_on_sid": "s695535",
+        "content_type": "s127729",
+        "date_created": "s246525",
+        "date_updated": "s705449",
+        "label": "s254863",
+        "reference_sid": "s160572",
+        "sid": "s141393",
+        "subresource_uris": {}
+      }
+    }
+  },
+  {
+    "id": "twilio:DELETE:/2010-04-01/Accounts/:AccountSid/Recordings/:ReferenceSid/AddOnResults/:AddOnResultSid/Payloads/:Sid.json#0",
+    "match": {
+      "method": "DELETE",
+      "path": "/2010-04-01/Accounts/:AccountSid/Recordings/:ReferenceSid/AddOnResults/:AddOnResultSid/Payloads/:Sid.json"
+    },
+    "respond": {
+      "status": 204
+    }
+  },
+  {
+    "id": "twilio:GET:/2010-04-01/Accounts/:AccountSid/Recordings/:ReferenceSid/AddOnResults/:Sid.json#0",
+    "match": {
+      "method": "GET",
+      "path": "/2010-04-01/Accounts/:AccountSid/Recordings/:ReferenceSid/AddOnResults/:Sid.json"
+    },
+    "respond": {
+      "status": 200,
+      "body": {
+        "account_sid": "s354710",
+        "add_on_configuration_sid": "s800933",
+        "add_on_sid": "s395959",
+        "date_completed": "s148696",
+        "date_created": "s76058",
+        "date_updated": "s498380",
+        "reference_sid": "s194485",
+        "sid": "s4694",
+        "status": "canceled",
+        "subresource_uris": {}
+      }
+    }
+  },
+  {
+    "id": "twilio:DELETE:/2010-04-01/Accounts/:AccountSid/Recordings/:ReferenceSid/AddOnResults/:Sid.json#0",
+    "match": {
+      "method": "DELETE",
+      "path": "/2010-04-01/Accounts/:AccountSid/Recordings/:ReferenceSid/AddOnResults/:Sid.json"
+    },
+    "respond": {
+      "status": 204
+    }
+  },
+  {
+    "id": "twilio:GET:/2010-04-01/Accounts/:AccountSid/Recordings/:Sid.json#0",
+    "match": {
+      "method": "GET",
+      "path": "/2010-04-01/Accounts/:AccountSid/Recordings/:Sid.json"
+    },
+    "respond": {
+      "status": 200,
+      "body": {
+        "account_sid": "s554425",
+        "api_version": "s505111",
+        "call_sid": "s119730",
+        "channels": 330,
+        "conference_sid": "s712357",
+        "date_created": "s207682",
+        "date_updated": "s607859",
+        "duration": "s172805",
+        "encryption_details": {},
+        "error_code": 349,
+        "media_url": "https://example.com",
+        "price": "s874607",
+        "price_unit": "s398194",
+        "sid": "s577900",
+        "source": "DialVerb",
+        "start_time": "s727009",
+        "status": "in-progress",
+        "subresource_uris": {},
+        "uri": "s489081"
+      }
+    }
+  },
+  {
+    "id": "twilio:DELETE:/2010-04-01/Accounts/:AccountSid/Recordings/:Sid.json#0",
+    "match": {
+      "method": "DELETE",
+      "path": "/2010-04-01/Accounts/:AccountSid/Recordings/:Sid.json"
+    },
+    "respond": {
+      "status": 204
+    }
+  },
+  {
+    "id": "twilio:GET:/2010-04-01/Accounts/:AccountSid/SIP/CredentialLists.json#0",
+    "match": {
+      "method": "GET",
+      "path": "/2010-04-01/Accounts/:AccountSid/SIP/CredentialLists.json"
+    },
+    "respond": {
+      "status": 200,
+      "body": {
+        "credential_lists": [
+          {
+            "account_sid": "s968390",
+            "date_created": "s126032",
+            "date_updated": "s414282",
+            "friendly_name": "s90545",
+            "sid": "s655851",
+            "subresource_uris": {},
+            "uri": "s467966"
+          }
+        ],
+        "end": 433,
+        "first_page_uri": "https://example.com",
+        "next_page_uri": "https://example.com",
+        "page": 908,
+        "page_size": 718,
+        "previous_page_uri": "https://example.com",
+        "start": 113,
+        "uri": "https://example.com"
+      }
+    }
+  },
+  {
+    "id": "twilio:POST:/2010-04-01/Accounts/:AccountSid/SIP/CredentialLists.json#0",
+    "match": {
+      "method": "POST",
+      "path": "/2010-04-01/Accounts/:AccountSid/SIP/CredentialLists.json"
+    },
+    "respond": {
+      "status": 201,
+      "body": {
+        "account_sid": "s67875",
+        "date_created": "s727416",
+        "date_updated": "s282666",
+        "friendly_name": "s988515",
+        "sid": "s713343",
+        "subresource_uris": {},
+        "uri": "s201051"
+      }
+    }
+  },
+  {
+    "id": "twilio:GET:/2010-04-01/Accounts/:AccountSid/SIP/CredentialLists/:CredentialListSid/Credentials.json#0",
+    "match": {
+      "method": "GET",
+      "path": "/2010-04-01/Accounts/:AccountSid/SIP/CredentialLists/:CredentialListSid/Credentials.json"
+    },
+    "respond": {
+      "status": 200,
+      "body": {
+        "credentials": [
+          {
+            "account_sid": "s269313",
+            "credential_list_sid": "s380621",
+            "date_created": "s308739",
+            "date_updated": "s148452",
+            "sid": "s908176",
+            "uri": "s653537",
+            "username": "s474032"
+          }
+        ],
+        "end": 848,
+        "first_page_uri": "https://example.com",
+        "next_page_uri": "https://example.com",
+        "page": 551,
+        "page_size": 580,
+        "previous_page_uri": "https://example.com",
+        "start": 797,
+        "uri": "https://example.com"
+      }
+    }
+  },
+  {
+    "id": "twilio:POST:/2010-04-01/Accounts/:AccountSid/SIP/CredentialLists/:CredentialListSid/Credentials.json#0",
+    "match": {
+      "method": "POST",
+      "path": "/2010-04-01/Accounts/:AccountSid/SIP/CredentialLists/:CredentialListSid/Credentials.json"
+    },
+    "respond": {
+      "status": 201,
+      "body": {
+        "account_sid": "s474929",
+        "credential_list_sid": "s440450",
+        "date_created": "s344845",
+        "date_updated": "s837612",
+        "sid": "s788707",
+        "uri": "s452854",
+        "username": "s682341"
+      }
+    }
+  },
+  {
+    "id": "twilio:GET:/2010-04-01/Accounts/:AccountSid/SIP/CredentialLists/:CredentialListSid/Credentials/:Sid.json#0",
+    "match": {
+      "method": "GET",
+      "path": "/2010-04-01/Accounts/:AccountSid/SIP/CredentialLists/:CredentialListSid/Credentials/:Sid.json"
+    },
+    "respond": {
+      "status": 200,
+      "body": {
+        "account_sid": "s225066",
+        "credential_list_sid": "s234814",
+        "date_created": "s764398",
+        "date_updated": "s249544",
+        "sid": "s552552",
+        "uri": "s574473",
+        "username": "s820822"
+      }
+    }
+  },
+  {
+    "id": "twilio:POST:/2010-04-01/Accounts/:AccountSid/SIP/CredentialLists/:CredentialListSid/Credentials/:Sid.json#0",
+    "match": {
+      "method": "POST",
+      "path": "/2010-04-01/Accounts/:AccountSid/SIP/CredentialLists/:CredentialListSid/Credentials/:Sid.json"
+    },
+    "respond": {
+      "status": 200,
+      "body": {
+        "account_sid": "s763806",
+        "credential_list_sid": "s140759",
+        "date_created": "s220022",
+        "date_updated": "s341294",
+        "sid": "s591187",
+        "uri": "s104185",
+        "username": "s683343"
+      }
+    }
+  },
+  {
+    "id": "twilio:DELETE:/2010-04-01/Accounts/:AccountSid/SIP/CredentialLists/:CredentialListSid/Credentials/:Sid.json#0",
+    "match": {
+      "method": "DELETE",
+      "path": "/2010-04-01/Accounts/:AccountSid/SIP/CredentialLists/:CredentialListSid/Credentials/:Sid.json"
+    },
+    "respond": {
+      "status": 204
+    }
+  },
+  {
+    "id": "twilio:GET:/2010-04-01/Accounts/:AccountSid/SIP/CredentialLists/:Sid.json#0",
+    "match": {
+      "method": "GET",
+      "path": "/2010-04-01/Accounts/:AccountSid/SIP/CredentialLists/:Sid.json"
+    },
+    "respond": {
+      "status": 200,
+      "body": {
+        "account_sid": "s51535",
+        "date_created": "s114579",
+        "date_updated": "s940310",
+        "friendly_name": "s145913",
+        "sid": "s796211",
+        "subresource_uris": {},
+        "uri": "s491612"
+      }
+    }
+  },
+  {
+    "id": "twilio:POST:/2010-04-01/Accounts/:AccountSid/SIP/CredentialLists/:Sid.json#0",
+    "match": {
+      "method": "POST",
+      "path": "/2010-04-01/Accounts/:AccountSid/SIP/CredentialLists/:Sid.json"
+    },
+    "respond": {
+      "status": 200,
+      "body": {
+        "account_sid": "s159245",
+        "date_created": "s609013",
+        "date_updated": "s929557",
+        "friendly_name": "s383983",
+        "sid": "s208062",
+        "subresource_uris": {},
+        "uri": "s868742"
+      }
+    }
+  },
+  {
+    "id": "twilio:DELETE:/2010-04-01/Accounts/:AccountSid/SIP/CredentialLists/:Sid.json#0",
+    "match": {
+      "method": "DELETE",
+      "path": "/2010-04-01/Accounts/:AccountSid/SIP/CredentialLists/:Sid.json"
+    },
+    "respond": {
+      "status": 204
+    }
+  },
+  {
+    "id": "twilio:GET:/2010-04-01/Accounts/:AccountSid/SIP/Domains.json#0",
+    "match": {
+      "method": "GET",
+      "path": "/2010-04-01/Accounts/:AccountSid/SIP/Domains.json"
+    },
+    "respond": {
+      "status": 200,
+      "body": {
+        "domains": [
+          {
+            "account_sid": "s67785",
+            "api_version": "s644891",
+            "auth_type": "s701164",
+            "byoc_trunk_sid": "s867220",
+            "date_created": "s343035",
+            "date_updated": "s982332",
+            "domain_name": "s516312",
+            "emergency_caller_sid": "s161726",
+            "emergency_calling_enabled": true,
+            "friendly_name": "s738959",
+            "secure": false,
+            "sid": "s790525",
+            "sip_registration": true,
+            "subresource_uris": {},
+            "uri": "s288074",
+            "voice_fallback_method": "HEAD",
+            "voice_fallback_url": "https://example.com",
+            "voice_method": "HEAD",
+            "voice_status_callback_method": "HEAD",
+            "voice_status_callback_url": "https://example.com",
+            "voice_url": "https://example.com"
+          }
+        ],
+        "end": 785,
+        "first_page_uri": "https://example.com",
+        "next_page_uri": "https://example.com",
+        "page": 852,
+        "page_size": 971,
+        "previous_page_uri": "https://example.com",
+        "start": 577,
+        "uri": "https://example.com"
+      }
+    }
+  },
+  {
+    "id": "twilio:POST:/2010-04-01/Accounts/:AccountSid/SIP/Domains.json#0",
+    "match": {
+      "method": "POST",
+      "path": "/2010-04-01/Accounts/:AccountSid/SIP/Domains.json"
+    },
+    "respond": {
+      "status": 201,
+      "body": {
+        "account_sid": "s45808",
+        "api_version": "s514573",
+        "auth_type": "s381319",
+        "byoc_trunk_sid": "s736282",
+        "date_created": "s787231",
+        "date_updated": "s735602",
+        "domain_name": "s338996",
+        "emergency_caller_sid": "s479859",
+        "emergency_calling_enabled": true,
+        "friendly_name": "s195304",
+        "secure": false,
+        "sid": "s537260",
+        "sip_registration": true,
+        "subresource_uris": {},
+        "uri": "s729296",
+        "voice_fallback_method": "HEAD",
+        "voice_fallback_url": "https://example.com",
+        "voice_method": "HEAD",
+        "voice_status_callback_method": "HEAD",
+        "voice_status_callback_url": "https://example.com",
+        "voice_url": "https://example.com"
+      }
+    }
+  },
+  {
+    "id": "twilio:GET:/2010-04-01/Accounts/:AccountSid/SIP/Domains/:DomainSid/Auth/Calls/CredentialListMappings.json#0",
+    "match": {
+      "method": "GET",
+      "path": "/2010-04-01/Accounts/:AccountSid/SIP/Domains/:DomainSid/Auth/Calls/CredentialListMappings.json"
+    },
+    "respond": {
+      "status": 200,
+      "body": {
+        "contents": [
+          {
+            "account_sid": "s157274",
+            "date_created": "s117901",
+            "date_updated": "s112198",
+            "friendly_name": "s770867",
+            "sid": "s670532"
+          }
+        ],
+        "end": 976,
+        "first_page_uri": "https://example.com",
+        "next_page_uri": "https://example.com",
+        "page": 742,
+        "page_size": 157,
+        "previous_page_uri": "https://example.com",
+        "start": 439,
+        "uri": "https://example.com"
+      }
+    }
+  },
+  {
+    "id": "twilio:POST:/2010-04-01/Accounts/:AccountSid/SIP/Domains/:DomainSid/Auth/Calls/CredentialListMappings.json#0",
+    "match": {
+      "method": "POST",
+      "path": "/2010-04-01/Accounts/:AccountSid/SIP/Domains/:DomainSid/Auth/Calls/CredentialListMappings.json"
+    },
+    "respond": {
+      "status": 201,
+      "body": {
+        "account_sid": "s704368",
+        "date_created": "s9619",
+        "date_updated": "s24964",
+        "friendly_name": "s266958",
+        "sid": "s790704"
+      }
+    }
+  },
+  {
+    "id": "twilio:GET:/2010-04-01/Accounts/:AccountSid/SIP/Domains/:DomainSid/Auth/Calls/CredentialListMappings/:Sid.json#0",
+    "match": {
+      "method": "GET",
+      "path": "/2010-04-01/Accounts/:AccountSid/SIP/Domains/:DomainSid/Auth/Calls/CredentialListMappings/:Sid.json"
+    },
+    "respond": {
+      "status": 200,
+      "body": {
+        "account_sid": "s238203",
+        "date_created": "s931662",
+        "date_updated": "s629109",
+        "friendly_name": "s227079",
+        "sid": "s343867"
+      }
+    }
+  },
+  {
+    "id": "twilio:DELETE:/2010-04-01/Accounts/:AccountSid/SIP/Domains/:DomainSid/Auth/Calls/CredentialListMappings/:Sid.json#0",
+    "match": {
+      "method": "DELETE",
+      "path": "/2010-04-01/Accounts/:AccountSid/SIP/Domains/:DomainSid/Auth/Calls/CredentialListMappings/:Sid.json"
+    },
+    "respond": {
+      "status": 204
+    }
+  },
+  {
+    "id": "twilio:GET:/2010-04-01/Accounts/:AccountSid/SIP/Domains/:DomainSid/Auth/Calls/IpAccessControlListMappings.json#0",
+    "match": {
+      "method": "GET",
+      "path": "/2010-04-01/Accounts/:AccountSid/SIP/Domains/:DomainSid/Auth/Calls/IpAccessControlListMappings.json"
+    },
+    "respond": {
+      "status": 200,
+      "body": {
+        "contents": [
+          {
+            "account_sid": "s471069",
+            "date_created": "s192554",
+            "date_updated": "s766308",
+            "friendly_name": "s113236",
+            "sid": "s491190"
+          }
+        ],
+        "end": 521,
+        "first_page_uri": "https://example.com",
+        "next_page_uri": "https://example.com",
+        "page": 877,
+        "page_size": 273,
+        "previous_page_uri": "https://example.com",
+        "start": 583,
+        "uri": "https://example.com"
+      }
+    }
+  },
+  {
+    "id": "twilio:POST:/2010-04-01/Accounts/:AccountSid/SIP/Domains/:DomainSid/Auth/Calls/IpAccessControlListMappings.json#0",
+    "match": {
+      "method": "POST",
+      "path": "/2010-04-01/Accounts/:AccountSid/SIP/Domains/:DomainSid/Auth/Calls/IpAccessControlListMappings.json"
+    },
+    "respond": {
+      "status": 201,
+      "body": {
+        "account_sid": "s941622",
+        "date_created": "s769552",
+        "date_updated": "s328469",
+        "friendly_name": "s270353",
+        "sid": "s548855"
+      }
+    }
+  },
+  {
+    "id": "twilio:GET:/2010-04-01/Accounts/:AccountSid/SIP/Domains/:DomainSid/Auth/Calls/IpAccessControlListMappings/:Sid.json#0",
+    "match": {
+      "method": "GET",
+      "path": "/2010-04-01/Accounts/:AccountSid/SIP/Domains/:DomainSid/Auth/Calls/IpAccessControlListMappings/:Sid.json"
+    },
+    "respond": {
+      "status": 200,
+      "body": {
+        "account_sid": "s433063",
+        "date_created": "s962596",
+        "date_updated": "s110696",
+        "friendly_name": "s978474",
+        "sid": "s991716"
+      }
+    }
+  },
+  {
+    "id": "twilio:DELETE:/2010-04-01/Accounts/:AccountSid/SIP/Domains/:DomainSid/Auth/Calls/IpAccessControlListMappings/:Sid.json#0",
+    "match": {
+      "method": "DELETE",
+      "path": "/2010-04-01/Accounts/:AccountSid/SIP/Domains/:DomainSid/Auth/Calls/IpAccessControlListMappings/:Sid.json"
+    },
+    "respond": {
+      "status": 204
+    }
+  },
+  {
+    "id": "twilio:GET:/2010-04-01/Accounts/:AccountSid/SIP/Domains/:DomainSid/Auth/Registrations/CredentialListMappings.json#0",
+    "match": {
+      "method": "GET",
+      "path": "/2010-04-01/Accounts/:AccountSid/SIP/Domains/:DomainSid/Auth/Registrations/CredentialListMappings.json"
+    },
+    "respond": {
+      "status": 200,
+      "body": {
+        "contents": [
+          {
+            "account_sid": "s186024",
+            "date_created": "s735897",
+            "date_updated": "s277777",
+            "friendly_name": "s923504",
+            "sid": "s796909"
+          }
+        ],
+        "end": 96,
+        "first_page_uri": "https://example.com",
+        "next_page_uri": "https://example.com",
+        "page": 543,
+        "page_size": 531,
+        "previous_page_uri": "https://example.com",
+        "start": 97,
+        "uri": "https://example.com"
+      }
+    }
+  },
+  {
+    "id": "twilio:POST:/2010-04-01/Accounts/:AccountSid/SIP/Domains/:DomainSid/Auth/Registrations/CredentialListMappings.json#0",
+    "match": {
+      "method": "POST",
+      "path": "/2010-04-01/Accounts/:AccountSid/SIP/Domains/:DomainSid/Auth/Registrations/CredentialListMappings.json"
+    },
+    "respond": {
+      "status": 201,
+      "body": {
+        "account_sid": "s406743",
+        "date_created": "s237273",
+        "date_updated": "s358",
+        "friendly_name": "s961507",
+        "sid": "s870740"
+      }
+    }
+  },
+  {
+    "id": "twilio:GET:/2010-04-01/Accounts/:AccountSid/SIP/Domains/:DomainSid/Auth/Registrations/CredentialListMappings/:Sid.json#0",
+    "match": {
+      "method": "GET",
+      "path": "/2010-04-01/Accounts/:AccountSid/SIP/Domains/:DomainSid/Auth/Registrations/CredentialListMappings/:Sid.json"
+    },
+    "respond": {
+      "status": 200,
+      "body": {
+        "account_sid": "s799296",
+        "date_created": "s707553",
+        "date_updated": "s627868",
+        "friendly_name": "s456011",
+        "sid": "s663616"
+      }
+    }
+  },
+  {
+    "id": "twilio:DELETE:/2010-04-01/Accounts/:AccountSid/SIP/Domains/:DomainSid/Auth/Registrations/CredentialListMappings/:Sid.json#0",
+    "match": {
+      "method": "DELETE",
+      "path": "/2010-04-01/Accounts/:AccountSid/SIP/Domains/:DomainSid/Auth/Registrations/CredentialListMappings/:Sid.json"
+    },
+    "respond": {
+      "status": 204
+    }
+  },
+  {
+    "id": "twilio:GET:/2010-04-01/Accounts/:AccountSid/SIP/Domains/:DomainSid/CredentialListMappings.json#0",
+    "match": {
+      "method": "GET",
+      "path": "/2010-04-01/Accounts/:AccountSid/SIP/Domains/:DomainSid/CredentialListMappings.json"
+    },
+    "respond": {
+      "status": 200,
+      "body": {
+        "credential_list_mappings": [
+          {
+            "account_sid": "s181522",
+            "date_created": "s203634",
+            "date_updated": "s418410",
+            "domain_sid": "s443997",
+            "friendly_name": "s77914",
+            "sid": "s683420",
+            "uri": "s213817"
+          }
+        ],
+        "end": 458,
+        "first_page_uri": "https://example.com",
+        "next_page_uri": "https://example.com",
+        "page": 455,
+        "page_size": 415,
+        "previous_page_uri": "https://example.com",
+        "start": 273,
+        "uri": "https://example.com"
+      }
+    }
+  },
+  {
+    "id": "twilio:POST:/2010-04-01/Accounts/:AccountSid/SIP/Domains/:DomainSid/CredentialListMappings.json#0",
+    "match": {
+      "method": "POST",
+      "path": "/2010-04-01/Accounts/:AccountSid/SIP/Domains/:DomainSid/CredentialListMappings.json"
+    },
+    "respond": {
+      "status": 201,
+      "body": {
+        "account_sid": "s211146",
+        "date_created": "s604118",
+        "date_updated": "s555488",
+        "domain_sid": "s216817",
+        "friendly_name": "s762466",
+        "sid": "s317654",
+        "uri": "s976593"
+      }
+    }
+  },
+  {
+    "id": "twilio:GET:/2010-04-01/Accounts/:AccountSid/SIP/Domains/:DomainSid/CredentialListMappings/:Sid.json#0",
+    "match": {
+      "method": "GET",
+      "path": "/2010-04-01/Accounts/:AccountSid/SIP/Domains/:DomainSid/CredentialListMappings/:Sid.json"
+    },
+    "respond": {
+      "status": 200,
+      "body": {
+        "account_sid": "s41460",
+        "date_created": "s589943",
+        "date_updated": "s692260",
+        "domain_sid": "s449388",
+        "friendly_name": "s542196",
+        "sid": "s780473",
+        "uri": "s244070"
+      }
+    }
+  },
+  {
+    "id": "twilio:DELETE:/2010-04-01/Accounts/:AccountSid/SIP/Domains/:DomainSid/CredentialListMappings/:Sid.json#0",
+    "match": {
+      "method": "DELETE",
+      "path": "/2010-04-01/Accounts/:AccountSid/SIP/Domains/:DomainSid/CredentialListMappings/:Sid.json"
+    },
+    "respond": {
+      "status": 204
+    }
+  },
+  {
+    "id": "twilio:GET:/2010-04-01/Accounts/:AccountSid/SIP/Domains/:DomainSid/IpAccessControlListMappings.json#0",
+    "match": {
+      "method": "GET",
+      "path": "/2010-04-01/Accounts/:AccountSid/SIP/Domains/:DomainSid/IpAccessControlListMappings.json"
+    },
+    "respond": {
+      "status": 200,
+      "body": {
+        "end": 747,
+        "first_page_uri": "https://example.com",
+        "ip_access_control_list_mappings": [
+          {
+            "account_sid": "s486568",
+            "date_created": "s565708",
+            "date_updated": "s959579",
+            "domain_sid": "s606061",
+            "friendly_name": "s183473",
+            "sid": "s427661",
+            "uri": "s464831"
+          }
+        ],
+        "next_page_uri": "https://example.com",
+        "page": 807,
+        "page_size": 175,
+        "previous_page_uri": "https://example.com",
+        "start": 317,
+        "uri": "https://example.com"
+      }
+    }
+  },
+  {
+    "id": "twilio:POST:/2010-04-01/Accounts/:AccountSid/SIP/Domains/:DomainSid/IpAccessControlListMappings.json#0",
+    "match": {
+      "method": "POST",
+      "path": "/2010-04-01/Accounts/:AccountSid/SIP/Domains/:DomainSid/IpAccessControlListMappings.json"
+    },
+    "respond": {
+      "status": 201,
+      "body": {
+        "account_sid": "s326547",
+        "date_created": "s169571",
+        "date_updated": "s893662",
+        "domain_sid": "s881932",
+        "friendly_name": "s487211",
+        "sid": "s45020",
+        "uri": "s140598"
+      }
+    }
+  },
+  {
+    "id": "twilio:GET:/2010-04-01/Accounts/:AccountSid/SIP/Domains/:DomainSid/IpAccessControlListMappings/:Sid.json#0",
+    "match": {
+      "method": "GET",
+      "path": "/2010-04-01/Accounts/:AccountSid/SIP/Domains/:DomainSid/IpAccessControlListMappings/:Sid.json"
+    },
+    "respond": {
+      "status": 200,
+      "body": {
+        "account_sid": "s834992",
+        "date_created": "s100307",
+        "date_updated": "s509639",
+        "domain_sid": "s64663",
+        "friendly_name": "s923766",
+        "sid": "s449909",
+        "uri": "s921192"
+      }
+    }
+  },
+  {
+    "id": "twilio:DELETE:/2010-04-01/Accounts/:AccountSid/SIP/Domains/:DomainSid/IpAccessControlListMappings/:Sid.json#0",
+    "match": {
+      "method": "DELETE",
+      "path": "/2010-04-01/Accounts/:AccountSid/SIP/Domains/:DomainSid/IpAccessControlListMappings/:Sid.json"
+    },
+    "respond": {
+      "status": 204
+    }
+  },
+  {
+    "id": "twilio:GET:/2010-04-01/Accounts/:AccountSid/SIP/Domains/:Sid.json#0",
+    "match": {
+      "method": "GET",
+      "path": "/2010-04-01/Accounts/:AccountSid/SIP/Domains/:Sid.json"
+    },
+    "respond": {
+      "status": 200,
+      "body": {
+        "account_sid": "s688471",
+        "api_version": "s732322",
+        "auth_type": "s598362",
+        "byoc_trunk_sid": "s843242",
+        "date_created": "s236098",
+        "date_updated": "s810279",
+        "domain_name": "s887569",
+        "emergency_caller_sid": "s757086",
+        "emergency_calling_enabled": false,
+        "friendly_name": "s898934",
+        "secure": false,
+        "sid": "s968348",
+        "sip_registration": true,
+        "subresource_uris": {},
+        "uri": "s400684",
+        "voice_fallback_method": "HEAD",
+        "voice_fallback_url": "https://example.com",
+        "voice_method": "HEAD",
+        "voice_status_callback_method": "HEAD",
+        "voice_status_callback_url": "https://example.com",
+        "voice_url": "https://example.com"
+      }
+    }
+  },
+  {
+    "id": "twilio:POST:/2010-04-01/Accounts/:AccountSid/SIP/Domains/:Sid.json#0",
+    "match": {
+      "method": "POST",
+      "path": "/2010-04-01/Accounts/:AccountSid/SIP/Domains/:Sid.json"
+    },
+    "respond": {
+      "status": 200,
+      "body": {
+        "account_sid": "s217613",
+        "api_version": "s308424",
+        "auth_type": "s948595",
+        "byoc_trunk_sid": "s279857",
+        "date_created": "s819180",
+        "date_updated": "s685811",
+        "domain_name": "s92758",
+        "emergency_caller_sid": "s734315",
+        "emergency_calling_enabled": true,
+        "friendly_name": "s556457",
+        "secure": true,
+        "sid": "s371948",
+        "sip_registration": true,
+        "subresource_uris": {},
+        "uri": "s984842",
+        "voice_fallback_method": "HEAD",
+        "voice_fallback_url": "https://example.com",
+        "voice_method": "HEAD",
+        "voice_status_callback_method": "HEAD",
+        "voice_status_callback_url": "https://example.com",
+        "voice_url": "https://example.com"
+      }
+    }
+  },
+  {
+    "id": "twilio:DELETE:/2010-04-01/Accounts/:AccountSid/SIP/Domains/:Sid.json#0",
+    "match": {
+      "method": "DELETE",
+      "path": "/2010-04-01/Accounts/:AccountSid/SIP/Domains/:Sid.json"
+    },
+    "respond": {
+      "status": 204
+    }
+  },
+  {
+    "id": "twilio:GET:/2010-04-01/Accounts/:AccountSid/SIP/IpAccessControlLists.json#0",
+    "match": {
+      "method": "GET",
+      "path": "/2010-04-01/Accounts/:AccountSid/SIP/IpAccessControlLists.json"
+    },
+    "respond": {
+      "status": 200,
+      "body": {
+        "end": 808,
+        "first_page_uri": "https://example.com",
+        "ip_access_control_lists": [
+          {
+            "account_sid": "s742935",
+            "date_created": "s463629",
+            "date_updated": "s340442",
+            "friendly_name": "s136308",
+            "sid": "s405239",
+            "subresource_uris": {},
+            "uri": "s976071"
+          }
+        ],
+        "next_page_uri": "https://example.com",
+        "page": 762,
+        "page_size": 899,
+        "previous_page_uri": "https://example.com",
+        "start": 744,
+        "uri": "https://example.com"
+      }
+    }
+  },
+  {
+    "id": "twilio:POST:/2010-04-01/Accounts/:AccountSid/SIP/IpAccessControlLists.json#0",
+    "match": {
+      "method": "POST",
+      "path": "/2010-04-01/Accounts/:AccountSid/SIP/IpAccessControlLists.json"
+    },
+    "respond": {
+      "status": 201,
+      "body": {
+        "account_sid": "s715705",
+        "date_created": "s748813",
+        "date_updated": "s108788",
+        "friendly_name": "s992013",
+        "sid": "s988247",
+        "subresource_uris": {},
+        "uri": "s757002"
+      }
+    }
+  },
+  {
+    "id": "twilio:GET:/2010-04-01/Accounts/:AccountSid/SIP/IpAccessControlLists/:IpAccessControlListSid/IpAddresses.json#0",
+    "match": {
+      "method": "GET",
+      "path": "/2010-04-01/Accounts/:AccountSid/SIP/IpAccessControlLists/:IpAccessControlListSid/IpAddresses.json"
+    },
+    "respond": {
+      "status": 200,
+      "body": {
+        "end": 498,
+        "first_page_uri": "https://example.com",
+        "ip_addresses": [
+          {
+            "account_sid": "s192083",
+            "cidr_prefix_length": 731,
+            "date_created": "s413890",
+            "date_updated": "s211146",
+            "friendly_name": "s93828",
+            "ip_access_control_list_sid": "s647360",
+            "ip_address": "s114506",
+            "sid": "s718864",
+            "uri": "s357965"
+          }
+        ],
+        "next_page_uri": "https://example.com",
+        "page": 598,
+        "page_size": 136,
+        "previous_page_uri": "https://example.com",
+        "start": 906,
+        "uri": "https://example.com"
+      }
+    }
+  },
+  {
+    "id": "twilio:POST:/2010-04-01/Accounts/:AccountSid/SIP/IpAccessControlLists/:IpAccessControlListSid/IpAddresses.json#0",
+    "match": {
+      "method": "POST",
+      "path": "/2010-04-01/Accounts/:AccountSid/SIP/IpAccessControlLists/:IpAccessControlListSid/IpAddresses.json"
+    },
+    "respond": {
+      "status": 201,
+      "body": {
+        "account_sid": "s149499",
+        "cidr_prefix_length": 31,
+        "date_created": "s723392",
+        "date_updated": "s556043",
+        "friendly_name": "s112855",
+        "ip_access_control_list_sid": "s568926",
+        "ip_address": "s534984",
+        "sid": "s936490",
+        "uri": "s995009"
+      }
+    }
+  },
+  {
+    "id": "twilio:GET:/2010-04-01/Accounts/:AccountSid/SIP/IpAccessControlLists/:IpAccessControlListSid/IpAddresses/:Sid.json#0",
+    "match": {
+      "method": "GET",
+      "path": "/2010-04-01/Accounts/:AccountSid/SIP/IpAccessControlLists/:IpAccessControlListSid/IpAddresses/:Sid.json"
+    },
+    "respond": {
+      "status": 200,
+      "body": {
+        "account_sid": "s176473",
+        "cidr_prefix_length": 798,
+        "date_created": "s417804",
+        "date_updated": "s710727",
+        "friendly_name": "s203632",
+        "ip_access_control_list_sid": "s108477",
+        "ip_address": "s523002",
+        "sid": "s371659",
+        "uri": "s88958"
+      }
+    }
+  },
+  {
+    "id": "twilio:POST:/2010-04-01/Accounts/:AccountSid/SIP/IpAccessControlLists/:IpAccessControlListSid/IpAddresses/:Sid.json#0",
+    "match": {
+      "method": "POST",
+      "path": "/2010-04-01/Accounts/:AccountSid/SIP/IpAccessControlLists/:IpAccessControlListSid/IpAddresses/:Sid.json"
+    },
+    "respond": {
+      "status": 200,
+      "body": {
+        "account_sid": "s769719",
+        "cidr_prefix_length": 528,
+        "date_created": "s929916",
+        "date_updated": "s99067",
+        "friendly_name": "s704357",
+        "ip_access_control_list_sid": "s354105",
+        "ip_address": "s947389",
+        "sid": "s390361",
+        "uri": "s817994"
+      }
+    }
+  },
+  {
+    "id": "twilio:DELETE:/2010-04-01/Accounts/:AccountSid/SIP/IpAccessControlLists/:IpAccessControlListSid/IpAddresses/:Sid.json#0",
+    "match": {
+      "method": "DELETE",
+      "path": "/2010-04-01/Accounts/:AccountSid/SIP/IpAccessControlLists/:IpAccessControlListSid/IpAddresses/:Sid.json"
+    },
+    "respond": {
+      "status": 204
+    }
+  },
+  {
+    "id": "twilio:GET:/2010-04-01/Accounts/:AccountSid/SIP/IpAccessControlLists/:Sid.json#0",
+    "match": {
+      "method": "GET",
+      "path": "/2010-04-01/Accounts/:AccountSid/SIP/IpAccessControlLists/:Sid.json"
+    },
+    "respond": {
+      "status": 200,
+      "body": {
+        "account_sid": "s960885",
+        "date_created": "s622454",
+        "date_updated": "s114478",
+        "friendly_name": "s479505",
+        "sid": "s335268",
+        "subresource_uris": {},
+        "uri": "s891044"
+      }
+    }
+  },
+  {
+    "id": "twilio:POST:/2010-04-01/Accounts/:AccountSid/SIP/IpAccessControlLists/:Sid.json#0",
+    "match": {
+      "method": "POST",
+      "path": "/2010-04-01/Accounts/:AccountSid/SIP/IpAccessControlLists/:Sid.json"
+    },
+    "respond": {
+      "status": 200,
+      "body": {
+        "account_sid": "s329656",
+        "date_created": "s197689",
+        "date_updated": "s553035",
+        "friendly_name": "s38356",
+        "sid": "s682382",
+        "subresource_uris": {},
+        "uri": "s896975"
+      }
+    }
+  },
+  {
+    "id": "twilio:DELETE:/2010-04-01/Accounts/:AccountSid/SIP/IpAccessControlLists/:Sid.json#0",
+    "match": {
+      "method": "DELETE",
+      "path": "/2010-04-01/Accounts/:AccountSid/SIP/IpAccessControlLists/:Sid.json"
+    },
+    "respond": {
+      "status": 204
+    }
+  },
+  {
+    "id": "twilio:GET:/2010-04-01/Accounts/:AccountSid/SMS/ShortCodes.json#0",
+    "match": {
+      "method": "GET",
+      "path": "/2010-04-01/Accounts/:AccountSid/SMS/ShortCodes.json"
+    },
+    "respond": {
+      "status": 200,
+      "body": {
+        "end": 898,
+        "first_page_uri": "https://example.com",
+        "next_page_uri": "https://example.com",
+        "page": 31,
+        "page_size": 981,
+        "previous_page_uri": "https://example.com",
+        "short_codes": [
+          {
+            "account_sid": "s853812",
+            "api_version": "s734701",
+            "date_created": "s523693",
+            "date_updated": "s717478",
+            "friendly_name": "s959150",
+            "short_code": "s766859",
+            "sid": "s519902",
+            "sms_fallback_method": "HEAD",
+            "sms_fallback_url": "https://example.com",
+            "sms_method": "HEAD",
+            "sms_url": "https://example.com",
+            "uri": "s358166"
+          }
+        ],
+        "start": 252,
+        "uri": "https://example.com"
+      }
+    }
+  },
+  {
+    "id": "twilio:GET:/2010-04-01/Accounts/:AccountSid/SMS/ShortCodes/:Sid.json#0",
+    "match": {
+      "method": "GET",
+      "path": "/2010-04-01/Accounts/:AccountSid/SMS/ShortCodes/:Sid.json"
+    },
+    "respond": {
+      "status": 200,
+      "body": {
+        "account_sid": "s680344",
+        "api_version": "s674992",
+        "date_created": "s417017",
+        "date_updated": "s133811",
+        "friendly_name": "s20709",
+        "short_code": "s502378",
+        "sid": "s582181",
+        "sms_fallback_method": "HEAD",
+        "sms_fallback_url": "https://example.com",
+        "sms_method": "HEAD",
+        "sms_url": "https://example.com",
+        "uri": "s540863"
+      }
+    }
+  },
+  {
+    "id": "twilio:POST:/2010-04-01/Accounts/:AccountSid/SMS/ShortCodes/:Sid.json#0",
+    "match": {
+      "method": "POST",
+      "path": "/2010-04-01/Accounts/:AccountSid/SMS/ShortCodes/:Sid.json"
+    },
+    "respond": {
+      "status": 200,
+      "body": {
+        "account_sid": "s243354",
+        "api_version": "s564636",
+        "date_created": "s386550",
+        "date_updated": "s13251",
+        "friendly_name": "s764028",
+        "short_code": "s639543",
+        "sid": "s879760",
+        "sms_fallback_method": "HEAD",
+        "sms_fallback_url": "https://example.com",
+        "sms_method": "HEAD",
+        "sms_url": "https://example.com",
+        "uri": "s675912"
+      }
+    }
+  },
+  {
+    "id": "twilio:GET:/2010-04-01/Accounts/:AccountSid/SigningKeys.json#0",
+    "match": {
+      "method": "GET",
+      "path": "/2010-04-01/Accounts/:AccountSid/SigningKeys.json"
+    },
+    "respond": {
+      "status": 200,
+      "body": {
+        "end": 700,
+        "first_page_uri": "https://example.com",
+        "next_page_uri": "https://example.com",
+        "page": 25,
+        "page_size": 881,
+        "previous_page_uri": "https://example.com",
+        "signing_keys": [
+          {
+            "date_created": "s799894",
+            "date_updated": "s769528",
+            "friendly_name": "s383381",
+            "sid": "s765507"
+          }
+        ],
+        "start": 425,
+        "uri": "https://example.com"
+      }
+    }
+  },
+  {
+    "id": "twilio:POST:/2010-04-01/Accounts/:AccountSid/SigningKeys.json#0",
+    "match": {
+      "method": "POST",
+      "path": "/2010-04-01/Accounts/:AccountSid/SigningKeys.json"
+    },
+    "respond": {
+      "status": 201,
+      "body": {
+        "date_created": "s713417",
+        "date_updated": "s902255",
+        "friendly_name": "s410906",
+        "secret": "s330343",
+        "sid": "s86151"
+      }
+    }
+  },
+  {
+    "id": "twilio:GET:/2010-04-01/Accounts/:AccountSid/SigningKeys/:Sid.json#0",
+    "match": {
+      "method": "GET",
+      "path": "/2010-04-01/Accounts/:AccountSid/SigningKeys/:Sid.json"
+    },
+    "respond": {
+      "status": 200,
+      "body": {
+        "date_created": "s568341",
+        "date_updated": "s631240",
+        "friendly_name": "s997916",
+        "sid": "s168351"
+      }
+    }
+  },
+  {
+    "id": "twilio:POST:/2010-04-01/Accounts/:AccountSid/SigningKeys/:Sid.json#0",
+    "match": {
+      "method": "POST",
+      "path": "/2010-04-01/Accounts/:AccountSid/SigningKeys/:Sid.json"
+    },
+    "respond": {
+      "status": 200,
+      "body": {
+        "date_created": "s540455",
+        "date_updated": "s108045",
+        "friendly_name": "s795261",
+        "sid": "s860647"
+      }
+    }
+  },
+  {
+    "id": "twilio:DELETE:/2010-04-01/Accounts/:AccountSid/SigningKeys/:Sid.json#0",
+    "match": {
+      "method": "DELETE",
+      "path": "/2010-04-01/Accounts/:AccountSid/SigningKeys/:Sid.json"
+    },
+    "respond": {
+      "status": 204
+    }
+  },
+  {
+    "id": "twilio:POST:/2010-04-01/Accounts/:AccountSid/Tokens.json#0",
+    "match": {
+      "method": "POST",
+      "path": "/2010-04-01/Accounts/:AccountSid/Tokens.json"
+    },
+    "respond": {
+      "status": 201,
+      "body": {
+        "account_sid": "s253135",
+        "date_created": "s132617",
+        "date_updated": "s133665",
+        "ice_servers": [
+          {
+            "credential": "s801311",
+            "url": "s609755",
+            "urls": "s697396",
+            "username": "s661945"
+          }
+        ],
+        "password": "s379765",
+        "ttl": "s78734",
+        "username": "s321741"
+      }
+    }
+  },
+  {
+    "id": "twilio:GET:/2010-04-01/Accounts/:AccountSid/Transcriptions.json#0",
+    "match": {
+      "method": "GET",
+      "path": "/2010-04-01/Accounts/:AccountSid/Transcriptions.json"
+    },
+    "respond": {
+      "status": 200,
+      "body": {
+        "end": 118,
+        "first_page_uri": "https://example.com",
+        "next_page_uri": "https://example.com",
+        "page": 12,
+        "page_size": 11,
+        "previous_page_uri": "https://example.com",
+        "start": 46,
+        "transcriptions": [
+          {
+            "account_sid": "s499132",
+            "api_version": "s907844",
+            "date_created": "s490280",
+            "date_updated": "s288451",
+            "duration": "s788280",
+            "price": 37.36,
+            "price_unit": "s669052",
+            "recording_sid": "s534747",
+            "sid": "s1590",
+            "status": "in-progress",
+            "transcription_text": "s944322",
+            "type": "s738399",
+            "uri": "s925370"
+          }
+        ],
+        "uri": "https://example.com"
+      }
+    }
+  },
+  {
+    "id": "twilio:GET:/2010-04-01/Accounts/:AccountSid/Transcriptions/:Sid.json#0",
+    "match": {
+      "method": "GET",
+      "path": "/2010-04-01/Accounts/:AccountSid/Transcriptions/:Sid.json"
+    },
+    "respond": {
+      "status": 200,
+      "body": {
+        "account_sid": "s475352",
+        "api_version": "s815344",
+        "date_created": "s224686",
+        "date_updated": "s494651",
+        "duration": "s950790",
+        "price": 22.63,
+        "price_unit": "s166312",
+        "recording_sid": "s123765",
+        "sid": "s234876",
+        "status": "in-progress",
+        "transcription_text": "s369446",
+        "type": "s552888",
+        "uri": "s864896"
+      }
+    }
+  },
+  {
+    "id": "twilio:DELETE:/2010-04-01/Accounts/:AccountSid/Transcriptions/:Sid.json#0",
+    "match": {
+      "method": "DELETE",
+      "path": "/2010-04-01/Accounts/:AccountSid/Transcriptions/:Sid.json"
+    },
+    "respond": {
+      "status": 204
+    }
+  },
+  {
+    "id": "twilio:GET:/2010-04-01/Accounts/:AccountSid/Usage/Records.json#0",
+    "match": {
+      "method": "GET",
+      "path": "/2010-04-01/Accounts/:AccountSid/Usage/Records.json"
+    },
+    "respond": {
+      "status": 200,
+      "body": {
+        "end": 683,
+        "first_page_uri": "https://example.com",
+        "next_page_uri": "https://example.com",
+        "page": 459,
+        "page_size": 6,
+        "previous_page_uri": "https://example.com",
+        "start": 153,
+        "uri": "https://example.com",
+        "usage_records": [
+          {
+            "account_sid": "s582975",
+            "api_version": "s182789",
+            "as_of": "s467041",
+            "category": "a2p-registration-fees",
+            "count": "s985123",
+            "count_unit": "s164489",
+            "description": "s977528",
+            "end_date": "2026-01-01",
+            "price": 81.58,
+            "price_unit": "s69466",
+            "start_date": "2026-01-01",
+            "subresource_uris": {},
+            "uri": "s736938",
+            "usage": "s559974",
+            "usage_unit": "s88786"
+          }
+        ]
+      }
+    }
+  },
+  {
+    "id": "twilio:GET:/2010-04-01/Accounts/:AccountSid/Usage/Records/AllTime.json#0",
+    "match": {
+      "method": "GET",
+      "path": "/2010-04-01/Accounts/:AccountSid/Usage/Records/AllTime.json"
+    },
+    "respond": {
+      "status": 200,
+      "body": {
+        "end": 578,
+        "first_page_uri": "https://example.com",
+        "next_page_uri": "https://example.com",
+        "page": 902,
+        "page_size": 884,
+        "previous_page_uri": "https://example.com",
+        "start": 926,
+        "uri": "https://example.com",
+        "usage_records": [
+          {
+            "account_sid": "s440430",
+            "api_version": "s531029",
+            "as_of": "s593242",
+            "category": "a2p-registration-fees",
+            "count": "s175174",
+            "count_unit": "s107002",
+            "description": "s784642",
+            "end_date": "2026-01-01",
+            "price": 93.72,
+            "price_unit": "s303635",
+            "start_date": "2026-01-01",
+            "subresource_uris": {},
+            "uri": "s736397",
+            "usage": "s822998",
+            "usage_unit": "s406314"
+          }
+        ]
+      }
+    }
+  },
+  {
+    "id": "twilio:GET:/2010-04-01/Accounts/:AccountSid/Usage/Records/Daily.json#0",
+    "match": {
+      "method": "GET",
+      "path": "/2010-04-01/Accounts/:AccountSid/Usage/Records/Daily.json"
+    },
+    "respond": {
+      "status": 200,
+      "body": {
+        "end": 72,
+        "first_page_uri": "https://example.com",
+        "next_page_uri": "https://example.com",
+        "page": 244,
+        "page_size": 639,
+        "previous_page_uri": "https://example.com",
+        "start": 366,
+        "uri": "https://example.com",
+        "usage_records": [
+          {
+            "account_sid": "s31919",
+            "api_version": "s573372",
+            "as_of": "s376804",
+            "category": "a2p-registration-fees",
+            "count": "s996697",
+            "count_unit": "s485352",
+            "description": "s781838",
+            "end_date": "2026-01-01",
+            "price": 52.5,
+            "price_unit": "s51154",
+            "start_date": "2026-01-01",
+            "subresource_uris": {},
+            "uri": "s877689",
+            "usage": "s998862",
+            "usage_unit": "s259168"
+          }
+        ]
+      }
+    }
+  },
+  {
+    "id": "twilio:GET:/2010-04-01/Accounts/:AccountSid/Usage/Records/LastMonth.json#0",
+    "match": {
+      "method": "GET",
+      "path": "/2010-04-01/Accounts/:AccountSid/Usage/Records/LastMonth.json"
+    },
+    "respond": {
+      "status": 200,
+      "body": {
+        "end": 327,
+        "first_page_uri": "https://example.com",
+        "next_page_uri": "https://example.com",
+        "page": 572,
+        "page_size": 633,
+        "previous_page_uri": "https://example.com",
+        "start": 879,
+        "uri": "https://example.com",
+        "usage_records": [
+          {
+            "account_sid": "s803920",
+            "api_version": "s860408",
+            "as_of": "s102400",
+            "category": "a2p-registration-fees",
+            "count": "s414792",
+            "count_unit": "s9465",
+            "description": "s132704",
+            "end_date": "2026-01-01",
+            "price": 23.54,
+            "price_unit": "s366780",
+            "start_date": "2026-01-01",
+            "subresource_uris": {},
+            "uri": "s576286",
+            "usage": "s926498",
+            "usage_unit": "s495348"
+          }
+        ]
+      }
+    }
+  },
+  {
+    "id": "twilio:GET:/2010-04-01/Accounts/:AccountSid/Usage/Records/Monthly.json#0",
+    "match": {
+      "method": "GET",
+      "path": "/2010-04-01/Accounts/:AccountSid/Usage/Records/Monthly.json"
+    },
+    "respond": {
+      "status": 200,
+      "body": {
+        "end": 76,
+        "first_page_uri": "https://example.com",
+        "next_page_uri": "https://example.com",
+        "page": 577,
+        "page_size": 86,
+        "previous_page_uri": "https://example.com",
+        "start": 408,
+        "uri": "https://example.com",
+        "usage_records": [
+          {
+            "account_sid": "s899148",
+            "api_version": "s630395",
+            "as_of": "s20953",
+            "category": "a2p-registration-fees",
+            "count": "s581798",
+            "count_unit": "s740119",
+            "description": "s27535",
+            "end_date": "2026-01-01",
+            "price": 65.85,
+            "price_unit": "s224686",
+            "start_date": "2026-01-01",
+            "subresource_uris": {},
+            "uri": "s647863",
+            "usage": "s690562",
+            "usage_unit": "s740086"
+          }
+        ]
+      }
+    }
+  },
+  {
+    "id": "twilio:GET:/2010-04-01/Accounts/:AccountSid/Usage/Records/ThisMonth.json#0",
+    "match": {
+      "method": "GET",
+      "path": "/2010-04-01/Accounts/:AccountSid/Usage/Records/ThisMonth.json"
+    },
+    "respond": {
+      "status": 200,
+      "body": {
+        "end": 250,
+        "first_page_uri": "https://example.com",
+        "next_page_uri": "https://example.com",
+        "page": 772,
+        "page_size": 495,
+        "previous_page_uri": "https://example.com",
+        "start": 277,
+        "uri": "https://example.com",
+        "usage_records": [
+          {
+            "account_sid": "s500755",
+            "api_version": "s928757",
+            "as_of": "s109270",
+            "category": "a2p-registration-fees",
+            "count": "s908005",
+            "count_unit": "s107851",
+            "description": "s835003",
+            "end_date": "2026-01-01",
+            "price": 60.61,
+            "price_unit": "s970191",
+            "start_date": "2026-01-01",
+            "subresource_uris": {},
+            "uri": "s366630",
+            "usage": "s616454",
+            "usage_unit": "s778193"
+          }
+        ]
+      }
+    }
+  },
+  {
+    "id": "twilio:GET:/2010-04-01/Accounts/:AccountSid/Usage/Records/Today.json#0",
+    "match": {
+      "method": "GET",
+      "path": "/2010-04-01/Accounts/:AccountSid/Usage/Records/Today.json"
+    },
+    "respond": {
+      "status": 200,
+      "body": {
+        "end": 857,
+        "first_page_uri": "https://example.com",
+        "next_page_uri": "https://example.com",
+        "page": 210,
+        "page_size": 625,
+        "previous_page_uri": "https://example.com",
+        "start": 459,
+        "uri": "https://example.com",
+        "usage_records": [
+          {
+            "account_sid": "s582070",
+            "api_version": "s113755",
+            "as_of": "s888824",
+            "category": "a2p-registration-fees",
+            "count": "s35414",
+            "count_unit": "s646061",
+            "description": "s828643",
+            "end_date": "2026-01-01",
+            "price": 18.79,
+            "price_unit": "s671679",
+            "start_date": "2026-01-01",
+            "subresource_uris": {},
+            "uri": "s468818",
+            "usage": "s612941",
+            "usage_unit": "s280802"
+          }
+        ]
+      }
+    }
+  },
+  {
+    "id": "twilio:GET:/2010-04-01/Accounts/:AccountSid/Usage/Records/Yearly.json#0",
+    "match": {
+      "method": "GET",
+      "path": "/2010-04-01/Accounts/:AccountSid/Usage/Records/Yearly.json"
+    },
+    "respond": {
+      "status": 200,
+      "body": {
+        "end": 93,
+        "first_page_uri": "https://example.com",
+        "next_page_uri": "https://example.com",
+        "page": 962,
+        "page_size": 229,
+        "previous_page_uri": "https://example.com",
+        "start": 331,
+        "uri": "https://example.com",
+        "usage_records": [
+          {
+            "account_sid": "s559820",
+            "api_version": "s714588",
+            "as_of": "s502620",
+            "category": "a2p-registration-fees",
+            "count": "s132360",
+            "count_unit": "s933632",
+            "description": "s265368",
+            "end_date": "2026-01-01",
+            "price": 80.89,
+            "price_unit": "s629923",
+            "start_date": "2026-01-01",
+            "subresource_uris": {},
+            "uri": "s835929",
+            "usage": "s478234",
+            "usage_unit": "s113678"
+          }
+        ]
+      }
+    }
+  },
+  {
+    "id": "twilio:GET:/2010-04-01/Accounts/:AccountSid/Usage/Records/Yesterday.json#0",
+    "match": {
+      "method": "GET",
+      "path": "/2010-04-01/Accounts/:AccountSid/Usage/Records/Yesterday.json"
+    },
+    "respond": {
+      "status": 200,
+      "body": {
+        "end": 27,
+        "first_page_uri": "https://example.com",
+        "next_page_uri": "https://example.com",
+        "page": 591,
+        "page_size": 961,
+        "previous_page_uri": "https://example.com",
+        "start": 419,
+        "uri": "https://example.com",
+        "usage_records": [
+          {
+            "account_sid": "s483090",
+            "api_version": "s174224",
+            "as_of": "s49414",
+            "category": "a2p-registration-fees",
+            "count": "s647874",
+            "count_unit": "s634283",
+            "description": "s129549",
+            "end_date": "2026-01-01",
+            "price": 43.74,
+            "price_unit": "s153413",
+            "start_date": "2026-01-01",
+            "subresource_uris": {},
+            "uri": "s650887",
+            "usage": "s473912",
+            "usage_unit": "s811609"
+          }
+        ]
+      }
+    }
+  },
+  {
+    "id": "twilio:GET:/2010-04-01/Accounts/:AccountSid/Usage/Triggers.json#0",
+    "match": {
+      "method": "GET",
+      "path": "/2010-04-01/Accounts/:AccountSid/Usage/Triggers.json"
+    },
+    "respond": {
+      "status": 200,
+      "body": {
+        "end": 337,
+        "first_page_uri": "https://example.com",
+        "next_page_uri": "https://example.com",
+        "page": 963,
+        "page_size": 331,
+        "previous_page_uri": "https://example.com",
+        "start": 910,
+        "uri": "https://example.com",
+        "usage_triggers": [
+          {
+            "account_sid": "s692101",
+            "api_version": "s817813",
+            "callback_method": "HEAD",
+            "callback_url": "https://example.com",
+            "current_value": "s863685",
+            "date_created": "s629185",
+            "date_fired": "s868213",
+            "date_updated": "s736268",
+            "friendly_name": "s223415",
+            "recurring": "daily",
+            "sid": "s460831",
+            "trigger_by": "count",
+            "trigger_value": "s859206",
+            "uri": "s775010",
+            "usage_category": "a2p-registration-fees",
+            "usage_record_uri": "s738822"
+          }
+        ]
+      }
+    }
+  },
+  {
+    "id": "twilio:POST:/2010-04-01/Accounts/:AccountSid/Usage/Triggers.json#0",
+    "match": {
+      "method": "POST",
+      "path": "/2010-04-01/Accounts/:AccountSid/Usage/Triggers.json"
+    },
+    "respond": {
+      "status": 201,
+      "body": {
+        "account_sid": "s594566",
+        "api_version": "s670484",
+        "callback_method": "HEAD",
+        "callback_url": "https://example.com",
+        "current_value": "s873427",
+        "date_created": "s766030",
+        "date_fired": "s255287",
+        "date_updated": "s663175",
+        "friendly_name": "s360324",
+        "recurring": "daily",
+        "sid": "s932494",
+        "trigger_by": "count",
+        "trigger_value": "s444291",
+        "uri": "s200817",
+        "usage_category": "a2p-registration-fees",
+        "usage_record_uri": "s435238"
+      }
+    }
+  },
+  {
+    "id": "twilio:GET:/2010-04-01/Accounts/:AccountSid/Usage/Triggers/:Sid.json#0",
+    "match": {
+      "method": "GET",
+      "path": "/2010-04-01/Accounts/:AccountSid/Usage/Triggers/:Sid.json"
+    },
+    "respond": {
+      "status": 200,
+      "body": {
+        "account_sid": "s433418",
+        "api_version": "s639037",
+        "callback_method": "HEAD",
+        "callback_url": "https://example.com",
+        "current_value": "s816600",
+        "date_created": "s659682",
+        "date_fired": "s975575",
+        "date_updated": "s293070",
+        "friendly_name": "s738227",
+        "recurring": "daily",
+        "sid": "s617548",
+        "trigger_by": "count",
+        "trigger_value": "s438246",
+        "uri": "s295981",
+        "usage_category": "a2p-registration-fees",
+        "usage_record_uri": "s441601"
+      }
+    }
+  },
+  {
+    "id": "twilio:POST:/2010-04-01/Accounts/:AccountSid/Usage/Triggers/:Sid.json#0",
+    "match": {
+      "method": "POST",
+      "path": "/2010-04-01/Accounts/:AccountSid/Usage/Triggers/:Sid.json"
+    },
+    "respond": {
+      "status": 200,
+      "body": {
+        "account_sid": "s282612",
+        "api_version": "s138371",
+        "callback_method": "HEAD",
+        "callback_url": "https://example.com",
+        "current_value": "s366946",
+        "date_created": "s137168",
+        "date_fired": "s500528",
+        "date_updated": "s459948",
+        "friendly_name": "s517576",
+        "recurring": "daily",
+        "sid": "s876563",
+        "trigger_by": "count",
+        "trigger_value": "s212346",
+        "uri": "s755627",
+        "usage_category": "a2p-registration-fees",
+        "usage_record_uri": "s288465"
+      }
+    }
+  },
+  {
+    "id": "twilio:DELETE:/2010-04-01/Accounts/:AccountSid/Usage/Triggers/:Sid.json#0",
+    "match": {
+      "method": "DELETE",
+      "path": "/2010-04-01/Accounts/:AccountSid/Usage/Triggers/:Sid.json"
+    },
+    "respond": {
+      "status": 204
+    }
+  },
+  {
+    "id": "twilio:GET:/2010-04-01/Accounts/:Sid.json#0",
+    "match": {
+      "method": "GET",
+      "path": "/2010-04-01/Accounts/:Sid.json"
+    },
+    "respond": {
+      "status": 200,
+      "body": {
+        "auth_token": "s968543",
+        "date_created": "s223656",
+        "date_updated": "s607830",
+        "friendly_name": "s492761",
+        "owner_account_sid": "s148693",
+        "sid": "s886985",
+        "status": "active",
+        "subresource_uris": {},
+        "type": "Trial",
+        "uri": "s971761"
+      }
+    }
+  },
+  {
+    "id": "twilio:POST:/2010-04-01/Accounts/:Sid.json#0",
+    "match": {
+      "method": "POST",
+      "path": "/2010-04-01/Accounts/:Sid.json"
+    },
+    "respond": {
+      "status": 200,
+      "body": {
+        "auth_token": "s969451",
+        "date_created": "s502485",
+        "date_updated": "s697411",
+        "friendly_name": "s273224",
+        "owner_account_sid": "s101273",
+        "sid": "s872688",
+        "status": "active",
+        "subresource_uris": {},
+        "type": "Trial",
+        "uri": "s251627"
+      }
+    }
+  }
+]

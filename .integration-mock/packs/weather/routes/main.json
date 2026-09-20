@@ -1,0 +1,2 @@
+[{"id":"weather:GET:/dev/weather#0","match":{"method":"GET","path":"/dev/weather"},
+  "respond":{"status":200,"body":{"city":"Evanston","tempC":14,"summary":"cloudy","source":"integration-mock"}}}]

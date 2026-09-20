@@ -1,0 +1,250 @@
+airtable:
+  url: ""
+  license: unknown
+  vendored: false
+  notes: No official public OpenAPI; only community-generated specs. Covered by
+    the phase 2 reverse-mapper.
+anthropic:
+  url: ""
+  license: unknown
+  vendored: false
+  notes: No official OpenAPI published. SDKs are generated from an internal spec
+    that is not released.
+asana:
+  url: https://api.apis.guru/v2/specs/asana.com/1.0/openapi.json
+  license: Apache 2.0
+  vendored: true
+  sha256: 40c1c94d476c897f707c2974a3aeedee1d0b8a6eab8b7654819c0effa0f8ffa6
+  specVersion: "1.0"
+clickup:
+  url: https://api.apis.guru/v2/specs/clickup.com/1.0.0/openapi.json
+  license: unknown
+  vendored: false
+  notes: License unclear for redistribution; fetched on demand rather than cached.
+  sha256: 62e8866b8bf9147759442557b8457409582dad98967ee1377a8c400334d7156a
+  specVersion: 1.0.0
+close:
+  url: https://api.close.com/api/openapi.json
+  license: unknown
+  vendored: false
+  notes: Licence unclear for redistribution; fetched on demand.
+  sha256: 2154c7c73914b8cee97e01e3e206a18c0ea4cf36d6ed901f89524e366ba68ff7
+  specVersion: 1.0.0
+datadog:
+  url: https://raw.githubusercontent.com/DataDog/datadog-api-client-go/master/.generator/schemas/v2/openapi.yaml
+  urls:
+    - https://raw.githubusercontent.com/DataDog/datadog-api-client-go/master/.generator/schemas/v2/openapi.yaml
+    - https://raw.githubusercontent.com/DataDog/datadog-api-client-go/master/.generator/schemas/v1/openapi.yaml
+  license: unknown
+  vendored: false
+  notes: Datadog splits its API across v1 and v2 specs; both are generated and
+    merged. Licence unclear for redistribution; fetched on demand.
+docusign:
+  url: https://api.apis.guru/v2/specs/docusign.net/v2.1/openapi.json
+  license: unknown
+  vendored: false
+  shipped: false
+  notes: License unclear for redistribution; fetched on demand rather than cached.
+    NOT SHIPPED as a generated pack. Its envelope and template schemas nest six
+    deep, and the body generator expanded them into single responses of up to
+    264KB — 13MB for 393 routes, against 2.8MB for GitHub's 803. A quarter-
+    megabyte fabricated envelope is useless as a mock. Regenerate with
+    `packs build docusign --fetch` if you need it; the body cap keeps it sane.
+  sha256: bcdba766a39b7760e00c7822946879192a63db1f440f91f2d57335c9b78ffaef
+  specVersion: v2.1
+freshdesk:
+  url: ""
+  license: unknown
+  vendored: false
+  notes: Freshworks publishes no official OpenAPI; community-maintained specs only.
+front:
+  url: ""
+  license: unknown
+  vendored: false
+  notes: No APIs.guru entry and no published spec found.
+github:
+  url: https://api.apis.guru/v2/specs/github.com/1.1.4/openapi.json
+  license: MIT
+  vendored: true
+  sha256: efebc34c41a39d98ed218e09590e14281a3549fa3ca8bc14361eb81fb52cbe44
+  specVersion: 1.1.4
+gitlab:
+  url: https://api.apis.guru/v2/specs/gitlab.com/v3/swagger.json
+  license: unknown
+  vendored: false
+  notes: License unclear for redistribution; fetched on demand rather than cached.
+  sha256: 273a4d76df784e5e48d323daae37d5dd4c88c9f0dff2167876e959a93d579561
+  specVersion: v3
+gmail:
+  url: https://api.apis.guru/v2/specs/googleapis.com/gmail/v1/openapi.json
+  license: Creative Commons Attribution 3.0
+  vendored: true
+  sha256: 5acbed6ac4384d93053cd4346b22c9babef10965b1aeb3396c4e5a647db14ecd
+  specVersion: v1
+google-drive:
+  url: https://api.apis.guru/v2/specs/googleapis.com/drive/v3/openapi.json
+  license: Creative Commons Attribution 3.0
+  vendored: true
+  sha256: e274823d74b0677ea391d0ea8bbf4c06c2aa6a488554ee0eab88e4e07523c9ca
+  specVersion: v3
+google-sheets:
+  url: https://api.apis.guru/v2/specs/googleapis.com/sheets/v4/openapi.json
+  license: Creative Commons Attribution 3.0
+  vendored: true
+  sha256: ac02b8944a49ddabc2352e6a7c0b0d8724bd42f1e77fd49f20924ebdf4fdf046
+  specVersion: v4
+hubspot:
+  url: https://api.hubspot.com/public/api/spec/v2/specs/release/22150/version/3
+  urls:
+    - https://api.hubspot.com/public/api/spec/v2/specs/release/22150/version/3
+    - https://api.hubspot.com/public/api/spec/v2/specs/release/22149/version/3
+    - https://api.hubspot.com/public/api/spec/v2/specs/release/25196/version/3
+  license: unknown
+  vendored: false
+  notes: HubSpot publishes 117 separate specs; these are the three core CRM
+    objects the n8n node uses, each pinned to its STABLE version (stage, not
+    array order). Release-id URLs come from
+    https://api.hubspot.com/public/api/spec/v1/specs and may rotate.
+intercom:
+  url: https://raw.githubusercontent.com/intercom/Intercom-OpenAPI/main/descriptions/2.16/api.intercom.io.yaml
+  license: unknown
+  vendored: false
+  notes: Pinned to descriptions/2.16, the newest version directory in the repo.
+    Licence unclear for redistribution; fetched on demand.
+  sha256: 839fd594a69630ba8f0a72221476136f61b78726f0fdecae834cc520a4f0cb85
+  specVersion: "2.16"
+jira:
+  url: https://api.apis.guru/v2/specs/atlassian.com/jira/1001.0.0-SNAPSHOT/openapi.json
+  license: Apache 2.0
+  vendored: true
+  sha256: 866a6ae6a8d5b292a7b2477f6e1fa95bffbf133c4f848b28dac8989a0c6e309a
+  specVersion: 1001.0.0-SNAPSHOT
+linear:
+  url: ""
+  license: unknown
+  vendored: false
+  notes: GraphQL-only API; no OpenAPI exists. GraphQL is an explicit non-goal
+    (spec non-goals).
+mailchimp:
+  url: https://api.mailchimp.com/schema/3.0/Swagger.json
+  license: unknown
+  vendored: false
+  notes: Spec fetches, but all 181 path items are remote $refs we do not resolve,
+    so it generates 0 routes. Kept for provenance; see docs/vendor-audit.md.
+microsoft-graph:
+  url: https://api.apis.guru/v2/specs/microsoft.com/graph/1.0.1/openapi.json
+  license: unknown
+  vendored: false
+  notes: "Huge spec: 2283 routes generated, 9139 operations skipped. License
+    unclear, so fetched on demand."
+  sha256: 150df320f1b752f6d70737389e76bed2ca52bbfc04239fa57a3e8c0407147fdc
+  specVersion: 1.0.1
+monday:
+  url: ""
+  license: unknown
+  vendored: false
+  notes: GraphQL-only API; no OpenAPI exists. GraphQL is an explicit non-goal
+    (spec non-goals).
+notion:
+  url: https://api.apis.guru/v2/specs/notion.com/1.0.0/openapi.json
+  license: unknown
+  vendored: false
+  notes: License unclear for redistribution; fetched on demand rather than cached.
+  sha256: 6df5889eac35a3f4eb99115eac7dd9b28b9d6040c664a742368ef7b68d45d983
+  specVersion: 1.0.0
+openai:
+  url: https://api.apis.guru/v2/specs/openai.com/1.2.0/openapi.json
+  license: unknown
+  vendored: false
+  notes: License unclear for redistribution; fetched on demand rather than cached.
+  sha256: 8ab0b2055010705b1c6f8462e742b325afaef3617503d35f6b2a67dac241517f
+  specVersion: 1.2.0
+pagerduty:
+  url: https://raw.githubusercontent.com/PagerDuty/api-schema/main/reference/REST/openapiv3.json
+  license: unknown
+  vendored: false
+  notes: Licence unclear for redistribution; fetched on demand.
+  sha256: b2e80f8b83b170f29702e96a69adf230702b4ec43dddab7e348a2985c707ef35
+  specVersion: 2.0.0
+pandadoc:
+  url: https://raw.githubusercontent.com/PandaDoc/pandadoc-openapi-specification/main/openapi.yaml
+  license: unknown
+  vendored: false
+  notes: Licence unclear for redistribution; fetched on demand.
+  sha256: 3b9cb140567caf7a0f550bc5a7b5c23a2806959d5a2f1d399832a8c07187a56a
+  specVersion: 8.12.0
+petstore-example:
+  url: https://petstore3.swagger.io/api/v3/openapi.json
+  license: Apache-2.0
+  vendored: true
+  notes: Reference spec used by the generator's own tests.
+pipedrive:
+  url: https://developers.pipedrive.com/docs/api/v1/openapi.yaml
+  license: unknown
+  vendored: false
+  notes: Licence unclear for redistribution; fetched on demand.
+  sha256: 302b0d7c2c1a6cb96a2d299717c6be0c2cf3eac6dfd884ea8352962ebf501c2b
+  specVersion: 1.0.0
+quickbooks:
+  url: ""
+  license: unknown
+  vendored: false
+  notes: No official public OpenAPI published by Intuit.
+salesforce:
+  url: ""
+  license: unknown
+  vendored: false
+  notes: APIs.guru indexes only Einstein Vision/Language, not the general REST API.
+sendgrid:
+  url: https://api.apis.guru/v2/specs/sendgrid.com/1.0.0/openapi.json
+  license: unknown
+  vendored: false
+  notes: License unclear for redistribution; fetched on demand rather than cached.
+  sha256: 80aaf7926007ffa486bf9d2d5d8b1337ec8a361d465a0f17dbe784258f8b2a1f
+  specVersion: 1.0.0
+slack:
+  url: https://api.apis.guru/v2/specs/slack.com/1.7.0/openapi.json
+  license: unknown
+  vendored: false
+  notes: License unclear for redistribution; fetched on demand rather than cached.
+  sha256: a623a38a3be7e3b6bc47e74401b509d4e044025b4ce8eefe611034c7bca1077a
+  specVersion: 1.7.0
+snowflake:
+  url: https://raw.githubusercontent.com/snowflakedb/snowflake-rest-api-specs/refs/heads/main/specifications/sqlapi.yaml
+  license: unknown
+  vendored: false
+  notes: License unclear for redistribution; fetched on demand rather than cached.
+  sha256: 28b780dd056961e975b4e1ccffe72b04d96d713ad3aaf378d5a6dc0316586dce
+  specVersion: 2.0.0
+stripe:
+  url: https://api.apis.guru/v2/specs/stripe.com/2022-11-15/openapi.json
+  license: unknown
+  vendored: false
+  notes: License unclear for redistribution; fetched on demand rather than cached.
+  sha256: 76e10a2395402ad46f157a39a6bfc6b2843e07251d769fdfbe7042b749d881f2
+  specVersion: 2022-11-15
+supabase:
+  url: ""
+  license: unknown
+  vendored: false
+  notes: Spec is per-project behind auth; public anon access deprecated 2026-03-11.
+twilio:
+  url: https://api.apis.guru/v2/specs/twilio.com/api/1.42.0/openapi.json
+  license: Apache 2.0
+  vendored: true
+  sha256: da7415f66ddf68ca230abda171c15ad08e32c290045f9865f6a4460b0adc58aa
+  specVersion: 1.42.0
+xero:
+  url: https://api.apis.guru/v2/specs/xero.com/xero_accounting/2.9.4/openapi.json
+  license: unknown
+  vendored: false
+  notes: License unclear for redistribution; fetched on demand rather than cached.
+  sha256: 1c72bca077fc62931fe2be34f717f4cf6c10475768f3e3f7d55f48e9beb6ac12
+  specVersion: 2.9.4
+zendesk:
+  url: ""
+  license: unknown
+  vendored: false
+  notes: No official OpenAPI for the Support API that the n8n node uses. Zendesk
+    publishes one only for Sunshine Conversations, a different product; the rest
+    are community-maintained.

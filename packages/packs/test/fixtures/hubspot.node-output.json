@@ -1,0 +1,9 @@
+{
+  "_note": "hand-authored from n8n HubSpot node v2 output; replace with real capture",
+  "contact/getAll": [
+    { "id": "101", "properties": { "email": "a@x.com", "firstname": "A" }, "createdAt": "2026-01-01T00:00:00Z", "updatedAt": "2026-01-01T00:00:00Z", "archived": false }
+  ],
+  "contact/create": [
+    { "id": "102", "properties": { "email": "b@x.com" }, "createdAt": "2026-01-02T00:00:00Z", "updatedAt": "2026-01-02T00:00:00Z", "archived": false }
+  ]
+}

@@ -1,0 +1,74 @@
+name: ci
+
+# The standing signal: this must never need an instance, a key, or the network,
+# so that a red run always means the code broke. Instance tests live behind
+# `pnpm test:instance` and are deliberately not run here.
+on:
+  push:
+  pull_request:
+
+jobs:
+  test:
+    runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        node: [20, 22]
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: ${{ matrix.node }}
+
+      - name: Install
+        run: |
+          corepack enable
+          pnpm install --frozen-lockfile
+
+      - name: Build
+        run: pnpm build
+
+      - name: Typecheck
+        run: pnpm typecheck
+
+      - name: Test
+        run: pnpm test
+
+  # Install-level acceptance: a fresh clone and the packed tarball installed
+  # into an empty project must both run the README quickstart. Needs no display,
+  # no browser and no Docker; it uses ports 18180/18181 and a throwaway home.
+  smoke:
+    runs-on: ${{ matrix.os }}
+    strategy:
+      fail-fast: false
+      matrix:
+        # macOS minutes are billed at 10x on private repositories, so the macOS lane
+        # switches on by itself the moment the repository is public.
+        os: ${{ fromJSON(github.event.repository.private && '["ubuntu-latest"]' || '["ubuntu-latest","macos-latest"]') }}
+        node: [20, 22]
+    steps:
+      - uses: actions/checkout@v4
+
+      # No `version:` — pnpm/action-setup reads it from `packageManager`.
+      - uses: pnpm/action-setup@v4
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: ${{ matrix.node }}
+
+      - name: Install
+        run: pnpm install --frozen-lockfile
+
+      - name: Build
+        run: pnpm build
+
+      - name: Smoke
+        run: pnpm smoke
+
+      - name: Package lint
+        working-directory: packages/cli
+        run: |
+          npx --yes publint --strict
+          # integration-mock is CLI-only (no `exports`, no types by design), so
+          # attw reports "This package does not contain types" and exits 0.
+          npx --yes @arethetypeswrong/cli --pack .

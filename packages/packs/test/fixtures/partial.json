@@ -1,0 +1,8 @@
+{
+  "openapi": "3.0.0",
+  "servers": [{ "url": "https://api.partial.test" }],
+  "paths": {
+    "/broken": { "get": { "responses": { "200": { "content": { "application/json": { "schema": { "$ref": "#/components/schemas/Missing" } } } } } } },
+    "/empty": { "get": { "responses": { "200": { "description": "no content" } } } }
+  }
+}

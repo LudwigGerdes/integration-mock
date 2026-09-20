@@ -1,0 +1,179 @@
+[
+  {
+    "id": "salesforce:oauth-token",
+    "note": "OAuth 2.0 token endpoint. Returns instance_url, which n8n's Salesforce credential uses as the base for every later call.",
+    "match": { "method": "POST", "path": "/services/oauth2/token" },
+    "respond": {
+      "status": 200,
+      "headers": { "content-type": "application/json" },
+      "body": {
+        "access_token": "00Dmock00!MOCKSESSIONTOKEN",
+        "instance_url": "https://integration-mock-dev.my.salesforce.com",
+        "id": "https://login.salesforce.com/id/00Dmock00000000EAA/005mock00000000AAA",
+        "token_type": "Bearer",
+        "issued_at": "1700000000000",
+        "signature": "integration-mock-signature"
+      }
+    }
+  },
+  {
+    "id": "salesforce:query-malformed",
+    "note": "SOQL error shape: a JSON array of {message, errorCode}. Listed before the general query route so the specific q= match wins.",
+    "match": { "method": "GET", "path": "/services/data/:version/query", "query": { "q": "INVALID" } },
+    "respond": {
+      "status": 400,
+      "headers": { "content-type": "application/json" },
+      "body": [{ "message": "unexpected token: INVALID", "errorCode": "MALFORMED_QUERY" }]
+    }
+  },
+  {
+    "id": "salesforce:query",
+    "note": "SOQL query. Envelope is {totalSize, done, records}, each record carrying an attributes object with its type and REST url.",
+    "match": { "method": "GET", "path": "/services/data/:version/query" },
+    "respond": {
+      "status": 200,
+      "headers": { "content-type": "application/json" },
+      "body": {
+        "totalSize": 2,
+        "done": true,
+        "records": [
+          {
+            "attributes": {
+              "type": "Opportunity",
+              "url": "/services/data/v58.0/sobjects/Opportunity/006mock0000000001"
+            },
+            "Id": "006mock0000000001",
+            "Name": "Lakeshore Logistics renewal",
+            "StageName": "Proposal/Price Quote",
+            "Amount": 48000,
+            "CloseDate": "2026-11-30",
+            "AccountId": "001mock0000000001"
+          },
+          {
+            "attributes": {
+              "type": "Opportunity",
+              "url": "/services/data/v58.0/sobjects/Opportunity/006mock0000000002"
+            },
+            "Id": "006mock0000000002",
+            "Name": "Ravenswood Foods expansion",
+            "StageName": "Negotiation/Review",
+            "Amount": 125000,
+            "CloseDate": "2026-12-15",
+            "AccountId": "001mock0000000002"
+          }
+        ]
+      }
+    }
+  },
+  {
+    "id": "salesforce:opportunity-describe",
+    "note": "Literal segment, so it must precede the :id route or the id pattern captures the word 'describe'.",
+    "match": { "method": "GET", "path": "/services/data/:version/sobjects/Opportunity/describe" },
+    "respond": {
+      "status": 200,
+      "headers": { "content-type": "application/json" },
+      "body": {
+        "name": "Opportunity",
+        "label": "Opportunity",
+        "createable": true,
+        "updateable": true,
+        "fields": [
+          { "name": "Id", "type": "id", "label": "Opportunity ID" },
+          { "name": "Name", "type": "string", "label": "Opportunity Name" },
+          { "name": "StageName", "type": "picklist", "label": "Stage" },
+          { "name": "Amount", "type": "currency", "label": "Amount" },
+          { "name": "CloseDate", "type": "date", "label": "Close Date" }
+        ]
+      }
+    }
+  },
+  {
+    "id": "salesforce:opportunity-not-found",
+    "note": "Sentinel id for exercising 404 handling. Literal, so listed before the :id route.",
+    "match": {
+      "method": "GET",
+      "path": "/services/data/:version/sobjects/Opportunity/006mock00MISSING"
+    },
+    "respond": {
+      "status": 404,
+      "headers": { "content-type": "application/json" },
+      "body": [
+        {
+          "message": "Provided external ID field does not exist or is not accessible: 006mock00MISSING",
+          "errorCode": "NOT_FOUND"
+        }
+      ]
+    }
+  },
+  {
+    "id": "salesforce:opportunity-create",
+    "note": "Create returns {id, success, errors} with 201, not the created record.",
+    "match": { "method": "POST", "path": "/services/data/:version/sobjects/Opportunity" },
+    "respond": {
+      "status": 201,
+      "headers": { "content-type": "application/json" },
+      "body": { "id": "006mock0000000003", "success": true, "errors": [] }
+    }
+  },
+  {
+    "id": "salesforce:opportunity-get",
+    "match": { "method": "GET", "path": "/services/data/:version/sobjects/Opportunity/:id" },
+    "respond": {
+      "status": 200,
+      "headers": { "content-type": "application/json" },
+      "body": {
+        "attributes": {
+          "type": "Opportunity",
+          "url": "/services/data/v58.0/sobjects/Opportunity/006mock0000000001"
+        },
+        "Id": "006mock0000000001",
+        "Name": "Lakeshore Logistics renewal",
+        "StageName": "Proposal/Price Quote",
+        "Amount": 48000,
+        "CloseDate": "2026-11-30",
+        "AccountId": "001mock0000000001",
+        "IsClosed": false,
+        "IsWon": false
+      }
+    }
+  },
+  {
+    "id": "salesforce:opportunity-update",
+    "note": "PATCH returns 204 with an empty body — a workflow expecting the updated record back will get nothing.",
+    "match": { "method": "PATCH", "path": "/services/data/:version/sobjects/Opportunity/:id" },
+    "respond": { "status": 204 }
+  },
+  {
+    "id": "salesforce:opportunity-delete",
+    "match": { "method": "DELETE", "path": "/services/data/:version/sobjects/Opportunity/:id" },
+    "respond": { "status": 204 }
+  },
+  {
+    "id": "salesforce:account-create",
+    "match": { "method": "POST", "path": "/services/data/:version/sobjects/Account" },
+    "respond": {
+      "status": 201,
+      "headers": { "content-type": "application/json" },
+      "body": { "id": "001mock0000000003", "success": true, "errors": [] }
+    }
+  },
+  {
+    "id": "salesforce:account-get",
+    "match": { "method": "GET", "path": "/services/data/:version/sobjects/Account/:id" },
+    "respond": {
+      "status": 200,
+      "headers": { "content-type": "application/json" },
+      "body": {
+        "attributes": {
+          "type": "Account",
+          "url": "/services/data/v58.0/sobjects/Account/001mock0000000001"
+        },
+        "Id": "001mock0000000001",
+        "Name": "Lakeshore Logistics",
+        "Industry": "Transportation",
+        "BillingCity": "Evanston",
+        "BillingState": "IL"
+      }
+    }
+  }
+]

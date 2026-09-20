@@ -1,0 +1,68 @@
+[
+  {
+    "id": "clickup:GET:/questions#0",
+    "match": {
+      "method": "GET",
+      "path": "/questions"
+    },
+    "respond": {
+      "status": 200,
+      "body": [
+        {
+          "choices": [
+            {
+              "choice": "Swift",
+              "votes": 2048
+            },
+            {
+              "choice": "Python",
+              "votes": 1024
+            },
+            {
+              "choice": "Objective-C",
+              "votes": 512
+            },
+            {
+              "choice": "Ruby",
+              "votes": 256
+            }
+          ],
+          "published_at": "2015-08-05T08:40:51.620Z",
+          "question": "Favourite programming language?"
+        }
+      ]
+    }
+  },
+  {
+    "id": "clickup:POST:/questions#0",
+    "match": {
+      "method": "POST",
+      "path": "/questions"
+    },
+    "respond": {
+      "status": 201,
+      "body": {
+        "choices": [
+          {
+            "choice": "Swift",
+            "votes": 0
+          },
+          {
+            "choice": "Python",
+            "votes": 0
+          },
+          {
+            "choice": "Objective-C",
+            "votes": 0
+          },
+          {
+            "choice": "Ruby",
+            "votes": 0
+          }
+        ],
+        "published_at": "2015-08-05T08:40:51.620Z",
+        "question": "Favourite programming language?"
+      }
+    }
+  }
+]

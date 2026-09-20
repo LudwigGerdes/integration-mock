@@ -1,0 +1,45 @@
+{
+  "workflow": "8f3a",
+  "instance": "dev",
+  "cases": [
+    {
+      "id": "happy-path",
+      "title": "posts one message to the alerts channel",
+      "given": {
+        "packs": ["slack", "api-example-com"],
+        "pinData": { "Webhook": [{ "json": { "id": 1, "email": "a@example.com" } }] }
+      },
+      "when": { "trigger": "webhook", "payload": { "email": "a@example.com" } },
+      "then": {
+        "execution.status": "success",
+        "node.Slack.items": 1,
+        "node.Fetch.output[0].json.id": 1,
+        "calls": [
+          { "service": "slack", "method": "POST", "path": "/api/chat.postMessage", "count": 1 },
+          { "service": "hubspot", "count": 0 }
+        ],
+        "noUnmatched": true
+      }
+    },
+    {
+      "id": "slack-down",
+      "title": "surfaces the failing node when Slack is unavailable",
+      "given": {
+        "packs": ["slack", "api-example-com"],
+        "pinData": { "Webhook": [{ "json": { "id": 1, "email": "a@example.com" } }] },
+        "faults": { "slack": { "status": 503, "after": 1, "once": true } }
+      },
+      "when": { "trigger": { "node": "Webhook", "payload": { "email": "b@example.com" } } },
+      "then": { "execution": { "status": { "errorNode": "Slack" } } }
+    },
+    {
+      "id": "no-defaults-overridden",
+      "given": {
+        "packs": ["slack", "api-example-com"],
+        "pinData": { "Webhook": [{ "json": { "id": 1, "email": "a@example.com" } }] }
+      },
+      "when": { "payload": { "email": "c@example.com" } },
+      "then": { "noUnmatched": true }
+    }
+  ]
+}

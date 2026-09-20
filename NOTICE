@@ -1,0 +1,57 @@
+integration-mock — third-party notices
+
+integration-mock itself is MIT licensed; see LICENSE.
+
+The service packs under packages/packs/packs/ are GENERATED from published
+OpenAPI descriptions. They contain route paths, field names and schema-derived
+example values originating in those documents. They are mocks for development
+and testing and are not affiliated with, endorsed by, or a substitute for the
+services they imitate. Trademarks and service names belong to their owners.
+
+If you maintain one of these APIs and want its pack removed or corrected, open
+an issue and it will be actioned.
+
+Packs generated from specs with a stated licence
+------------------------------------------------
+
+asana
+    licence: Apache 2.0
+    source:  https://api.apis.guru/v2/specs/asana.com/1.0/openapi.json
+
+github
+    licence: MIT
+    source:  https://api.apis.guru/v2/specs/github.com/1.1.4/openapi.json
+
+gmail
+    licence: Creative Commons Attribution 3.0
+    source:  https://api.apis.guru/v2/specs/googleapis.com/gmail/v1/openapi.json
+
+google-drive
+    licence: Creative Commons Attribution 3.0
+    source:  https://api.apis.guru/v2/specs/googleapis.com/drive/v3/openapi.json
+
+google-sheets
+    licence: Creative Commons Attribution 3.0
+    source:  https://api.apis.guru/v2/specs/googleapis.com/sheets/v4/openapi.json
+
+jira
+    licence: Apache 2.0
+    source:  https://api.apis.guru/v2/specs/atlassian.com/jira/1001.0.0-SNAPSHOT/openapi.json
+
+twilio
+    licence: Apache 2.0
+    source:  https://api.apis.guru/v2/specs/twilio.com/api/1.42.0/openapi.json
+
+
+Packs generated from specs with no licence stated upstream
+----------------------------------------------------------
+The following specs carry no redistribution terms we could identify. They are
+recorded in packages/packs/sources.yaml with the URL each was taken from, and
+are shipped in good faith as generated fixtures, removable on request.
+
+
+    clickup, close, datadog, gitlab, hubspot, intercom, microsoft-graph, notion, openai, pagerduty, pandadoc, pipedrive, sendgrid, slack, snowflake, stripe, xero
+
+
+generic-rest is not derived from any upstream specification; it is written for
+this project and covered by LICENSE.

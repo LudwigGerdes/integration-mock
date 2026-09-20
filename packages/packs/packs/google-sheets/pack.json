@@ -1,0 +1,8 @@
+{
+  "id": "google-sheets",
+  "domains": [
+    "sheets.googleapis.com"
+  ],
+  "prefix": "/google-sheets",
+  "source": "openapi"
+}

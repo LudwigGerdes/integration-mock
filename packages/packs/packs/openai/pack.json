@@ -1,0 +1,8 @@
+{
+  "id": "openai",
+  "domains": [
+    "api.openai.com"
+  ],
+  "prefix": "/openai",
+  "source": "openapi"
+}

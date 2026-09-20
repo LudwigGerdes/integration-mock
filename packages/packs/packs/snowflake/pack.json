@@ -1,0 +1,8 @@
+{
+  "id": "snowflake",
+  "domains": [
+    "org-account.snowflakecomputing.com"
+  ],
+  "prefix": "/snowflake",
+  "source": "openapi"
+}

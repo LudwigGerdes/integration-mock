@@ -1,0 +1,2987 @@
+[
+  {
+    "id": "google-drive:POST:/o/oauth2/token#auth",
+    "match": {
+      "method": "POST",
+      "path": "/drive/v3/o/oauth2/token"
+    },
+    "respond": {
+      "status": 200,
+      "body": {
+        "access_token": "mock-access-token",
+        "token_type": "Bearer",
+        "expires_in": 3600,
+        "refresh_token": "mock-refresh-token",
+        "scope": ""
+      }
+    }
+  },
+  {
+    "id": "google-drive:GET:/drive/v3/about#0",
+    "match": {
+      "method": "GET",
+      "path": "/drive/v3/about"
+    },
+    "respond": {
+      "status": 200,
+      "body": {
+        "appInstalled": false,
+        "canCreateDrives": false,
+        "canCreateTeamDrives": true,
+        "driveThemes": [
+          {
+            "backgroundImageLink": "s703891",
+            "colorRgb": "s759909",
+            "id": "s517307"
+          }
+        ],
+        "exportFormats": {},
+        "folderColorPalette": [
+          "s494081"
+        ],
+        "importFormats": {},
+        "kind": "drive#about",
+        "maxImportSizes": {},
+        "maxUploadSize": "s344022",
+        "storageQuota": {
+          "limit": "s500359",
+          "usage": "s140516",
+          "usageInDrive": "s382137",
+          "usageInDriveTrash": "s428957"
+        },
+        "teamDriveThemes": [
+          {
+            "backgroundImageLink": "s935476",
+            "colorRgb": "s265253",
+            "id": "s501412"
+          }
+        ],
+        "user": {
+          "displayName": "s453573",
+          "emailAddress": "s369998",
+          "kind": "drive#user",
+          "me": true,
+          "permissionId": "s740320",
+          "photoLink": "s750105"
+        }
+      }
+    }
+  },
+  {
+    "id": "google-drive:GET:/drive/v3/changes#0",
+    "match": {
+      "method": "GET",
+      "path": "/drive/v3/changes"
+    },
+    "respond": {
+      "status": 200,
+      "body": {
+        "changes": [
+          {
+            "changeType": "s283814",
+            "drive": {
+              "backgroundImageFile": {
+                "id": {},
+                "width": {},
+                "xCoordinate": {},
+                "yCoordinate": {}
+              },
+              "backgroundImageLink": "s667765",
+              "capabilities": {
+                "canAddChildren": {},
+                "canChangeCopyRequiresWriterPermissionRestriction": {},
+                "canChangeDomainUsersOnlyRestriction": {},
+                "canChangeDriveBackground": {},
+                "canChangeDriveMembersOnlyRestriction": {},
+                "canChangeSharingFoldersRequiresOrganizerPermissionRestriction": {},
+                "canComment": {},
+                "canCopy": {},
+                "canDeleteChildren": {},
+                "canDeleteDrive": {},
+                "canDownload": {},
+                "canEdit": {},
+                "canListChildren": {},
+                "canManageMembers": {},
+                "canReadRevisions": {},
+                "canRename": {},
+                "canRenameDrive": {},
+                "canResetDriveRestrictions": {},
+                "canShare": {},
+                "canTrashChildren": {}
+              },
+              "colorRgb": "s54485",
+              "createdTime": "2026-01-01T00:00:00.000Z",
+              "hidden": true,
+              "id": "s141150",
+              "kind": "drive#drive",
+              "name": "s206452",
+              "orgUnitId": "s120516",
+              "restrictions": {
+                "adminManagedRestrictions": {},
+                "copyRequiresWriterPermission": {},
+                "domainUsersOnly": {},
+                "driveMembersOnly": {},
+                "sharingFoldersRequiresOrganizerPermission": {}
+              },
+              "themeId": "s4155"
+            },
+            "driveId": "s475986",
+            "file": {
+              "appProperties": {},
+              "capabilities": {
+                "canAcceptOwnership": {},
+                "canAddChildren": {},
+                "canAddFolderFromAnotherDrive": {},
+                "canAddMyDriveParent": {},
+                "canChangeCopyRequiresWriterPermission": {},
+                "canChangeSecurityUpdateEnabled": {},
+                "canChangeViewersCanCopyContent": {},
+                "canComment": {},
+                "canCopy": {},
+                "canDelete": {},
+                "canDeleteChildren": {},
+                "canDownload": {},
+                "canEdit": {},
+                "canListChildren": {},
+                "canModifyContent": {},
+                "canModifyContentRestriction": {},
+                "canModifyLabels": {},
+                "canMoveChildrenOutOfDrive": {},
+                "canMoveChildrenOutOfTeamDrive": {},
+                "canMoveChildrenWithinDrive": {},
+                "canMoveChildrenWithinTeamDrive": {},
+                "canMoveItemIntoTeamDrive": {},
+                "canMoveItemOutOfDrive": {},
+                "canMoveItemOutOfTeamDrive": {},
+                "canMoveItemWithinDrive": {},
+                "canMoveItemWithinTeamDrive": {},
+                "canMoveTeamDriveItem": {},
+                "canReadDrive": {},
+                "canReadLabels": {},
+                "canReadRevisions": {},
+                "canReadTeamDrive": {},
+                "canRemoveChildren": {},
+                "canRemoveMyDriveParent": {},
+                "canRename": {},
+                "canShare": {},
+                "canTrash": {},
+                "canTrashChildren": {},
+                "canUntrash": {}
+              },
+              "contentHints": {
+                "indexableText": {},
+                "thumbnail": {}
+              },
+              "contentRestrictions": [
+                {}
+              ],
+              "copyRequiresWriterPermission": false,
+              "createdTime": "2026-01-01T00:00:00.000Z",
+              "description": "s497281",
+              "driveId": "s387876",
+              "explicitlyTrashed": true,
+              "exportLinks": {},
+              "fileExtension": "s284357",
+              "folderColorRgb": "s909248",
+              "fullFileExtension": "s391215",
+              "hasAugmentedPermissions": false,
+              "hasThumbnail": false,
+              "headRevisionId": "s416274",
+              "iconLink": "s778583",
+              "id": "s765107",
+              "imageMediaMetadata": {
+                "aperture": {},
+                "cameraMake": {},
+                "cameraModel": {},
+                "colorSpace": {},
+                "exposureBias": {},
+                "exposureMode": {},
+                "exposureTime": {},
+                "flashUsed": {},
+                "focalLength": {},
+                "height": {},
+                "isoSpeed": {},
+                "lens": {},
+                "location": {},
+                "maxApertureValue": {},
+                "meteringMode": {},
+                "rotation": {},
+                "sensor": {},
+                "subjectDistance": {},
+                "time": {},
+                "whiteBalance": {},
+                "width": {}
+              },
+              "isAppAuthorized": true,
+              "kind": "drive#file",
+              "labelInfo": {
+                "labels": {}
+              },
+              "lastModifyingUser": {
+                "displayName": {},
+                "emailAddress": {},
+                "kind": {},
+                "me": {},
+                "permissionId": {},
+                "photoLink": {}
+              },
+              "linkShareMetadata": {
+                "securityUpdateEligible": {},
+                "securityUpdateEnabled": {}
+              },
+              "md5Checksum": "s266464",
+              "mimeType": "s712602",
+              "modifiedByMe": false,
+              "modifiedByMeTime": "2026-01-01T00:00:00.000Z",
+              "modifiedTime": "2026-01-01T00:00:00.000Z",
+              "name": "s973514",
+              "originalFilename": "s680552",
+              "ownedByMe": true,
+              "owners": [
+                {}
+              ],
+              "parents": [
+                "s579171"
+              ],
+              "permissionIds": [
+                "s68696"
+              ],
+              "permissions": [
+                {}
+              ],
+              "properties": {},
+              "quotaBytesUsed": "s126457",
+              "resourceKey": "s871590",
+              "sha1Checksum": "s600629",
+              "sha256Checksum": "s704391",
+              "shared": false,
+              "sharedWithMeTime": "2026-01-01T00:00:00.000Z",
+              "sharingUser": {
+                "displayName": {},
+                "emailAddress": {},
+                "kind": {},
+                "me": {},
+                "permissionId": {},
+                "photoLink": {}
+              },
+              "shortcutDetails": {
+                "targetId": {},
+                "targetMimeType": {},
+                "targetResourceKey": {}
+              },
+              "size": "s633167",
+              "spaces": [
+                "s937684"
+              ],
+              "starred": false,
+              "teamDriveId": "s301490",
+              "thumbnailLink": "s816039",
+              "thumbnailVersion": "s757325",
+              "trashed": false,
+              "trashedTime": "2026-01-01T00:00:00.000Z",
+              "trashingUser": {
+                "displayName": {},
+                "emailAddress": {},
+                "kind": {},
+                "me": {},
+                "permissionId": {},
+                "photoLink": {}
+              },
+              "version": "s574432",
+              "videoMediaMetadata": {
+                "durationMillis": {},
+                "height": {},
+                "width": {}
+              },
+              "viewedByMe": true,
+              "viewedByMeTime": "2026-01-01T00:00:00.000Z",
+              "viewersCanCopyContent": true,
+              "webContentLink": "s744007",
+              "webViewLink": "s809776",
+              "writersCanShare": false
+            },
+            "fileId": "s187098",
+            "kind": "drive#change",
+            "removed": true,
+            "teamDrive": {
+              "backgroundImageFile": {
+                "id": {},
+                "width": {},
+                "xCoordinate": {},
+                "yCoordinate": {}
+              },
+              "backgroundImageLink": "s290564",
+              "capabilities": {
+                "canAddChildren": {},
+                "canChangeCopyRequiresWriterPermissionRestriction": {},
+                "canChangeDomainUsersOnlyRestriction": {},
+                "canChangeSharingFoldersRequiresOrganizerPermissionRestriction": {},
+                "canChangeTeamDriveBackground": {},
+                "canChangeTeamMembersOnlyRestriction": {},
+                "canComment": {},
+                "canCopy": {},
+                "canDeleteChildren": {},
+                "canDeleteTeamDrive": {},
+                "canDownload": {},
+                "canEdit": {},
+                "canListChildren": {},
+                "canManageMembers": {},
+                "canReadRevisions": {},
+                "canRemoveChildren": {},
+                "canRename": {},
+                "canRenameTeamDrive": {},
+                "canResetTeamDriveRestrictions": {},
+                "canShare": {},
+                "canTrashChildren": {}
+              },
+              "colorRgb": "s317511",
+              "createdTime": "2026-01-01T00:00:00.000Z",
+              "id": "s77335",
+              "kind": "drive#teamDrive",
+              "name": "s826448",
+              "orgUnitId": "s646298",
+              "restrictions": {
+                "adminManagedRestrictions": {},
+                "copyRequiresWriterPermission": {},
+                "domainUsersOnly": {},
+                "sharingFoldersRequiresOrganizerPermission": {},
+                "teamMembersOnly": {}
+              },
+              "themeId": "s937965"
+            },
+            "teamDriveId": "s716301",
+            "time": "2026-01-01T00:00:00.000Z",
+            "type": "s348213"
+          }
+        ],
+        "kind": "drive#changeList",
+        "newStartPageToken": "s632577",
+        "nextPageToken": "s895957"
+      }
+    }
+  },
+  {
+    "id": "google-drive:GET:/drive/v3/changes/startPageToken#0",
+    "match": {
+      "method": "GET",
+      "path": "/drive/v3/changes/startPageToken"
+    },
+    "respond": {
+      "status": 200,
+      "body": {
+        "kind": "drive#startPageToken",
+        "startPageToken": "s111111"
+      }
+    }
+  },
+  {
+    "id": "google-drive:POST:/drive/v3/changes/watch#0",
+    "match": {
+      "method": "POST",
+      "path": "/drive/v3/changes/watch"
+    },
+    "respond": {
+      "status": 200,
+      "body": {
+        "address": "s391982",
+        "expiration": "s173645",
+        "id": "s864792",
+        "kind": "api#channel",
+        "params": {},
+        "payload": false,
+        "resourceId": "s958829",
+        "resourceUri": "s526082",
+        "token": "s15993",
+        "type": "s100324"
+      }
+    }
+  },
+  {
+    "id": "google-drive:POST:/drive/v3/channels/stop#0",
+    "match": {
+      "method": "POST",
+      "path": "/drive/v3/channels/stop"
+    },
+    "respond": {
+      "status": 200
+    }
+  },
+  {
+    "id": "google-drive:GET:/drive/v3/drives#0",
+    "match": {
+      "method": "GET",
+      "path": "/drive/v3/drives"
+    },
+    "respond": {
+      "status": 200,
+      "body": {
+        "drives": [
+          {
+            "backgroundImageFile": {
+              "id": "s562291",
+              "width": 34.68,
+              "xCoordinate": 66.41,
+              "yCoordinate": 41.61
+            },
+            "backgroundImageLink": "s712382",
+            "capabilities": {
+              "canAddChildren": false,
+              "canChangeCopyRequiresWriterPermissionRestriction": false,
+              "canChangeDomainUsersOnlyRestriction": true,
+              "canChangeDriveBackground": false,
+              "canChangeDriveMembersOnlyRestriction": true,
+              "canChangeSharingFoldersRequiresOrganizerPermissionRestriction": true,
+              "canComment": false,
+              "canCopy": false,
+              "canDeleteChildren": true,
+              "canDeleteDrive": false,
+              "canDownload": true,
+              "canEdit": false,
+              "canListChildren": true,
+              "canManageMembers": true,
+              "canReadRevisions": true,
+              "canRename": false,
+              "canRenameDrive": true,
+              "canResetDriveRestrictions": false,
+              "canShare": true,
+              "canTrashChildren": false
+            },
+            "colorRgb": "s309003",
+            "createdTime": "2026-01-01T00:00:00.000Z",
+            "hidden": false,
+            "id": "s58782",
+            "kind": "drive#drive",
+            "name": "s246881",
+            "orgUnitId": "s932904",
+            "restrictions": {
+              "adminManagedRestrictions": false,
+              "copyRequiresWriterPermission": false,
+              "domainUsersOnly": false,
+              "driveMembersOnly": false,
+              "sharingFoldersRequiresOrganizerPermission": true
+            },
+            "themeId": "s96711"
+          }
+        ],
+        "kind": "drive#driveList",
+        "nextPageToken": "s976370"
+      }
+    }
+  },
+  {
+    "id": "google-drive:POST:/drive/v3/drives#0",
+    "match": {
+      "method": "POST",
+      "path": "/drive/v3/drives"
+    },
+    "respond": {
+      "status": 200,
+      "body": {
+        "backgroundImageFile": {
+          "id": "s58944",
+          "width": 40.05,
+          "xCoordinate": 14.64,
+          "yCoordinate": 2.99
+        },
+        "backgroundImageLink": "s230184",
+        "capabilities": {
+          "canAddChildren": true,
+          "canChangeCopyRequiresWriterPermissionRestriction": true,
+          "canChangeDomainUsersOnlyRestriction": false,
+          "canChangeDriveBackground": false,
+          "canChangeDriveMembersOnlyRestriction": false,
+          "canChangeSharingFoldersRequiresOrganizerPermissionRestriction": false,
+          "canComment": true,
+          "canCopy": false,
+          "canDeleteChildren": false,
+          "canDeleteDrive": false,
+          "canDownload": true,
+          "canEdit": false,
+          "canListChildren": true,
+          "canManageMembers": false,
+          "canReadRevisions": true,
+          "canRename": true,
+          "canRenameDrive": false,
+          "canResetDriveRestrictions": false,
+          "canShare": false,
+          "canTrashChildren": true
+        },
+        "colorRgb": "s655199",
+        "createdTime": "2026-01-01T00:00:00.000Z",
+        "hidden": false,
+        "id": "s413943",
+        "kind": "drive#drive",
+        "name": "s947068",
+        "orgUnitId": "s185715",
+        "restrictions": {
+          "adminManagedRestrictions": false,
+          "copyRequiresWriterPermission": false,
+          "domainUsersOnly": false,
+          "driveMembersOnly": true,
+          "sharingFoldersRequiresOrganizerPermission": true
+        },
+        "themeId": "s819137"
+      }
+    }
+  },
+  {
+    "id": "google-drive:GET:/drive/v3/drives/:driveId#0",
+    "match": {
+      "method": "GET",
+      "path": "/drive/v3/drives/:driveId"
+    },
+    "respond": {
+      "status": 200,
+      "body": {
+        "backgroundImageFile": {
+          "id": "s621161",
+          "width": 58.1,
+          "xCoordinate": 72.68,
+          "yCoordinate": 28.46
+        },
+        "backgroundImageLink": "s902118",
+        "capabilities": {
+          "canAddChildren": false,
+          "canChangeCopyRequiresWriterPermissionRestriction": true,
+          "canChangeDomainUsersOnlyRestriction": true,
+          "canChangeDriveBackground": true,
+          "canChangeDriveMembersOnlyRestriction": true,
+          "canChangeSharingFoldersRequiresOrganizerPermissionRestriction": true,
+          "canComment": true,
+          "canCopy": true,
+          "canDeleteChildren": true,
+          "canDeleteDrive": true,
+          "canDownload": true,
+          "canEdit": false,
+          "canListChildren": true,
+          "canManageMembers": false,
+          "canReadRevisions": true,
+          "canRename": false,
+          "canRenameDrive": true,
+          "canResetDriveRestrictions": false,
+          "canShare": true,
+          "canTrashChildren": true
+        },
+        "colorRgb": "s621221",
+        "createdTime": "2026-01-01T00:00:00.000Z",
+        "hidden": true,
+        "id": "s63747",
+        "kind": "drive#drive",
+        "name": "s471969",
+        "orgUnitId": "s231761",
+        "restrictions": {
+          "adminManagedRestrictions": true,
+          "copyRequiresWriterPermission": false,
+          "domainUsersOnly": false,
+          "driveMembersOnly": false,
+          "sharingFoldersRequiresOrganizerPermission": true
+        },
+        "themeId": "s611796"
+      }
+    }
+  },
+  {
+    "id": "google-drive:PATCH:/drive/v3/drives/:driveId#0",
+    "match": {
+      "method": "PATCH",
+      "path": "/drive/v3/drives/:driveId"
+    },
+    "respond": {
+      "status": 200,
+      "body": {
+        "backgroundImageFile": {
+          "id": "s474744",
+          "width": 42.58,
+          "xCoordinate": 59.12,
+          "yCoordinate": 47.44
+        },
+        "backgroundImageLink": "s652790",
+        "capabilities": {
+          "canAddChildren": true,
+          "canChangeCopyRequiresWriterPermissionRestriction": true,
+          "canChangeDomainUsersOnlyRestriction": true,
+          "canChangeDriveBackground": true,
+          "canChangeDriveMembersOnlyRestriction": false,
+          "canChangeSharingFoldersRequiresOrganizerPermissionRestriction": false,
+          "canComment": true,
+          "canCopy": true,
+          "canDeleteChildren": false,
+          "canDeleteDrive": true,
+          "canDownload": false,
+          "canEdit": true,
+          "canListChildren": false,
+          "canManageMembers": true,
+          "canReadRevisions": false,
+          "canRename": false,
+          "canRenameDrive": true,
+          "canResetDriveRestrictions": true,
+          "canShare": true,
+          "canTrashChildren": true
+        },
+        "colorRgb": "s457914",
+        "createdTime": "2026-01-01T00:00:00.000Z",
+        "hidden": false,
+        "id": "s883273",
+        "kind": "drive#drive",
+        "name": "s766122",
+        "orgUnitId": "s366753",
+        "restrictions": {
+          "adminManagedRestrictions": true,
+          "copyRequiresWriterPermission": false,
+          "domainUsersOnly": true,
+          "driveMembersOnly": true,
+          "sharingFoldersRequiresOrganizerPermission": false
+        },
+        "themeId": "s458726"
+      }
+    }
+  },
+  {
+    "id": "google-drive:DELETE:/drive/v3/drives/:driveId#0",
+    "match": {
+      "method": "DELETE",
+      "path": "/drive/v3/drives/:driveId"
+    },
+    "respond": {
+      "status": 200
+    }
+  },
+  {
+    "id": "google-drive:POST:/drive/v3/drives/:driveId/hide#0",
+    "match": {
+      "method": "POST",
+      "path": "/drive/v3/drives/:driveId/hide"
+    },
+    "respond": {
+      "status": 200,
+      "body": {
+        "backgroundImageFile": {
+          "id": "s341817",
+          "width": 88.14,
+          "xCoordinate": 57.79,
+          "yCoordinate": 24.49
+        },
+        "backgroundImageLink": "s830129",
+        "capabilities": {
+          "canAddChildren": true,
+          "canChangeCopyRequiresWriterPermissionRestriction": true,
+          "canChangeDomainUsersOnlyRestriction": true,
+          "canChangeDriveBackground": true,
+          "canChangeDriveMembersOnlyRestriction": true,
+          "canChangeSharingFoldersRequiresOrganizerPermissionRestriction": false,
+          "canComment": false,
+          "canCopy": false,
+          "canDeleteChildren": false,
+          "canDeleteDrive": false,
+          "canDownload": true,
+          "canEdit": false,
+          "canListChildren": true,
+          "canManageMembers": false,
+          "canReadRevisions": false,
+          "canRename": false,
+          "canRenameDrive": false,
+          "canResetDriveRestrictions": true,
+          "canShare": false,
+          "canTrashChildren": false
+        },
+        "colorRgb": "s137000",
+        "createdTime": "2026-01-01T00:00:00.000Z",
+        "hidden": false,
+        "id": "s948934",
+        "kind": "drive#drive",
+        "name": "s179976",
+        "orgUnitId": "s756216",
+        "restrictions": {
+          "adminManagedRestrictions": false,
+          "copyRequiresWriterPermission": false,
+          "domainUsersOnly": true,
+          "driveMembersOnly": true,
+          "sharingFoldersRequiresOrganizerPermission": false
+        },
+        "themeId": "s645406"
+      }
+    }
+  },
+  {
+    "id": "google-drive:POST:/drive/v3/drives/:driveId/unhide#0",
+    "match": {
+      "method": "POST",
+      "path": "/drive/v3/drives/:driveId/unhide"
+    },
+    "respond": {
+      "status": 200,
+      "body": {
+        "backgroundImageFile": {
+          "id": "s198717",
+          "width": 43.87,
+          "xCoordinate": 38.93,
+          "yCoordinate": 53
+        },
+        "backgroundImageLink": "s173624",
+        "capabilities": {
+          "canAddChildren": true,
+          "canChangeCopyRequiresWriterPermissionRestriction": true,
+          "canChangeDomainUsersOnlyRestriction": true,
+          "canChangeDriveBackground": false,
+          "canChangeDriveMembersOnlyRestriction": false,
+          "canChangeSharingFoldersRequiresOrganizerPermissionRestriction": false,
+          "canComment": false,
+          "canCopy": false,
+          "canDeleteChildren": true,
+          "canDeleteDrive": false,
+          "canDownload": false,
+          "canEdit": false,
+          "canListChildren": true,
+          "canManageMembers": false,
+          "canReadRevisions": false,
+          "canRename": true,
+          "canRenameDrive": true,
+          "canResetDriveRestrictions": true,
+          "canShare": true,
+          "canTrashChildren": false
+        },
+        "colorRgb": "s102650",
+        "createdTime": "2026-01-01T00:00:00.000Z",
+        "hidden": true,
+        "id": "s558045",
+        "kind": "drive#drive",
+        "name": "s247073",
+        "orgUnitId": "s667853",
+        "restrictions": {
+          "adminManagedRestrictions": false,
+          "copyRequiresWriterPermission": false,
+          "domainUsersOnly": true,
+          "driveMembersOnly": false,
+          "sharingFoldersRequiresOrganizerPermission": true
+        },
+        "themeId": "s701943"
+      }
+    }
+  },
+  {
+    "id": "google-drive:GET:/drive/v3/files#0",
+    "match": {
+      "method": "GET",
+      "path": "/drive/v3/files"
+    },
+    "respond": {
+      "status": 200,
+      "body": {
+        "files": [
+          {
+            "appProperties": {},
+            "capabilities": {
+              "canAcceptOwnership": false,
+              "canAddChildren": false,
+              "canAddFolderFromAnotherDrive": true,
+              "canAddMyDriveParent": false,
+              "canChangeCopyRequiresWriterPermission": false,
+              "canChangeSecurityUpdateEnabled": true,
+              "canChangeViewersCanCopyContent": false,
+              "canComment": false,
+              "canCopy": false,
+              "canDelete": false,
+              "canDeleteChildren": false,
+              "canDownload": true,
+              "canEdit": false,
+              "canListChildren": false,
+              "canModifyContent": false,
+              "canModifyContentRestriction": false,
+              "canModifyLabels": false,
+              "canMoveChildrenOutOfDrive": false,
+              "canMoveChildrenOutOfTeamDrive": false,
+              "canMoveChildrenWithinDrive": true,
+              "canMoveChildrenWithinTeamDrive": true,
+              "canMoveItemIntoTeamDrive": false,
+              "canMoveItemOutOfDrive": false,
+              "canMoveItemOutOfTeamDrive": false,
+              "canMoveItemWithinDrive": true,
+              "canMoveItemWithinTeamDrive": false,
+              "canMoveTeamDriveItem": true,
+              "canReadDrive": true,
+              "canReadLabels": false,
+              "canReadRevisions": true,
+              "canReadTeamDrive": false,
+              "canRemoveChildren": true,
+              "canRemoveMyDriveParent": false,
+              "canRename": true,
+              "canShare": true,
+              "canTrash": false,
+              "canTrashChildren": false,
+              "canUntrash": false
+            },
+            "contentHints": {
+              "indexableText": "s192011",
+              "thumbnail": {
+                "image": "s926899",
+                "mimeType": "s370355"
+              }
+            },
+            "contentRestrictions": [
+              {
+                "readOnly": false,
+                "reason": "s354847",
+                "restrictingUser": {},
+                "restrictionTime": "2026-01-01T00:00:00.000Z",
+                "type": "s475775"
+              }
+            ],
+            "copyRequiresWriterPermission": false,
+            "createdTime": "2026-01-01T00:00:00.000Z",
+            "description": "s214698",
+            "driveId": "s424262",
+            "explicitlyTrashed": true,
+            "exportLinks": {},
+            "fileExtension": "s104453",
+            "folderColorRgb": "s804838",
+            "fullFileExtension": "s653140",
+            "hasAugmentedPermissions": true,
+            "hasThumbnail": true,
+            "headRevisionId": "s158190",
+            "iconLink": "s696628",
+            "id": "s953272",
+            "imageMediaMetadata": {
+              "aperture": 12.69,
+              "cameraMake": "s298438",
+              "cameraModel": "s814634",
+              "colorSpace": "s568408",
+              "exposureBias": 22.12,
+              "exposureMode": "s586509",
+              "exposureTime": 51.3,
+              "flashUsed": true,
+              "focalLength": 67.4,
+              "height": 184,
+              "isoSpeed": 80,
+              "lens": "s254049",
+              "location": {
+                "altitude": 68.41,
+                "latitude": 69.35,
+                "longitude": 18.09
+              },
+              "maxApertureValue": 79.02,
+              "meteringMode": "s469824",
+              "rotation": 197,
+              "sensor": "s86405",
+              "subjectDistance": 586,
+              "time": "s544665",
+              "whiteBalance": "s253041",
+              "width": 309
+            },
+            "isAppAuthorized": true,
+            "kind": "drive#file",
+            "labelInfo": {
+              "labels": [
+                {
+                  "fields": {},
+                  "id": {},
+                  "kind": {},
+                  "revisionId": {}
+                }
+              ]
+            },
+            "lastModifyingUser": {
+              "displayName": "s841699",
+              "emailAddress": "s697905",
+              "kind": "drive#user",
+              "me": true,
+              "permissionId": "s903648",
+              "photoLink": "s596912"
+            },
+            "linkShareMetadata": {
+              "securityUpdateEligible": true,
+              "securityUpdateEnabled": true
+            },
+            "md5Checksum": "s84125",
+            "mimeType": "s675404",
+            "modifiedByMe": true,
+            "modifiedByMeTime": "2026-01-01T00:00:00.000Z",
+            "modifiedTime": "2026-01-01T00:00:00.000Z",
+            "name": "s724568",
+            "originalFilename": "s129609",
+            "ownedByMe": true,
+            "owners": [
+              {
+                "displayName": "s168112",
+                "emailAddress": "s141474",
+                "kind": "drive#user",
+                "me": true,
+                "permissionId": "s842317",
+                "photoLink": "s646363"
+              }
+            ],
+            "parents": [
+              "s83108"
+            ],
+            "permissionIds": [
+              "s988324"
+            ],
+            "permissions": [
+              {
+                "allowFileDiscovery": true,
+                "deleted": false,
+                "displayName": "s390211",
+                "domain": "s682297",
+                "emailAddress": "s880367",
+                "expirationTime": "2026-01-01T00:00:00.000Z",
+                "id": "s676364",
+                "kind": "drive#permission",
+                "pendingOwner": false,
+                "permissionDetails": [
+                  {}
+                ],
+                "photoLink": "s644080",
+                "role": "s937557",
+                "teamDrivePermissionDetails": [
+                  {}
+                ],
+                "type": "s202066",
+                "view": "s88144"
+              }
+            ],
+            "properties": {},
+            "quotaBytesUsed": "s70294",
+            "resourceKey": "s699659",
+            "sha1Checksum": "s665211",
+            "sha256Checksum": "s109423",
+            "shared": false,
+            "sharedWithMeTime": "2026-01-01T00:00:00.000Z",
+            "sharingUser": {
+              "displayName": "s355997",
+              "emailAddress": "s239252",
+              "kind": "drive#user",
+              "me": false,
+              "permissionId": "s124365",
+              "photoLink": "s472322"
+            },
+            "shortcutDetails": {
+              "targetId": "s362549",
+              "targetMimeType": "s160501",
+              "targetResourceKey": "s502458"
+            },
+            "size": "s374184",
+            "spaces": [
+              "s635980"
+            ],
+            "starred": true,
+            "teamDriveId": "s80099",
+            "thumbnailLink": "s560734",
+            "thumbnailVersion": "s785571",
+            "trashed": true,
+            "trashedTime": "2026-01-01T00:00:00.000Z",
+            "trashingUser": {
+              "displayName": "s892271",
+              "emailAddress": "s427401",
+              "kind": "drive#user",
+              "me": true,
+              "permissionId": "s696368",
+              "photoLink": "s923274"
+            },
+            "version": "s386947",
+            "videoMediaMetadata": {
+              "durationMillis": "s505826",
+              "height": 259,
+              "width": 291
+            },
+            "viewedByMe": false,
+            "viewedByMeTime": "2026-01-01T00:00:00.000Z",
+            "viewersCanCopyContent": true,
+            "webContentLink": "s847460",
+            "webViewLink": "s860043",
+            "writersCanShare": false
+          }
+        ],
+        "incompleteSearch": true,
+        "kind": "drive#fileList",
+        "nextPageToken": "s394219"
+      }
+    }
+  },
+  {
+    "id": "google-drive:POST:/drive/v3/files#0",
+    "match": {
+      "method": "POST",
+      "path": "/drive/v3/files"
+    },
+    "respond": {
+      "status": 200,
+      "body": {
+        "appProperties": {},
+        "capabilities": {
+          "canAcceptOwnership": false,
+          "canAddChildren": true,
+          "canAddFolderFromAnotherDrive": false,
+          "canAddMyDriveParent": false,
+          "canChangeCopyRequiresWriterPermission": false,
+          "canChangeSecurityUpdateEnabled": false,
+          "canChangeViewersCanCopyContent": true,
+          "canComment": false,
+          "canCopy": true,
+          "canDelete": false,
+          "canDeleteChildren": false,
+          "canDownload": false,
+          "canEdit": true,
+          "canListChildren": false,
+          "canModifyContent": false,
+          "canModifyContentRestriction": false,
+          "canModifyLabels": false,
+          "canMoveChildrenOutOfDrive": false,
+          "canMoveChildrenOutOfTeamDrive": false,
+          "canMoveChildrenWithinDrive": false,
+          "canMoveChildrenWithinTeamDrive": false,
+          "canMoveItemIntoTeamDrive": true,
+          "canMoveItemOutOfDrive": true,
+          "canMoveItemOutOfTeamDrive": true,
+          "canMoveItemWithinDrive": true,
+          "canMoveItemWithinTeamDrive": true,
+          "canMoveTeamDriveItem": false,
+          "canReadDrive": false,
+          "canReadLabels": true,
+          "canReadRevisions": true,
+          "canReadTeamDrive": true,
+          "canRemoveChildren": true,
+          "canRemoveMyDriveParent": true,
+          "canRename": false,
+          "canShare": false,
+          "canTrash": false,
+          "canTrashChildren": false,
+          "canUntrash": true
+        },
+        "contentHints": {
+          "indexableText": "s981448",
+          "thumbnail": {
+            "image": "s999826",
+            "mimeType": "s178778"
+          }
+        },
+        "contentRestrictions": [
+          {
+            "readOnly": false,
+            "reason": "s842875",
+            "restrictingUser": {
+              "displayName": "s409946",
+              "emailAddress": "s198847",
+              "kind": "drive#user",
+              "me": false,
+              "permissionId": "s993033",
+              "photoLink": "s932723"
+            },
+            "restrictionTime": "2026-01-01T00:00:00.000Z",
+            "type": "s344203"
+          }
+        ],
+        "copyRequiresWriterPermission": true,
+        "createdTime": "2026-01-01T00:00:00.000Z",
+        "description": "s864659",
+        "driveId": "s937442",
+        "explicitlyTrashed": true,
+        "exportLinks": {},
+        "fileExtension": "s982790",
+        "folderColorRgb": "s431542",
+        "fullFileExtension": "s300548",
+        "hasAugmentedPermissions": true,
+        "hasThumbnail": false,
+        "headRevisionId": "s355645",
+        "iconLink": "s471717",
+        "id": "s652386",
+        "imageMediaMetadata": {
+          "aperture": 90.53,
+          "cameraMake": "s873382",
+          "cameraModel": "s453664",
+          "colorSpace": "s76212",
+          "exposureBias": 28.31,
+          "exposureMode": "s441733",
+          "exposureTime": 98.96,
+          "flashUsed": true,
+          "focalLength": 22.98,
+          "height": 214,
+          "isoSpeed": 562,
+          "lens": "s59271",
+          "location": {
+            "altitude": 66.37,
+            "latitude": 15.32,
+            "longitude": 58.46
+          },
+          "maxApertureValue": 37.32,
+          "meteringMode": "s703458",
+          "rotation": 357,
+          "sensor": "s894136",
+          "subjectDistance": 974,
+          "time": "s42752",
+          "whiteBalance": "s337590",
+          "width": 836
+        },
+        "isAppAuthorized": true,
+        "kind": "drive#file",
+        "labelInfo": {
+          "labels": [
+            {
+              "fields": {},
+              "id": "s686239",
+              "kind": "drive#label",
+              "revisionId": "s798562"
+            }
+          ]
+        },
+        "lastModifyingUser": {
+          "displayName": "s942668",
+          "emailAddress": "s859955",
+          "kind": "drive#user",
+          "me": false,
+          "permissionId": "s616443",
+          "photoLink": "s166920"
+        },
+        "linkShareMetadata": {
+          "securityUpdateEligible": false,
+          "securityUpdateEnabled": true
+        },
+        "md5Checksum": "s470477",
+        "mimeType": "s796420",
+        "modifiedByMe": false,
+        "modifiedByMeTime": "2026-01-01T00:00:00.000Z",
+        "modifiedTime": "2026-01-01T00:00:00.000Z",
+        "name": "s246702",
+        "originalFilename": "s118342",
+        "ownedByMe": true,
+        "owners": [
+          {
+            "displayName": "s99449",
+            "emailAddress": "s794545",
+            "kind": "drive#user",
+            "me": true,
+            "permissionId": "s506708",
+            "photoLink": "s142342"
+          }
+        ],
+        "parents": [
+          "s335642"
+        ],
+        "permissionIds": [
+          "s941207"
+        ],
+        "permissions": [
+          {
+            "allowFileDiscovery": false,
+            "deleted": true,
+            "displayName": "s652477",
+            "domain": "s946488",
+            "emailAddress": "s46777",
+            "expirationTime": "2026-01-01T00:00:00.000Z",
+            "id": "s808522",
+            "kind": "drive#permission",
+            "pendingOwner": false,
+            "permissionDetails": [
+              {
+                "inherited": true,
+                "inheritedFrom": "s553902",
+                "permissionType": "s571546",
+                "role": "s700360"
+              }
+            ],
+            "photoLink": "s232496",
+            "role": "s908837",
+            "teamDrivePermissionDetails": [
+              {
+                "inherited": true,
+                "inheritedFrom": "s328317",
+                "role": "s167843",
+                "teamDrivePermissionType": "s536627"
+              }
+            ],
+            "type": "s454668",
+            "view": "s764083"
+          }
+        ],
+        "properties": {},
+        "quotaBytesUsed": "s579719",
+        "resourceKey": "s286674",
+        "sha1Checksum": "s324041",
+        "sha256Checksum": "s406421",
+        "shared": true,
+        "sharedWithMeTime": "2026-01-01T00:00:00.000Z",
+        "sharingUser": {
+          "displayName": "s630064",
+          "emailAddress": "s928230",
+          "kind": "drive#user",
+          "me": false,
+          "permissionId": "s894373",
+          "photoLink": "s629345"
+        },
+        "shortcutDetails": {
+          "targetId": "s588496",
+          "targetMimeType": "s239172",
+          "targetResourceKey": "s349030"
+        },
+        "size": "s553661",
+        "spaces": [
+          "s863128"
+        ],
+        "starred": false,
+        "teamDriveId": "s337782",
+        "thumbnailLink": "s868663",
+        "thumbnailVersion": "s314585",
+        "trashed": true,
+        "trashedTime": "2026-01-01T00:00:00.000Z",
+        "trashingUser": {
+          "displayName": "s646867",
+          "emailAddress": "s957540",
+          "kind": "drive#user",
+          "me": true,
+          "permissionId": "s864921",
+          "photoLink": "s709876"
+        },
+        "version": "s486439",
+        "videoMediaMetadata": {
+          "durationMillis": "s289708",
+          "height": 408,
+          "width": 61
+        },
+        "viewedByMe": true,
+        "viewedByMeTime": "2026-01-01T00:00:00.000Z",
+        "viewersCanCopyContent": false,
+        "webContentLink": "s489328",
+        "webViewLink": "s43759",
+        "writersCanShare": false
+      }
+    }
+  },
+  {
+    "id": "google-drive:GET:/drive/v3/files/generateIds#0",
+    "match": {
+      "method": "GET",
+      "path": "/drive/v3/files/generateIds"
+    },
+    "respond": {
+      "status": 200,
+      "body": {
+        "ids": [
+          "s373420"
+        ],
+        "kind": "drive#generatedIds",
+        "space": "s344713"
+      }
+    }
+  },
+  {
+    "id": "google-drive:DELETE:/drive/v3/files/trash#0",
+    "match": {
+      "method": "DELETE",
+      "path": "/drive/v3/files/trash"
+    },
+    "respond": {
+      "status": 200
+    }
+  },
+  {
+    "id": "google-drive:GET:/drive/v3/files/:fileId#0",
+    "match": {
+      "method": "GET",
+      "path": "/drive/v3/files/:fileId"
+    },
+    "respond": {
+      "status": 200,
+      "body": {
+        "appProperties": {},
+        "capabilities": {
+          "canAcceptOwnership": true,
+          "canAddChildren": true,
+          "canAddFolderFromAnotherDrive": true,
+          "canAddMyDriveParent": false,
+          "canChangeCopyRequiresWriterPermission": true,
+          "canChangeSecurityUpdateEnabled": true,
+          "canChangeViewersCanCopyContent": true,
+          "canComment": true,
+          "canCopy": false,
+          "canDelete": true,
+          "canDeleteChildren": false,
+          "canDownload": false,
+          "canEdit": true,
+          "canListChildren": true,
+          "canModifyContent": true,
+          "canModifyContentRestriction": true,
+          "canModifyLabels": true,
+          "canMoveChildrenOutOfDrive": false,
+          "canMoveChildrenOutOfTeamDrive": true,
+          "canMoveChildrenWithinDrive": true,
+          "canMoveChildrenWithinTeamDrive": false,
+          "canMoveItemIntoTeamDrive": false,
+          "canMoveItemOutOfDrive": true,
+          "canMoveItemOutOfTeamDrive": true,
+          "canMoveItemWithinDrive": true,
+          "canMoveItemWithinTeamDrive": false,
+          "canMoveTeamDriveItem": false,
+          "canReadDrive": true,
+          "canReadLabels": false,
+          "canReadRevisions": false,
+          "canReadTeamDrive": false,
+          "canRemoveChildren": false,
+          "canRemoveMyDriveParent": false,
+          "canRename": true,
+          "canShare": false,
+          "canTrash": true,
+          "canTrashChildren": false,
+          "canUntrash": false
+        },
+        "contentHints": {
+          "indexableText": "s356296",
+          "thumbnail": {
+            "image": "s149275",
+            "mimeType": "s887487"
+          }
+        },
+        "contentRestrictions": [
+          {
+            "readOnly": false,
+            "reason": "s94936",
+            "restrictingUser": {
+              "displayName": "s337328",
+              "emailAddress": "s321838",
+              "kind": "drive#user",
+              "me": false,
+              "permissionId": "s316560",
+              "photoLink": "s827676"
+            },
+            "restrictionTime": "2026-01-01T00:00:00.000Z",
+            "type": "s563020"
+          }
+        ],
+        "copyRequiresWriterPermission": false,
+        "createdTime": "2026-01-01T00:00:00.000Z",
+        "description": "s330405",
+        "driveId": "s731629",
+        "explicitlyTrashed": true,
+        "exportLinks": {},
+        "fileExtension": "s420670",
+        "folderColorRgb": "s363578",
+        "fullFileExtension": "s173126",
+        "hasAugmentedPermissions": false,
+        "hasThumbnail": true,
+        "headRevisionId": "s811787",
+        "iconLink": "s88727",
+        "id": "s453559",
+        "imageMediaMetadata": {
+          "aperture": 97.84,
+          "cameraMake": "s217675",
+          "cameraModel": "s770934",
+          "colorSpace": "s151885",
+          "exposureBias": 2.78,
+          "exposureMode": "s752759",
+          "exposureTime": 29.33,
+          "flashUsed": true,
+          "focalLength": 89.33,
+          "height": 594,
+          "isoSpeed": 835,
+          "lens": "s88649",
+          "location": {
+            "altitude": 88.19,
+            "latitude": 16.27,
+            "longitude": 43.4
+          },
+          "maxApertureValue": 5.28,
+          "meteringMode": "s929016",
+          "rotation": 97,
+          "sensor": "s618116",
+          "subjectDistance": 424,
+          "time": "s595200",
+          "whiteBalance": "s132404",
+          "width": 274
+        },
+        "isAppAuthorized": false,
+        "kind": "drive#file",
+        "labelInfo": {
+          "labels": [
+            {
+              "fields": {},
+              "id": "s884631",
+              "kind": "drive#label",
+              "revisionId": "s54444"
+            }
+          ]
+        },
+        "lastModifyingUser": {
+          "displayName": "s77089",
+          "emailAddress": "s441283",
+          "kind": "drive#user",
+          "me": true,
+          "permissionId": "s257424",
+          "photoLink": "s828605"
+        },
+        "linkShareMetadata": {
+          "securityUpdateEligible": true,
+          "securityUpdateEnabled": true
+        },
+        "md5Checksum": "s834203",
+        "mimeType": "s519212",
+        "modifiedByMe": false,
+        "modifiedByMeTime": "2026-01-01T00:00:00.000Z",
+        "modifiedTime": "2026-01-01T00:00:00.000Z",
+        "name": "s846548",
+        "originalFilename": "s711629",
+        "ownedByMe": true,
+        "owners": [
+          {
+            "displayName": "s427260",
+            "emailAddress": "s64300",
+            "kind": "drive#user",
+            "me": true,
+            "permissionId": "s994346",
+            "photoLink": "s556668"
+          }
+        ],
+        "parents": [
+          "s596624"
+        ],
+        "permissionIds": [
+          "s162056"
+        ],
+        "permissions": [
+          {
+            "allowFileDiscovery": true,
+            "deleted": true,
+            "displayName": "s964136",
+            "domain": "s931378",
+            "emailAddress": "s183032",
+            "expirationTime": "2026-01-01T00:00:00.000Z",
+            "id": "s124277",
+            "kind": "drive#permission",
+            "pendingOwner": false,
+            "permissionDetails": [
+              {
+                "inherited": true,
+                "inheritedFrom": "s216926",
+                "permissionType": "s496931",
+                "role": "s986633"
+              }
+            ],
+            "photoLink": "s597704",
+            "role": "s662981",
+            "teamDrivePermissionDetails": [
+              {
+                "inherited": false,
+                "inheritedFrom": "s401473",
+                "role": "s459775",
+                "teamDrivePermissionType": "s516693"
+              }
+            ],
+            "type": "s799341",
+            "view": "s277274"
+          }
+        ],
+        "properties": {},
+        "quotaBytesUsed": "s629662",
+        "resourceKey": "s282537",
+        "sha1Checksum": "s210401",
+        "sha256Checksum": "s312407",
+        "shared": false,
+        "sharedWithMeTime": "2026-01-01T00:00:00.000Z",
+        "sharingUser": {
+          "displayName": "s36095",
+          "emailAddress": "s642244",
+          "kind": "drive#user",
+          "me": false,
+          "permissionId": "s834092",
+          "photoLink": "s465132"
+        },
+        "shortcutDetails": {
+          "targetId": "s583750",
+          "targetMimeType": "s980234",
+          "targetResourceKey": "s468765"
+        },
+        "size": "s915557",
+        "spaces": [
+          "s66559"
+        ],
+        "starred": false,
+        "teamDriveId": "s258922",
+        "thumbnailLink": "s740880",
+        "thumbnailVersion": "s31369",
+        "trashed": false,
+        "trashedTime": "2026-01-01T00:00:00.000Z",
+        "trashingUser": {
+          "displayName": "s459978",
+          "emailAddress": "s562044",
+          "kind": "drive#user",
+          "me": false,
+          "permissionId": "s464116",
+          "photoLink": "s69045"
+        },
+        "version": "s968347",
+        "videoMediaMetadata": {
+          "durationMillis": "s170533",
+          "height": 238,
+          "width": 553
+        },
+        "viewedByMe": true,
+        "viewedByMeTime": "2026-01-01T00:00:00.000Z",
+        "viewersCanCopyContent": false,
+        "webContentLink": "s948594",
+        "webViewLink": "s492277",
+        "writersCanShare": false
+      }
+    }
+  },
+  {
+    "id": "google-drive:PATCH:/drive/v3/files/:fileId#0",
+    "match": {
+      "method": "PATCH",
+      "path": "/drive/v3/files/:fileId"
+    },
+    "respond": {
+      "status": 200,
+      "body": {
+        "appProperties": {},
+        "capabilities": {
+          "canAcceptOwnership": true,
+          "canAddChildren": true,
+          "canAddFolderFromAnotherDrive": false,
+          "canAddMyDriveParent": true,
+          "canChangeCopyRequiresWriterPermission": false,
+          "canChangeSecurityUpdateEnabled": false,
+          "canChangeViewersCanCopyContent": false,
+          "canComment": true,
+          "canCopy": true,
+          "canDelete": true,
+          "canDeleteChildren": true,
+          "canDownload": false,
+          "canEdit": true,
+          "canListChildren": true,
+          "canModifyContent": false,
+          "canModifyContentRestriction": false,
+          "canModifyLabels": false,
+          "canMoveChildrenOutOfDrive": false,
+          "canMoveChildrenOutOfTeamDrive": false,
+          "canMoveChildrenWithinDrive": true,
+          "canMoveChildrenWithinTeamDrive": false,
+          "canMoveItemIntoTeamDrive": true,
+          "canMoveItemOutOfDrive": false,
+          "canMoveItemOutOfTeamDrive": false,
+          "canMoveItemWithinDrive": true,
+          "canMoveItemWithinTeamDrive": true,
+          "canMoveTeamDriveItem": true,
+          "canReadDrive": false,
+          "canReadLabels": false,
+          "canReadRevisions": true,
+          "canReadTeamDrive": false,
+          "canRemoveChildren": false,
+          "canRemoveMyDriveParent": true,
+          "canRename": true,
+          "canShare": true,
+          "canTrash": true,
+          "canTrashChildren": false,
+          "canUntrash": false
+        },
+        "contentHints": {
+          "indexableText": "s44863",
+          "thumbnail": {
+            "image": "s267702",
+            "mimeType": "s678301"
+          }
+        },
+        "contentRestrictions": [
+          {
+            "readOnly": false,
+            "reason": "s911217",
+            "restrictingUser": {
+              "displayName": "s11812",
+              "emailAddress": "s948054",
+              "kind": "drive#user",
+              "me": false,
+              "permissionId": "s235216",
+              "photoLink": "s572099"
+            },
+            "restrictionTime": "2026-01-01T00:00:00.000Z",
+            "type": "s866340"
+          }
+        ],
+        "copyRequiresWriterPermission": true,
+        "createdTime": "2026-01-01T00:00:00.000Z",
+        "description": "s702553",
+        "driveId": "s731786",
+        "explicitlyTrashed": false,
+        "exportLinks": {},
+        "fileExtension": "s654230",
+        "folderColorRgb": "s608881",
+        "fullFileExtension": "s464874",
+        "hasAugmentedPermissions": true,
+        "hasThumbnail": true,
+        "headRevisionId": "s412330",
+        "iconLink": "s870112",
+        "id": "s824076",
+        "imageMediaMetadata": {
+          "aperture": 7.89,
+          "cameraMake": "s233393",
+          "cameraModel": "s517475",
+          "colorSpace": "s570302",
+          "exposureBias": 89.75,
+          "exposureMode": "s120558",
+          "exposureTime": 95.39,
+          "flashUsed": false,
+          "focalLength": 23.06,
+          "height": 630,
+          "isoSpeed": 999,
+          "lens": "s925824",
+          "location": {
+            "altitude": 64.83,
+            "latitude": 45.22,
+            "longitude": 54.63
+          },
+          "maxApertureValue": 12.48,
+          "meteringMode": "s595726",
+          "rotation": 498,
+          "sensor": "s938426",
+          "subjectDistance": 664,
+          "time": "s960432",
+          "whiteBalance": "s394918",
+          "width": 421
+        },
+        "isAppAuthorized": true,
+        "kind": "drive#file",
+        "labelInfo": {
+          "labels": [
+            {
+              "fields": {},
+              "id": "s219450",
+              "kind": "drive#label",
+              "revisionId": "s657693"
+            }
+          ]
+        },
+        "lastModifyingUser": {
+          "displayName": "s225341",
+          "emailAddress": "s240706",
+          "kind": "drive#user",
+          "me": false,
+          "permissionId": "s70128",
+          "photoLink": "s768934"
+        },
+        "linkShareMetadata": {
+          "securityUpdateEligible": true,
+          "securityUpdateEnabled": false
+        },
+        "md5Checksum": "s622695",
+        "mimeType": "s524424",
+        "modifiedByMe": true,
+        "modifiedByMeTime": "2026-01-01T00:00:00.000Z",
+        "modifiedTime": "2026-01-01T00:00:00.000Z",
+        "name": "s795559",
+        "originalFilename": "s497682",
+        "ownedByMe": false,
+        "owners": [
+          {
+            "displayName": "s64214",
+            "emailAddress": "s158199",
+            "kind": "drive#user",
+            "me": false,
+            "permissionId": "s441595",
+            "photoLink": "s206315"
+          }
+        ],
+        "parents": [
+          "s926293"
+        ],
+        "permissionIds": [
+          "s489089"
+        ],
+        "permissions": [
+          {
+            "allowFileDiscovery": true,
+            "deleted": false,
+            "displayName": "s60048",
+            "domain": "s646911",
+            "emailAddress": "s837798",
+            "expirationTime": "2026-01-01T00:00:00.000Z",
+            "id": "s326093",
+            "kind": "drive#permission",
+            "pendingOwner": true,
+            "permissionDetails": [
+              {
+                "inherited": false,
+                "inheritedFrom": "s546599",
+                "permissionType": "s501394",
+                "role": "s855447"
+              }
+            ],
+            "photoLink": "s240505",
+            "role": "s5596",
+            "teamDrivePermissionDetails": [
+              {
+                "inherited": true,
+                "inheritedFrom": "s959959",
+                "role": "s862235",
+                "teamDrivePermissionType": "s65522"
+              }
+            ],
+            "type": "s793591",
+            "view": "s524870"
+          }
+        ],
+        "properties": {},
+        "quotaBytesUsed": "s394889",
+        "resourceKey": "s826765",
+        "sha1Checksum": "s456415",
+        "sha256Checksum": "s745962",
+        "shared": false,
+        "sharedWithMeTime": "2026-01-01T00:00:00.000Z",
+        "sharingUser": {
+          "displayName": "s562313",
+          "emailAddress": "s220287",
+          "kind": "drive#user",
+          "me": false,
+          "permissionId": "s441731",
+          "photoLink": "s749416"
+        },
+        "shortcutDetails": {
+          "targetId": "s698587",
+          "targetMimeType": "s402676",
+          "targetResourceKey": "s645907"
+        },
+        "size": "s376472",
+        "spaces": [
+          "s735005"
+        ],
+        "starred": true,
+        "teamDriveId": "s976397",
+        "thumbnailLink": "s603576",
+        "thumbnailVersion": "s422861",
+        "trashed": false,
+        "trashedTime": "2026-01-01T00:00:00.000Z",
+        "trashingUser": {
+          "displayName": "s790029",
+          "emailAddress": "s940828",
+          "kind": "drive#user",
+          "me": true,
+          "permissionId": "s253363",
+          "photoLink": "s329701"
+        },
+        "version": "s929396",
+        "videoMediaMetadata": {
+          "durationMillis": "s505458",
+          "height": 287,
+          "width": 789
+        },
+        "viewedByMe": true,
+        "viewedByMeTime": "2026-01-01T00:00:00.000Z",
+        "viewersCanCopyContent": true,
+        "webContentLink": "s286037",
+        "webViewLink": "s767146",
+        "writersCanShare": false
+      }
+    }
+  },
+  {
+    "id": "google-drive:DELETE:/drive/v3/files/:fileId#0",
+    "match": {
+      "method": "DELETE",
+      "path": "/drive/v3/files/:fileId"
+    },
+    "respond": {
+      "status": 200
+    }
+  },
+  {
+    "id": "google-drive:GET:/drive/v3/files/:fileId/comments#0",
+    "match": {
+      "method": "GET",
+      "path": "/drive/v3/files/:fileId/comments"
+    },
+    "respond": {
+      "status": 200,
+      "body": {
+        "comments": [
+          {
+            "anchor": "s968566",
+            "author": {
+              "displayName": "s432486",
+              "emailAddress": "s415793",
+              "kind": "drive#user",
+              "me": true,
+              "permissionId": "s869538",
+              "photoLink": "s944539"
+            },
+            "content": "s536071",
+            "createdTime": "2026-01-01T00:00:00.000Z",
+            "deleted": true,
+            "htmlContent": "s711245",
+            "id": "s415512",
+            "kind": "drive#comment",
+            "modifiedTime": "2026-01-01T00:00:00.000Z",
+            "quotedFileContent": {
+              "mimeType": "s841285",
+              "value": "s871780"
+            },
+            "replies": [
+              {
+                "action": "s777718",
+                "author": {},
+                "content": "s658773",
+                "createdTime": "2026-01-01T00:00:00.000Z",
+                "deleted": false,
+                "htmlContent": "s321677",
+                "id": "s883730",
+                "kind": "drive#reply",
+                "modifiedTime": "2026-01-01T00:00:00.000Z"
+              }
+            ],
+            "resolved": true
+          }
+        ],
+        "kind": "drive#commentList",
+        "nextPageToken": "s683057"
+      }
+    }
+  },
+  {
+    "id": "google-drive:POST:/drive/v3/files/:fileId/comments#0",
+    "match": {
+      "method": "POST",
+      "path": "/drive/v3/files/:fileId/comments"
+    },
+    "respond": {
+      "status": 200,
+      "body": {
+        "anchor": "s614628",
+        "author": {
+          "displayName": "s935053",
+          "emailAddress": "s907852",
+          "kind": "drive#user",
+          "me": true,
+          "permissionId": "s70823",
+          "photoLink": "s404171"
+        },
+        "content": "s429186",
+        "createdTime": "2026-01-01T00:00:00.000Z",
+        "deleted": true,
+        "htmlContent": "s294994",
+        "id": "s589366",
+        "kind": "drive#comment",
+        "modifiedTime": "2026-01-01T00:00:00.000Z",
+        "quotedFileContent": {
+          "mimeType": "s303433",
+          "value": "s503065"
+        },
+        "replies": [
+          {
+            "action": "s78910",
+            "author": {
+              "displayName": "s963750",
+              "emailAddress": "s920090",
+              "kind": "drive#user",
+              "me": true,
+              "permissionId": "s527425",
+              "photoLink": "s131498"
+            },
+            "content": "s271749",
+            "createdTime": "2026-01-01T00:00:00.000Z",
+            "deleted": false,
+            "htmlContent": "s311854",
+            "id": "s648756",
+            "kind": "drive#reply",
+            "modifiedTime": "2026-01-01T00:00:00.000Z"
+          }
+        ],
+        "resolved": true
+      }
+    }
+  },
+  {
+    "id": "google-drive:GET:/drive/v3/files/:fileId/comments/:commentId#0",
+    "match": {
+      "method": "GET",
+      "path": "/drive/v3/files/:fileId/comments/:commentId"
+    },
+    "respond": {
+      "status": 200,
+      "body": {
+        "anchor": "s744035",
+        "author": {
+          "displayName": "s460334",
+          "emailAddress": "s45843",
+          "kind": "drive#user",
+          "me": false,
+          "permissionId": "s273694",
+          "photoLink": "s901658"
+        },
+        "content": "s986636",
+        "createdTime": "2026-01-01T00:00:00.000Z",
+        "deleted": true,
+        "htmlContent": "s893534",
+        "id": "s799758",
+        "kind": "drive#comment",
+        "modifiedTime": "2026-01-01T00:00:00.000Z",
+        "quotedFileContent": {
+          "mimeType": "s767492",
+          "value": "s343971"
+        },
+        "replies": [
+          {
+            "action": "s727761",
+            "author": {
+              "displayName": "s680970",
+              "emailAddress": "s561738",
+              "kind": "drive#user",
+              "me": false,
+              "permissionId": "s818407",
+              "photoLink": "s345939"
+            },
+            "content": "s990475",
+            "createdTime": "2026-01-01T00:00:00.000Z",
+            "deleted": true,
+            "htmlContent": "s136164",
+            "id": "s751503",
+            "kind": "drive#reply",
+            "modifiedTime": "2026-01-01T00:00:00.000Z"
+          }
+        ],
+        "resolved": true
+      }
+    }
+  },
+  {
+    "id": "google-drive:PATCH:/drive/v3/files/:fileId/comments/:commentId#0",
+    "match": {
+      "method": "PATCH",
+      "path": "/drive/v3/files/:fileId/comments/:commentId"
+    },
+    "respond": {
+      "status": 200,
+      "body": {
+        "anchor": "s567844",
+        "author": {
+          "displayName": "s112307",
+          "emailAddress": "s38960",
+          "kind": "drive#user",
+          "me": true,
+          "permissionId": "s295034",
+          "photoLink": "s911082"
+        },
+        "content": "s244287",
+        "createdTime": "2026-01-01T00:00:00.000Z",
+        "deleted": false,
+        "htmlContent": "s658935",
+        "id": "s759525",
+        "kind": "drive#comment",
+        "modifiedTime": "2026-01-01T00:00:00.000Z",
+        "quotedFileContent": {
+          "mimeType": "s749836",
+          "value": "s329981"
+        },
+        "replies": [
+          {
+            "action": "s242548",
+            "author": {
+              "displayName": "s30202",
+              "emailAddress": "s884519",
+              "kind": "drive#user",
+              "me": false,
+              "permissionId": "s152077",
+              "photoLink": "s384251"
+            },
+            "content": "s523952",
+            "createdTime": "2026-01-01T00:00:00.000Z",
+            "deleted": false,
+            "htmlContent": "s724297",
+            "id": "s376993",
+            "kind": "drive#reply",
+            "modifiedTime": "2026-01-01T00:00:00.000Z"
+          }
+        ],
+        "resolved": true
+      }
+    }
+  },
+  {
+    "id": "google-drive:DELETE:/drive/v3/files/:fileId/comments/:commentId#0",
+    "match": {
+      "method": "DELETE",
+      "path": "/drive/v3/files/:fileId/comments/:commentId"
+    },
+    "respond": {
+      "status": 200
+    }
+  },
+  {
+    "id": "google-drive:GET:/drive/v3/files/:fileId/comments/:commentId/replies#0",
+    "match": {
+      "method": "GET",
+      "path": "/drive/v3/files/:fileId/comments/:commentId/replies"
+    },
+    "respond": {
+      "status": 200,
+      "body": {
+        "kind": "drive#replyList",
+        "nextPageToken": "s556423",
+        "replies": [
+          {
+            "action": "s925608",
+            "author": {
+              "displayName": "s454710",
+              "emailAddress": "s688617",
+              "kind": "drive#user",
+              "me": false,
+              "permissionId": "s144236",
+              "photoLink": "s860622"
+            },
+            "content": "s748813",
+            "createdTime": "2026-01-01T00:00:00.000Z",
+            "deleted": false,
+            "htmlContent": "s241224",
+            "id": "s631323",
+            "kind": "drive#reply",
+            "modifiedTime": "2026-01-01T00:00:00.000Z"
+          }
+        ]
+      }
+    }
+  },
+  {
+    "id": "google-drive:POST:/drive/v3/files/:fileId/comments/:commentId/replies#0",
+    "match": {
+      "method": "POST",
+      "path": "/drive/v3/files/:fileId/comments/:commentId/replies"
+    },
+    "respond": {
+      "status": 200,
+      "body": {
+        "action": "s641925",
+        "author": {
+          "displayName": "s959323",
+          "emailAddress": "s519051",
+          "kind": "drive#user",
+          "me": true,
+          "permissionId": "s442079",
+          "photoLink": "s17225"
+        },
+        "content": "s992066",
+        "createdTime": "2026-01-01T00:00:00.000Z",
+        "deleted": false,
+        "htmlContent": "s705939",
+        "id": "s301635",
+        "kind": "drive#reply",
+        "modifiedTime": "2026-01-01T00:00:00.000Z"
+      }
+    }
+  },
+  {
+    "id": "google-drive:GET:/drive/v3/files/:fileId/comments/:commentId/replies/:replyId#0",
+    "match": {
+      "method": "GET",
+      "path": "/drive/v3/files/:fileId/comments/:commentId/replies/:replyId"
+    },
+    "respond": {
+      "status": 200,
+      "body": {
+        "action": "s734334",
+        "author": {
+          "displayName": "s608834",
+          "emailAddress": "s855376",
+          "kind": "drive#user",
+          "me": false,
+          "permissionId": "s782478",
+          "photoLink": "s499715"
+        },
+        "content": "s819828",
+        "createdTime": "2026-01-01T00:00:00.000Z",
+        "deleted": false,
+        "htmlContent": "s62920",
+        "id": "s730507",
+        "kind": "drive#reply",
+        "modifiedTime": "2026-01-01T00:00:00.000Z"
+      }
+    }
+  },
+  {
+    "id": "google-drive:PATCH:/drive/v3/files/:fileId/comments/:commentId/replies/:replyId#0",
+    "match": {
+      "method": "PATCH",
+      "path": "/drive/v3/files/:fileId/comments/:commentId/replies/:replyId"
+    },
+    "respond": {
+      "status": 200,
+      "body": {
+        "action": "s1362",
+        "author": {
+          "displayName": "s357628",
+          "emailAddress": "s900328",
+          "kind": "drive#user",
+          "me": false,
+          "permissionId": "s333524",
+          "photoLink": "s147725"
+        },
+        "content": "s476366",
+        "createdTime": "2026-01-01T00:00:00.000Z",
+        "deleted": false,
+        "htmlContent": "s396926",
+        "id": "s217515",
+        "kind": "drive#reply",
+        "modifiedTime": "2026-01-01T00:00:00.000Z"
+      }
+    }
+  },
+  {
+    "id": "google-drive:DELETE:/drive/v3/files/:fileId/comments/:commentId/replies/:replyId#0",
+    "match": {
+      "method": "DELETE",
+      "path": "/drive/v3/files/:fileId/comments/:commentId/replies/:replyId"
+    },
+    "respond": {
+      "status": 200
+    }
+  },
+  {
+    "id": "google-drive:POST:/drive/v3/files/:fileId/copy#0",
+    "match": {
+      "method": "POST",
+      "path": "/drive/v3/files/:fileId/copy"
+    },
+    "respond": {
+      "status": 200,
+      "body": {
+        "appProperties": {},
+        "capabilities": {
+          "canAcceptOwnership": false,
+          "canAddChildren": false,
+          "canAddFolderFromAnotherDrive": true,
+          "canAddMyDriveParent": false,
+          "canChangeCopyRequiresWriterPermission": false,
+          "canChangeSecurityUpdateEnabled": false,
+          "canChangeViewersCanCopyContent": false,
+          "canComment": true,
+          "canCopy": false,
+          "canDelete": true,
+          "canDeleteChildren": false,
+          "canDownload": false,
+          "canEdit": true,
+          "canListChildren": false,
+          "canModifyContent": false,
+          "canModifyContentRestriction": false,
+          "canModifyLabels": true,
+          "canMoveChildrenOutOfDrive": false,
+          "canMoveChildrenOutOfTeamDrive": true,
+          "canMoveChildrenWithinDrive": false,
+          "canMoveChildrenWithinTeamDrive": false,
+          "canMoveItemIntoTeamDrive": true,
+          "canMoveItemOutOfDrive": false,
+          "canMoveItemOutOfTeamDrive": false,
+          "canMoveItemWithinDrive": true,
+          "canMoveItemWithinTeamDrive": false,
+          "canMoveTeamDriveItem": true,
+          "canReadDrive": false,
+          "canReadLabels": true,
+          "canReadRevisions": false,
+          "canReadTeamDrive": true,
+          "canRemoveChildren": true,
+          "canRemoveMyDriveParent": true,
+          "canRename": true,
+          "canShare": true,
+          "canTrash": false,
+          "canTrashChildren": false,
+          "canUntrash": true
+        },
+        "contentHints": {
+          "indexableText": "s827780",
+          "thumbnail": {
+            "image": "s130885",
+            "mimeType": "s807185"
+          }
+        },
+        "contentRestrictions": [
+          {
+            "readOnly": false,
+            "reason": "s654678",
+            "restrictingUser": {
+              "displayName": "s165244",
+              "emailAddress": "s885316",
+              "kind": "drive#user",
+              "me": false,
+              "permissionId": "s993806",
+              "photoLink": "s356535"
+            },
+            "restrictionTime": "2026-01-01T00:00:00.000Z",
+            "type": "s306887"
+          }
+        ],
+        "copyRequiresWriterPermission": false,
+        "createdTime": "2026-01-01T00:00:00.000Z",
+        "description": "s30570",
+        "driveId": "s186460",
+        "explicitlyTrashed": false,
+        "exportLinks": {},
+        "fileExtension": "s956654",
+        "folderColorRgb": "s823026",
+        "fullFileExtension": "s168751",
+        "hasAugmentedPermissions": false,
+        "hasThumbnail": true,
+        "headRevisionId": "s55032",
+        "iconLink": "s716897",
+        "id": "s363905",
+        "imageMediaMetadata": {
+          "aperture": 98.54,
+          "cameraMake": "s779333",
+          "cameraModel": "s780911",
+          "colorSpace": "s713103",
+          "exposureBias": 46.05,
+          "exposureMode": "s204105",
+          "exposureTime": 80.61,
+          "flashUsed": true,
+          "focalLength": 24.69,
+          "height": 330,
+          "isoSpeed": 131,
+          "lens": "s686971",
+          "location": {
+            "altitude": 75.6,
+            "latitude": 25.31,
+            "longitude": 67.23
+          },
+          "maxApertureValue": 80.75,
+          "meteringMode": "s126596",
+          "rotation": 773,
+          "sensor": "s65619",
+          "subjectDistance": 476,
+          "time": "s709344",
+          "whiteBalance": "s916088",
+          "width": 35
+        },
+        "isAppAuthorized": false,
+        "kind": "drive#file",
+        "labelInfo": {
+          "labels": [
+            {
+              "fields": {},
+              "id": "s711828",
+              "kind": "drive#label",
+              "revisionId": "s548878"
+            }
+          ]
+        },
+        "lastModifyingUser": {
+          "displayName": "s585972",
+          "emailAddress": "s635014",
+          "kind": "drive#user",
+          "me": false,
+          "permissionId": "s463707",
+          "photoLink": "s548652"
+        },
+        "linkShareMetadata": {
+          "securityUpdateEligible": false,
+          "securityUpdateEnabled": false
+        },
+        "md5Checksum": "s655303",
+        "mimeType": "s442842",
+        "modifiedByMe": false,
+        "modifiedByMeTime": "2026-01-01T00:00:00.000Z",
+        "modifiedTime": "2026-01-01T00:00:00.000Z",
+        "name": "s95678",
+        "originalFilename": "s205266",
+        "ownedByMe": true,
+        "owners": [
+          {
+            "displayName": "s465241",
+            "emailAddress": "s975913",
+            "kind": "drive#user",
+            "me": true,
+            "permissionId": "s369411",
+            "photoLink": "s331042"
+          }
+        ],
+        "parents": [
+          "s538335"
+        ],
+        "permissionIds": [
+          "s277297"
+        ],
+        "permissions": [
+          {
+            "allowFileDiscovery": true,
+            "deleted": false,
+            "displayName": "s924992",
+            "domain": "s365940",
+            "emailAddress": "s952641",
+            "expirationTime": "2026-01-01T00:00:00.000Z",
+            "id": "s951099",
+            "kind": "drive#permission",
+            "pendingOwner": true,
+            "permissionDetails": [
+              {
+                "inherited": false,
+                "inheritedFrom": "s99686",
+                "permissionType": "s249732",
+                "role": "s650232"
+              }
+            ],
+            "photoLink": "s727288",
+            "role": "s985126",
+            "teamDrivePermissionDetails": [
+              {
+                "inherited": true,
+                "inheritedFrom": "s6388",
+                "role": "s852563",
+                "teamDrivePermissionType": "s99572"
+              }
+            ],
+            "type": "s838888",
+            "view": "s78502"
+          }
+        ],
+        "properties": {},
+        "quotaBytesUsed": "s531273",
+        "resourceKey": "s400122",
+        "sha1Checksum": "s9718",
+        "sha256Checksum": "s8713",
+        "shared": true,
+        "sharedWithMeTime": "2026-01-01T00:00:00.000Z",
+        "sharingUser": {
+          "displayName": "s606646",
+          "emailAddress": "s590101",
+          "kind": "drive#user",
+          "me": true,
+          "permissionId": "s573379",
+          "photoLink": "s102450"
+        },
+        "shortcutDetails": {
+          "targetId": "s593107",
+          "targetMimeType": "s186610",
+          "targetResourceKey": "s119484"
+        },
+        "size": "s272153",
+        "spaces": [
+          "s133010"
+        ],
+        "starred": false,
+        "teamDriveId": "s298239",
+        "thumbnailLink": "s656675",
+        "thumbnailVersion": "s711345",
+        "trashed": true,
+        "trashedTime": "2026-01-01T00:00:00.000Z",
+        "trashingUser": {
+          "displayName": "s229746",
+          "emailAddress": "s206532",
+          "kind": "drive#user",
+          "me": false,
+          "permissionId": "s233933",
+          "photoLink": "s47798"
+        },
+        "version": "s90654",
+        "videoMediaMetadata": {
+          "durationMillis": "s542692",
+          "height": 782,
+          "width": 258
+        },
+        "viewedByMe": true,
+        "viewedByMeTime": "2026-01-01T00:00:00.000Z",
+        "viewersCanCopyContent": false,
+        "webContentLink": "s428651",
+        "webViewLink": "s486142",
+        "writersCanShare": false
+      }
+    }
+  },
+  {
+    "id": "google-drive:GET:/drive/v3/files/:fileId/export#0",
+    "match": {
+      "method": "GET",
+      "path": "/drive/v3/files/:fileId/export"
+    },
+    "respond": {
+      "status": 200
+    }
+  },
+  {
+    "id": "google-drive:GET:/drive/v3/files/:fileId/listLabels#0",
+    "match": {
+      "method": "GET",
+      "path": "/drive/v3/files/:fileId/listLabels"
+    },
+    "respond": {
+      "status": 200,
+      "body": {
+        "kind": "drive#labelList",
+        "labels": [
+          {
+            "fields": {},
+            "id": "s256233",
+            "kind": "drive#label",
+            "revisionId": "s25731"
+          }
+        ],
+        "nextPageToken": "s982560"
+      }
+    }
+  },
+  {
+    "id": "google-drive:POST:/drive/v3/files/:fileId/modifyLabels#0",
+    "match": {
+      "method": "POST",
+      "path": "/drive/v3/files/:fileId/modifyLabels"
+    },
+    "respond": {
+      "status": 200,
+      "body": {
+        "kind": "drive#modifyLabelsResponse",
+        "modifiedLabels": [
+          {
+            "fields": {},
+            "id": "s352651",
+            "kind": "drive#label",
+            "revisionId": "s64504"
+          }
+        ]
+      }
+    }
+  },
+  {
+    "id": "google-drive:GET:/drive/v3/files/:fileId/permissions#0",
+    "match": {
+      "method": "GET",
+      "path": "/drive/v3/files/:fileId/permissions"
+    },
+    "respond": {
+      "status": 200,
+      "body": {
+        "kind": "drive#permissionList",
+        "nextPageToken": "s871265",
+        "permissions": [
+          {
+            "allowFileDiscovery": true,
+            "deleted": true,
+            "displayName": "s120596",
+            "domain": "s504278",
+            "emailAddress": "s248179",
+            "expirationTime": "2026-01-01T00:00:00.000Z",
+            "id": "s363190",
+            "kind": "drive#permission",
+            "pendingOwner": false,
+            "permissionDetails": [
+              {
+                "inherited": false,
+                "inheritedFrom": "s960740",
+                "permissionType": "s997934",
+                "role": "s305800"
+              }
+            ],
+            "photoLink": "s149019",
+            "role": "s863301",
+            "teamDrivePermissionDetails": [
+              {
+                "inherited": true,
+                "inheritedFrom": "s276065",
+                "role": "s973224",
+                "teamDrivePermissionType": "s485582"
+              }
+            ],
+            "type": "s499889",
+            "view": "s38586"
+          }
+        ]
+      }
+    }
+  },
+  {
+    "id": "google-drive:POST:/drive/v3/files/:fileId/permissions#0",
+    "match": {
+      "method": "POST",
+      "path": "/drive/v3/files/:fileId/permissions"
+    },
+    "respond": {
+      "status": 200,
+      "body": {
+        "allowFileDiscovery": false,
+        "deleted": false,
+        "displayName": "s808557",
+        "domain": "s528591",
+        "emailAddress": "s545320",
+        "expirationTime": "2026-01-01T00:00:00.000Z",
+        "id": "s645490",
+        "kind": "drive#permission",
+        "pendingOwner": true,
+        "permissionDetails": [
+          {
+            "inherited": true,
+            "inheritedFrom": "s704211",
+            "permissionType": "s736036",
+            "role": "s7327"
+          }
+        ],
+        "photoLink": "s101020",
+        "role": "s9212",
+        "teamDrivePermissionDetails": [
+          {
+            "inherited": true,
+            "inheritedFrom": "s693059",
+            "role": "s467141",
+            "teamDrivePermissionType": "s466691"
+          }
+        ],
+        "type": "s243465",
+        "view": "s564764"
+      }
+    }
+  },
+  {
+    "id": "google-drive:GET:/drive/v3/files/:fileId/permissions/:permissionId#0",
+    "match": {
+      "method": "GET",
+      "path": "/drive/v3/files/:fileId/permissions/:permissionId"
+    },
+    "respond": {
+      "status": 200,
+      "body": {
+        "allowFileDiscovery": false,
+        "deleted": false,
+        "displayName": "s842578",
+        "domain": "s748355",
+        "emailAddress": "s886949",
+        "expirationTime": "2026-01-01T00:00:00.000Z",
+        "id": "s638551",
+        "kind": "drive#permission",
+        "pendingOwner": true,
+        "permissionDetails": [
+          {
+            "inherited": true,
+            "inheritedFrom": "s831764",
+            "permissionType": "s262220",
+            "role": "s251374"
+          }
+        ],
+        "photoLink": "s189017",
+        "role": "s660830",
+        "teamDrivePermissionDetails": [
+          {
+            "inherited": false,
+            "inheritedFrom": "s730999",
+            "role": "s99668",
+            "teamDrivePermissionType": "s574294"
+          }
+        ],
+        "type": "s748094",
+        "view": "s434085"
+      }
+    }
+  },
+  {
+    "id": "google-drive:PATCH:/drive/v3/files/:fileId/permissions/:permissionId#0",
+    "match": {
+      "method": "PATCH",
+      "path": "/drive/v3/files/:fileId/permissions/:permissionId"
+    },
+    "respond": {
+      "status": 200,
+      "body": {
+        "allowFileDiscovery": true,
+        "deleted": false,
+        "displayName": "s552405",
+        "domain": "s871996",
+        "emailAddress": "s184180",
+        "expirationTime": "2026-01-01T00:00:00.000Z",
+        "id": "s491222",
+        "kind": "drive#permission",
+        "pendingOwner": false,
+        "permissionDetails": [
+          {
+            "inherited": false,
+            "inheritedFrom": "s975921",
+            "permissionType": "s635341",
+            "role": "s30062"
+          }
+        ],
+        "photoLink": "s294274",
+        "role": "s517722",
+        "teamDrivePermissionDetails": [
+          {
+            "inherited": true,
+            "inheritedFrom": "s892981",
+            "role": "s739056",
+            "teamDrivePermissionType": "s554954"
+          }
+        ],
+        "type": "s32884",
+        "view": "s93438"
+      }
+    }
+  },
+  {
+    "id": "google-drive:DELETE:/drive/v3/files/:fileId/permissions/:permissionId#0",
+    "match": {
+      "method": "DELETE",
+      "path": "/drive/v3/files/:fileId/permissions/:permissionId"
+    },
+    "respond": {
+      "status": 200
+    }
+  },
+  {
+    "id": "google-drive:GET:/drive/v3/files/:fileId/revisions#0",
+    "match": {
+      "method": "GET",
+      "path": "/drive/v3/files/:fileId/revisions"
+    },
+    "respond": {
+      "status": 200,
+      "body": {
+        "kind": "drive#revisionList",
+        "nextPageToken": "s743250",
+        "revisions": [
+          {
+            "exportLinks": {},
+            "id": "s746035",
+            "keepForever": true,
+            "kind": "drive#revision",
+            "lastModifyingUser": {
+              "displayName": "s632890",
+              "emailAddress": "s137905",
+              "kind": "drive#user",
+              "me": true,
+              "permissionId": "s506159",
+              "photoLink": "s521355"
+            },
+            "md5Checksum": "s805134",
+            "mimeType": "s578384",
+            "modifiedTime": "2026-01-01T00:00:00.000Z",
+            "originalFilename": "s778423",
+            "publishAuto": true,
+            "published": true,
+            "publishedLink": "s455873",
+            "publishedOutsideDomain": false,
+            "size": "s730339"
+          }
+        ]
+      }
+    }
+  },
+  {
+    "id": "google-drive:GET:/drive/v3/files/:fileId/revisions/:revisionId#0",
+    "match": {
+      "method": "GET",
+      "path": "/drive/v3/files/:fileId/revisions/:revisionId"
+    },
+    "respond": {
+      "status": 200,
+      "body": {
+        "exportLinks": {},
+        "id": "s304167",
+        "keepForever": false,
+        "kind": "drive#revision",
+        "lastModifyingUser": {
+          "displayName": "s590358",
+          "emailAddress": "s966194",
+          "kind": "drive#user",
+          "me": false,
+          "permissionId": "s301885",
+          "photoLink": "s732418"
+        },
+        "md5Checksum": "s994165",
+        "mimeType": "s330589",
+        "modifiedTime": "2026-01-01T00:00:00.000Z",
+        "originalFilename": "s430990",
+        "publishAuto": true,
+        "published": true,
+        "publishedLink": "s673959",
+        "publishedOutsideDomain": false,
+        "size": "s337002"
+      }
+    }
+  },
+  {
+    "id": "google-drive:PATCH:/drive/v3/files/:fileId/revisions/:revisionId#0",
+    "match": {
+      "method": "PATCH",
+      "path": "/drive/v3/files/:fileId/revisions/:revisionId"
+    },
+    "respond": {
+      "status": 200,
+      "body": {
+        "exportLinks": {},
+        "id": "s863594",
+        "keepForever": true,
+        "kind": "drive#revision",
+        "lastModifyingUser": {
+          "displayName": "s548307",
+          "emailAddress": "s604270",
+          "kind": "drive#user",
+          "me": false,
+          "permissionId": "s258856",
+          "photoLink": "s321169"
+        },
+        "md5Checksum": "s487050",
+        "mimeType": "s890855",
+        "modifiedTime": "2026-01-01T00:00:00.000Z",
+        "originalFilename": "s108853",
+        "publishAuto": true,
+        "published": false,
+        "publishedLink": "s193706",
+        "publishedOutsideDomain": false,
+        "size": "s162448"
+      }
+    }
+  },
+  {
+    "id": "google-drive:DELETE:/drive/v3/files/:fileId/revisions/:revisionId#0",
+    "match": {
+      "method": "DELETE",
+      "path": "/drive/v3/files/:fileId/revisions/:revisionId"
+    },
+    "respond": {
+      "status": 200
+    }
+  },
+  {
+    "id": "google-drive:POST:/drive/v3/files/:fileId/watch#0",
+    "match": {
+      "method": "POST",
+      "path": "/drive/v3/files/:fileId/watch"
+    },
+    "respond": {
+      "status": 200,
+      "body": {
+        "address": "s468701",
+        "expiration": "s585646",
+        "id": "s427327",
+        "kind": "api#channel",
+        "params": {},
+        "payload": true,
+        "resourceId": "s425200",
+        "resourceUri": "s724752",
+        "token": "s698456",
+        "type": "s712222"
+      }
+    }
+  },
+  {
+    "id": "google-drive:GET:/drive/v3/teamdrives#0",
+    "match": {
+      "method": "GET",
+      "path": "/drive/v3/teamdrives"
+    },
+    "respond": {
+      "status": 200,
+      "body": {
+        "kind": "drive#teamDriveList",
+        "nextPageToken": "s897410",
+        "teamDrives": [
+          {
+            "backgroundImageFile": {
+              "id": "s753650",
+              "width": 44.88,
+              "xCoordinate": 28.27,
+              "yCoordinate": 18.61
+            },
+            "backgroundImageLink": "s558060",
+            "capabilities": {
+              "canAddChildren": true,
+              "canChangeCopyRequiresWriterPermissionRestriction": true,
+              "canChangeDomainUsersOnlyRestriction": false,
+              "canChangeSharingFoldersRequiresOrganizerPermissionRestriction": true,
+              "canChangeTeamDriveBackground": true,
+              "canChangeTeamMembersOnlyRestriction": false,
+              "canComment": false,
+              "canCopy": true,
+              "canDeleteChildren": true,
+              "canDeleteTeamDrive": false,
+              "canDownload": false,
+              "canEdit": false,
+              "canListChildren": false,
+              "canManageMembers": true,
+              "canReadRevisions": true,
+              "canRemoveChildren": false,
+              "canRename": false,
+              "canRenameTeamDrive": false,
+              "canResetTeamDriveRestrictions": false,
+              "canShare": true,
+              "canTrashChildren": false
+            },
+            "colorRgb": "s458866",
+            "createdTime": "2026-01-01T00:00:00.000Z",
+            "id": "s948719",
+            "kind": "drive#teamDrive",
+            "name": "s604685",
+            "orgUnitId": "s415773",
+            "restrictions": {
+              "adminManagedRestrictions": true,
+              "copyRequiresWriterPermission": true,
+              "domainUsersOnly": true,
+              "sharingFoldersRequiresOrganizerPermission": false,
+              "teamMembersOnly": false
+            },
+            "themeId": "s698612"
+          }
+        ]
+      }
+    }
+  },
+  {
+    "id": "google-drive:POST:/drive/v3/teamdrives#0",
+    "match": {
+      "method": "POST",
+      "path": "/drive/v3/teamdrives"
+    },
+    "respond": {
+      "status": 200,
+      "body": {
+        "backgroundImageFile": {
+          "id": "s493487",
+          "width": 37.39,
+          "xCoordinate": 98.08,
+          "yCoordinate": 48.13
+        },
+        "backgroundImageLink": "s146935",
+        "capabilities": {
+          "canAddChildren": true,
+          "canChangeCopyRequiresWriterPermissionRestriction": false,
+          "canChangeDomainUsersOnlyRestriction": true,
+          "canChangeSharingFoldersRequiresOrganizerPermissionRestriction": false,
+          "canChangeTeamDriveBackground": true,
+          "canChangeTeamMembersOnlyRestriction": false,
+          "canComment": false,
+          "canCopy": true,
+          "canDeleteChildren": true,
+          "canDeleteTeamDrive": false,
+          "canDownload": true,
+          "canEdit": true,
+          "canListChildren": false,
+          "canManageMembers": false,
+          "canReadRevisions": false,
+          "canRemoveChildren": false,
+          "canRename": false,
+          "canRenameTeamDrive": false,
+          "canResetTeamDriveRestrictions": true,
+          "canShare": true,
+          "canTrashChildren": false
+        },
+        "colorRgb": "s102735",
+        "createdTime": "2026-01-01T00:00:00.000Z",
+        "id": "s321509",
+        "kind": "drive#teamDrive",
+        "name": "s757046",
+        "orgUnitId": "s113706",
+        "restrictions": {
+          "adminManagedRestrictions": true,
+          "copyRequiresWriterPermission": false,
+          "domainUsersOnly": false,
+          "sharingFoldersRequiresOrganizerPermission": true,
+          "teamMembersOnly": true
+        },
+        "themeId": "s207747"
+      }
+    }
+  },
+  {
+    "id": "google-drive:GET:/drive/v3/teamdrives/:teamDriveId#0",
+    "match": {
+      "method": "GET",
+      "path": "/drive/v3/teamdrives/:teamDriveId"
+    },
+    "respond": {
+      "status": 200,
+      "body": {
+        "backgroundImageFile": {
+          "id": "s934306",
+          "width": 15.16,
+          "xCoordinate": 61.65,
+          "yCoordinate": 56.36
+        },
+        "backgroundImageLink": "s33265",
+        "capabilities": {
+          "canAddChildren": true,
+          "canChangeCopyRequiresWriterPermissionRestriction": false,
+          "canChangeDomainUsersOnlyRestriction": false,
+          "canChangeSharingFoldersRequiresOrganizerPermissionRestriction": false,
+          "canChangeTeamDriveBackground": false,
+          "canChangeTeamMembersOnlyRestriction": true,
+          "canComment": false,
+          "canCopy": false,
+          "canDeleteChildren": true,
+          "canDeleteTeamDrive": false,
+          "canDownload": true,
+          "canEdit": false,
+          "canListChildren": true,
+          "canManageMembers": true,
+          "canReadRevisions": false,
+          "canRemoveChildren": false,
+          "canRename": true,
+          "canRenameTeamDrive": true,
+          "canResetTeamDriveRestrictions": true,
+          "canShare": true,
+          "canTrashChildren": true
+        },
+        "colorRgb": "s993554",
+        "createdTime": "2026-01-01T00:00:00.000Z",
+        "id": "s191352",
+        "kind": "drive#teamDrive",
+        "name": "s833791",
+        "orgUnitId": "s598690",
+        "restrictions": {
+          "adminManagedRestrictions": false,
+          "copyRequiresWriterPermission": false,
+          "domainUsersOnly": false,
+          "sharingFoldersRequiresOrganizerPermission": false,
+          "teamMembersOnly": true
+        },
+        "themeId": "s824164"
+      }
+    }
+  },
+  {
+    "id": "google-drive:PATCH:/drive/v3/teamdrives/:teamDriveId#0",
+    "match": {
+      "method": "PATCH",
+      "path": "/drive/v3/teamdrives/:teamDriveId"
+    },
+    "respond": {
+      "status": 200,
+      "body": {
+        "backgroundImageFile": {
+          "id": "s243377",
+          "width": 18.92,
+          "xCoordinate": 70.16,
+          "yCoordinate": 95.8
+        },
+        "backgroundImageLink": "s556315",
+        "capabilities": {
+          "canAddChildren": false,
+          "canChangeCopyRequiresWriterPermissionRestriction": true,
+          "canChangeDomainUsersOnlyRestriction": true,
+          "canChangeSharingFoldersRequiresOrganizerPermissionRestriction": true,
+          "canChangeTeamDriveBackground": false,
+          "canChangeTeamMembersOnlyRestriction": false,
+          "canComment": false,
+          "canCopy": false,
+          "canDeleteChildren": true,
+          "canDeleteTeamDrive": false,
+          "canDownload": true,
+          "canEdit": false,
+          "canListChildren": true,
+          "canManageMembers": true,
+          "canReadRevisions": false,
+          "canRemoveChildren": true,
+          "canRename": true,
+          "canRenameTeamDrive": false,
+          "canResetTeamDriveRestrictions": false,
+          "canShare": false,
+          "canTrashChildren": false
+        },
+        "colorRgb": "s985282",
+        "createdTime": "2026-01-01T00:00:00.000Z",
+        "id": "s811476",
+        "kind": "drive#teamDrive",
+        "name": "s634519",
+        "orgUnitId": "s751437",
+        "restrictions": {
+          "adminManagedRestrictions": false,
+          "copyRequiresWriterPermission": false,
+          "domainUsersOnly": true,
+          "sharingFoldersRequiresOrganizerPermission": false,
+          "teamMembersOnly": true
+        },
+        "themeId": "s76229"
+      }
+    }
+  },
+  {
+    "id": "google-drive:DELETE:/drive/v3/teamdrives/:teamDriveId#0",
+    "match": {
+      "method": "DELETE",
+      "path": "/drive/v3/teamdrives/:teamDriveId"
+    },
+    "respond": {
+      "status": 200
+    }
+  }
+]

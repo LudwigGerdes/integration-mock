@@ -1,0 +1,10 @@
+{
+  "id": "intercom",
+  "domains": [
+    "api.intercom.io",
+    "api.eu.intercom.io",
+    "api.au.intercom.io"
+  ],
+  "prefix": "/intercom",
+  "source": "openapi"
+}

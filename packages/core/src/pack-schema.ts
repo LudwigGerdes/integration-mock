@@ -1,0 +1,188 @@
+/**
+ * The pack format, as data rather than a file read at runtime.
+ *
+ * It lived in `schema/integration-mock.pack.schema.json` and was loaded with readFileSync
+ * against a path relative to this module. That works in a checkout and breaks
+ * the moment the code is bundled or the file is left out of a published
+ * tarball — the same failure mode as a dependency declared in the wrong place.
+ *
+ * The JSON file is still published for consumers; `pack-schema.test.ts` asserts
+ * the two agree, so the file cannot drift from what actually validates.
+ */
+export const PACK_SCHEMA = {
+		"$schema": "https://json-schema.org/draft/2020-12/schema",
+		"$id": "https://github.com/LudwigGerdes/integration-mock/schema/integration-mock.pack.schema.json",
+		"title": "integration-mock service pack",
+		"description": "One mocked service: its domains, its base-URL prefix, and its routes. Describes the ASSEMBLED pack as loadPack returns it \u2014 on disk, pack.json omits routes and savePack splits them into routes/*.json. Owner: integration-mock.",
+		"type": "object",
+		"required": [
+			"id",
+			"domains",
+			"prefix",
+			"source",
+			"routes"
+		],
+		"additionalProperties": false,
+		"properties": {
+			"id": {
+				"type": "string",
+				"pattern": "^[a-z0-9][a-z0-9-]*$"
+			},
+			"domains": {
+				"description": "Vendor hostnames this pack stands in for, used by proxy-mode interception. May be empty for a pack reachable only by its base-URL prefix, such as the generic REST fallback.",
+				"type": "array",
+				"items": {
+					"type": "string"
+				}
+			},
+			"prefix": {
+				"type": "string",
+				"pattern": "^/[A-Za-z0-9._~/-]*[A-Za-z0-9._~-]$"
+			},
+			"source": {
+				"oneOf": [
+					{
+						"enum": [
+							"library",
+							"recorded",
+							"openapi",
+							"authored"
+						]
+					},
+					{
+						"type": "string",
+						"pattern": "^snapshot:"
+					}
+				]
+			},
+			"baseUrlCredential": {
+				"type": "object",
+				"required": [
+					"type",
+					"field"
+				],
+				"additionalProperties": false,
+				"properties": {
+					"type": {
+						"type": "string"
+					},
+					"field": {
+						"type": "string"
+					}
+				}
+			},
+			"seed": {
+				"type": "object",
+				"additionalProperties": {
+					"type": "array"
+				}
+			},
+			"spec": {
+				"type": "object",
+				"additionalProperties": false,
+				"properties": {
+					"url": {
+						"type": "string"
+					},
+					"file": {
+						"type": "string"
+					},
+					"version": {
+						"type": "string"
+					},
+					"vendorSha": {
+						"type": "string"
+					}
+				}
+			},
+			"routes": {
+				"type": "array",
+				"items": {
+					"$ref": "#/$defs/route"
+				}
+			}
+		},
+		"$defs": {
+			"route": {
+				"type": "object",
+				"required": [
+					"id",
+					"match"
+				],
+				"additionalProperties": false,
+				"properties": {
+					"id": {
+						"type": "string",
+						"minLength": 1
+					},
+					"match": {
+						"$ref": "#/$defs/match"
+					},
+					"respond": {
+						"$ref": "#/$defs/respond"
+					},
+					"handler": {
+						"type": "string"
+					},
+					"note": {
+						"description": "Free text: where this route came from. An authored pack should cite the documentation section it was derived from, so a later verification run has something to diff against.",
+						"type": "string"
+					}
+				}
+			},
+			"match": {
+				"type": "object",
+				"required": [
+					"method",
+					"path"
+				],
+				"additionalProperties": false,
+				"properties": {
+					"method": {
+						"enum": [
+							"GET",
+							"POST",
+							"PUT",
+							"PATCH",
+							"DELETE",
+							"HEAD",
+							"OPTIONS",
+							"*"
+						]
+					},
+					"path": {
+						"type": "string",
+						"pattern": "^/"
+					},
+					"query": {
+						"type": "object",
+						"additionalProperties": {
+							"type": "string"
+						}
+					},
+					"bodyMatch": true
+				}
+			},
+			"respond": {
+				"type": "object",
+				"required": [
+					"status"
+				],
+				"additionalProperties": false,
+				"properties": {
+					"status": {
+						"type": "integer",
+						"minimum": 100,
+						"maximum": 599
+					},
+					"headers": {
+						"type": "object",
+						"additionalProperties": {
+							"type": "string"
+						}
+					},
+					"body": true
+				}
+			}
+		}
+	} as const;

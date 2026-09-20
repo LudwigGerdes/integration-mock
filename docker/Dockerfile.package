@@ -1,0 +1,22 @@
+# The mock image built from the PUBLISHED package rather than the workspace:
+# the build context is the installed `integration-mock` package root
+# (node_modules/integration-mock), which holds dist/, packs/ and sources.yaml.
+# `integration-mock up` selects this file when it is not running from a checkout.
+FROM node:20-alpine
+WORKDIR /app
+COPY . .
+# Third-party runtime dependencies only; the workspace libraries are already
+# bundled into dist/. Here the package is the ROOT project, and npm resolves a
+# root project's devDependencies even under --omit=dev. Those name the internal
+# workspace libraries, which are not on the registry, so drop them first.
+RUN node -e "const fs=require('fs');const p=JSON.parse(fs.readFileSync('package.json','utf8'));delete p.devDependencies;delete p.scripts;fs.writeFileSync('package.json',JSON.stringify(p,null,2))" \
+ && npm install --omit=dev --no-audit --no-fund
+ENV INTEGRATION_MOCK_HOME=/data \
+    INTEGRATION_MOCK_PORT=8080 \
+    INTEGRATION_MOCK_ADMIN_PORT=8081 \
+    INTEGRATION_MOCK_ADMIN_BIND=0.0.0.0
+# ADMIN_BIND=0.0.0.0 is required for the port mapping to work inside the container;
+# the compose file publishes 8081 bound to the host loopback only.
+VOLUME ["/data"]
+EXPOSE 8080 8081
+CMD ["node", "dist/daemon.js"]

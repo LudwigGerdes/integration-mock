@@ -1,0 +1,154 @@
+{
+  "id": "4130",
+  "finished": true,
+  "mode": "manual",
+  "status": "success",
+  "startedAt": "2026-08-30T10:00:00.000Z",
+  "stoppedAt": "2026-08-30T10:00:02.000Z",
+  "workflowId": "8f3a",
+  "workflowData": {
+    "id": "8f3a",
+    "name": "Users to Slack",
+    "nodes": [
+      {
+        "name": "Manual Trigger",
+        "type": "n8n-nodes-base.manualTrigger",
+        "typeVersion": 1,
+        "position": [
+          0,
+          0
+        ],
+        "parameters": {}
+      },
+      {
+        "name": "Fetch Users",
+        "type": "n8n-nodes-base.httpRequest",
+        "typeVersion": 4.2,
+        "position": [
+          220,
+          0
+        ],
+        "parameters": {
+          "url": "https://api.example.com/users",
+          "method": "GET",
+          "sendQuery": true,
+          "queryParameters": {
+            "parameters": [
+              {
+                "name": "page",
+                "value": "2"
+              }
+            ]
+          },
+          "options": {}
+        }
+      },
+      {
+        "name": "Pick Fields",
+        "type": "n8n-nodes-base.set",
+        "typeVersion": 3.4,
+        "position": [
+          440,
+          0
+        ],
+        "parameters": {
+          "assignments": {
+            "assignments": [
+              {
+                "id": "a1",
+                "name": "mail",
+                "value": "={{ $json.email }}",
+                "type": "string"
+              }
+            ]
+          }
+        }
+      }
+    ],
+    "connections": {
+      "Manual Trigger": {
+        "main": [
+          [
+            {
+              "node": "Fetch Users",
+              "type": "main",
+              "index": 0
+            }
+          ]
+        ]
+      },
+      "Fetch Users": {
+        "main": [
+          [
+            {
+              "node": "Pick Fields",
+              "type": "main",
+              "index": 0
+            }
+          ]
+        ]
+      },
+      "Pick Fields": {
+        "main": [
+          []
+        ]
+      }
+    }
+  },
+  "data": {
+    "resultData": {
+      "runData": {
+        "Manual Trigger": [
+          {
+            "startTime": 1,
+            "executionTime": 0,
+            "data": {
+              "main": [
+                [
+                  {
+                    "json": {}
+                  }
+                ]
+              ]
+            }
+          }
+        ],
+        "Fetch Users": [
+          {
+            "startTime": 2,
+            "executionTime": 120,
+            "data": {
+              "main": [
+                [
+                  {
+                    "json": {
+                      "id": 3,
+                      "email": "c@example.com"
+                    }
+                  }
+                ]
+              ]
+            }
+          }
+        ],
+        "Pick Fields": [
+          {
+            "startTime": 3,
+            "executionTime": 1,
+            "data": {
+              "main": [
+                [
+                  {
+                    "json": {
+                      "mail": "c@example.com"
+                    }
+                  }
+                ]
+              ]
+            }
+          }
+        ]
+      }
+    }
+  }
+}

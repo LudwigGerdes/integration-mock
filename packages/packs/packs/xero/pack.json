@@ -1,0 +1,8 @@
+{
+  "id": "xero",
+  "domains": [
+    "api.xero.com"
+  ],
+  "prefix": "/xero",
+  "source": "openapi"
+}

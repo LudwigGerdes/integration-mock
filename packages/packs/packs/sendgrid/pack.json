@@ -1,0 +1,8 @@
+{
+  "id": "sendgrid",
+  "domains": [
+    "api.sendgrid.com"
+  ],
+  "prefix": "/sendgrid",
+  "source": "openapi"
+}

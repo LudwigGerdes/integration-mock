@@ -1,0 +1,12 @@
+{
+  "_note": "hand-authored from n8n OpenAI node output; replace with real capture",
+  "text/message": [
+    { "index": 0, "message": { "role": "assistant", "content": "Hello!" }, "finish_reason": "stop" }
+  ],
+  "simplified": [
+    { "content": "Hi" }
+  ],
+  "embedding": [
+    { "embedding": [0.1, 0.2, 0.3] }
+  ]
+}

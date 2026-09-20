@@ -1,0 +1,31 @@
+{
+	"name": "integration-mock-packs",
+	"version": "0.1.0",
+	"private": true,
+	"description": "integration-mock internals: OpenAPI pack generator, spec sourcing, reverse-mappers and the shipped vendor packs (bundled into the integration-mock CLI; not published)",
+	"license": "MIT",
+	"type": "module",
+	"main": "./dist/index.js",
+	"types": "./dist/index.d.ts",
+	"exports": {
+		".": {
+			"types": "./dist/index.d.ts",
+			"import": "./dist/index.js"
+		}
+	},
+	"scripts": {
+		"build": "tsc -p tsconfig.json",
+		"typecheck": "tsc -p tsconfig.json --noEmit",
+		"test": "vitest run"
+	},
+	"dependencies": {
+		"integration-mock-core": "workspace:*",
+		"yaml": "^2.5.0",
+		"undici": "^6.19.0"
+	},
+	"files": [
+		"dist",
+		"packs",
+		"sources.yaml"
+	]
+}

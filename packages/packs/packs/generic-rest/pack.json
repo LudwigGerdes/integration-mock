@@ -1,0 +1,16 @@
+{
+  "id": "generic-rest",
+  "domains": [],
+  "prefix": "/generic-rest",
+  "source": "library",
+  "seed": {
+    "items": [
+      { "id": "item-1", "name": "First item", "status": "active" },
+      { "id": "item-2", "name": "Second item", "status": "archived" }
+    ],
+    "contacts": [
+      { "id": "contact-1", "email": "ada@example.com", "name": "Ada" },
+      { "id": "contact-2", "email": "grace@example.com", "name": "Grace" }
+    ]
+  }
+}

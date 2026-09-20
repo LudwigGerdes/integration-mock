@@ -1,0 +1,46 @@
+name: Bug report
+description: Something integration-mock does wrong
+labels: [bug]
+body:
+  - type: input
+    id: tool-version
+    attributes:
+      label: integration-mock version
+      description: Output of `integration-mock --version` (or the commit if run from a checkout)
+    validations:
+      required: true
+  - type: input
+    id: n8n-version
+    attributes:
+      label: n8n version
+      description: Settings → About, or `n8n --version`; write "none" for an offline case
+    validations:
+      required: true
+  - type: input
+    id: node-version
+    attributes:
+      label: Node version
+      description: Output of `node --version`
+    validations:
+      required: true
+  - type: textarea
+    id: workflow
+    attributes:
+      label: Minimal workflow JSON
+      description: The smallest workflow (or pack / command sequence) that shows the problem. Remove credentials and real hostnames.
+      render: json
+    validations:
+      required: true
+  - type: textarea
+    id: expected
+    attributes:
+      label: Expected
+    validations:
+      required: true
+  - type: textarea
+    id: actual
+    attributes:
+      label: Actual
+      description: Paste the exact output, including any error line and `integration-mock log` entries if relevant
+    validations:
+      required: true

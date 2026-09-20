@@ -1,0 +1,34 @@
+{
+  "_note": "S3 conformance table — owner: integration-mock. Both implementations run these rows verbatim. Semantics: `path` selects zero or more values from `actual`; every selected value must satisfy the matcher and at least one must be selected, except `count`, which compares the number selected.",
+  "rows": [
+    { "name": "equals is the default matcher", "actual": { "a": 1 }, "path": "a", "expected": 1, "result": true },
+    { "name": "equals fails on a different value", "actual": { "a": 1 }, "path": "a", "expected": 2, "result": false },
+    { "name": "equals compares deeply", "actual": { "a": { "b": [1, 2] } }, "path": "a", "expected": { "b": [1, 2] }, "result": true },
+    { "name": "missing path selects nothing and fails", "actual": { "a": 1 }, "path": "nope", "expected": 1, "result": false },
+
+    { "name": "dotted path descends", "actual": { "a": { "b": { "c": 7 } } }, "path": "a.b.c", "expected": 7, "result": true },
+    { "name": "index selects an array element", "actual": { "items": [{ "id": 1 }, { "id": 2 }] }, "path": "items[1].id", "expected": 2, "result": true },
+    { "name": "out-of-range index selects nothing", "actual": { "items": [{ "id": 1 }] }, "path": "items[5].id", "expected": 1, "result": false },
+    { "name": "glob selects every element and all must match", "actual": { "items": [{ "ok": true }, { "ok": true }] }, "path": "items[*].ok", "expected": true, "result": true },
+    { "name": "glob fails when one element differs", "actual": { "items": [{ "ok": true }, { "ok": false }] }, "path": "items[*].ok", "expected": true, "result": false },
+    { "name": "glob over object keys", "actual": { "m": { "x": 1, "y": 1 } }, "path": "m.*", "expected": 1, "result": true },
+
+    { "name": "count counts selected values", "matcher": "count", "actual": { "items": [1, 2, 3] }, "path": "items[*]", "expected": 3, "result": true },
+    { "name": "count of a missing path is zero", "matcher": "count", "actual": {}, "path": "items[*]", "expected": 0, "result": true },
+    { "name": "count fails on the wrong number", "matcher": "count", "actual": { "items": [1] }, "path": "items[*]", "expected": 2, "result": false },
+
+    { "name": "contains matches a substring", "matcher": "contains", "actual": { "s": "hello world" }, "path": "s", "expected": "world", "result": true },
+    { "name": "contains fails when absent", "matcher": "contains", "actual": { "s": "hello" }, "path": "s", "expected": "world", "result": false },
+    { "name": "contains finds an array element", "matcher": "contains", "actual": { "l": [1, 2, 3] }, "path": "l", "expected": 2, "result": true },
+    { "name": "contains is a deep subset on objects", "matcher": "contains", "actual": { "o": { "a": 1, "b": 2 } }, "path": "o", "expected": { "a": 1 }, "result": true },
+    { "name": "contains fails when the subset differs", "matcher": "contains", "actual": { "o": { "a": 1 } }, "path": "o", "expected": { "a": 2 }, "result": false },
+
+    { "name": "matches applies a regex", "matcher": "matches", "actual": { "s": "order-1234" }, "path": "s", "expected": "^order-\\d+$", "result": true },
+    { "name": "matches fails when the regex does not", "matcher": "matches", "actual": { "s": "order-x" }, "path": "s", "expected": "^order-\\d+$", "result": false },
+
+    { "name": "gte compares numerically", "matcher": "gte", "actual": { "n": 5 }, "path": "n", "expected": 5, "result": true },
+    { "name": "gte fails below the bound", "matcher": "gte", "actual": { "n": 4 }, "path": "n", "expected": 5, "result": false },
+    { "name": "lte compares numerically", "matcher": "lte", "actual": { "n": 5 }, "path": "n", "expected": 5, "result": true },
+    { "name": "lte fails above the bound", "matcher": "lte", "actual": { "n": 6 }, "path": "n", "expected": 5, "result": false }
+  ]
+}

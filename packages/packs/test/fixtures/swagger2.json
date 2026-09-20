@@ -1,0 +1,20 @@
+{
+  "swagger": "2.0",
+  "info": { "title": "Legacy", "version": "1.0.0" },
+  "host": "api.legacy.test",
+  "basePath": "/v2",
+  "schemes": ["https"],
+  "definitions": {
+    "Widget": { "type": "object", "properties": { "id": { "type": "integer" }, "name": { "type": "string", "example": "Cog" } } }
+  },
+  "x-path-items": {
+    "Shared": { "get": { "responses": { "200": { "schema": { "$ref": "#/definitions/Widget" } } } } }
+  },
+  "paths": {
+    "/widgets": {
+      "get": { "responses": { "200": { "schema": { "type": "array", "items": { "$ref": "#/definitions/Widget" } } } } }
+    },
+    "/shared": { "$ref": "#/x-path-items/Shared" },
+    "/remote": { "$ref": "https://example.test/paths/remote.json" }
+  }
+}

@@ -1,0 +1,1771 @@
+[
+  {
+    "id": "google-sheets:POST:/o/oauth2/token#auth",
+    "match": {
+      "method": "POST",
+      "path": "/o/oauth2/token"
+    },
+    "respond": {
+      "status": 200,
+      "body": {
+        "access_token": "mock-access-token",
+        "token_type": "Bearer",
+        "expires_in": 3600,
+        "refresh_token": "mock-refresh-token",
+        "scope": ""
+      }
+    }
+  },
+  {
+    "id": "google-sheets:POST:/v4/spreadsheets#0",
+    "match": {
+      "method": "POST",
+      "path": "/v4/spreadsheets"
+    },
+    "respond": {
+      "status": 200,
+      "body": {
+        "dataSourceSchedules": [
+          {
+            "dailySchedule": {
+              "startTime": {
+                "hours": {},
+                "minutes": {},
+                "nanos": {},
+                "seconds": {}
+              }
+            },
+            "enabled": true,
+            "monthlySchedule": {
+              "daysOfMonth": [
+                244
+              ],
+              "startTime": {
+                "hours": {},
+                "minutes": {},
+                "nanos": {},
+                "seconds": {}
+              }
+            },
+            "nextRun": {
+              "endTime": "s762619",
+              "startTime": "s340576"
+            },
+            "refreshScope": "DATA_SOURCE_REFRESH_SCOPE_UNSPECIFIED",
+            "weeklySchedule": {
+              "daysOfWeek": [
+                {}
+              ],
+              "startTime": {
+                "hours": {},
+                "minutes": {},
+                "nanos": {},
+                "seconds": {}
+              }
+            }
+          }
+        ],
+        "dataSources": [
+          {
+            "calculatedColumns": [
+              {
+                "formula": "s234718",
+                "reference": {}
+              }
+            ],
+            "dataSourceId": "s599322",
+            "sheetId": 291,
+            "spec": {
+              "bigQuery": {
+                "projectId": {},
+                "querySpec": {},
+                "tableSpec": {}
+              },
+              "parameters": [
+                {}
+              ]
+            }
+          }
+        ],
+        "developerMetadata": [
+          {
+            "location": {
+              "dimensionRange": {
+                "dimension": {},
+                "endIndex": {},
+                "sheetId": {},
+                "startIndex": {}
+              },
+              "locationType": "DEVELOPER_METADATA_LOCATION_TYPE_UNSPECIFIED",
+              "sheetId": 69,
+              "spreadsheet": true
+            },
+            "metadataId": 554,
+            "metadataKey": "s764466",
+            "metadataValue": "s168794",
+            "visibility": "DEVELOPER_METADATA_VISIBILITY_UNSPECIFIED"
+          }
+        ],
+        "namedRanges": [
+          {
+            "name": "s463973",
+            "namedRangeId": "s962553",
+            "range": {
+              "endColumnIndex": 414,
+              "endRowIndex": 947,
+              "sheetId": 823,
+              "startColumnIndex": 89,
+              "startRowIndex": 494
+            }
+          }
+        ],
+        "properties": {
+          "autoRecalc": "RECALCULATION_INTERVAL_UNSPECIFIED",
+          "defaultFormat": {
+            "backgroundColor": {
+              "alpha": {},
+              "blue": {},
+              "green": {},
+              "red": {}
+            },
+            "backgroundColorStyle": {
+              "rgbColor": {},
+              "themeColor": {}
+            },
+            "borders": {
+              "bottom": {},
+              "left": {},
+              "right": {},
+              "top": {}
+            },
+            "horizontalAlignment": "HORIZONTAL_ALIGN_UNSPECIFIED",
+            "hyperlinkDisplayType": "HYPERLINK_DISPLAY_TYPE_UNSPECIFIED",
+            "numberFormat": {
+              "pattern": {},
+              "type": {}
+            },
+            "padding": {
+              "bottom": {},
+              "left": {},
+              "right": {},
+              "top": {}
+            },
+            "textDirection": "TEXT_DIRECTION_UNSPECIFIED",
+            "textFormat": {
+              "bold": {},
+              "fontFamily": {},
+              "fontSize": {},
+              "foregroundColor": {},
+              "foregroundColorStyle": {},
+              "italic": {},
+              "link": {},
+              "strikethrough": {},
+              "underline": {}
+            },
+            "textRotation": {
+              "angle": {},
+              "vertical": {}
+            },
+            "verticalAlignment": "VERTICAL_ALIGN_UNSPECIFIED",
+            "wrapStrategy": "WRAP_STRATEGY_UNSPECIFIED"
+          },
+          "iterativeCalculationSettings": {
+            "convergenceThreshold": 52.52,
+            "maxIterations": 162
+          },
+          "locale": "s153665",
+          "spreadsheetTheme": {
+            "primaryFontFamily": "s342985",
+            "themeColors": [
+              {
+                "color": {},
+                "colorType": {}
+              }
+            ]
+          },
+          "timeZone": "s400854",
+          "title": "s579512"
+        },
+        "sheets": [
+          {
+            "bandedRanges": [
+              {
+                "bandedRangeId": 598,
+                "columnProperties": {},
+                "range": {},
+                "rowProperties": {}
+              }
+            ],
+            "basicFilter": {
+              "criteria": {},
+              "filterSpecs": [
+                {}
+              ],
+              "range": {
+                "endColumnIndex": {},
+                "endRowIndex": {},
+                "sheetId": {},
+                "startColumnIndex": {},
+                "startRowIndex": {}
+              },
+              "sortSpecs": [
+                {}
+              ]
+            },
+            "charts": [
+              {
+                "border": {},
+                "chartId": 778,
+                "position": {},
+                "spec": {}
+              }
+            ],
+            "columnGroups": [
+              {
+                "collapsed": false,
+                "depth": 88,
+                "range": {}
+              }
+            ],
+            "conditionalFormats": [
+              {
+                "booleanRule": {},
+                "gradientRule": {},
+                "ranges": [
+                  {}
+                ]
+              }
+            ],
+            "data": [
+              {
+                "columnMetadata": [
+                  {}
+                ],
+                "rowData": [
+                  {}
+                ],
+                "rowMetadata": [
+                  {}
+                ],
+                "startColumn": 711,
+                "startRow": 406
+              }
+            ],
+            "developerMetadata": [
+              {
+                "location": {},
+                "metadataId": 884,
+                "metadataKey": "s3039",
+                "metadataValue": "s8493",
+                "visibility": {}
+              }
+            ],
+            "filterViews": [
+              {
+                "criteria": {},
+                "filterSpecs": [
+                  {}
+                ],
+                "filterViewId": 616,
+                "namedRangeId": "s261196",
+                "range": {},
+                "sortSpecs": [
+                  {}
+                ],
+                "title": "s843132"
+              }
+            ],
+            "merges": [
+              {
+                "endColumnIndex": 246,
+                "endRowIndex": 345,
+                "sheetId": 915,
+                "startColumnIndex": 387,
+                "startRowIndex": 482
+              }
+            ],
+            "properties": {
+              "dataSourceSheetProperties": {
+                "columns": {},
+                "dataExecutionStatus": {},
+                "dataSourceId": {}
+              },
+              "gridProperties": {
+                "columnCount": {},
+                "columnGroupControlAfter": {},
+                "frozenColumnCount": {},
+                "frozenRowCount": {},
+                "hideGridlines": {},
+                "rowCount": {},
+                "rowGroupControlAfter": {}
+              },
+              "hidden": false,
+              "index": 575,
+              "rightToLeft": true,
+              "sheetId": 929,
+              "sheetType": "SHEET_TYPE_UNSPECIFIED",
+              "tabColor": {
+                "alpha": {},
+                "blue": {},
+                "green": {},
+                "red": {}
+              },
+              "tabColorStyle": {
+                "rgbColor": {},
+                "themeColor": {}
+              },
+              "title": "s878838"
+            },
+            "protectedRanges": [
+              {
+                "description": "s442968",
+                "editors": {},
+                "namedRangeId": "s45067",
+                "protectedRangeId": 737,
+                "range": {},
+                "requestingUserCanEdit": true,
+                "unprotectedRanges": [
+                  {}
+                ],
+                "warningOnly": false
+              }
+            ],
+            "rowGroups": [
+              {
+                "collapsed": false,
+                "depth": 332,
+                "range": {}
+              }
+            ],
+            "slicers": [
+              {
+                "position": {},
+                "slicerId": 858,
+                "spec": {}
+              }
+            ]
+          }
+        ],
+        "spreadsheetId": "s4514",
+        "spreadsheetUrl": "s25446"
+      }
+    }
+  },
+  {
+    "id": "google-sheets:GET:/v4/spreadsheets/:spreadsheetId#0",
+    "match": {
+      "method": "GET",
+      "path": "/v4/spreadsheets/:spreadsheetId"
+    },
+    "respond": {
+      "status": 200,
+      "body": {
+        "dataSourceSchedules": [
+          {
+            "dailySchedule": {
+              "startTime": {
+                "hours": {},
+                "minutes": {},
+                "nanos": {},
+                "seconds": {}
+              }
+            },
+            "enabled": false,
+            "monthlySchedule": {
+              "daysOfMonth": [
+                421
+              ],
+              "startTime": {
+                "hours": {},
+                "minutes": {},
+                "nanos": {},
+                "seconds": {}
+              }
+            },
+            "nextRun": {
+              "endTime": "s634191",
+              "startTime": "s693859"
+            },
+            "refreshScope": "DATA_SOURCE_REFRESH_SCOPE_UNSPECIFIED",
+            "weeklySchedule": {
+              "daysOfWeek": [
+                {}
+              ],
+              "startTime": {
+                "hours": {},
+                "minutes": {},
+                "nanos": {},
+                "seconds": {}
+              }
+            }
+          }
+        ],
+        "dataSources": [
+          {
+            "calculatedColumns": [
+              {
+                "formula": "s79725",
+                "reference": {}
+              }
+            ],
+            "dataSourceId": "s104607",
+            "sheetId": 125,
+            "spec": {
+              "bigQuery": {
+                "projectId": {},
+                "querySpec": {},
+                "tableSpec": {}
+              },
+              "parameters": [
+                {}
+              ]
+            }
+          }
+        ],
+        "developerMetadata": [
+          {
+            "location": {
+              "dimensionRange": {
+                "dimension": {},
+                "endIndex": {},
+                "sheetId": {},
+                "startIndex": {}
+              },
+              "locationType": "DEVELOPER_METADATA_LOCATION_TYPE_UNSPECIFIED",
+              "sheetId": 527,
+              "spreadsheet": false
+            },
+            "metadataId": 607,
+            "metadataKey": "s751557",
+            "metadataValue": "s204693",
+            "visibility": "DEVELOPER_METADATA_VISIBILITY_UNSPECIFIED"
+          }
+        ],
+        "namedRanges": [
+          {
+            "name": "s500863",
+            "namedRangeId": "s285611",
+            "range": {
+              "endColumnIndex": 164,
+              "endRowIndex": 821,
+              "sheetId": 4,
+              "startColumnIndex": 505,
+              "startRowIndex": 923
+            }
+          }
+        ],
+        "properties": {
+          "autoRecalc": "RECALCULATION_INTERVAL_UNSPECIFIED",
+          "defaultFormat": {
+            "backgroundColor": {
+              "alpha": {},
+              "blue": {},
+              "green": {},
+              "red": {}
+            },
+            "backgroundColorStyle": {
+              "rgbColor": {},
+              "themeColor": {}
+            },
+            "borders": {
+              "bottom": {},
+              "left": {},
+              "right": {},
+              "top": {}
+            },
+            "horizontalAlignment": "HORIZONTAL_ALIGN_UNSPECIFIED",
+            "hyperlinkDisplayType": "HYPERLINK_DISPLAY_TYPE_UNSPECIFIED",
+            "numberFormat": {
+              "pattern": {},
+              "type": {}
+            },
+            "padding": {
+              "bottom": {},
+              "left": {},
+              "right": {},
+              "top": {}
+            },
+            "textDirection": "TEXT_DIRECTION_UNSPECIFIED",
+            "textFormat": {
+              "bold": {},
+              "fontFamily": {},
+              "fontSize": {},
+              "foregroundColor": {},
+              "foregroundColorStyle": {},
+              "italic": {},
+              "link": {},
+              "strikethrough": {},
+              "underline": {}
+            },
+            "textRotation": {
+              "angle": {},
+              "vertical": {}
+            },
+            "verticalAlignment": "VERTICAL_ALIGN_UNSPECIFIED",
+            "wrapStrategy": "WRAP_STRATEGY_UNSPECIFIED"
+          },
+          "iterativeCalculationSettings": {
+            "convergenceThreshold": 59.83,
+            "maxIterations": 888
+          },
+          "locale": "s967467",
+          "spreadsheetTheme": {
+            "primaryFontFamily": "s111706",
+            "themeColors": [
+              {
+                "color": {},
+                "colorType": {}
+              }
+            ]
+          },
+          "timeZone": "s569952",
+          "title": "s45554"
+        },
+        "sheets": [
+          {
+            "bandedRanges": [
+              {
+                "bandedRangeId": 407,
+                "columnProperties": {},
+                "range": {},
+                "rowProperties": {}
+              }
+            ],
+            "basicFilter": {
+              "criteria": {},
+              "filterSpecs": [
+                {}
+              ],
+              "range": {
+                "endColumnIndex": {},
+                "endRowIndex": {},
+                "sheetId": {},
+                "startColumnIndex": {},
+                "startRowIndex": {}
+              },
+              "sortSpecs": [
+                {}
+              ]
+            },
+            "charts": [
+              {
+                "border": {},
+                "chartId": 727,
+                "position": {},
+                "spec": {}
+              }
+            ],
+            "columnGroups": [
+              {
+                "collapsed": true,
+                "depth": 140,
+                "range": {}
+              }
+            ],
+            "conditionalFormats": [
+              {
+                "booleanRule": {},
+                "gradientRule": {},
+                "ranges": [
+                  {}
+                ]
+              }
+            ],
+            "data": [
+              {
+                "columnMetadata": [
+                  {}
+                ],
+                "rowData": [
+                  {}
+                ],
+                "rowMetadata": [
+                  {}
+                ],
+                "startColumn": 285,
+                "startRow": 963
+              }
+            ],
+            "developerMetadata": [
+              {
+                "location": {},
+                "metadataId": 549,
+                "metadataKey": "s358148",
+                "metadataValue": "s808483",
+                "visibility": {}
+              }
+            ],
+            "filterViews": [
+              {
+                "criteria": {},
+                "filterSpecs": [
+                  {}
+                ],
+                "filterViewId": 977,
+                "namedRangeId": "s546588",
+                "range": {},
+                "sortSpecs": [
+                  {}
+                ],
+                "title": "s253458"
+              }
+            ],
+            "merges": [
+              {
+                "endColumnIndex": 17,
+                "endRowIndex": 431,
+                "sheetId": 630,
+                "startColumnIndex": 245,
+                "startRowIndex": 75
+              }
+            ],
+            "properties": {
+              "dataSourceSheetProperties": {
+                "columns": {},
+                "dataExecutionStatus": {},
+                "dataSourceId": {}
+              },
+              "gridProperties": {
+                "columnCount": {},
+                "columnGroupControlAfter": {},
+                "frozenColumnCount": {},
+                "frozenRowCount": {},
+                "hideGridlines": {},
+                "rowCount": {},
+                "rowGroupControlAfter": {}
+              },
+              "hidden": true,
+              "index": 492,
+              "rightToLeft": true,
+              "sheetId": 827,
+              "sheetType": "SHEET_TYPE_UNSPECIFIED",
+              "tabColor": {
+                "alpha": {},
+                "blue": {},
+                "green": {},
+                "red": {}
+              },
+              "tabColorStyle": {
+                "rgbColor": {},
+                "themeColor": {}
+              },
+              "title": "s571154"
+            },
+            "protectedRanges": [
+              {
+                "description": "s893704",
+                "editors": {},
+                "namedRangeId": "s949855",
+                "protectedRangeId": 496,
+                "range": {},
+                "requestingUserCanEdit": true,
+                "unprotectedRanges": [
+                  {}
+                ],
+                "warningOnly": true
+              }
+            ],
+            "rowGroups": [
+              {
+                "collapsed": true,
+                "depth": 397,
+                "range": {}
+              }
+            ],
+            "slicers": [
+              {
+                "position": {},
+                "slicerId": 574,
+                "spec": {}
+              }
+            ]
+          }
+        ],
+        "spreadsheetId": "s803875",
+        "spreadsheetUrl": "s597348"
+      }
+    }
+  },
+  {
+    "id": "google-sheets:GET:/v4/spreadsheets/:spreadsheetId/developerMetadata/:metadataId#0",
+    "match": {
+      "method": "GET",
+      "path": "/v4/spreadsheets/:spreadsheetId/developerMetadata/:metadataId"
+    },
+    "respond": {
+      "status": 200,
+      "body": {
+        "location": {
+          "dimensionRange": {
+            "dimension": "DIMENSION_UNSPECIFIED",
+            "endIndex": 418,
+            "sheetId": 421,
+            "startIndex": 535
+          },
+          "locationType": "DEVELOPER_METADATA_LOCATION_TYPE_UNSPECIFIED",
+          "sheetId": 272,
+          "spreadsheet": false
+        },
+        "metadataId": 167,
+        "metadataKey": "s418153",
+        "metadataValue": "s663247",
+        "visibility": "DEVELOPER_METADATA_VISIBILITY_UNSPECIFIED"
+      }
+    }
+  },
+  {
+    "id": "google-sheets:POST:/v4/spreadsheets/:spreadsheetId/developerMetadata:search#0",
+    "match": {
+      "method": "POST",
+      "path": "/v4/spreadsheets/:spreadsheetId/developerMetadata:search"
+    },
+    "respond": {
+      "status": 200,
+      "body": {
+        "matchedDeveloperMetadata": [
+          {
+            "dataFilters": [
+              {
+                "a1Range": "s735477",
+                "developerMetadataLookup": {},
+                "gridRange": {}
+              }
+            ],
+            "developerMetadata": {
+              "location": {
+                "dimensionRange": {},
+                "locationType": {},
+                "sheetId": {},
+                "spreadsheet": {}
+              },
+              "metadataId": 129,
+              "metadataKey": "s296344",
+              "metadataValue": "s358151",
+              "visibility": "DEVELOPER_METADATA_VISIBILITY_UNSPECIFIED"
+            }
+          }
+        ]
+      }
+    }
+  },
+  {
+    "id": "google-sheets:POST:/v4/spreadsheets/:spreadsheetId/sheets/:sheetId:copyTo#0",
+    "match": {
+      "method": "POST",
+      "path": "/v4/spreadsheets/:spreadsheetId/sheets/:sheetId:copyTo"
+    },
+    "respond": {
+      "status": 200,
+      "body": {
+        "dataSourceSheetProperties": {
+          "columns": [
+            {
+              "formula": "s960959",
+              "reference": {
+                "name": {}
+              }
+            }
+          ],
+          "dataExecutionStatus": {
+            "errorCode": "DATA_EXECUTION_ERROR_CODE_UNSPECIFIED",
+            "errorMessage": "s316283",
+            "lastRefreshTime": "s823888",
+            "state": "DATA_EXECUTION_STATE_UNSPECIFIED"
+          },
+          "dataSourceId": "s779004"
+        },
+        "gridProperties": {
+          "columnCount": 987,
+          "columnGroupControlAfter": false,
+          "frozenColumnCount": 827,
+          "frozenRowCount": 785,
+          "hideGridlines": true,
+          "rowCount": 865,
+          "rowGroupControlAfter": true
+        },
+        "hidden": true,
+        "index": 703,
+        "rightToLeft": false,
+        "sheetId": 144,
+        "sheetType": "SHEET_TYPE_UNSPECIFIED",
+        "tabColor": {
+          "alpha": 65.63,
+          "blue": 6.71,
+          "green": 14.25,
+          "red": 35.92
+        },
+        "tabColorStyle": {
+          "rgbColor": {
+            "alpha": 92,
+            "blue": 99.18,
+            "green": 17.13,
+            "red": 6.16
+          },
+          "themeColor": "THEME_COLOR_TYPE_UNSPECIFIED"
+        },
+        "title": "s12764"
+      }
+    }
+  },
+  {
+    "id": "google-sheets:GET:/v4/spreadsheets/:spreadsheetId/values/:range#0",
+    "match": {
+      "method": "GET",
+      "path": "/v4/spreadsheets/:spreadsheetId/values/:range"
+    },
+    "respond": {
+      "status": 200,
+      "body": {
+        "majorDimension": "DIMENSION_UNSPECIFIED",
+        "range": "s735086",
+        "values": [
+          [
+            {}
+          ]
+        ]
+      }
+    }
+  },
+  {
+    "id": "google-sheets:PUT:/v4/spreadsheets/:spreadsheetId/values/:range#0",
+    "match": {
+      "method": "PUT",
+      "path": "/v4/spreadsheets/:spreadsheetId/values/:range"
+    },
+    "respond": {
+      "status": 200,
+      "body": {
+        "spreadsheetId": "s843154",
+        "updatedCells": 191,
+        "updatedColumns": 162,
+        "updatedData": {
+          "majorDimension": "DIMENSION_UNSPECIFIED",
+          "range": "s441869",
+          "values": [
+            [
+              {}
+            ]
+          ]
+        },
+        "updatedRange": "s3922",
+        "updatedRows": 311
+      }
+    }
+  },
+  {
+    "id": "google-sheets:POST:/v4/spreadsheets/:spreadsheetId/values/:range:append#0",
+    "match": {
+      "method": "POST",
+      "path": "/v4/spreadsheets/:spreadsheetId/values/:range:append"
+    },
+    "respond": {
+      "status": 200,
+      "body": {
+        "spreadsheetId": "s34484",
+        "tableRange": "s478029",
+        "updates": {
+          "spreadsheetId": "s800164",
+          "updatedCells": 484,
+          "updatedColumns": 815,
+          "updatedData": {
+            "majorDimension": "DIMENSION_UNSPECIFIED",
+            "range": "s713234",
+            "values": [
+              [
+                {}
+              ]
+            ]
+          },
+          "updatedRange": "s749046",
+          "updatedRows": 30
+        }
+      }
+    }
+  },
+  {
+    "id": "google-sheets:POST:/v4/spreadsheets/:spreadsheetId/values/:range:clear#0",
+    "match": {
+      "method": "POST",
+      "path": "/v4/spreadsheets/:spreadsheetId/values/:range:clear"
+    },
+    "respond": {
+      "status": 200,
+      "body": {
+        "clearedRange": "s272134",
+        "spreadsheetId": "s398854"
+      }
+    }
+  },
+  {
+    "id": "google-sheets:POST:/v4/spreadsheets/:spreadsheetId/values:batchClear#0",
+    "match": {
+      "method": "POST",
+      "path": "/v4/spreadsheets/:spreadsheetId/values:batchClear"
+    },
+    "respond": {
+      "status": 200,
+      "body": {
+        "clearedRanges": [
+          "s319553"
+        ],
+        "spreadsheetId": "s192561"
+      }
+    }
+  },
+  {
+    "id": "google-sheets:POST:/v4/spreadsheets/:spreadsheetId/values:batchClearByDataFilter#0",
+    "match": {
+      "method": "POST",
+      "path": "/v4/spreadsheets/:spreadsheetId/values:batchClearByDataFilter"
+    },
+    "respond": {
+      "status": 200,
+      "body": {
+        "clearedRanges": [
+          "s788114"
+        ],
+        "spreadsheetId": "s947029"
+      }
+    }
+  },
+  {
+    "id": "google-sheets:GET:/v4/spreadsheets/:spreadsheetId/values:batchGet#0",
+    "match": {
+      "method": "GET",
+      "path": "/v4/spreadsheets/:spreadsheetId/values:batchGet"
+    },
+    "respond": {
+      "status": 200,
+      "body": {
+        "spreadsheetId": "s192400",
+        "valueRanges": [
+          {
+            "majorDimension": "DIMENSION_UNSPECIFIED",
+            "range": "s601401",
+            "values": [
+              [
+                {}
+              ]
+            ]
+          }
+        ]
+      }
+    }
+  },
+  {
+    "id": "google-sheets:POST:/v4/spreadsheets/:spreadsheetId/values:batchGetByDataFilter#0",
+    "match": {
+      "method": "POST",
+      "path": "/v4/spreadsheets/:spreadsheetId/values:batchGetByDataFilter"
+    },
+    "respond": {
+      "status": 200,
+      "body": {
+        "spreadsheetId": "s549666",
+        "valueRanges": [
+          {
+            "dataFilters": [
+              {
+                "a1Range": "s596329",
+                "developerMetadataLookup": {},
+                "gridRange": {}
+              }
+            ],
+            "valueRange": {
+              "majorDimension": "DIMENSION_UNSPECIFIED",
+              "range": "s638071",
+              "values": [
+                [
+                  {}
+                ]
+              ]
+            }
+          }
+        ]
+      }
+    }
+  },
+  {
+    "id": "google-sheets:POST:/v4/spreadsheets/:spreadsheetId/values:batchUpdate#0",
+    "match": {
+      "method": "POST",
+      "path": "/v4/spreadsheets/:spreadsheetId/values:batchUpdate"
+    },
+    "respond": {
+      "status": 200,
+      "body": {
+        "responses": [
+          {
+            "spreadsheetId": "s111858",
+            "updatedCells": 962,
+            "updatedColumns": 304,
+            "updatedData": {
+              "majorDimension": "DIMENSION_UNSPECIFIED",
+              "range": "s30844",
+              "values": [
+                [
+                  {}
+                ]
+              ]
+            },
+            "updatedRange": "s639704",
+            "updatedRows": 626
+          }
+        ],
+        "spreadsheetId": "s499036",
+        "totalUpdatedCells": 440,
+        "totalUpdatedColumns": 68,
+        "totalUpdatedRows": 255,
+        "totalUpdatedSheets": 898
+      }
+    }
+  },
+  {
+    "id": "google-sheets:POST:/v4/spreadsheets/:spreadsheetId/values:batchUpdateByDataFilter#0",
+    "match": {
+      "method": "POST",
+      "path": "/v4/spreadsheets/:spreadsheetId/values:batchUpdateByDataFilter"
+    },
+    "respond": {
+      "status": 200,
+      "body": {
+        "responses": [
+          {
+            "dataFilter": {
+              "a1Range": "s782084",
+              "developerMetadataLookup": {
+                "locationMatchingStrategy": {},
+                "locationType": {},
+                "metadataId": {},
+                "metadataKey": {},
+                "metadataLocation": {},
+                "metadataValue": {},
+                "visibility": {}
+              },
+              "gridRange": {
+                "endColumnIndex": {},
+                "endRowIndex": {},
+                "sheetId": {},
+                "startColumnIndex": {},
+                "startRowIndex": {}
+              }
+            },
+            "updatedCells": 408,
+            "updatedColumns": 211,
+            "updatedData": {
+              "majorDimension": "DIMENSION_UNSPECIFIED",
+              "range": "s734674",
+              "values": [
+                [
+                  {}
+                ]
+              ]
+            },
+            "updatedRange": "s923904",
+            "updatedRows": 98
+          }
+        ],
+        "spreadsheetId": "s761148",
+        "totalUpdatedCells": 745,
+        "totalUpdatedColumns": 875,
+        "totalUpdatedRows": 132,
+        "totalUpdatedSheets": 747
+      }
+    }
+  },
+  {
+    "id": "google-sheets:POST:/v4/spreadsheets/:spreadsheetId:batchUpdate#0",
+    "match": {
+      "method": "POST",
+      "path": "/v4/spreadsheets/:spreadsheetId:batchUpdate"
+    },
+    "respond": {
+      "status": 200,
+      "body": {
+        "replies": [
+          {
+            "addBanding": {
+              "bandedRange": {
+                "bandedRangeId": {},
+                "columnProperties": {},
+                "range": {},
+                "rowProperties": {}
+              }
+            },
+            "addChart": {
+              "chart": {
+                "border": {},
+                "chartId": {},
+                "position": {},
+                "spec": {}
+              }
+            },
+            "addDataSource": {
+              "dataExecutionStatus": {
+                "errorCode": {},
+                "errorMessage": {},
+                "lastRefreshTime": {},
+                "state": {}
+              },
+              "dataSource": {
+                "calculatedColumns": {},
+                "dataSourceId": {},
+                "sheetId": {},
+                "spec": {}
+              }
+            },
+            "addDimensionGroup": {
+              "dimensionGroups": [
+                {}
+              ]
+            },
+            "addFilterView": {
+              "filter": {
+                "criteria": {},
+                "filterSpecs": {},
+                "filterViewId": {},
+                "namedRangeId": {},
+                "range": {},
+                "sortSpecs": {},
+                "title": {}
+              }
+            },
+            "addNamedRange": {
+              "namedRange": {
+                "name": {},
+                "namedRangeId": {},
+                "range": {}
+              }
+            },
+            "addProtectedRange": {
+              "protectedRange": {
+                "description": {},
+                "editors": {},
+                "namedRangeId": {},
+                "protectedRangeId": {},
+                "range": {},
+                "requestingUserCanEdit": {},
+                "unprotectedRanges": {},
+                "warningOnly": {}
+              }
+            },
+            "addSheet": {
+              "properties": {
+                "dataSourceSheetProperties": {},
+                "gridProperties": {},
+                "hidden": {},
+                "index": {},
+                "rightToLeft": {},
+                "sheetId": {},
+                "sheetType": {},
+                "tabColor": {},
+                "tabColorStyle": {},
+                "title": {}
+              }
+            },
+            "addSlicer": {
+              "slicer": {
+                "position": {},
+                "slicerId": {},
+                "spec": {}
+              }
+            },
+            "createDeveloperMetadata": {
+              "developerMetadata": {
+                "location": {},
+                "metadataId": {},
+                "metadataKey": {},
+                "metadataValue": {},
+                "visibility": {}
+              }
+            },
+            "deleteConditionalFormatRule": {
+              "rule": {
+                "booleanRule": {},
+                "gradientRule": {},
+                "ranges": {}
+              }
+            },
+            "deleteDeveloperMetadata": {
+              "deletedDeveloperMetadata": [
+                {}
+              ]
+            },
+            "deleteDimensionGroup": {
+              "dimensionGroups": [
+                {}
+              ]
+            },
+            "deleteDuplicates": {
+              "duplicatesRemovedCount": 37
+            },
+            "duplicateFilterView": {
+              "filter": {
+                "criteria": {},
+                "filterSpecs": {},
+                "filterViewId": {},
+                "namedRangeId": {},
+                "range": {},
+                "sortSpecs": {},
+                "title": {}
+              }
+            },
+            "duplicateSheet": {
+              "properties": {
+                "dataSourceSheetProperties": {},
+                "gridProperties": {},
+                "hidden": {},
+                "index": {},
+                "rightToLeft": {},
+                "sheetId": {},
+                "sheetType": {},
+                "tabColor": {},
+                "tabColorStyle": {},
+                "title": {}
+              }
+            },
+            "findReplace": {
+              "formulasChanged": 443,
+              "occurrencesChanged": 982,
+              "rowsChanged": 652,
+              "sheetsChanged": 226,
+              "valuesChanged": 364
+            },
+            "refreshDataSource": {
+              "statuses": [
+                {}
+              ]
+            },
+            "trimWhitespace": {
+              "cellsChangedCount": 74
+            },
+            "updateConditionalFormatRule": {
+              "newIndex": 362,
+              "newRule": {
+                "booleanRule": {},
+                "gradientRule": {},
+                "ranges": {}
+              },
+              "oldIndex": 383,
+              "oldRule": {
+                "booleanRule": {},
+                "gradientRule": {},
+                "ranges": {}
+              }
+            },
+            "updateDataSource": {
+              "dataExecutionStatus": {
+                "errorCode": {},
+                "errorMessage": {},
+                "lastRefreshTime": {},
+                "state": {}
+              },
+              "dataSource": {
+                "calculatedColumns": {},
+                "dataSourceId": {},
+                "sheetId": {},
+                "spec": {}
+              }
+            },
+            "updateDeveloperMetadata": {
+              "developerMetadata": [
+                {}
+              ]
+            },
+            "updateEmbeddedObjectPosition": {
+              "position": {
+                "newSheet": {},
+                "overlayPosition": {},
+                "sheetId": {}
+              }
+            }
+          }
+        ],
+        "spreadsheetId": "s160772",
+        "updatedSpreadsheet": {
+          "dataSourceSchedules": [
+            {
+              "dailySchedule": {
+                "startTime": {}
+              },
+              "enabled": false,
+              "monthlySchedule": {
+                "daysOfMonth": {},
+                "startTime": {}
+              },
+              "nextRun": {
+                "endTime": {},
+                "startTime": {}
+              },
+              "refreshScope": "DATA_SOURCE_REFRESH_SCOPE_UNSPECIFIED",
+              "weeklySchedule": {
+                "daysOfWeek": {},
+                "startTime": {}
+              }
+            }
+          ],
+          "dataSources": [
+            {
+              "calculatedColumns": [
+                {}
+              ],
+              "dataSourceId": "s748139",
+              "sheetId": 422,
+              "spec": {
+                "bigQuery": {},
+                "parameters": {}
+              }
+            }
+          ],
+          "developerMetadata": [
+            {
+              "location": {
+                "dimensionRange": {},
+                "locationType": {},
+                "sheetId": {},
+                "spreadsheet": {}
+              },
+              "metadataId": 377,
+              "metadataKey": "s893307",
+              "metadataValue": "s716341",
+              "visibility": "DEVELOPER_METADATA_VISIBILITY_UNSPECIFIED"
+            }
+          ],
+          "namedRanges": [
+            {
+              "name": "s131824",
+              "namedRangeId": "s959613",
+              "range": {
+                "endColumnIndex": {},
+                "endRowIndex": {},
+                "sheetId": {},
+                "startColumnIndex": {},
+                "startRowIndex": {}
+              }
+            }
+          ],
+          "properties": {
+            "autoRecalc": "RECALCULATION_INTERVAL_UNSPECIFIED",
+            "defaultFormat": {
+              "backgroundColor": {},
+              "backgroundColorStyle": {},
+              "borders": {},
+              "horizontalAlignment": {},
+              "hyperlinkDisplayType": {},
+              "numberFormat": {},
+              "padding": {},
+              "textDirection": {},
+              "textFormat": {},
+              "textRotation": {},
+              "verticalAlignment": {},
+              "wrapStrategy": {}
+            },
+            "iterativeCalculationSettings": {
+              "convergenceThreshold": {},
+              "maxIterations": {}
+            },
+            "locale": "s126444",
+            "spreadsheetTheme": {
+              "primaryFontFamily": {},
+              "themeColors": {}
+            },
+            "timeZone": "s67721",
+            "title": "s7015"
+          },
+          "sheets": [
+            {
+              "bandedRanges": [
+                {}
+              ],
+              "basicFilter": {
+                "criteria": {},
+                "filterSpecs": {},
+                "range": {},
+                "sortSpecs": {}
+              },
+              "charts": [
+                {}
+              ],
+              "columnGroups": [
+                {}
+              ],
+              "conditionalFormats": [
+                {}
+              ],
+              "data": [
+                {}
+              ],
+              "developerMetadata": [
+                {}
+              ],
+              "filterViews": [
+                {}
+              ],
+              "merges": [
+                {}
+              ],
+              "properties": {
+                "dataSourceSheetProperties": {},
+                "gridProperties": {},
+                "hidden": {},
+                "index": {},
+                "rightToLeft": {},
+                "sheetId": {},
+                "sheetType": {},
+                "tabColor": {},
+                "tabColorStyle": {},
+                "title": {}
+              },
+              "protectedRanges": [
+                {}
+              ],
+              "rowGroups": [
+                {}
+              ],
+              "slicers": [
+                {}
+              ]
+            }
+          ],
+          "spreadsheetId": "s29924",
+          "spreadsheetUrl": "s712944"
+        }
+      }
+    }
+  },
+  {
+    "id": "google-sheets:POST:/v4/spreadsheets/:spreadsheetId:getByDataFilter#0",
+    "match": {
+      "method": "POST",
+      "path": "/v4/spreadsheets/:spreadsheetId:getByDataFilter"
+    },
+    "respond": {
+      "status": 200,
+      "body": {
+        "dataSourceSchedules": [
+          {
+            "dailySchedule": {
+              "startTime": {
+                "hours": {},
+                "minutes": {},
+                "nanos": {},
+                "seconds": {}
+              }
+            },
+            "enabled": false,
+            "monthlySchedule": {
+              "daysOfMonth": [
+                402
+              ],
+              "startTime": {
+                "hours": {},
+                "minutes": {},
+                "nanos": {},
+                "seconds": {}
+              }
+            },
+            "nextRun": {
+              "endTime": "s286019",
+              "startTime": "s298301"
+            },
+            "refreshScope": "DATA_SOURCE_REFRESH_SCOPE_UNSPECIFIED",
+            "weeklySchedule": {
+              "daysOfWeek": [
+                {}
+              ],
+              "startTime": {
+                "hours": {},
+                "minutes": {},
+                "nanos": {},
+                "seconds": {}
+              }
+            }
+          }
+        ],
+        "dataSources": [
+          {
+            "calculatedColumns": [
+              {
+                "formula": "s242378",
+                "reference": {}
+              }
+            ],
+            "dataSourceId": "s24501",
+            "sheetId": 952,
+            "spec": {
+              "bigQuery": {
+                "projectId": {},
+                "querySpec": {},
+                "tableSpec": {}
+              },
+              "parameters": [
+                {}
+              ]
+            }
+          }
+        ],
+        "developerMetadata": [
+          {
+            "location": {
+              "dimensionRange": {
+                "dimension": {},
+                "endIndex": {},
+                "sheetId": {},
+                "startIndex": {}
+              },
+              "locationType": "DEVELOPER_METADATA_LOCATION_TYPE_UNSPECIFIED",
+              "sheetId": 918,
+              "spreadsheet": false
+            },
+            "metadataId": 944,
+            "metadataKey": "s759860",
+            "metadataValue": "s943137",
+            "visibility": "DEVELOPER_METADATA_VISIBILITY_UNSPECIFIED"
+          }
+        ],
+        "namedRanges": [
+          {
+            "name": "s268512",
+            "namedRangeId": "s945170",
+            "range": {
+              "endColumnIndex": 912,
+              "endRowIndex": 178,
+              "sheetId": 822,
+              "startColumnIndex": 642,
+              "startRowIndex": 180
+            }
+          }
+        ],
+        "properties": {
+          "autoRecalc": "RECALCULATION_INTERVAL_UNSPECIFIED",
+          "defaultFormat": {
+            "backgroundColor": {
+              "alpha": {},
+              "blue": {},
+              "green": {},
+              "red": {}
+            },
+            "backgroundColorStyle": {
+              "rgbColor": {},
+              "themeColor": {}
+            },
+            "borders": {
+              "bottom": {},
+              "left": {},
+              "right": {},
+              "top": {}
+            },
+            "horizontalAlignment": "HORIZONTAL_ALIGN_UNSPECIFIED",
+            "hyperlinkDisplayType": "HYPERLINK_DISPLAY_TYPE_UNSPECIFIED",
+            "numberFormat": {
+              "pattern": {},
+              "type": {}
+            },
+            "padding": {
+              "bottom": {},
+              "left": {},
+              "right": {},
+              "top": {}
+            },
+            "textDirection": "TEXT_DIRECTION_UNSPECIFIED",
+            "textFormat": {
+              "bold": {},
+              "fontFamily": {},
+              "fontSize": {},
+              "foregroundColor": {},
+              "foregroundColorStyle": {},
+              "italic": {},
+              "link": {},
+              "strikethrough": {},
+              "underline": {}
+            },
+            "textRotation": {
+              "angle": {},
+              "vertical": {}
+            },
+            "verticalAlignment": "VERTICAL_ALIGN_UNSPECIFIED",
+            "wrapStrategy": "WRAP_STRATEGY_UNSPECIFIED"
+          },
+          "iterativeCalculationSettings": {
+            "convergenceThreshold": 18.51,
+            "maxIterations": 46
+          },
+          "locale": "s56304",
+          "spreadsheetTheme": {
+            "primaryFontFamily": "s781165",
+            "themeColors": [
+              {
+                "color": {},
+                "colorType": {}
+              }
+            ]
+          },
+          "timeZone": "s204553",
+          "title": "s157121"
+        },
+        "sheets": [
+          {
+            "bandedRanges": [
+              {
+                "bandedRangeId": 193,
+                "columnProperties": {},
+                "range": {},
+                "rowProperties": {}
+              }
+            ],
+            "basicFilter": {
+              "criteria": {},
+              "filterSpecs": [
+                {}
+              ],
+              "range": {
+                "endColumnIndex": {},
+                "endRowIndex": {},
+                "sheetId": {},
+                "startColumnIndex": {},
+                "startRowIndex": {}
+              },
+              "sortSpecs": [
+                {}
+              ]
+            },
+            "charts": [
+              {
+                "border": {},
+                "chartId": 84,
+                "position": {},
+                "spec": {}
+              }
+            ],
+            "columnGroups": [
+              {
+                "collapsed": true,
+                "depth": 206,
+                "range": {}
+              }
+            ],
+            "conditionalFormats": [
+              {
+                "booleanRule": {},
+                "gradientRule": {},
+                "ranges": [
+                  {}
+                ]
+              }
+            ],
+            "data": [
+              {
+                "columnMetadata": [
+                  {}
+                ],
+                "rowData": [
+                  {}
+                ],
+                "rowMetadata": [
+                  {}
+                ],
+                "startColumn": 788,
+                "startRow": 510
+              }
+            ],
+            "developerMetadata": [
+              {
+                "location": {},
+                "metadataId": 852,
+                "metadataKey": "s549628",
+                "metadataValue": "s155039",
+                "visibility": {}
+              }
+            ],
+            "filterViews": [
+              {
+                "criteria": {},
+                "filterSpecs": [
+                  {}
+                ],
+                "filterViewId": 212,
+                "namedRangeId": "s965293",
+                "range": {},
+                "sortSpecs": [
+                  {}
+                ],
+                "title": "s689576"
+              }
+            ],
+            "merges": [
+              {
+                "endColumnIndex": 734,
+                "endRowIndex": 354,
+                "sheetId": 791,
+                "startColumnIndex": 709,
+                "startRowIndex": 668
+              }
+            ],
+            "properties": {
+              "dataSourceSheetProperties": {
+                "columns": {},
+                "dataExecutionStatus": {},
+                "dataSourceId": {}
+              },
+              "gridProperties": {
+                "columnCount": {},
+                "columnGroupControlAfter": {},
+                "frozenColumnCount": {},
+                "frozenRowCount": {},
+                "hideGridlines": {},
+                "rowCount": {},
+                "rowGroupControlAfter": {}
+              },
+              "hidden": true,
+              "index": 341,
+              "rightToLeft": true,
+              "sheetId": 792,
+              "sheetType": "SHEET_TYPE_UNSPECIFIED",
+              "tabColor": {
+                "alpha": {},
+                "blue": {},
+                "green": {},
+                "red": {}
+              },
+              "tabColorStyle": {
+                "rgbColor": {},
+                "themeColor": {}
+              },
+              "title": "s210431"
+            },
+            "protectedRanges": [
+              {
+                "description": "s745808",
+                "editors": {},
+                "namedRangeId": "s1348",
+                "protectedRangeId": 811,
+                "range": {},
+                "requestingUserCanEdit": true,
+                "unprotectedRanges": [
+                  {}
+                ],
+                "warningOnly": true
+              }
+            ],
+            "rowGroups": [
+              {
+                "collapsed": false,
+                "depth": 53,
+                "range": {}
+              }
+            ],
+            "slicers": [
+              {
+                "position": {},
+                "slicerId": 756,
+                "spec": {}
+              }
+            ]
+          }
+        ],
+        "spreadsheetId": "s712585",
+        "spreadsheetUrl": "s882393"
+      }
+    }
+  }
+]

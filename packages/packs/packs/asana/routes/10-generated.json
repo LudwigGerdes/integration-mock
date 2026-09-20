@@ -1,0 +1,5345 @@
+[
+  {
+    "id": "asana:POST:/-/oauth_token#auth",
+    "match": {
+      "method": "POST",
+      "path": "/api/1.0/-/oauth_token"
+    },
+    "respond": {
+      "status": 200,
+      "body": {
+        "access_token": "mock-access-token",
+        "token_type": "Bearer",
+        "expires_in": 3600,
+        "refresh_token": "mock-refresh-token",
+        "scope": ""
+      }
+    }
+  },
+  {
+    "id": "asana:GET:/api/1.0/attachments#0",
+    "match": {
+      "method": "GET",
+      "path": "/api/1.0/attachments"
+    },
+    "respond": {
+      "status": 200,
+      "body": {
+        "data": [
+          {
+            "gid": "12345",
+            "resource_type": "task",
+            "name": "Screenshot.png",
+            "resource_subtype": "dropbox"
+          }
+        ]
+      }
+    }
+  },
+  {
+    "id": "asana:POST:/api/1.0/attachments#0",
+    "match": {
+      "method": "POST",
+      "path": "/api/1.0/attachments"
+    },
+    "respond": {
+      "status": 200,
+      "body": {
+        "data": {
+          "gid": {},
+          "resource_type": {},
+          "name": "Screenshot.png",
+          "resource_subtype": "dropbox",
+          "connected_to_app": true,
+          "created_at": "2012-02-22T02:06:58.147Z",
+          "download_url": "https://s3.amazonaws.com/assets/123/Screenshot.png",
+          "host": "dropbox",
+          "parent": {
+            "resource_subtype": "default_task"
+          },
+          "permanent_url": "https://s3.amazonaws.com/assets/123/Screenshot.png",
+          "size": 12345,
+          "view_url": "https://www.dropbox.com/s/123/Screenshot.png"
+        }
+      }
+    }
+  },
+  {
+    "id": "asana:GET:/api/1.0/attachments/:attachment_gid#0",
+    "match": {
+      "method": "GET",
+      "path": "/api/1.0/attachments/:attachment_gid"
+    },
+    "respond": {
+      "status": 200,
+      "body": {
+        "data": {
+          "gid": {},
+          "resource_type": {},
+          "name": "Screenshot.png",
+          "resource_subtype": "dropbox",
+          "connected_to_app": false,
+          "created_at": "2012-02-22T02:06:58.147Z",
+          "download_url": "https://s3.amazonaws.com/assets/123/Screenshot.png",
+          "host": "dropbox",
+          "parent": {
+            "resource_subtype": "default_task"
+          },
+          "permanent_url": "https://s3.amazonaws.com/assets/123/Screenshot.png",
+          "size": 12345,
+          "view_url": "https://www.dropbox.com/s/123/Screenshot.png"
+        }
+      }
+    }
+  },
+  {
+    "id": "asana:DELETE:/api/1.0/attachments/:attachment_gid#0",
+    "match": {
+      "method": "DELETE",
+      "path": "/api/1.0/attachments/:attachment_gid"
+    },
+    "respond": {
+      "status": 200,
+      "body": {
+        "data": {}
+      }
+    }
+  },
+  {
+    "id": "asana:POST:/api/1.0/batch#0",
+    "match": {
+      "method": "POST",
+      "path": "/api/1.0/batch"
+    },
+    "respond": {
+      "status": 200,
+      "body": {
+        "data": [
+          {
+            "body": {
+              "data": {
+                "completed": false,
+                "gid": "1967",
+                "name": "Hello, world!",
+                "notes": "How are you today?"
+              }
+            },
+            "headers": {
+              "location": "/tasks/1234"
+            },
+            "status_code": 200
+          }
+        ]
+      }
+    }
+  },
+  {
+    "id": "asana:POST:/api/1.0/custom_fields#0",
+    "match": {
+      "method": "POST",
+      "path": "/api/1.0/custom_fields"
+    },
+    "respond": {
+      "status": 201,
+      "body": {
+        "data": {
+          "date_value": {},
+          "display_value": {},
+          "enabled": {},
+          "enum_options": [
+            {}
+          ],
+          "enum_value": {},
+          "multi_enum_values": {},
+          "name": {},
+          "number_value": {},
+          "resource_subtype": {},
+          "text_value": {},
+          "type": {},
+          "asana_created_field": "priority",
+          "currency_code": "EUR",
+          "custom_label": "gold pieces",
+          "custom_label_position": "suffix",
+          "description": "Development team priority",
+          "format": "custom",
+          "has_notifications_enabled": true,
+          "is_global_to_workspace": true,
+          "precision": 2,
+          "created_by": {
+            "gid": {},
+            "resource_type": {},
+            "name": {}
+          },
+          "people_value": [
+            {
+              "name": {}
+            }
+          ]
+        }
+      }
+    }
+  },
+  {
+    "id": "asana:GET:/api/1.0/custom_fields/:custom_field_gid#0",
+    "match": {
+      "method": "GET",
+      "path": "/api/1.0/custom_fields/:custom_field_gid"
+    },
+    "respond": {
+      "status": 200,
+      "body": {
+        "data": {
+          "date_value": {},
+          "display_value": {},
+          "enabled": {},
+          "enum_options": [
+            {}
+          ],
+          "enum_value": {},
+          "multi_enum_values": {},
+          "name": {},
+          "number_value": {},
+          "resource_subtype": {},
+          "text_value": {},
+          "type": {},
+          "asana_created_field": "priority",
+          "currency_code": "EUR",
+          "custom_label": "gold pieces",
+          "custom_label_position": "suffix",
+          "description": "Development team priority",
+          "format": "custom",
+          "has_notifications_enabled": true,
+          "is_global_to_workspace": true,
+          "precision": 2,
+          "created_by": {
+            "gid": {},
+            "resource_type": {},
+            "name": {}
+          },
+          "people_value": [
+            {
+              "name": {}
+            }
+          ]
+        }
+      }
+    }
+  },
+  {
+    "id": "asana:PUT:/api/1.0/custom_fields/:custom_field_gid#0",
+    "match": {
+      "method": "PUT",
+      "path": "/api/1.0/custom_fields/:custom_field_gid"
+    },
+    "respond": {
+      "status": 200,
+      "body": {
+        "data": {
+          "date_value": {},
+          "display_value": {},
+          "enabled": {},
+          "enum_options": [
+            {}
+          ],
+          "enum_value": {},
+          "multi_enum_values": {},
+          "name": {},
+          "number_value": {},
+          "resource_subtype": {},
+          "text_value": {},
+          "type": {},
+          "asana_created_field": "priority",
+          "currency_code": "EUR",
+          "custom_label": "gold pieces",
+          "custom_label_position": "suffix",
+          "description": "Development team priority",
+          "format": "custom",
+          "has_notifications_enabled": true,
+          "is_global_to_workspace": true,
+          "precision": 2,
+          "created_by": {
+            "gid": {},
+            "resource_type": {},
+            "name": {}
+          },
+          "people_value": [
+            {
+              "name": {}
+            }
+          ]
+        }
+      }
+    }
+  },
+  {
+    "id": "asana:DELETE:/api/1.0/custom_fields/:custom_field_gid#0",
+    "match": {
+      "method": "DELETE",
+      "path": "/api/1.0/custom_fields/:custom_field_gid"
+    },
+    "respond": {
+      "status": 200,
+      "body": {
+        "data": {}
+      }
+    }
+  },
+  {
+    "id": "asana:POST:/api/1.0/custom_fields/:custom_field_gid/enum_options#0",
+    "match": {
+      "method": "POST",
+      "path": "/api/1.0/custom_fields/:custom_field_gid/enum_options"
+    },
+    "respond": {
+      "status": 201,
+      "body": {
+        "data": {
+          "gid": "12345",
+          "resource_type": "task",
+          "color": "blue",
+          "enabled": true,
+          "name": "Low"
+        }
+      }
+    }
+  },
+  {
+    "id": "asana:POST:/api/1.0/custom_fields/:custom_field_gid/enum_options/insert#0",
+    "match": {
+      "method": "POST",
+      "path": "/api/1.0/custom_fields/:custom_field_gid/enum_options/insert"
+    },
+    "respond": {
+      "status": 200,
+      "body": {
+        "data": {
+          "gid": "12345",
+          "resource_type": "task",
+          "color": "blue",
+          "enabled": true,
+          "name": "Low"
+        }
+      }
+    }
+  },
+  {
+    "id": "asana:PUT:/api/1.0/enum_options/:enum_option_gid#0",
+    "match": {
+      "method": "PUT",
+      "path": "/api/1.0/enum_options/:enum_option_gid"
+    },
+    "respond": {
+      "status": 200,
+      "body": {
+        "data": {
+          "gid": "12345",
+          "resource_type": "task",
+          "color": "blue",
+          "enabled": true,
+          "name": "Low"
+        }
+      }
+    }
+  },
+  {
+    "id": "asana:GET:/api/1.0/events#0",
+    "match": {
+      "method": "GET",
+      "path": "/api/1.0/events"
+    },
+    "respond": {
+      "status": 200,
+      "body": {
+        "data": [
+          {
+            "action": "changed",
+            "change": {
+              "action": "changed",
+              "added_value": {
+                "gid": "12345",
+                "resource_type": "user"
+              },
+              "field": "assignee",
+              "new_value": {
+                "gid": "12345",
+                "resource_type": "user"
+              },
+              "removed_value": {
+                "gid": "12345",
+                "resource_type": "user"
+              }
+            },
+            "created_at": "2012-02-22T02:06:58.147Z",
+            "parent": {
+              "name": {}
+            },
+            "resource": {
+              "name": {}
+            },
+            "type": "task",
+            "user": {
+              "name": {}
+            }
+          }
+        ],
+        "has_more": true,
+        "sync": "de4774f6915eae04714ca93bb2f5ee81"
+      }
+    }
+  },
+  {
+    "id": "asana:GET:/api/1.0/goal_relationships#0",
+    "match": {
+      "method": "GET",
+      "path": "/api/1.0/goal_relationships"
+    },
+    "respond": {
+      "status": 200,
+      "body": {
+        "data": [
+          {
+            "gid": "12345",
+            "resource_type": "task",
+            "contribution_weight": 1,
+            "resource_subtype": "subgoal",
+            "supporting_resource": {}
+          }
+        ]
+      }
+    }
+  },
+  {
+    "id": "asana:GET:/api/1.0/goal_relationships/:goal_relationship_gid#0",
+    "match": {
+      "method": "GET",
+      "path": "/api/1.0/goal_relationships/:goal_relationship_gid"
+    },
+    "respond": {
+      "status": 200,
+      "body": {
+        "data": {
+          "contribution_weight": {},
+          "resource_subtype": {},
+          "supporting_resource": {},
+          "supported_goal": {}
+        }
+      }
+    }
+  },
+  {
+    "id": "asana:PUT:/api/1.0/goal_relationships/:goal_relationship_gid#0",
+    "match": {
+      "method": "PUT",
+      "path": "/api/1.0/goal_relationships/:goal_relationship_gid"
+    },
+    "respond": {
+      "status": 200,
+      "body": {
+        "data": {
+          "contribution_weight": {},
+          "resource_subtype": {},
+          "supporting_resource": {},
+          "supported_goal": {}
+        }
+      }
+    }
+  },
+  {
+    "id": "asana:GET:/api/1.0/goals#0",
+    "match": {
+      "method": "GET",
+      "path": "/api/1.0/goals"
+    },
+    "respond": {
+      "status": 200,
+      "body": {
+        "data": [
+          {
+            "gid": "12345",
+            "resource_type": "task",
+            "name": "Grow web traffic by 30%",
+            "owner": {}
+          }
+        ]
+      }
+    }
+  },
+  {
+    "id": "asana:POST:/api/1.0/goals#0",
+    "match": {
+      "method": "POST",
+      "path": "/api/1.0/goals"
+    },
+    "respond": {
+      "status": 201,
+      "body": {
+        "data": {
+          "gid": "12345",
+          "resource_type": "task",
+          "due_on": "2019-09-15",
+          "html_notes": "<body>Start building brand awareness.</body>",
+          "is_workspace_level": true,
+          "liked": false,
+          "name": "Grow web traffic by 30%",
+          "notes": "Start building brand awareness.",
+          "start_on": "2019-09-14",
+          "status": "green",
+          "current_status_update": {},
+          "followers": [
+            {
+              "name": {}
+            }
+          ],
+          "likes": [
+            {
+              "gid": "12345",
+              "user": {}
+            }
+          ],
+          "metric": {
+            "can_manage": true
+          },
+          "num_likes": 5,
+          "owner": {},
+          "team": {},
+          "time_period": {},
+          "workspace": {}
+        }
+      }
+    }
+  },
+  {
+    "id": "asana:GET:/api/1.0/goals/:goal_gid#0",
+    "match": {
+      "method": "GET",
+      "path": "/api/1.0/goals/:goal_gid"
+    },
+    "respond": {
+      "status": 200,
+      "body": {
+        "data": {
+          "gid": "12345",
+          "resource_type": "task",
+          "due_on": "2019-09-15",
+          "html_notes": "<body>Start building brand awareness.</body>",
+          "is_workspace_level": true,
+          "liked": false,
+          "name": "Grow web traffic by 30%",
+          "notes": "Start building brand awareness.",
+          "start_on": "2019-09-14",
+          "status": "green",
+          "current_status_update": {},
+          "followers": [
+            {
+              "name": {}
+            }
+          ],
+          "likes": [
+            {
+              "gid": "12345",
+              "user": {}
+            }
+          ],
+          "metric": {
+            "can_manage": true
+          },
+          "num_likes": 5,
+          "owner": {},
+          "team": {},
+          "time_period": {},
+          "workspace": {}
+        }
+      }
+    }
+  },
+  {
+    "id": "asana:PUT:/api/1.0/goals/:goal_gid#0",
+    "match": {
+      "method": "PUT",
+      "path": "/api/1.0/goals/:goal_gid"
+    },
+    "respond": {
+      "status": 200,
+      "body": {
+        "data": {
+          "gid": "12345",
+          "resource_type": "task",
+          "due_on": "2019-09-15",
+          "html_notes": "<body>Start building brand awareness.</body>",
+          "is_workspace_level": true,
+          "liked": false,
+          "name": "Grow web traffic by 30%",
+          "notes": "Start building brand awareness.",
+          "start_on": "2019-09-14",
+          "status": "green",
+          "current_status_update": {},
+          "followers": [
+            {
+              "name": {}
+            }
+          ],
+          "likes": [
+            {
+              "gid": "12345",
+              "user": {}
+            }
+          ],
+          "metric": {
+            "can_manage": true
+          },
+          "num_likes": 5,
+          "owner": {},
+          "team": {},
+          "time_period": {},
+          "workspace": {}
+        }
+      }
+    }
+  },
+  {
+    "id": "asana:DELETE:/api/1.0/goals/:goal_gid#0",
+    "match": {
+      "method": "DELETE",
+      "path": "/api/1.0/goals/:goal_gid"
+    },
+    "respond": {
+      "status": 200,
+      "body": {
+        "data": {}
+      }
+    }
+  },
+  {
+    "id": "asana:POST:/api/1.0/goals/:goal_gid/addFollowers#0",
+    "match": {
+      "method": "POST",
+      "path": "/api/1.0/goals/:goal_gid/addFollowers"
+    },
+    "respond": {
+      "status": 200,
+      "body": {
+        "data": {
+          "gid": "12345",
+          "resource_type": "task",
+          "due_on": "2019-09-15",
+          "html_notes": "<body>Start building brand awareness.</body>",
+          "is_workspace_level": true,
+          "liked": false,
+          "name": "Grow web traffic by 30%",
+          "notes": "Start building brand awareness.",
+          "start_on": "2019-09-14",
+          "status": "green",
+          "current_status_update": {},
+          "followers": [
+            {
+              "name": {}
+            }
+          ],
+          "likes": [
+            {
+              "gid": "12345",
+              "user": {}
+            }
+          ],
+          "metric": {
+            "can_manage": true
+          },
+          "num_likes": 5,
+          "owner": {},
+          "team": {},
+          "time_period": {},
+          "workspace": {}
+        }
+      }
+    }
+  },
+  {
+    "id": "asana:POST:/api/1.0/goals/:goal_gid/addSupportingRelationship#0",
+    "match": {
+      "method": "POST",
+      "path": "/api/1.0/goals/:goal_gid/addSupportingRelationship"
+    },
+    "respond": {
+      "status": 200,
+      "body": {
+        "data": {
+          "contribution_weight": {},
+          "resource_subtype": {},
+          "supporting_resource": {},
+          "supported_goal": {}
+        }
+      }
+    }
+  },
+  {
+    "id": "asana:GET:/api/1.0/goals/:goal_gid/parentGoals#0",
+    "match": {
+      "method": "GET",
+      "path": "/api/1.0/goals/:goal_gid/parentGoals"
+    },
+    "respond": {
+      "status": 200,
+      "body": {
+        "data": [
+          {
+            "gid": "12345",
+            "resource_type": "task",
+            "name": "Grow web traffic by 30%",
+            "owner": {}
+          }
+        ]
+      }
+    }
+  },
+  {
+    "id": "asana:POST:/api/1.0/goals/:goal_gid/removeFollowers#0",
+    "match": {
+      "method": "POST",
+      "path": "/api/1.0/goals/:goal_gid/removeFollowers"
+    },
+    "respond": {
+      "status": 200,
+      "body": {
+        "data": {
+          "gid": "12345",
+          "resource_type": "task",
+          "due_on": "2019-09-15",
+          "html_notes": "<body>Start building brand awareness.</body>",
+          "is_workspace_level": true,
+          "liked": false,
+          "name": "Grow web traffic by 30%",
+          "notes": "Start building brand awareness.",
+          "start_on": "2019-09-14",
+          "status": "green",
+          "current_status_update": {},
+          "followers": [
+            {
+              "name": {}
+            }
+          ],
+          "likes": [
+            {
+              "gid": "12345",
+              "user": {}
+            }
+          ],
+          "metric": {
+            "can_manage": true
+          },
+          "num_likes": 5,
+          "owner": {},
+          "team": {},
+          "time_period": {},
+          "workspace": {}
+        }
+      }
+    }
+  },
+  {
+    "id": "asana:POST:/api/1.0/goals/:goal_gid/removeSupportingRelationship#0",
+    "match": {
+      "method": "POST",
+      "path": "/api/1.0/goals/:goal_gid/removeSupportingRelationship"
+    },
+    "respond": {
+      "status": 200,
+      "body": {
+        "data": {}
+      }
+    }
+  },
+  {
+    "id": "asana:POST:/api/1.0/goals/:goal_gid/setMetric#0",
+    "match": {
+      "method": "POST",
+      "path": "/api/1.0/goals/:goal_gid/setMetric"
+    },
+    "respond": {
+      "status": 200,
+      "body": {
+        "data": {
+          "gid": "12345",
+          "resource_type": "task",
+          "due_on": "2019-09-15",
+          "html_notes": "<body>Start building brand awareness.</body>",
+          "is_workspace_level": true,
+          "liked": false,
+          "name": "Grow web traffic by 30%",
+          "notes": "Start building brand awareness.",
+          "start_on": "2019-09-14",
+          "status": "green",
+          "current_status_update": {},
+          "followers": [
+            {
+              "name": {}
+            }
+          ],
+          "likes": [
+            {
+              "gid": "12345",
+              "user": {}
+            }
+          ],
+          "metric": {
+            "can_manage": true
+          },
+          "num_likes": 5,
+          "owner": {},
+          "team": {},
+          "time_period": {},
+          "workspace": {}
+        }
+      }
+    }
+  },
+  {
+    "id": "asana:POST:/api/1.0/goals/:goal_gid/setMetricCurrentValue#0",
+    "match": {
+      "method": "POST",
+      "path": "/api/1.0/goals/:goal_gid/setMetricCurrentValue"
+    },
+    "respond": {
+      "status": 200,
+      "body": {
+        "data": {
+          "gid": "12345",
+          "resource_type": "task",
+          "due_on": "2019-09-15",
+          "html_notes": "<body>Start building brand awareness.</body>",
+          "is_workspace_level": true,
+          "liked": false,
+          "name": "Grow web traffic by 30%",
+          "notes": "Start building brand awareness.",
+          "start_on": "2019-09-14",
+          "status": "green",
+          "current_status_update": {},
+          "followers": [
+            {
+              "name": {}
+            }
+          ],
+          "likes": [
+            {
+              "gid": "12345",
+              "user": {}
+            }
+          ],
+          "metric": {
+            "can_manage": true
+          },
+          "num_likes": 5,
+          "owner": {},
+          "team": {},
+          "time_period": {},
+          "workspace": {}
+        }
+      }
+    }
+  },
+  {
+    "id": "asana:GET:/api/1.0/jobs/:job_gid#0",
+    "match": {
+      "method": "GET",
+      "path": "/api/1.0/jobs/:job_gid"
+    },
+    "respond": {
+      "status": 200,
+      "body": {
+        "data": {
+          "gid": "12345",
+          "resource_type": "task",
+          "new_project": {},
+          "new_project_template": {},
+          "new_task": {},
+          "resource_subtype": "duplicate_task",
+          "status": "in_progress"
+        }
+      }
+    }
+  },
+  {
+    "id": "asana:POST:/api/1.0/organization_exports#0",
+    "match": {
+      "method": "POST",
+      "path": "/api/1.0/organization_exports"
+    },
+    "respond": {
+      "status": 201,
+      "body": {
+        "data": {
+          "gid": "12345",
+          "resource_type": "task",
+          "created_at": "2012-02-22T02:06:58.147Z",
+          "download_url": "https://asana-export.s3.amazonaws.com/export-4632784536274-20170127-43246.json.gz?AWSAccessKeyId=xxxxxxxx",
+          "organization": {},
+          "state": "started"
+        }
+      }
+    }
+  },
+  {
+    "id": "asana:GET:/api/1.0/organization_exports/:organization_export_gid#0",
+    "match": {
+      "method": "GET",
+      "path": "/api/1.0/organization_exports/:organization_export_gid"
+    },
+    "respond": {
+      "status": 200,
+      "body": {
+        "data": {
+          "gid": "12345",
+          "resource_type": "task",
+          "created_at": "2012-02-22T02:06:58.147Z",
+          "download_url": "https://asana-export.s3.amazonaws.com/export-4632784536274-20170127-43246.json.gz?AWSAccessKeyId=xxxxxxxx",
+          "organization": {},
+          "state": "started"
+        }
+      }
+    }
+  },
+  {
+    "id": "asana:GET:/api/1.0/portfolio_memberships#0",
+    "match": {
+      "method": "GET",
+      "path": "/api/1.0/portfolio_memberships"
+    },
+    "respond": {
+      "status": 200,
+      "body": {
+        "data": [
+          {
+            "gid": "12345",
+            "resource_type": "task",
+            "portfolio": {
+              "name": {}
+            },
+            "user": {
+              "name": {}
+            }
+          }
+        ]
+      }
+    }
+  },
+  {
+    "id": "asana:GET:/api/1.0/portfolio_memberships/:portfolio_membership_gid#0",
+    "match": {
+      "method": "GET",
+      "path": "/api/1.0/portfolio_memberships/:portfolio_membership_gid"
+    },
+    "respond": {
+      "status": 200,
+      "body": {
+        "data": {
+          "gid": "12345",
+          "resource_type": "task",
+          "portfolio": {},
+          "user": {}
+        }
+      }
+    }
+  },
+  {
+    "id": "asana:GET:/api/1.0/portfolios#0",
+    "match": {
+      "method": "GET",
+      "path": "/api/1.0/portfolios"
+    },
+    "respond": {
+      "status": 200,
+      "body": {
+        "data": [
+          {
+            "gid": "12345",
+            "resource_type": "task",
+            "name": "Bug Portfolio"
+          }
+        ]
+      }
+    }
+  },
+  {
+    "id": "asana:POST:/api/1.0/portfolios#0",
+    "match": {
+      "method": "POST",
+      "path": "/api/1.0/portfolios"
+    },
+    "respond": {
+      "status": 201,
+      "body": {
+        "data": {
+          "name": {},
+          "color": "light-green",
+          "created_at": "2012-02-22T02:06:58.147Z",
+          "created_by": {
+            "gid": {},
+            "resource_type": {},
+            "name": {}
+          },
+          "current_status_update": {},
+          "custom_field_settings": [
+            {
+              "custom_field": {},
+              "is_important": {},
+              "parent": {},
+              "project": {}
+            }
+          ],
+          "custom_fields": [
+            {
+              "date_value": {},
+              "display_value": {},
+              "enabled": {},
+              "enum_options": {},
+              "enum_value": {},
+              "multi_enum_values": {},
+              "name": {},
+              "number_value": {},
+              "resource_subtype": {},
+              "text_value": {},
+              "type": {}
+            }
+          ],
+          "due_on": "2019-09-15",
+          "members": [
+            {
+              "name": {}
+            }
+          ],
+          "owner": {
+            "gid": {},
+            "resource_type": {},
+            "name": {}
+          },
+          "permalink_url": "https://app.asana.com/0/resource/123456789/list",
+          "public": false,
+          "start_on": "2019-09-14",
+          "workspace": {}
+        }
+      }
+    }
+  },
+  {
+    "id": "asana:GET:/api/1.0/portfolios/:portfolio_gid#0",
+    "match": {
+      "method": "GET",
+      "path": "/api/1.0/portfolios/:portfolio_gid"
+    },
+    "respond": {
+      "status": 200,
+      "body": {
+        "data": {
+          "name": {},
+          "color": "light-green",
+          "created_at": "2012-02-22T02:06:58.147Z",
+          "created_by": {
+            "gid": {},
+            "resource_type": {},
+            "name": {}
+          },
+          "current_status_update": {},
+          "custom_field_settings": [
+            {
+              "custom_field": {},
+              "is_important": {},
+              "parent": {},
+              "project": {}
+            }
+          ],
+          "custom_fields": [
+            {
+              "date_value": {},
+              "display_value": {},
+              "enabled": {},
+              "enum_options": {},
+              "enum_value": {},
+              "multi_enum_values": {},
+              "name": {},
+              "number_value": {},
+              "resource_subtype": {},
+              "text_value": {},
+              "type": {}
+            }
+          ],
+          "due_on": "2019-09-15",
+          "members": [
+            {
+              "name": {}
+            }
+          ],
+          "owner": {
+            "gid": {},
+            "resource_type": {},
+            "name": {}
+          },
+          "permalink_url": "https://app.asana.com/0/resource/123456789/list",
+          "public": false,
+          "start_on": "2019-09-14",
+          "workspace": {}
+        }
+      }
+    }
+  },
+  {
+    "id": "asana:PUT:/api/1.0/portfolios/:portfolio_gid#0",
+    "match": {
+      "method": "PUT",
+      "path": "/api/1.0/portfolios/:portfolio_gid"
+    },
+    "respond": {
+      "status": 200,
+      "body": {
+        "data": {
+          "name": {},
+          "color": "light-green",
+          "created_at": "2012-02-22T02:06:58.147Z",
+          "created_by": {
+            "gid": {},
+            "resource_type": {},
+            "name": {}
+          },
+          "current_status_update": {},
+          "custom_field_settings": [
+            {
+              "custom_field": {},
+              "is_important": {},
+              "parent": {},
+              "project": {}
+            }
+          ],
+          "custom_fields": [
+            {
+              "date_value": {},
+              "display_value": {},
+              "enabled": {},
+              "enum_options": {},
+              "enum_value": {},
+              "multi_enum_values": {},
+              "name": {},
+              "number_value": {},
+              "resource_subtype": {},
+              "text_value": {},
+              "type": {}
+            }
+          ],
+          "due_on": "2019-09-15",
+          "members": [
+            {
+              "name": {}
+            }
+          ],
+          "owner": {
+            "gid": {},
+            "resource_type": {},
+            "name": {}
+          },
+          "permalink_url": "https://app.asana.com/0/resource/123456789/list",
+          "public": false,
+          "start_on": "2019-09-14",
+          "workspace": {}
+        }
+      }
+    }
+  },
+  {
+    "id": "asana:DELETE:/api/1.0/portfolios/:portfolio_gid#0",
+    "match": {
+      "method": "DELETE",
+      "path": "/api/1.0/portfolios/:portfolio_gid"
+    },
+    "respond": {
+      "status": 200,
+      "body": {
+        "data": {}
+      }
+    }
+  },
+  {
+    "id": "asana:POST:/api/1.0/portfolios/:portfolio_gid/addCustomFieldSetting#0",
+    "match": {
+      "method": "POST",
+      "path": "/api/1.0/portfolios/:portfolio_gid/addCustomFieldSetting"
+    },
+    "respond": {
+      "status": 200,
+      "body": {
+        "data": {
+          "gid": {},
+          "resource_type": {},
+          "custom_field": {},
+          "is_important": false,
+          "parent": {},
+          "project": {}
+        }
+      }
+    }
+  },
+  {
+    "id": "asana:POST:/api/1.0/portfolios/:portfolio_gid/addItem#0",
+    "match": {
+      "method": "POST",
+      "path": "/api/1.0/portfolios/:portfolio_gid/addItem"
+    },
+    "respond": {
+      "status": 200,
+      "body": {
+        "data": {}
+      }
+    }
+  },
+  {
+    "id": "asana:POST:/api/1.0/portfolios/:portfolio_gid/addMembers#0",
+    "match": {
+      "method": "POST",
+      "path": "/api/1.0/portfolios/:portfolio_gid/addMembers"
+    },
+    "respond": {
+      "status": 200,
+      "body": {
+        "data": {
+          "name": {},
+          "color": "light-green",
+          "created_at": "2012-02-22T02:06:58.147Z",
+          "created_by": {
+            "gid": {},
+            "resource_type": {},
+            "name": {}
+          },
+          "current_status_update": {},
+          "custom_field_settings": [
+            {
+              "custom_field": {},
+              "is_important": {},
+              "parent": {},
+              "project": {}
+            }
+          ],
+          "custom_fields": [
+            {
+              "date_value": {},
+              "display_value": {},
+              "enabled": {},
+              "enum_options": {},
+              "enum_value": {},
+              "multi_enum_values": {},
+              "name": {},
+              "number_value": {},
+              "resource_subtype": {},
+              "text_value": {},
+              "type": {}
+            }
+          ],
+          "due_on": "2019-09-15",
+          "members": [
+            {
+              "name": {}
+            }
+          ],
+          "owner": {
+            "gid": {},
+            "resource_type": {},
+            "name": {}
+          },
+          "permalink_url": "https://app.asana.com/0/resource/123456789/list",
+          "public": false,
+          "start_on": "2019-09-14",
+          "workspace": {}
+        }
+      }
+    }
+  },
+  {
+    "id": "asana:GET:/api/1.0/portfolios/:portfolio_gid/custom_field_settings#0",
+    "match": {
+      "method": "GET",
+      "path": "/api/1.0/portfolios/:portfolio_gid/custom_field_settings"
+    },
+    "respond": {
+      "status": 200,
+      "body": {
+        "data": [
+          {
+            "gid": {},
+            "resource_type": {},
+            "custom_field": {},
+            "is_important": false,
+            "parent": {},
+            "project": {}
+          }
+        ]
+      }
+    }
+  },
+  {
+    "id": "asana:GET:/api/1.0/portfolios/:portfolio_gid/items#0",
+    "match": {
+      "method": "GET",
+      "path": "/api/1.0/portfolios/:portfolio_gid/items"
+    },
+    "respond": {
+      "status": 200,
+      "body": {
+        "data": [
+          {
+            "gid": "12345",
+            "resource_type": "task",
+            "name": "Stuff to buy"
+          }
+        ]
+      }
+    }
+  },
+  {
+    "id": "asana:GET:/api/1.0/portfolios/:portfolio_gid/portfolio_memberships#0",
+    "match": {
+      "method": "GET",
+      "path": "/api/1.0/portfolios/:portfolio_gid/portfolio_memberships"
+    },
+    "respond": {
+      "status": 200,
+      "body": {
+        "data": [
+          {
+            "gid": "12345",
+            "resource_type": "task",
+            "portfolio": {
+              "name": {}
+            },
+            "user": {
+              "name": {}
+            }
+          }
+        ]
+      }
+    }
+  },
+  {
+    "id": "asana:POST:/api/1.0/portfolios/:portfolio_gid/removeCustomFieldSetting#0",
+    "match": {
+      "method": "POST",
+      "path": "/api/1.0/portfolios/:portfolio_gid/removeCustomFieldSetting"
+    },
+    "respond": {
+      "status": 200,
+      "body": {
+        "data": {}
+      }
+    }
+  },
+  {
+    "id": "asana:POST:/api/1.0/portfolios/:portfolio_gid/removeItem#0",
+    "match": {
+      "method": "POST",
+      "path": "/api/1.0/portfolios/:portfolio_gid/removeItem"
+    },
+    "respond": {
+      "status": 200,
+      "body": {
+        "data": {}
+      }
+    }
+  },
+  {
+    "id": "asana:POST:/api/1.0/portfolios/:portfolio_gid/removeMembers#0",
+    "match": {
+      "method": "POST",
+      "path": "/api/1.0/portfolios/:portfolio_gid/removeMembers"
+    },
+    "respond": {
+      "status": 200,
+      "body": {
+        "data": {
+          "name": {},
+          "color": "light-green",
+          "created_at": "2012-02-22T02:06:58.147Z",
+          "created_by": {
+            "gid": {},
+            "resource_type": {},
+            "name": {}
+          },
+          "current_status_update": {},
+          "custom_field_settings": [
+            {
+              "custom_field": {},
+              "is_important": {},
+              "parent": {},
+              "project": {}
+            }
+          ],
+          "custom_fields": [
+            {
+              "date_value": {},
+              "display_value": {},
+              "enabled": {},
+              "enum_options": {},
+              "enum_value": {},
+              "multi_enum_values": {},
+              "name": {},
+              "number_value": {},
+              "resource_subtype": {},
+              "text_value": {},
+              "type": {}
+            }
+          ],
+          "due_on": "2019-09-15",
+          "members": [
+            {
+              "name": {}
+            }
+          ],
+          "owner": {
+            "gid": {},
+            "resource_type": {},
+            "name": {}
+          },
+          "permalink_url": "https://app.asana.com/0/resource/123456789/list",
+          "public": false,
+          "start_on": "2019-09-14",
+          "workspace": {}
+        }
+      }
+    }
+  },
+  {
+    "id": "asana:GET:/api/1.0/project_briefs/:project_brief_gid#0",
+    "match": {
+      "method": "GET",
+      "path": "/api/1.0/project_briefs/:project_brief_gid"
+    },
+    "respond": {
+      "status": 200,
+      "body": {
+        "data": {
+          "html_text": "<body>This is a <strong>project brief</strong>.</body>",
+          "title": "Stuff to buy — Project Brief",
+          "permalink_url": "https://app.asana.com/0/11111111/22222222",
+          "project": {},
+          "text": "This is a project brief."
+        }
+      }
+    }
+  },
+  {
+    "id": "asana:PUT:/api/1.0/project_briefs/:project_brief_gid#0",
+    "match": {
+      "method": "PUT",
+      "path": "/api/1.0/project_briefs/:project_brief_gid"
+    },
+    "respond": {
+      "status": 200,
+      "body": {
+        "data": {
+          "html_text": "<body>This is a <strong>project brief</strong>.</body>",
+          "title": "Stuff to buy — Project Brief",
+          "permalink_url": "https://app.asana.com/0/11111111/22222222",
+          "project": {},
+          "text": "This is a project brief."
+        }
+      }
+    }
+  },
+  {
+    "id": "asana:DELETE:/api/1.0/project_briefs/:project_brief_gid#0",
+    "match": {
+      "method": "DELETE",
+      "path": "/api/1.0/project_briefs/:project_brief_gid"
+    },
+    "respond": {
+      "status": 200,
+      "body": {
+        "data": {}
+      }
+    }
+  },
+  {
+    "id": "asana:GET:/api/1.0/project_memberships/:project_membership_gid#0",
+    "match": {
+      "method": "GET",
+      "path": "/api/1.0/project_memberships/:project_membership_gid"
+    },
+    "respond": {
+      "status": 200,
+      "body": {
+        "data": {
+          "gid": {},
+          "resource_type": {},
+          "user": {},
+          "project": {
+            "gid": {},
+            "resource_type": {},
+            "name": {}
+          },
+          "write_access": "full_write"
+        }
+      }
+    }
+  },
+  {
+    "id": "asana:GET:/api/1.0/project_statuses/:project_status_gid#0",
+    "match": {
+      "method": "GET",
+      "path": "/api/1.0/project_statuses/:project_status_gid"
+    },
+    "respond": {
+      "status": 200,
+      "body": {
+        "data": {
+          "title": {},
+          "color": "green",
+          "html_text": "<body>The project <strong>is</strong> moving forward according to plan...</body>",
+          "text": "The project is moving forward according to plan...",
+          "author": {
+            "gid": {},
+            "resource_type": {},
+            "name": {}
+          },
+          "created_at": "2012-02-22T02:06:58.147Z",
+          "created_by": {
+            "gid": {},
+            "resource_type": {},
+            "name": {}
+          },
+          "modified_at": "2012-02-22T02:06:58.147Z"
+        }
+      }
+    }
+  },
+  {
+    "id": "asana:DELETE:/api/1.0/project_statuses/:project_status_gid#0",
+    "match": {
+      "method": "DELETE",
+      "path": "/api/1.0/project_statuses/:project_status_gid"
+    },
+    "respond": {
+      "status": 200,
+      "body": {
+        "data": {}
+      }
+    }
+  },
+  {
+    "id": "asana:GET:/api/1.0/project_templates#0",
+    "match": {
+      "method": "GET",
+      "path": "/api/1.0/project_templates"
+    },
+    "respond": {
+      "status": 200,
+      "body": {
+        "data": [
+          {
+            "gid": "12345",
+            "resource_type": "task",
+            "name": "Packing list"
+          }
+        ]
+      }
+    }
+  },
+  {
+    "id": "asana:GET:/api/1.0/project_templates/:project_template_gid#0",
+    "match": {
+      "method": "GET",
+      "path": "/api/1.0/project_templates/:project_template_gid"
+    },
+    "respond": {
+      "status": 200,
+      "body": {
+        "data": {
+          "name": {},
+          "color": "light-green",
+          "description": "These are things we need to pack for a trip.",
+          "html_description": "<body>These are things we need to pack for a trip.</body>",
+          "owner": {},
+          "public": false,
+          "requested_dates": [
+            {}
+          ],
+          "team": {}
+        }
+      }
+    }
+  },
+  {
+    "id": "asana:POST:/api/1.0/project_templates/:project_template_gid/instantiateProject#0",
+    "match": {
+      "method": "POST",
+      "path": "/api/1.0/project_templates/:project_template_gid/instantiateProject"
+    },
+    "respond": {
+      "status": 201,
+      "body": {
+        "data": {
+          "gid": "12345",
+          "resource_type": "task",
+          "new_project": {},
+          "new_project_template": {},
+          "new_task": {},
+          "resource_subtype": "duplicate_task",
+          "status": "in_progress"
+        }
+      }
+    }
+  },
+  {
+    "id": "asana:GET:/api/1.0/projects#0",
+    "match": {
+      "method": "GET",
+      "path": "/api/1.0/projects"
+    },
+    "respond": {
+      "status": 200,
+      "body": {
+        "data": [
+          {
+            "gid": "12345",
+            "resource_type": "task",
+            "name": "Stuff to buy"
+          }
+        ]
+      }
+    }
+  },
+  {
+    "id": "asana:POST:/api/1.0/projects#0",
+    "match": {
+      "method": "POST",
+      "path": "/api/1.0/projects"
+    },
+    "respond": {
+      "status": 201,
+      "body": {
+        "data": {
+          "name": {},
+          "archived": false,
+          "color": "light-green",
+          "created_at": "2012-02-22T02:06:58.147Z",
+          "current_status": {},
+          "current_status_update": {},
+          "custom_field_settings": [
+            {}
+          ],
+          "default_view": "calendar",
+          "due_date": "2019-09-15",
+          "due_on": "2019-09-15",
+          "html_notes": "<body>These are things we need to purchase.</body>",
+          "is_template": false,
+          "members": [
+            {}
+          ],
+          "modified_at": "2012-02-22T02:06:58.147Z",
+          "notes": "These are things we need to purchase.",
+          "public": false,
+          "start_on": "2019-09-14",
+          "workspace": {},
+          "completed": false,
+          "completed_at": "2012-02-22T02:06:58.147Z",
+          "completed_by": {
+            "gid": {},
+            "resource_type": {},
+            "name": {}
+          },
+          "created_from_template": {},
+          "custom_fields": [
+            {
+              "date_value": {},
+              "display_value": {},
+              "enabled": {},
+              "enum_options": {},
+              "enum_value": {},
+              "multi_enum_values": {},
+              "name": {},
+              "number_value": {},
+              "resource_subtype": {},
+              "text_value": {},
+              "type": {}
+            }
+          ],
+          "followers": [
+            {
+              "name": {}
+            }
+          ],
+          "icon": "chat_bubbles",
+          "owner": {},
+          "permalink_url": "https://app.asana.com/0/resource/123456789/list",
+          "project_brief": {},
+          "team": {}
+        }
+      }
+    }
+  },
+  {
+    "id": "asana:GET:/api/1.0/projects/:project_gid#0",
+    "match": {
+      "method": "GET",
+      "path": "/api/1.0/projects/:project_gid"
+    },
+    "respond": {
+      "status": 200,
+      "body": {
+        "data": {
+          "name": {},
+          "archived": false,
+          "color": "light-green",
+          "created_at": "2012-02-22T02:06:58.147Z",
+          "current_status": {},
+          "current_status_update": {},
+          "custom_field_settings": [
+            {}
+          ],
+          "default_view": "calendar",
+          "due_date": "2019-09-15",
+          "due_on": "2019-09-15",
+          "html_notes": "<body>These are things we need to purchase.</body>",
+          "is_template": false,
+          "members": [
+            {}
+          ],
+          "modified_at": "2012-02-22T02:06:58.147Z",
+          "notes": "These are things we need to purchase.",
+          "public": false,
+          "start_on": "2019-09-14",
+          "workspace": {},
+          "completed": false,
+          "completed_at": "2012-02-22T02:06:58.147Z",
+          "completed_by": {
+            "gid": {},
+            "resource_type": {},
+            "name": {}
+          },
+          "created_from_template": {},
+          "custom_fields": [
+            {
+              "date_value": {},
+              "display_value": {},
+              "enabled": {},
+              "enum_options": {},
+              "enum_value": {},
+              "multi_enum_values": {},
+              "name": {},
+              "number_value": {},
+              "resource_subtype": {},
+              "text_value": {},
+              "type": {}
+            }
+          ],
+          "followers": [
+            {
+              "name": {}
+            }
+          ],
+          "icon": "chat_bubbles",
+          "owner": {},
+          "permalink_url": "https://app.asana.com/0/resource/123456789/list",
+          "project_brief": {},
+          "team": {}
+        }
+      }
+    }
+  },
+  {
+    "id": "asana:PUT:/api/1.0/projects/:project_gid#0",
+    "match": {
+      "method": "PUT",
+      "path": "/api/1.0/projects/:project_gid"
+    },
+    "respond": {
+      "status": 200,
+      "body": {
+        "data": {
+          "name": {},
+          "archived": false,
+          "color": "light-green",
+          "created_at": "2012-02-22T02:06:58.147Z",
+          "current_status": {},
+          "current_status_update": {},
+          "custom_field_settings": [
+            {}
+          ],
+          "default_view": "calendar",
+          "due_date": "2019-09-15",
+          "due_on": "2019-09-15",
+          "html_notes": "<body>These are things we need to purchase.</body>",
+          "is_template": false,
+          "members": [
+            {}
+          ],
+          "modified_at": "2012-02-22T02:06:58.147Z",
+          "notes": "These are things we need to purchase.",
+          "public": false,
+          "start_on": "2019-09-14",
+          "workspace": {},
+          "completed": false,
+          "completed_at": "2012-02-22T02:06:58.147Z",
+          "completed_by": {
+            "gid": {},
+            "resource_type": {},
+            "name": {}
+          },
+          "created_from_template": {},
+          "custom_fields": [
+            {
+              "date_value": {},
+              "display_value": {},
+              "enabled": {},
+              "enum_options": {},
+              "enum_value": {},
+              "multi_enum_values": {},
+              "name": {},
+              "number_value": {},
+              "resource_subtype": {},
+              "text_value": {},
+              "type": {}
+            }
+          ],
+          "followers": [
+            {
+              "name": {}
+            }
+          ],
+          "icon": "chat_bubbles",
+          "owner": {},
+          "permalink_url": "https://app.asana.com/0/resource/123456789/list",
+          "project_brief": {},
+          "team": {}
+        }
+      }
+    }
+  },
+  {
+    "id": "asana:DELETE:/api/1.0/projects/:project_gid#0",
+    "match": {
+      "method": "DELETE",
+      "path": "/api/1.0/projects/:project_gid"
+    },
+    "respond": {
+      "status": 200,
+      "body": {
+        "data": {}
+      }
+    }
+  },
+  {
+    "id": "asana:POST:/api/1.0/projects/:project_gid/addCustomFieldSetting#0",
+    "match": {
+      "method": "POST",
+      "path": "/api/1.0/projects/:project_gid/addCustomFieldSetting"
+    },
+    "respond": {
+      "status": 200,
+      "body": {
+        "data": {
+          "gid": {},
+          "resource_type": {},
+          "custom_field": {},
+          "is_important": false,
+          "parent": {},
+          "project": {}
+        }
+      }
+    }
+  },
+  {
+    "id": "asana:POST:/api/1.0/projects/:project_gid/addFollowers#0",
+    "match": {
+      "method": "POST",
+      "path": "/api/1.0/projects/:project_gid/addFollowers"
+    },
+    "respond": {
+      "status": 200,
+      "body": {
+        "data": {
+          "name": {},
+          "archived": false,
+          "color": "light-green",
+          "created_at": "2012-02-22T02:06:58.147Z",
+          "current_status": {},
+          "current_status_update": {},
+          "custom_field_settings": [
+            {}
+          ],
+          "default_view": "calendar",
+          "due_date": "2019-09-15",
+          "due_on": "2019-09-15",
+          "html_notes": "<body>These are things we need to purchase.</body>",
+          "is_template": false,
+          "members": [
+            {}
+          ],
+          "modified_at": "2012-02-22T02:06:58.147Z",
+          "notes": "These are things we need to purchase.",
+          "public": false,
+          "start_on": "2019-09-14",
+          "workspace": {},
+          "completed": false,
+          "completed_at": "2012-02-22T02:06:58.147Z",
+          "completed_by": {
+            "gid": {},
+            "resource_type": {},
+            "name": {}
+          },
+          "created_from_template": {},
+          "custom_fields": [
+            {
+              "date_value": {},
+              "display_value": {},
+              "enabled": {},
+              "enum_options": {},
+              "enum_value": {},
+              "multi_enum_values": {},
+              "name": {},
+              "number_value": {},
+              "resource_subtype": {},
+              "text_value": {},
+              "type": {}
+            }
+          ],
+          "followers": [
+            {
+              "name": {}
+            }
+          ],
+          "icon": "chat_bubbles",
+          "owner": {},
+          "permalink_url": "https://app.asana.com/0/resource/123456789/list",
+          "project_brief": {},
+          "team": {}
+        }
+      }
+    }
+  },
+  {
+    "id": "asana:POST:/api/1.0/projects/:project_gid/addMembers#0",
+    "match": {
+      "method": "POST",
+      "path": "/api/1.0/projects/:project_gid/addMembers"
+    },
+    "respond": {
+      "status": 200,
+      "body": {
+        "data": {
+          "name": {},
+          "archived": false,
+          "color": "light-green",
+          "created_at": "2012-02-22T02:06:58.147Z",
+          "current_status": {},
+          "current_status_update": {},
+          "custom_field_settings": [
+            {}
+          ],
+          "default_view": "calendar",
+          "due_date": "2019-09-15",
+          "due_on": "2019-09-15",
+          "html_notes": "<body>These are things we need to purchase.</body>",
+          "is_template": false,
+          "members": [
+            {}
+          ],
+          "modified_at": "2012-02-22T02:06:58.147Z",
+          "notes": "These are things we need to purchase.",
+          "public": false,
+          "start_on": "2019-09-14",
+          "workspace": {},
+          "completed": false,
+          "completed_at": "2012-02-22T02:06:58.147Z",
+          "completed_by": {
+            "gid": {},
+            "resource_type": {},
+            "name": {}
+          },
+          "created_from_template": {},
+          "custom_fields": [
+            {
+              "date_value": {},
+              "display_value": {},
+              "enabled": {},
+              "enum_options": {},
+              "enum_value": {},
+              "multi_enum_values": {},
+              "name": {},
+              "number_value": {},
+              "resource_subtype": {},
+              "text_value": {},
+              "type": {}
+            }
+          ],
+          "followers": [
+            {
+              "name": {}
+            }
+          ],
+          "icon": "chat_bubbles",
+          "owner": {},
+          "permalink_url": "https://app.asana.com/0/resource/123456789/list",
+          "project_brief": {},
+          "team": {}
+        }
+      }
+    }
+  },
+  {
+    "id": "asana:GET:/api/1.0/projects/:project_gid/custom_field_settings#0",
+    "match": {
+      "method": "GET",
+      "path": "/api/1.0/projects/:project_gid/custom_field_settings"
+    },
+    "respond": {
+      "status": 200,
+      "body": {
+        "data": [
+          {
+            "gid": {},
+            "resource_type": {},
+            "custom_field": {},
+            "is_important": false,
+            "parent": {},
+            "project": {}
+          }
+        ]
+      }
+    }
+  },
+  {
+    "id": "asana:POST:/api/1.0/projects/:project_gid/duplicate#0",
+    "match": {
+      "method": "POST",
+      "path": "/api/1.0/projects/:project_gid/duplicate"
+    },
+    "respond": {
+      "status": 201,
+      "body": {
+        "data": {
+          "gid": "12345",
+          "resource_type": "task",
+          "new_project": {},
+          "new_project_template": {},
+          "new_task": {},
+          "resource_subtype": "duplicate_task",
+          "status": "in_progress"
+        }
+      }
+    }
+  },
+  {
+    "id": "asana:POST:/api/1.0/projects/:project_gid/project_briefs#0",
+    "match": {
+      "method": "POST",
+      "path": "/api/1.0/projects/:project_gid/project_briefs"
+    },
+    "respond": {
+      "status": 201,
+      "body": {
+        "data": {
+          "html_text": "<body>This is a <strong>project brief</strong>.</body>",
+          "title": "Stuff to buy — Project Brief",
+          "permalink_url": "https://app.asana.com/0/11111111/22222222",
+          "project": {},
+          "text": "This is a project brief."
+        }
+      }
+    }
+  },
+  {
+    "id": "asana:GET:/api/1.0/projects/:project_gid/project_memberships#0",
+    "match": {
+      "method": "GET",
+      "path": "/api/1.0/projects/:project_gid/project_memberships"
+    },
+    "respond": {
+      "status": 200,
+      "body": {
+        "data": [
+          {
+            "gid": "12345",
+            "resource_type": "task",
+            "user": {
+              "name": {}
+            }
+          }
+        ]
+      }
+    }
+  },
+  {
+    "id": "asana:GET:/api/1.0/projects/:project_gid/project_statuses#0",
+    "match": {
+      "method": "GET",
+      "path": "/api/1.0/projects/:project_gid/project_statuses"
+    },
+    "respond": {
+      "status": 200,
+      "body": {
+        "data": [
+          {
+            "gid": "12345",
+            "resource_type": "task",
+            "title": "Status Update - Jun 15"
+          }
+        ]
+      }
+    }
+  },
+  {
+    "id": "asana:POST:/api/1.0/projects/:project_gid/project_statuses#0",
+    "match": {
+      "method": "POST",
+      "path": "/api/1.0/projects/:project_gid/project_statuses"
+    },
+    "respond": {
+      "status": 201,
+      "body": {
+        "data": {
+          "title": {},
+          "color": "green",
+          "html_text": "<body>The project <strong>is</strong> moving forward according to plan...</body>",
+          "text": "The project is moving forward according to plan...",
+          "author": {
+            "gid": {},
+            "resource_type": {},
+            "name": {}
+          },
+          "created_at": "2012-02-22T02:06:58.147Z",
+          "created_by": {
+            "gid": {},
+            "resource_type": {},
+            "name": {}
+          },
+          "modified_at": "2012-02-22T02:06:58.147Z"
+        }
+      }
+    }
+  },
+  {
+    "id": "asana:POST:/api/1.0/projects/:project_gid/removeCustomFieldSetting#0",
+    "match": {
+      "method": "POST",
+      "path": "/api/1.0/projects/:project_gid/removeCustomFieldSetting"
+    },
+    "respond": {
+      "status": 200,
+      "body": {
+        "data": {}
+      }
+    }
+  },
+  {
+    "id": "asana:POST:/api/1.0/projects/:project_gid/removeFollowers#0",
+    "match": {
+      "method": "POST",
+      "path": "/api/1.0/projects/:project_gid/removeFollowers"
+    },
+    "respond": {
+      "status": 200,
+      "body": {
+        "data": {
+          "name": {},
+          "archived": false,
+          "color": "light-green",
+          "created_at": "2012-02-22T02:06:58.147Z",
+          "current_status": {},
+          "current_status_update": {},
+          "custom_field_settings": [
+            {}
+          ],
+          "default_view": "calendar",
+          "due_date": "2019-09-15",
+          "due_on": "2019-09-15",
+          "html_notes": "<body>These are things we need to purchase.</body>",
+          "is_template": false,
+          "members": [
+            {}
+          ],
+          "modified_at": "2012-02-22T02:06:58.147Z",
+          "notes": "These are things we need to purchase.",
+          "public": false,
+          "start_on": "2019-09-14",
+          "workspace": {},
+          "completed": false,
+          "completed_at": "2012-02-22T02:06:58.147Z",
+          "completed_by": {
+            "gid": {},
+            "resource_type": {},
+            "name": {}
+          },
+          "created_from_template": {},
+          "custom_fields": [
+            {
+              "date_value": {},
+              "display_value": {},
+              "enabled": {},
+              "enum_options": {},
+              "enum_value": {},
+              "multi_enum_values": {},
+              "name": {},
+              "number_value": {},
+              "resource_subtype": {},
+              "text_value": {},
+              "type": {}
+            }
+          ],
+          "followers": [
+            {
+              "name": {}
+            }
+          ],
+          "icon": "chat_bubbles",
+          "owner": {},
+          "permalink_url": "https://app.asana.com/0/resource/123456789/list",
+          "project_brief": {},
+          "team": {}
+        }
+      }
+    }
+  },
+  {
+    "id": "asana:POST:/api/1.0/projects/:project_gid/removeMembers#0",
+    "match": {
+      "method": "POST",
+      "path": "/api/1.0/projects/:project_gid/removeMembers"
+    },
+    "respond": {
+      "status": 200,
+      "body": {
+        "data": {
+          "name": {},
+          "archived": false,
+          "color": "light-green",
+          "created_at": "2012-02-22T02:06:58.147Z",
+          "current_status": {},
+          "current_status_update": {},
+          "custom_field_settings": [
+            {}
+          ],
+          "default_view": "calendar",
+          "due_date": "2019-09-15",
+          "due_on": "2019-09-15",
+          "html_notes": "<body>These are things we need to purchase.</body>",
+          "is_template": false,
+          "members": [
+            {}
+          ],
+          "modified_at": "2012-02-22T02:06:58.147Z",
+          "notes": "These are things we need to purchase.",
+          "public": false,
+          "start_on": "2019-09-14",
+          "workspace": {},
+          "completed": false,
+          "completed_at": "2012-02-22T02:06:58.147Z",
+          "completed_by": {
+            "gid": {},
+            "resource_type": {},
+            "name": {}
+          },
+          "created_from_template": {},
+          "custom_fields": [
+            {
+              "date_value": {},
+              "display_value": {},
+              "enabled": {},
+              "enum_options": {},
+              "enum_value": {},
+              "multi_enum_values": {},
+              "name": {},
+              "number_value": {},
+              "resource_subtype": {},
+              "text_value": {},
+              "type": {}
+            }
+          ],
+          "followers": [
+            {
+              "name": {}
+            }
+          ],
+          "icon": "chat_bubbles",
+          "owner": {},
+          "permalink_url": "https://app.asana.com/0/resource/123456789/list",
+          "project_brief": {},
+          "team": {}
+        }
+      }
+    }
+  },
+  {
+    "id": "asana:POST:/api/1.0/projects/:project_gid/saveAsTemplate#0",
+    "match": {
+      "method": "POST",
+      "path": "/api/1.0/projects/:project_gid/saveAsTemplate"
+    },
+    "respond": {
+      "status": 201,
+      "body": {
+        "data": {
+          "gid": "12345",
+          "resource_type": "task",
+          "new_project": {},
+          "new_project_template": {},
+          "new_task": {},
+          "resource_subtype": "duplicate_task",
+          "status": "in_progress"
+        }
+      }
+    }
+  },
+  {
+    "id": "asana:GET:/api/1.0/projects/:project_gid/sections#0",
+    "match": {
+      "method": "GET",
+      "path": "/api/1.0/projects/:project_gid/sections"
+    },
+    "respond": {
+      "status": 200,
+      "body": {
+        "data": [
+          {
+            "gid": "12345",
+            "resource_type": "task",
+            "name": "Next Actions"
+          }
+        ]
+      }
+    }
+  },
+  {
+    "id": "asana:POST:/api/1.0/projects/:project_gid/sections#0",
+    "match": {
+      "method": "POST",
+      "path": "/api/1.0/projects/:project_gid/sections"
+    },
+    "respond": {
+      "status": 201,
+      "body": {
+        "data": {
+          "gid": {},
+          "resource_type": {},
+          "name": "Next Actions",
+          "created_at": "2012-02-22T02:06:58.147Z",
+          "project": {
+            "gid": {},
+            "resource_type": {},
+            "name": {}
+          },
+          "projects": [
+            {
+              "name": {}
+            }
+          ]
+        }
+      }
+    }
+  },
+  {
+    "id": "asana:POST:/api/1.0/projects/:project_gid/sections/insert#0",
+    "match": {
+      "method": "POST",
+      "path": "/api/1.0/projects/:project_gid/sections/insert"
+    },
+    "respond": {
+      "status": 200,
+      "body": {
+        "data": {}
+      }
+    }
+  },
+  {
+    "id": "asana:GET:/api/1.0/projects/:project_gid/task_counts#0",
+    "match": {
+      "method": "GET",
+      "path": "/api/1.0/projects/:project_gid/task_counts"
+    },
+    "respond": {
+      "status": 200,
+      "body": {
+        "data": {
+          "num_completed_milestones": 3,
+          "num_completed_tasks": 150,
+          "num_incomplete_milestones": 7,
+          "num_incomplete_tasks": 50,
+          "num_milestones": 10,
+          "num_tasks": 200
+        }
+      }
+    }
+  },
+  {
+    "id": "asana:GET:/api/1.0/projects/:project_gid/tasks#0",
+    "match": {
+      "method": "GET",
+      "path": "/api/1.0/projects/:project_gid/tasks"
+    },
+    "respond": {
+      "status": 200,
+      "body": {
+        "data": [
+          {
+            "gid": "12345",
+            "resource_type": "task",
+            "name": "Bug Task",
+            "resource_subtype": "default_task"
+          }
+        ]
+      }
+    }
+  },
+  {
+    "id": "asana:GET:/api/1.0/sections/:section_gid#0",
+    "match": {
+      "method": "GET",
+      "path": "/api/1.0/sections/:section_gid"
+    },
+    "respond": {
+      "status": 200,
+      "body": {
+        "data": {
+          "gid": {},
+          "resource_type": {},
+          "name": "Next Actions",
+          "created_at": "2012-02-22T02:06:58.147Z",
+          "project": {
+            "gid": {},
+            "resource_type": {},
+            "name": {}
+          },
+          "projects": [
+            {
+              "name": {}
+            }
+          ]
+        }
+      }
+    }
+  },
+  {
+    "id": "asana:PUT:/api/1.0/sections/:section_gid#0",
+    "match": {
+      "method": "PUT",
+      "path": "/api/1.0/sections/:section_gid"
+    },
+    "respond": {
+      "status": 200,
+      "body": {
+        "data": {
+          "gid": {},
+          "resource_type": {},
+          "name": "Next Actions",
+          "created_at": "2012-02-22T02:06:58.147Z",
+          "project": {
+            "gid": {},
+            "resource_type": {},
+            "name": {}
+          },
+          "projects": [
+            {
+              "name": {}
+            }
+          ]
+        }
+      }
+    }
+  },
+  {
+    "id": "asana:DELETE:/api/1.0/sections/:section_gid#0",
+    "match": {
+      "method": "DELETE",
+      "path": "/api/1.0/sections/:section_gid"
+    },
+    "respond": {
+      "status": 200,
+      "body": {
+        "data": {}
+      }
+    }
+  },
+  {
+    "id": "asana:POST:/api/1.0/sections/:section_gid/addTask#0",
+    "match": {
+      "method": "POST",
+      "path": "/api/1.0/sections/:section_gid/addTask"
+    },
+    "respond": {
+      "status": 200,
+      "body": {
+        "data": {}
+      }
+    }
+  },
+  {
+    "id": "asana:GET:/api/1.0/sections/:section_gid/tasks#0",
+    "match": {
+      "method": "GET",
+      "path": "/api/1.0/sections/:section_gid/tasks"
+    },
+    "respond": {
+      "status": 200,
+      "body": {
+        "data": [
+          {
+            "gid": "12345",
+            "resource_type": "task",
+            "name": "Bug Task",
+            "resource_subtype": "default_task"
+          }
+        ]
+      }
+    }
+  },
+  {
+    "id": "asana:GET:/api/1.0/status_updates#0",
+    "match": {
+      "method": "GET",
+      "path": "/api/1.0/status_updates"
+    },
+    "respond": {
+      "status": 200,
+      "body": {
+        "data": [
+          {
+            "gid": "12345",
+            "resource_type": "task",
+            "resource_subtype": "project_status_update",
+            "title": "Status Update - Jun 15"
+          }
+        ]
+      }
+    }
+  },
+  {
+    "id": "asana:POST:/api/1.0/status_updates#0",
+    "match": {
+      "method": "POST",
+      "path": "/api/1.0/status_updates"
+    },
+    "respond": {
+      "status": 201,
+      "body": {
+        "data": {
+          "resource_subtype": {},
+          "title": {},
+          "html_text": "<body>The project <strong>is</strong> moving forward according to plan...</body>",
+          "status_type": "on_track",
+          "text": "The project is moving forward according to plan...",
+          "author": {
+            "gid": {},
+            "resource_type": {},
+            "name": {}
+          },
+          "created_at": "2012-02-22T02:06:58.147Z",
+          "created_by": {
+            "gid": {},
+            "resource_type": {},
+            "name": {}
+          },
+          "hearted": true,
+          "hearts": [
+            {
+              "gid": "12345",
+              "user": {}
+            }
+          ],
+          "liked": true,
+          "likes": [
+            {
+              "gid": "12345",
+              "user": {}
+            }
+          ],
+          "modified_at": "2012-02-22T02:06:58.147Z",
+          "num_hearts": 5,
+          "num_likes": 5,
+          "parent": {}
+        }
+      }
+    }
+  },
+  {
+    "id": "asana:GET:/api/1.0/status_updates/:status_gid#0",
+    "match": {
+      "method": "GET",
+      "path": "/api/1.0/status_updates/:status_gid"
+    },
+    "respond": {
+      "status": 200,
+      "body": {
+        "data": {
+          "resource_subtype": {},
+          "title": {},
+          "html_text": "<body>The project <strong>is</strong> moving forward according to plan...</body>",
+          "status_type": "on_track",
+          "text": "The project is moving forward according to plan...",
+          "author": {
+            "gid": {},
+            "resource_type": {},
+            "name": {}
+          },
+          "created_at": "2012-02-22T02:06:58.147Z",
+          "created_by": {
+            "gid": {},
+            "resource_type": {},
+            "name": {}
+          },
+          "hearted": true,
+          "hearts": [
+            {
+              "gid": "12345",
+              "user": {}
+            }
+          ],
+          "liked": true,
+          "likes": [
+            {
+              "gid": "12345",
+              "user": {}
+            }
+          ],
+          "modified_at": "2012-02-22T02:06:58.147Z",
+          "num_hearts": 5,
+          "num_likes": 5,
+          "parent": {}
+        }
+      }
+    }
+  },
+  {
+    "id": "asana:DELETE:/api/1.0/status_updates/:status_gid#0",
+    "match": {
+      "method": "DELETE",
+      "path": "/api/1.0/status_updates/:status_gid"
+    },
+    "respond": {
+      "status": 200,
+      "body": {
+        "data": {}
+      }
+    }
+  },
+  {
+    "id": "asana:GET:/api/1.0/stories/:story_gid#0",
+    "match": {
+      "method": "GET",
+      "path": "/api/1.0/stories/:story_gid"
+    },
+    "respond": {
+      "status": 200,
+      "body": {
+        "data": {
+          "gid": "12345",
+          "resource_type": "task",
+          "created_at": "2012-02-22T02:06:58.147Z",
+          "html_text": "<body>This is a comment.</body>",
+          "is_pinned": false,
+          "resource_subtype": "comment_added",
+          "sticker_name": "dancing_unicorn",
+          "text": "This is a comment.",
+          "assignee": {
+            "gid": {},
+            "resource_type": {},
+            "name": {}
+          },
+          "created_by": {
+            "gid": {},
+            "resource_type": {},
+            "name": {}
+          },
+          "custom_field": {
+            "gid": {},
+            "resource_type": {},
+            "date_value": {},
+            "display_value": {},
+            "enabled": {},
+            "enum_options": {},
+            "enum_value": {},
+            "multi_enum_values": {},
+            "name": {},
+            "number_value": {},
+            "resource_subtype": {},
+            "text_value": {},
+            "type": {}
+          },
+          "dependency": {
+            "gid": {},
+            "resource_type": {},
+            "name": {},
+            "resource_subtype": {}
+          },
+          "duplicate_of": {
+            "gid": {},
+            "resource_type": {},
+            "name": {},
+            "resource_subtype": {}
+          },
+          "duplicated_from": {
+            "gid": {},
+            "resource_type": {},
+            "name": {},
+            "resource_subtype": {}
+          },
+          "follower": {
+            "gid": {},
+            "resource_type": {},
+            "name": {}
+          },
+          "hearted": false,
+          "hearts": [
+            {
+              "gid": "12345",
+              "user": {}
+            }
+          ],
+          "is_editable": false,
+          "is_edited": false,
+          "liked": false,
+          "likes": [
+            {
+              "gid": "12345",
+              "user": {}
+            }
+          ],
+          "new_approval_status": "approved",
+          "new_date_value": {
+            "due_at": {},
+            "due_on": {},
+            "start_on": {}
+          },
+          "new_dates": {
+            "due_at": "2019-09-15T02:06:58.158Z",
+            "due_on": "2019-09-15",
+            "start_on": "2019-09-14"
+          },
+          "new_enum_value": {
+            "gid": {},
+            "resource_type": {},
+            "color": {},
+            "enabled": {},
+            "name": {}
+          },
+          "new_multi_enum_values": [
+            {
+              "color": {},
+              "enabled": {},
+              "name": {}
+            }
+          ],
+          "new_name": "This is the New Name",
+          "new_number_value": 2,
+          "new_people_value": [
+            {
+              "name": {}
+            }
+          ],
+          "new_resource_subtype": "milestone",
+          "new_section": {
+            "gid": {},
+            "resource_type": {},
+            "name": {}
+          },
+          "new_text_value": "This is the New Text",
+          "num_hearts": 5,
+          "num_likes": 5,
+          "old_approval_status": "pending",
+          "old_date_value": {
+            "due_at": {},
+            "due_on": {},
+            "start_on": {}
+          },
+          "old_dates": {
+            "due_at": "2019-09-15T02:06:58.158Z",
+            "due_on": "2019-09-15",
+            "start_on": "2019-09-14"
+          },
+          "old_enum_value": {
+            "gid": {},
+            "resource_type": {},
+            "color": {},
+            "enabled": {},
+            "name": {}
+          },
+          "old_multi_enum_values": [
+            {
+              "color": {},
+              "enabled": {},
+              "name": {}
+            }
+          ],
+          "old_name": "This was the Old Name",
+          "old_number_value": 1,
+          "old_people_value": [
+            {
+              "name": {}
+            }
+          ],
+          "old_resource_subtype": "default_task",
+          "old_section": {
+            "gid": {},
+            "resource_type": {},
+            "name": {}
+          },
+          "old_text_value": "This was the Old Text",
+          "previews": [
+            {
+              "fallback": "Greg: Great! I like this idea.\\n\\nhttps//a_company.slack.com/archives/ABCDEFG/12345678",
+              "footer": "Mar 17, 2019 1:25 PM",
+              "header": "Asana for Slack",
+              "header_link": "https://asana.comn/apps/slack",
+              "html_text": "<body>Great! I like this idea.</body>",
+              "text": "Great! I like this idea.",
+              "title": "Greg",
+              "title_link": "https://asana.slack.com/archives/ABCDEFG/12345678"
+            }
+          ],
+          "project": {
+            "gid": {},
+            "resource_type": {},
+            "name": {}
+          },
+          "source": "web",
+          "story": {
+            "gid": {},
+            "resource_type": {},
+            "created_at": {},
+            "created_by": {},
+            "resource_subtype": {},
+            "text": {}
+          },
+          "tag": {
+            "gid": {},
+            "resource_type": {},
+            "name": {}
+          },
+          "target": {},
+          "task": {
+            "gid": {},
+            "resource_type": {},
+            "name": {},
+            "resource_subtype": {}
+          },
+          "type": "comment"
+        }
+      }
+    }
+  },
+  {
+    "id": "asana:PUT:/api/1.0/stories/:story_gid#0",
+    "match": {
+      "method": "PUT",
+      "path": "/api/1.0/stories/:story_gid"
+    },
+    "respond": {
+      "status": 200,
+      "body": {
+        "data": {
+          "gid": "12345",
+          "resource_type": "task",
+          "created_at": "2012-02-22T02:06:58.147Z",
+          "html_text": "<body>This is a comment.</body>",
+          "is_pinned": false,
+          "resource_subtype": "comment_added",
+          "sticker_name": "dancing_unicorn",
+          "text": "This is a comment.",
+          "assignee": {
+            "gid": {},
+            "resource_type": {},
+            "name": {}
+          },
+          "created_by": {
+            "gid": {},
+            "resource_type": {},
+            "name": {}
+          },
+          "custom_field": {
+            "gid": {},
+            "resource_type": {},
+            "date_value": {},
+            "display_value": {},
+            "enabled": {},
+            "enum_options": {},
+            "enum_value": {},
+            "multi_enum_values": {},
+            "name": {},
+            "number_value": {},
+            "resource_subtype": {},
+            "text_value": {},
+            "type": {}
+          },
+          "dependency": {
+            "gid": {},
+            "resource_type": {},
+            "name": {},
+            "resource_subtype": {}
+          },
+          "duplicate_of": {
+            "gid": {},
+            "resource_type": {},
+            "name": {},
+            "resource_subtype": {}
+          },
+          "duplicated_from": {
+            "gid": {},
+            "resource_type": {},
+            "name": {},
+            "resource_subtype": {}
+          },
+          "follower": {
+            "gid": {},
+            "resource_type": {},
+            "name": {}
+          },
+          "hearted": false,
+          "hearts": [
+            {
+              "gid": "12345",
+              "user": {}
+            }
+          ],
+          "is_editable": false,
+          "is_edited": false,
+          "liked": false,
+          "likes": [
+            {
+              "gid": "12345",
+              "user": {}
+            }
+          ],
+          "new_approval_status": "approved",
+          "new_date_value": {
+            "due_at": {},
+            "due_on": {},
+            "start_on": {}
+          },
+          "new_dates": {
+            "due_at": "2019-09-15T02:06:58.158Z",
+            "due_on": "2019-09-15",
+            "start_on": "2019-09-14"
+          },
+          "new_enum_value": {
+            "gid": {},
+            "resource_type": {},
+            "color": {},
+            "enabled": {},
+            "name": {}
+          },
+          "new_multi_enum_values": [
+            {
+              "color": {},
+              "enabled": {},
+              "name": {}
+            }
+          ],
+          "new_name": "This is the New Name",
+          "new_number_value": 2,
+          "new_people_value": [
+            {
+              "name": {}
+            }
+          ],
+          "new_resource_subtype": "milestone",
+          "new_section": {
+            "gid": {},
+            "resource_type": {},
+            "name": {}
+          },
+          "new_text_value": "This is the New Text",
+          "num_hearts": 5,
+          "num_likes": 5,
+          "old_approval_status": "pending",
+          "old_date_value": {
+            "due_at": {},
+            "due_on": {},
+            "start_on": {}
+          },
+          "old_dates": {
+            "due_at": "2019-09-15T02:06:58.158Z",
+            "due_on": "2019-09-15",
+            "start_on": "2019-09-14"
+          },
+          "old_enum_value": {
+            "gid": {},
+            "resource_type": {},
+            "color": {},
+            "enabled": {},
+            "name": {}
+          },
+          "old_multi_enum_values": [
+            {
+              "color": {},
+              "enabled": {},
+              "name": {}
+            }
+          ],
+          "old_name": "This was the Old Name",
+          "old_number_value": 1,
+          "old_people_value": [
+            {
+              "name": {}
+            }
+          ],
+          "old_resource_subtype": "default_task",
+          "old_section": {
+            "gid": {},
+            "resource_type": {},
+            "name": {}
+          },
+          "old_text_value": "This was the Old Text",
+          "previews": [
+            {
+              "fallback": "Greg: Great! I like this idea.\\n\\nhttps//a_company.slack.com/archives/ABCDEFG/12345678",
+              "footer": "Mar 17, 2019 1:25 PM",
+              "header": "Asana for Slack",
+              "header_link": "https://asana.comn/apps/slack",
+              "html_text": "<body>Great! I like this idea.</body>",
+              "text": "Great! I like this idea.",
+              "title": "Greg",
+              "title_link": "https://asana.slack.com/archives/ABCDEFG/12345678"
+            }
+          ],
+          "project": {
+            "gid": {},
+            "resource_type": {},
+            "name": {}
+          },
+          "source": "web",
+          "story": {
+            "gid": {},
+            "resource_type": {},
+            "created_at": {},
+            "created_by": {},
+            "resource_subtype": {},
+            "text": {}
+          },
+          "tag": {
+            "gid": {},
+            "resource_type": {},
+            "name": {}
+          },
+          "target": {},
+          "task": {
+            "gid": {},
+            "resource_type": {},
+            "name": {},
+            "resource_subtype": {}
+          },
+          "type": "comment"
+        }
+      }
+    }
+  },
+  {
+    "id": "asana:DELETE:/api/1.0/stories/:story_gid#0",
+    "match": {
+      "method": "DELETE",
+      "path": "/api/1.0/stories/:story_gid"
+    },
+    "respond": {
+      "status": 200,
+      "body": {
+        "data": {}
+      }
+    }
+  },
+  {
+    "id": "asana:GET:/api/1.0/tags#0",
+    "match": {
+      "method": "GET",
+      "path": "/api/1.0/tags"
+    },
+    "respond": {
+      "status": 200,
+      "body": {
+        "data": [
+          {
+            "gid": "12345",
+            "resource_type": "task",
+            "name": "Stuff to buy"
+          }
+        ]
+      }
+    }
+  },
+  {
+    "id": "asana:POST:/api/1.0/tags#0",
+    "match": {
+      "method": "POST",
+      "path": "/api/1.0/tags"
+    },
+    "respond": {
+      "status": 201,
+      "body": {
+        "data": {
+          "name": {},
+          "color": "light-green",
+          "notes": "Mittens really likes the stuff from Humboldt.",
+          "created_at": "2012-02-22T02:06:58.147Z",
+          "followers": [
+            {
+              "name": {}
+            }
+          ],
+          "permalink_url": "https://app.asana.com/0/resource/123456789/list",
+          "workspace": {
+            "gid": {},
+            "resource_type": {},
+            "name": {}
+          }
+        }
+      }
+    }
+  },
+  {
+    "id": "asana:GET:/api/1.0/tags/:tag_gid#0",
+    "match": {
+      "method": "GET",
+      "path": "/api/1.0/tags/:tag_gid"
+    },
+    "respond": {
+      "status": 200,
+      "body": {
+        "data": {
+          "name": {},
+          "color": "light-green",
+          "notes": "Mittens really likes the stuff from Humboldt.",
+          "created_at": "2012-02-22T02:06:58.147Z",
+          "followers": [
+            {
+              "name": {}
+            }
+          ],
+          "permalink_url": "https://app.asana.com/0/resource/123456789/list",
+          "workspace": {
+            "gid": {},
+            "resource_type": {},
+            "name": {}
+          }
+        }
+      }
+    }
+  },
+  {
+    "id": "asana:PUT:/api/1.0/tags/:tag_gid#0",
+    "match": {
+      "method": "PUT",
+      "path": "/api/1.0/tags/:tag_gid"
+    },
+    "respond": {
+      "status": 200,
+      "body": {
+        "data": {
+          "name": {},
+          "color": "light-green",
+          "notes": "Mittens really likes the stuff from Humboldt.",
+          "created_at": "2012-02-22T02:06:58.147Z",
+          "followers": [
+            {
+              "name": {}
+            }
+          ],
+          "permalink_url": "https://app.asana.com/0/resource/123456789/list",
+          "workspace": {
+            "gid": {},
+            "resource_type": {},
+            "name": {}
+          }
+        }
+      }
+    }
+  },
+  {
+    "id": "asana:DELETE:/api/1.0/tags/:tag_gid#0",
+    "match": {
+      "method": "DELETE",
+      "path": "/api/1.0/tags/:tag_gid"
+    },
+    "respond": {
+      "status": 200,
+      "body": {
+        "data": {}
+      }
+    }
+  },
+  {
+    "id": "asana:GET:/api/1.0/tags/:tag_gid/tasks#0",
+    "match": {
+      "method": "GET",
+      "path": "/api/1.0/tags/:tag_gid/tasks"
+    },
+    "respond": {
+      "status": 200,
+      "body": {
+        "data": [
+          {
+            "gid": "12345",
+            "resource_type": "task",
+            "name": "Bug Task",
+            "resource_subtype": "default_task"
+          }
+        ]
+      }
+    }
+  },
+  {
+    "id": "asana:GET:/api/1.0/tasks#0",
+    "match": {
+      "method": "GET",
+      "path": "/api/1.0/tasks"
+    },
+    "respond": {
+      "status": 200,
+      "body": {
+        "data": [
+          {
+            "gid": "12345",
+            "resource_type": "task",
+            "name": "Bug Task",
+            "resource_subtype": "default_task"
+          }
+        ]
+      }
+    }
+  },
+  {
+    "id": "asana:POST:/api/1.0/tasks#0",
+    "match": {
+      "method": "POST",
+      "path": "/api/1.0/tasks"
+    },
+    "respond": {
+      "status": 201,
+      "body": {
+        "data": {
+          "name": "Buy catnip",
+          "resource_subtype": {},
+          "actual_time_minutes": 200,
+          "approval_status": "pending",
+          "assignee_status": "upcoming",
+          "completed": false,
+          "completed_at": "2012-02-22T02:06:58.147Z",
+          "completed_by": {},
+          "created_at": "2012-02-22T02:06:58.147Z",
+          "dependencies": [
+            {}
+          ],
+          "dependents": [
+            {}
+          ],
+          "due_at": "2019-09-15T02:06:58.147Z",
+          "due_on": "2019-09-15",
+          "external": {
+            "data": "A blob of information",
+            "gid": "my_gid"
+          },
+          "hearted": true,
+          "hearts": [
+            {}
+          ],
+          "html_notes": "<body>Mittens <em>really</em> likes the stuff from Humboldt.</body>",
+          "is_rendered_as_separator": false,
+          "liked": true,
+          "likes": [
+            {}
+          ],
+          "memberships": [
+            {
+              "project": {},
+              "section": {}
+            }
+          ],
+          "modified_at": "2012-02-22T02:06:58.147Z",
+          "notes": "Mittens really likes the stuff from Humboldt.",
+          "num_hearts": 5,
+          "num_likes": 5,
+          "num_subtasks": 3,
+          "start_at": "2019-09-14T02:06:58.147Z",
+          "start_on": "2019-09-14",
+          "assignee": {},
+          "assignee_section": {},
+          "custom_fields": [
+            {
+              "created_by": {},
+              "people_value": {}
+            }
+          ],
+          "followers": [
+            {
+              "name": {}
+            }
+          ],
+          "parent": {},
+          "permalink_url": "https://app.asana.com/0/resource/123456789/list",
+          "projects": [
+            {
+              "name": {}
+            }
+          ],
+          "tags": [
+            {
+              "gid": "59746",
+              "name": "Grade A"
+            }
+          ],
+          "workspace": {}
+        }
+      }
+    }
+  },
+  {
+    "id": "asana:GET:/api/1.0/tasks/:task_gid#0",
+    "match": {
+      "method": "GET",
+      "path": "/api/1.0/tasks/:task_gid"
+    },
+    "respond": {
+      "status": 200,
+      "body": {
+        "data": {
+          "name": "Buy catnip",
+          "resource_subtype": {},
+          "actual_time_minutes": 200,
+          "approval_status": "pending",
+          "assignee_status": "upcoming",
+          "completed": false,
+          "completed_at": "2012-02-22T02:06:58.147Z",
+          "completed_by": {},
+          "created_at": "2012-02-22T02:06:58.147Z",
+          "dependencies": [
+            {}
+          ],
+          "dependents": [
+            {}
+          ],
+          "due_at": "2019-09-15T02:06:58.147Z",
+          "due_on": "2019-09-15",
+          "external": {
+            "data": "A blob of information",
+            "gid": "my_gid"
+          },
+          "hearted": true,
+          "hearts": [
+            {}
+          ],
+          "html_notes": "<body>Mittens <em>really</em> likes the stuff from Humboldt.</body>",
+          "is_rendered_as_separator": false,
+          "liked": true,
+          "likes": [
+            {}
+          ],
+          "memberships": [
+            {
+              "project": {},
+              "section": {}
+            }
+          ],
+          "modified_at": "2012-02-22T02:06:58.147Z",
+          "notes": "Mittens really likes the stuff from Humboldt.",
+          "num_hearts": 5,
+          "num_likes": 5,
+          "num_subtasks": 3,
+          "start_at": "2019-09-14T02:06:58.147Z",
+          "start_on": "2019-09-14",
+          "assignee": {},
+          "assignee_section": {},
+          "custom_fields": [
+            {
+              "created_by": {},
+              "people_value": {}
+            }
+          ],
+          "followers": [
+            {
+              "name": {}
+            }
+          ],
+          "parent": {},
+          "permalink_url": "https://app.asana.com/0/resource/123456789/list",
+          "projects": [
+            {
+              "name": {}
+            }
+          ],
+          "tags": [
+            {
+              "gid": "59746",
+              "name": "Grade A"
+            }
+          ],
+          "workspace": {}
+        }
+      }
+    }
+  },
+  {
+    "id": "asana:PUT:/api/1.0/tasks/:task_gid#0",
+    "match": {
+      "method": "PUT",
+      "path": "/api/1.0/tasks/:task_gid"
+    },
+    "respond": {
+      "status": 200,
+      "body": {
+        "data": {
+          "name": "Buy catnip",
+          "resource_subtype": {},
+          "actual_time_minutes": 200,
+          "approval_status": "pending",
+          "assignee_status": "upcoming",
+          "completed": false,
+          "completed_at": "2012-02-22T02:06:58.147Z",
+          "completed_by": {},
+          "created_at": "2012-02-22T02:06:58.147Z",
+          "dependencies": [
+            {}
+          ],
+          "dependents": [
+            {}
+          ],
+          "due_at": "2019-09-15T02:06:58.147Z",
+          "due_on": "2019-09-15",
+          "external": {
+            "data": "A blob of information",
+            "gid": "my_gid"
+          },
+          "hearted": true,
+          "hearts": [
+            {}
+          ],
+          "html_notes": "<body>Mittens <em>really</em> likes the stuff from Humboldt.</body>",
+          "is_rendered_as_separator": false,
+          "liked": true,
+          "likes": [
+            {}
+          ],
+          "memberships": [
+            {
+              "project": {},
+              "section": {}
+            }
+          ],
+          "modified_at": "2012-02-22T02:06:58.147Z",
+          "notes": "Mittens really likes the stuff from Humboldt.",
+          "num_hearts": 5,
+          "num_likes": 5,
+          "num_subtasks": 3,
+          "start_at": "2019-09-14T02:06:58.147Z",
+          "start_on": "2019-09-14",
+          "assignee": {},
+          "assignee_section": {},
+          "custom_fields": [
+            {
+              "created_by": {},
+              "people_value": {}
+            }
+          ],
+          "followers": [
+            {
+              "name": {}
+            }
+          ],
+          "parent": {},
+          "permalink_url": "https://app.asana.com/0/resource/123456789/list",
+          "projects": [
+            {
+              "name": {}
+            }
+          ],
+          "tags": [
+            {
+              "gid": "59746",
+              "name": "Grade A"
+            }
+          ],
+          "workspace": {}
+        }
+      }
+    }
+  },
+  {
+    "id": "asana:DELETE:/api/1.0/tasks/:task_gid#0",
+    "match": {
+      "method": "DELETE",
+      "path": "/api/1.0/tasks/:task_gid"
+    },
+    "respond": {
+      "status": 200,
+      "body": {
+        "data": {}
+      }
+    }
+  },
+  {
+    "id": "asana:POST:/api/1.0/tasks/:task_gid/addDependencies#0",
+    "match": {
+      "method": "POST",
+      "path": "/api/1.0/tasks/:task_gid/addDependencies"
+    },
+    "respond": {
+      "status": 200,
+      "body": {
+        "data": {}
+      }
+    }
+  },
+  {
+    "id": "asana:POST:/api/1.0/tasks/:task_gid/addDependents#0",
+    "match": {
+      "method": "POST",
+      "path": "/api/1.0/tasks/:task_gid/addDependents"
+    },
+    "respond": {
+      "status": 200,
+      "body": {
+        "data": {}
+      }
+    }
+  },
+  {
+    "id": "asana:POST:/api/1.0/tasks/:task_gid/addFollowers#0",
+    "match": {
+      "method": "POST",
+      "path": "/api/1.0/tasks/:task_gid/addFollowers"
+    },
+    "respond": {
+      "status": 200,
+      "body": {
+        "data": {
+          "name": "Buy catnip",
+          "resource_subtype": {},
+          "actual_time_minutes": 200,
+          "approval_status": "pending",
+          "assignee_status": "upcoming",
+          "completed": false,
+          "completed_at": "2012-02-22T02:06:58.147Z",
+          "completed_by": {},
+          "created_at": "2012-02-22T02:06:58.147Z",
+          "dependencies": [
+            {}
+          ],
+          "dependents": [
+            {}
+          ],
+          "due_at": "2019-09-15T02:06:58.147Z",
+          "due_on": "2019-09-15",
+          "external": {
+            "data": "A blob of information",
+            "gid": "my_gid"
+          },
+          "hearted": true,
+          "hearts": [
+            {}
+          ],
+          "html_notes": "<body>Mittens <em>really</em> likes the stuff from Humboldt.</body>",
+          "is_rendered_as_separator": false,
+          "liked": true,
+          "likes": [
+            {}
+          ],
+          "memberships": [
+            {
+              "project": {},
+              "section": {}
+            }
+          ],
+          "modified_at": "2012-02-22T02:06:58.147Z",
+          "notes": "Mittens really likes the stuff from Humboldt.",
+          "num_hearts": 5,
+          "num_likes": 5,
+          "num_subtasks": 3,
+          "start_at": "2019-09-14T02:06:58.147Z",
+          "start_on": "2019-09-14",
+          "assignee": {},
+          "assignee_section": {},
+          "custom_fields": [
+            {
+              "created_by": {},
+              "people_value": {}
+            }
+          ],
+          "followers": [
+            {
+              "name": {}
+            }
+          ],
+          "parent": {},
+          "permalink_url": "https://app.asana.com/0/resource/123456789/list",
+          "projects": [
+            {
+              "name": {}
+            }
+          ],
+          "tags": [
+            {
+              "gid": "59746",
+              "name": "Grade A"
+            }
+          ],
+          "workspace": {}
+        }
+      }
+    }
+  },
+  {
+    "id": "asana:POST:/api/1.0/tasks/:task_gid/addProject#0",
+    "match": {
+      "method": "POST",
+      "path": "/api/1.0/tasks/:task_gid/addProject"
+    },
+    "respond": {
+      "status": 200,
+      "body": {
+        "data": {}
+      }
+    }
+  },
+  {
+    "id": "asana:POST:/api/1.0/tasks/:task_gid/addTag#0",
+    "match": {
+      "method": "POST",
+      "path": "/api/1.0/tasks/:task_gid/addTag"
+    },
+    "respond": {
+      "status": 200,
+      "body": {
+        "data": {}
+      }
+    }
+  },
+  {
+    "id": "asana:GET:/api/1.0/tasks/:task_gid/dependencies#0",
+    "match": {
+      "method": "GET",
+      "path": "/api/1.0/tasks/:task_gid/dependencies"
+    },
+    "respond": {
+      "status": 200,
+      "body": {
+        "data": [
+          {
+            "gid": "12345",
+            "resource_type": "task",
+            "name": "Bug Task",
+            "resource_subtype": "default_task"
+          }
+        ]
+      }
+    }
+  },
+  {
+    "id": "asana:GET:/api/1.0/tasks/:task_gid/dependents#0",
+    "match": {
+      "method": "GET",
+      "path": "/api/1.0/tasks/:task_gid/dependents"
+    },
+    "respond": {
+      "status": 200,
+      "body": {
+        "data": [
+          {
+            "gid": "12345",
+            "resource_type": "task",
+            "name": "Bug Task",
+            "resource_subtype": "default_task"
+          }
+        ]
+      }
+    }
+  },
+  {
+    "id": "asana:POST:/api/1.0/tasks/:task_gid/duplicate#0",
+    "match": {
+      "method": "POST",
+      "path": "/api/1.0/tasks/:task_gid/duplicate"
+    },
+    "respond": {
+      "status": 201,
+      "body": {
+        "data": {
+          "gid": "12345",
+          "resource_type": "task",
+          "new_project": {},
+          "new_project_template": {},
+          "new_task": {},
+          "resource_subtype": "duplicate_task",
+          "status": "in_progress"
+        }
+      }
+    }
+  },
+  {
+    "id": "asana:GET:/api/1.0/tasks/:task_gid/projects#0",
+    "match": {
+      "method": "GET",
+      "path": "/api/1.0/tasks/:task_gid/projects"
+    },
+    "respond": {
+      "status": 200,
+      "body": {
+        "data": [
+          {
+            "gid": "12345",
+            "resource_type": "task",
+            "name": "Stuff to buy"
+          }
+        ]
+      }
+    }
+  },
+  {
+    "id": "asana:POST:/api/1.0/tasks/:task_gid/removeDependencies#0",
+    "match": {
+      "method": "POST",
+      "path": "/api/1.0/tasks/:task_gid/removeDependencies"
+    },
+    "respond": {
+      "status": 200,
+      "body": {
+        "data": {}
+      }
+    }
+  },
+  {
+    "id": "asana:POST:/api/1.0/tasks/:task_gid/removeDependents#0",
+    "match": {
+      "method": "POST",
+      "path": "/api/1.0/tasks/:task_gid/removeDependents"
+    },
+    "respond": {
+      "status": 200,
+      "body": {
+        "data": {}
+      }
+    }
+  },
+  {
+    "id": "asana:POST:/api/1.0/tasks/:task_gid/removeFollowers#0",
+    "match": {
+      "method": "POST",
+      "path": "/api/1.0/tasks/:task_gid/removeFollowers"
+    },
+    "respond": {
+      "status": 200,
+      "body": {
+        "data": {
+          "name": "Buy catnip",
+          "resource_subtype": {},
+          "actual_time_minutes": 200,
+          "approval_status": "pending",
+          "assignee_status": "upcoming",
+          "completed": false,
+          "completed_at": "2012-02-22T02:06:58.147Z",
+          "completed_by": {},
+          "created_at": "2012-02-22T02:06:58.147Z",
+          "dependencies": [
+            {}
+          ],
+          "dependents": [
+            {}
+          ],
+          "due_at": "2019-09-15T02:06:58.147Z",
+          "due_on": "2019-09-15",
+          "external": {
+            "data": "A blob of information",
+            "gid": "my_gid"
+          },
+          "hearted": true,
+          "hearts": [
+            {}
+          ],
+          "html_notes": "<body>Mittens <em>really</em> likes the stuff from Humboldt.</body>",
+          "is_rendered_as_separator": false,
+          "liked": true,
+          "likes": [
+            {}
+          ],
+          "memberships": [
+            {
+              "project": {},
+              "section": {}
+            }
+          ],
+          "modified_at": "2012-02-22T02:06:58.147Z",
+          "notes": "Mittens really likes the stuff from Humboldt.",
+          "num_hearts": 5,
+          "num_likes": 5,
+          "num_subtasks": 3,
+          "start_at": "2019-09-14T02:06:58.147Z",
+          "start_on": "2019-09-14",
+          "assignee": {},
+          "assignee_section": {},
+          "custom_fields": [
+            {
+              "created_by": {},
+              "people_value": {}
+            }
+          ],
+          "followers": [
+            {
+              "name": {}
+            }
+          ],
+          "parent": {},
+          "permalink_url": "https://app.asana.com/0/resource/123456789/list",
+          "projects": [
+            {
+              "name": {}
+            }
+          ],
+          "tags": [
+            {
+              "gid": "59746",
+              "name": "Grade A"
+            }
+          ],
+          "workspace": {}
+        }
+      }
+    }
+  },
+  {
+    "id": "asana:POST:/api/1.0/tasks/:task_gid/removeProject#0",
+    "match": {
+      "method": "POST",
+      "path": "/api/1.0/tasks/:task_gid/removeProject"
+    },
+    "respond": {
+      "status": 200,
+      "body": {
+        "data": {}
+      }
+    }
+  },
+  {
+    "id": "asana:POST:/api/1.0/tasks/:task_gid/removeTag#0",
+    "match": {
+      "method": "POST",
+      "path": "/api/1.0/tasks/:task_gid/removeTag"
+    },
+    "respond": {
+      "status": 200,
+      "body": {
+        "data": {}
+      }
+    }
+  },
+  {
+    "id": "asana:POST:/api/1.0/tasks/:task_gid/setParent#0",
+    "match": {
+      "method": "POST",
+      "path": "/api/1.0/tasks/:task_gid/setParent"
+    },
+    "respond": {
+      "status": 200,
+      "body": {
+        "data": {
+          "name": "Buy catnip",
+          "resource_subtype": {},
+          "actual_time_minutes": 200,
+          "approval_status": "pending",
+          "assignee_status": "upcoming",
+          "completed": false,
+          "completed_at": "2012-02-22T02:06:58.147Z",
+          "completed_by": {},
+          "created_at": "2012-02-22T02:06:58.147Z",
+          "dependencies": [
+            {}
+          ],
+          "dependents": [
+            {}
+          ],
+          "due_at": "2019-09-15T02:06:58.147Z",
+          "due_on": "2019-09-15",
+          "external": {
+            "data": "A blob of information",
+            "gid": "my_gid"
+          },
+          "hearted": true,
+          "hearts": [
+            {}
+          ],
+          "html_notes": "<body>Mittens <em>really</em> likes the stuff from Humboldt.</body>",
+          "is_rendered_as_separator": false,
+          "liked": true,
+          "likes": [
+            {}
+          ],
+          "memberships": [
+            {
+              "project": {},
+              "section": {}
+            }
+          ],
+          "modified_at": "2012-02-22T02:06:58.147Z",
+          "notes": "Mittens really likes the stuff from Humboldt.",
+          "num_hearts": 5,
+          "num_likes": 5,
+          "num_subtasks": 3,
+          "start_at": "2019-09-14T02:06:58.147Z",
+          "start_on": "2019-09-14",
+          "assignee": {},
+          "assignee_section": {},
+          "custom_fields": [
+            {
+              "created_by": {},
+              "people_value": {}
+            }
+          ],
+          "followers": [
+            {
+              "name": {}
+            }
+          ],
+          "parent": {},
+          "permalink_url": "https://app.asana.com/0/resource/123456789/list",
+          "projects": [
+            {
+              "name": {}
+            }
+          ],
+          "tags": [
+            {
+              "gid": "59746",
+              "name": "Grade A"
+            }
+          ],
+          "workspace": {}
+        }
+      }
+    }
+  },
+  {
+    "id": "asana:GET:/api/1.0/tasks/:task_gid/stories#0",
+    "match": {
+      "method": "GET",
+      "path": "/api/1.0/tasks/:task_gid/stories"
+    },
+    "respond": {
+      "status": 200,
+      "body": {
+        "data": {}
+      }
+    }
+  },
+  {
+    "id": "asana:POST:/api/1.0/tasks/:task_gid/stories#0",
+    "match": {
+      "method": "POST",
+      "path": "/api/1.0/tasks/:task_gid/stories"
+    },
+    "respond": {
+      "status": 201,
+      "body": {
+        "data": {
+          "gid": "12345",
+          "resource_type": "task",
+          "created_at": "2012-02-22T02:06:58.147Z",
+          "html_text": "<body>This is a comment.</body>",
+          "is_pinned": false,
+          "resource_subtype": "comment_added",
+          "sticker_name": "dancing_unicorn",
+          "text": "This is a comment.",
+          "assignee": {
+            "gid": {},
+            "resource_type": {},
+            "name": {}
+          },
+          "created_by": {
+            "gid": {},
+            "resource_type": {},
+            "name": {}
+          },
+          "custom_field": {
+            "gid": {},
+            "resource_type": {},
+            "date_value": {},
+            "display_value": {},
+            "enabled": {},
+            "enum_options": {},
+            "enum_value": {},
+            "multi_enum_values": {},
+            "name": {},
+            "number_value": {},
+            "resource_subtype": {},
+            "text_value": {},
+            "type": {}
+          },
+          "dependency": {
+            "gid": {},
+            "resource_type": {},
+            "name": {},
+            "resource_subtype": {}
+          },
+          "duplicate_of": {
+            "gid": {},
+            "resource_type": {},
+            "name": {},
+            "resource_subtype": {}
+          },
+          "duplicated_from": {
+            "gid": {},
+            "resource_type": {},
+            "name": {},
+            "resource_subtype": {}
+          },
+          "follower": {
+            "gid": {},
+            "resource_type": {},
+            "name": {}
+          },
+          "hearted": false,
+          "hearts": [
+            {
+              "gid": "12345",
+              "user": {}
+            }
+          ],
+          "is_editable": false,
+          "is_edited": false,
+          "liked": false,
+          "likes": [
+            {
+              "gid": "12345",
+              "user": {}
+            }
+          ],
+          "new_approval_status": "approved",
+          "new_date_value": {
+            "due_at": {},
+            "due_on": {},
+            "start_on": {}
+          },
+          "new_dates": {
+            "due_at": "2019-09-15T02:06:58.158Z",
+            "due_on": "2019-09-15",
+            "start_on": "2019-09-14"
+          },
+          "new_enum_value": {
+            "gid": {},
+            "resource_type": {},
+            "color": {},
+            "enabled": {},
+            "name": {}
+          },
+          "new_multi_enum_values": [
+            {
+              "color": {},
+              "enabled": {},
+              "name": {}
+            }
+          ],
+          "new_name": "This is the New Name",
+          "new_number_value": 2,
+          "new_people_value": [
+            {
+              "name": {}
+            }
+          ],
+          "new_resource_subtype": "milestone",
+          "new_section": {
+            "gid": {},
+            "resource_type": {},
+            "name": {}
+          },
+          "new_text_value": "This is the New Text",
+          "num_hearts": 5,
+          "num_likes": 5,
+          "old_approval_status": "pending",
+          "old_date_value": {
+            "due_at": {},
+            "due_on": {},
+            "start_on": {}
+          },
+          "old_dates": {
+            "due_at": "2019-09-15T02:06:58.158Z",
+            "due_on": "2019-09-15",
+            "start_on": "2019-09-14"
+          },
+          "old_enum_value": {
+            "gid": {},
+            "resource_type": {},
+            "color": {},
+            "enabled": {},
+            "name": {}
+          },
+          "old_multi_enum_values": [
+            {
+              "color": {},
+              "enabled": {},
+              "name": {}
+            }
+          ],
+          "old_name": "This was the Old Name",
+          "old_number_value": 1,
+          "old_people_value": [
+            {
+              "name": {}
+            }
+          ],
+          "old_resource_subtype": "default_task",
+          "old_section": {
+            "gid": {},
+            "resource_type": {},
+            "name": {}
+          },
+          "old_text_value": "This was the Old Text",
+          "previews": [
+            {
+              "fallback": "Greg: Great! I like this idea.\\n\\nhttps//a_company.slack.com/archives/ABCDEFG/12345678",
+              "footer": "Mar 17, 2019 1:25 PM",
+              "header": "Asana for Slack",
+              "header_link": "https://asana.comn/apps/slack",
+              "html_text": "<body>Great! I like this idea.</body>",
+              "text": "Great! I like this idea.",
+              "title": "Greg",
+              "title_link": "https://asana.slack.com/archives/ABCDEFG/12345678"
+            }
+          ],
+          "project": {
+            "gid": {},
+            "resource_type": {},
+            "name": {}
+          },
+          "source": "web",
+          "story": {
+            "gid": {},
+            "resource_type": {},
+            "created_at": {},
+            "created_by": {},
+            "resource_subtype": {},
+            "text": {}
+          },
+          "tag": {
+            "gid": {},
+            "resource_type": {},
+            "name": {}
+          },
+          "target": {},
+          "task": {
+            "gid": {},
+            "resource_type": {},
+            "name": {},
+            "resource_subtype": {}
+          },
+          "type": "comment"
+        }
+      }
+    }
+  },
+  {
+    "id": "asana:GET:/api/1.0/tasks/:task_gid/subtasks#0",
+    "match": {
+      "method": "GET",
+      "path": "/api/1.0/tasks/:task_gid/subtasks"
+    },
+    "respond": {
+      "status": 200,
+      "body": {
+        "data": [
+          {
+            "gid": "12345",
+            "resource_type": "task",
+            "name": "Bug Task",
+            "resource_subtype": "default_task"
+          }
+        ]
+      }
+    }
+  },
+  {
+    "id": "asana:POST:/api/1.0/tasks/:task_gid/subtasks#0",
+    "match": {
+      "method": "POST",
+      "path": "/api/1.0/tasks/:task_gid/subtasks"
+    },
+    "respond": {
+      "status": 201,
+      "body": {
+        "data": {
+          "name": "Buy catnip",
+          "resource_subtype": {},
+          "actual_time_minutes": 200,
+          "approval_status": "pending",
+          "assignee_status": "upcoming",
+          "completed": false,
+          "completed_at": "2012-02-22T02:06:58.147Z",
+          "completed_by": {},
+          "created_at": "2012-02-22T02:06:58.147Z",
+          "dependencies": [
+            {}
+          ],
+          "dependents": [
+            {}
+          ],
+          "due_at": "2019-09-15T02:06:58.147Z",
+          "due_on": "2019-09-15",
+          "external": {
+            "data": "A blob of information",
+            "gid": "my_gid"
+          },
+          "hearted": true,
+          "hearts": [
+            {}
+          ],
+          "html_notes": "<body>Mittens <em>really</em> likes the stuff from Humboldt.</body>",
+          "is_rendered_as_separator": false,
+          "liked": true,
+          "likes": [
+            {}
+          ],
+          "memberships": [
+            {
+              "project": {},
+              "section": {}
+            }
+          ],
+          "modified_at": "2012-02-22T02:06:58.147Z",
+          "notes": "Mittens really likes the stuff from Humboldt.",
+          "num_hearts": 5,
+          "num_likes": 5,
+          "num_subtasks": 3,
+          "start_at": "2019-09-14T02:06:58.147Z",
+          "start_on": "2019-09-14",
+          "assignee": {},
+          "assignee_section": {},
+          "custom_fields": [
+            {
+              "created_by": {},
+              "people_value": {}
+            }
+          ],
+          "followers": [
+            {
+              "name": {}
+            }
+          ],
+          "parent": {},
+          "permalink_url": "https://app.asana.com/0/resource/123456789/list",
+          "projects": [
+            {
+              "name": {}
+            }
+          ],
+          "tags": [
+            {
+              "gid": "59746",
+              "name": "Grade A"
+            }
+          ],
+          "workspace": {}
+        }
+      }
+    }
+  },
+  {
+    "id": "asana:GET:/api/1.0/tasks/:task_gid/tags#0",
+    "match": {
+      "method": "GET",
+      "path": "/api/1.0/tasks/:task_gid/tags"
+    },
+    "respond": {
+      "status": 200,
+      "body": {
+        "data": [
+          {
+            "gid": "12345",
+            "resource_type": "task",
+            "name": "Stuff to buy"
+          }
+        ]
+      }
+    }
+  },
+  {
+    "id": "asana:GET:/api/1.0/team_memberships#0",
+    "match": {
+      "method": "GET",
+      "path": "/api/1.0/team_memberships"
+    },
+    "respond": {
+      "status": 200,
+      "body": {
+        "data": [
+          {
+            "gid": "12345",
+            "resource_type": "task",
+            "is_guest": false,
+            "team": {
+              "name": {}
+            },
+            "user": {
+              "name": {}
+            }
+          }
+        ]
+      }
+    }
+  },
+  {
+    "id": "asana:GET:/api/1.0/team_memberships/:team_membership_gid#0",
+    "match": {
+      "method": "GET",
+      "path": "/api/1.0/team_memberships/:team_membership_gid"
+    },
+    "respond": {
+      "status": 200,
+      "body": {
+        "data": {
+          "gid": "12345",
+          "resource_type": "task",
+          "is_guest": false,
+          "team": {},
+          "user": {}
+        }
+      }
+    }
+  },
+  {
+    "id": "asana:POST:/api/1.0/teams#0",
+    "match": {
+      "method": "POST",
+      "path": "/api/1.0/teams"
+    },
+    "respond": {
+      "status": 201,
+      "body": {
+        "data": {
+          "gid": {},
+          "resource_type": {},
+          "name": "Marketing",
+          "description": "All developers should be members of this team.",
+          "html_description": "<body><em>All</em> developers should be members of this team.</body>",
+          "organization": {},
+          "permalink_url": "https://app.asana.com/0/resource/123456789/list",
+          "visibility": "secret"
+        }
+      }
+    }
+  },
+  {
+    "id": "asana:PUT:/api/1.0/teams#0",
+    "match": {
+      "method": "PUT",
+      "path": "/api/1.0/teams"
+    },
+    "respond": {
+      "status": 200,
+      "body": {
+        "data": {
+          "gid": {},
+          "resource_type": {},
+          "name": "Marketing",
+          "description": "All developers should be members of this team.",
+          "html_description": "<body><em>All</em> developers should be members of this team.</body>",
+          "organization": {},
+          "permalink_url": "https://app.asana.com/0/resource/123456789/list",
+          "visibility": "secret"
+        }
+      }
+    }
+  },
+  {
+    "id": "asana:GET:/api/1.0/teams/:team_gid#0",
+    "match": {
+      "method": "GET",
+      "path": "/api/1.0/teams/:team_gid"
+    },
+    "respond": {
+      "status": 200,
+      "body": {
+        "data": {
+          "gid": {},
+          "resource_type": {},
+          "name": "Marketing",
+          "description": "All developers should be members of this team.",
+          "html_description": "<body><em>All</em> developers should be members of this team.</body>",
+          "organization": {},
+          "permalink_url": "https://app.asana.com/0/resource/123456789/list",
+          "visibility": "secret"
+        }
+      }
+    }
+  },
+  {
+    "id": "asana:POST:/api/1.0/teams/:team_gid/addUser#0",
+    "match": {
+      "method": "POST",
+      "path": "/api/1.0/teams/:team_gid/addUser"
+    },
+    "respond": {
+      "status": 200,
+      "body": {
+        "data": {
+          "gid": "12345",
+          "resource_type": "task",
+          "is_guest": false,
+          "team": {},
+          "user": {}
+        }
+      }
+    }
+  },
+  {
+    "id": "asana:GET:/api/1.0/teams/:team_gid/project_templates#0",
+    "match": {
+      "method": "GET",
+      "path": "/api/1.0/teams/:team_gid/project_templates"
+    },
+    "respond": {
+      "status": 200,
+      "body": {
+        "data": [
+          {
+            "gid": "12345",
+            "resource_type": "task",
+            "name": "Packing list"
+          }
+        ]
+      }
+    }
+  },
+  {
+    "id": "asana:GET:/api/1.0/teams/:team_gid/projects#0",
+    "match": {
+      "method": "GET",
+      "path": "/api/1.0/teams/:team_gid/projects"
+    },
+    "respond": {
+      "status": 200,
+      "body": {
+        "data": [
+          {
+            "gid": "12345",
+            "resource_type": "task",
+            "name": "Stuff to buy"
+          }
+        ]
+      }
+    }
+  },
+  {
+    "id": "asana:POST:/api/1.0/teams/:team_gid/projects#0",
+    "match": {
+      "method": "POST",
+      "path": "/api/1.0/teams/:team_gid/projects"
+    },
+    "respond": {
+      "status": 201,
+      "body": {
+        "data": {
+          "name": {},
+          "archived": false,
+          "color": "light-green",
+          "created_at": "2012-02-22T02:06:58.147Z",
+          "current_status": {},
+          "current_status_update": {},
+          "custom_field_settings": [
+            {}
+          ],
+          "default_view": "calendar",
+          "due_date": "2019-09-15",
+          "due_on": "2019-09-15",
+          "html_notes": "<body>These are things we need to purchase.</body>",
+          "is_template": false,
+          "members": [
+            {}
+          ],
+          "modified_at": "2012-02-22T02:06:58.147Z",
+          "notes": "These are things we need to purchase.",
+          "public": false,
+          "start_on": "2019-09-14",
+          "workspace": {},
+          "completed": false,
+          "completed_at": "2012-02-22T02:06:58.147Z",
+          "completed_by": {
+            "gid": {},
+            "resource_type": {},
+            "name": {}
+          },
+          "created_from_template": {},
+          "custom_fields": [
+            {
+              "date_value": {},
+              "display_value": {},
+              "enabled": {},
+              "enum_options": {},
+              "enum_value": {},
+              "multi_enum_values": {},
+              "name": {},
+              "number_value": {},
+              "resource_subtype": {},
+              "text_value": {},
+              "type": {}
+            }
+          ],
+          "followers": [
+            {
+              "name": {}
+            }
+          ],
+          "icon": "chat_bubbles",
+          "owner": {},
+          "permalink_url": "https://app.asana.com/0/resource/123456789/list",
+          "project_brief": {},
+          "team": {}
+        }
+      }
+    }
+  },
+  {
+    "id": "asana:POST:/api/1.0/teams/:team_gid/removeUser#0",
+    "match": {
+      "method": "POST",
+      "path": "/api/1.0/teams/:team_gid/removeUser"
+    },
+    "respond": {
+      "status": 204,
+      "body": {
+        "data": {}
+      }
+    }
+  },
+  {
+    "id": "asana:GET:/api/1.0/teams/:team_gid/team_memberships#0",
+    "match": {
+      "method": "GET",
+      "path": "/api/1.0/teams/:team_gid/team_memberships"
+    },
+    "respond": {
+      "status": 200,
+      "body": {
+        "data": [
+          {
+            "gid": "12345",
+            "resource_type": "task",
+            "is_guest": false,
+            "team": {
+              "name": {}
+            },
+            "user": {
+              "name": {}
+            }
+          }
+        ]
+      }
+    }
+  },
+  {
+    "id": "asana:GET:/api/1.0/teams/:team_gid/users#0",
+    "match": {
+      "method": "GET",
+      "path": "/api/1.0/teams/:team_gid/users"
+    },
+    "respond": {
+      "status": 200,
+      "body": {
+        "data": [
+          {
+            "gid": "12345",
+            "resource_type": "task",
+            "name": "Greg Sanchez"
+          }
+        ]
+      }
+    }
+  },
+  {
+    "id": "asana:GET:/api/1.0/time_periods#0",
+    "match": {
+      "method": "GET",
+      "path": "/api/1.0/time_periods"
+    },
+    "respond": {
+      "status": 200,
+      "body": {
+        "data": [
+          {
+            "gid": "12345",
+            "resource_type": "task",
+            "display_name": "Q1 FY22",
+            "end_on": "2019-09-14",
+            "period": "Q1",
+            "start_on": "2019-09-13"
+          }
+        ]
+      }
+    }
+  },
+  {
+    "id": "asana:GET:/api/1.0/time_periods/:time_period_gid#0",
+    "match": {
+      "method": "GET",
+      "path": "/api/1.0/time_periods/:time_period_gid"
+    },
+    "respond": {
+      "status": 200,
+      "body": {
+        "data": {
+          "display_name": {},
+          "end_on": {},
+          "period": {},
+          "start_on": {},
+          "parent": {}
+        }
+      }
+    }
+  },
+  {
+    "id": "asana:GET:/api/1.0/user_task_lists/:user_task_list_gid#0",
+    "match": {
+      "method": "GET",
+      "path": "/api/1.0/user_task_lists/:user_task_list_gid"
+    },
+    "respond": {
+      "status": 200,
+      "body": {
+        "data": {
+          "gid": "12345",
+          "resource_type": "task",
+          "name": "My Tasks in My Workspace",
+          "owner": {},
+          "workspace": {}
+        }
+      }
+    }
+  },
+  {
+    "id": "asana:GET:/api/1.0/user_task_lists/:user_task_list_gid/tasks#0",
+    "match": {
+      "method": "GET",
+      "path": "/api/1.0/user_task_lists/:user_task_list_gid/tasks"
+    },
+    "respond": {
+      "status": 200,
+      "body": {
+        "data": [
+          {
+            "gid": "12345",
+            "resource_type": "task",
+            "name": "Bug Task",
+            "resource_subtype": "default_task"
+          }
+        ]
+      }
+    }
+  },
+  {
+    "id": "asana:GET:/api/1.0/users#0",
+    "match": {
+      "method": "GET",
+      "path": "/api/1.0/users"
+    },
+    "respond": {
+      "status": 200,
+      "body": {
+        "data": [
+          {
+            "gid": "12345",
+            "resource_type": "task",
+            "name": "Greg Sanchez"
+          }
+        ]
+      }
+    }
+  },
+  {
+    "id": "asana:GET:/api/1.0/users/:user_gid#0",
+    "match": {
+      "method": "GET",
+      "path": "/api/1.0/users/:user_gid"
+    },
+    "respond": {
+      "status": 200,
+      "body": {
+        "data": {
+          "email": "gsanchez@example.com",
+          "photo": {
+            "image_1024x1024": "https://...",
+            "image_128x128": "https://...",
+            "image_21x21": "https://...",
+            "image_27x27": "https://...",
+            "image_36x36": "https://...",
+            "image_60x60": "https://..."
+          },
+          "workspaces": [
+            {
+              "name": {}
+            }
+          ]
+        }
+      }
+    }
+  },
+  {
+    "id": "asana:GET:/api/1.0/users/:user_gid/favorites#0",
+    "match": {
+      "method": "GET",
+      "path": "/api/1.0/users/:user_gid/favorites"
+    },
+    "respond": {
+      "status": 200,
+      "body": {
+        "data": [
+          {
+            "gid": "12345",
+            "resource_type": "task",
+            "name": "Bug Task"
+          }
+        ]
+      }
+    }
+  },
+  {
+    "id": "asana:GET:/api/1.0/users/:user_gid/team_memberships#0",
+    "match": {
+      "method": "GET",
+      "path": "/api/1.0/users/:user_gid/team_memberships"
+    },
+    "respond": {
+      "status": 200,
+      "body": {
+        "data": [
+          {
+            "gid": "12345",
+            "resource_type": "task",
+            "is_guest": false,
+            "team": {
+              "name": {}
+            },
+            "user": {
+              "name": {}
+            }
+          }
+        ]
+      }
+    }
+  },
+  {
+    "id": "asana:GET:/api/1.0/users/:user_gid/teams#0",
+    "match": {
+      "method": "GET",
+      "path": "/api/1.0/users/:user_gid/teams"
+    },
+    "respond": {
+      "status": 200,
+      "body": {
+        "data": [
+          {
+            "gid": "12345",
+            "resource_type": "task",
+            "name": "Marketing"
+          }
+        ]
+      }
+    }
+  },
+  {
+    "id": "asana:GET:/api/1.0/users/:user_gid/user_task_list#0",
+    "match": {
+      "method": "GET",
+      "path": "/api/1.0/users/:user_gid/user_task_list"
+    },
+    "respond": {
+      "status": 200,
+      "body": {
+        "data": {
+          "gid": "12345",
+          "resource_type": "task",
+          "name": "My Tasks in My Workspace",
+          "owner": {},
+          "workspace": {}
+        }
+      }
+    }
+  },
+  {
+    "id": "asana:GET:/api/1.0/users/:user_gid/workspace_memberships#0",
+    "match": {
+      "method": "GET",
+      "path": "/api/1.0/users/:user_gid/workspace_memberships"
+    },
+    "respond": {
+      "status": 200,
+      "body": {
+        "data": [
+          {
+            "gid": "12345",
+            "resource_type": "task",
+            "user": {
+              "name": {}
+            },
+            "workspace": {
+              "name": {}
+            }
+          }
+        ]
+      }
+    }
+  },
+  {
+    "id": "asana:GET:/api/1.0/webhooks#0",
+    "match": {
+      "method": "GET",
+      "path": "/api/1.0/webhooks"
+    },
+    "respond": {
+      "status": 200,
+      "body": {
+        "data": [
+          {
+            "gid": {},
+            "resource_type": {},
+            "active": false,
+            "resource": {},
+            "target": "https://example.com/receive-webhook/7654",
+            "created_at": "2012-02-22T02:06:58.147Z",
+            "filters": [
+              {}
+            ],
+            "last_failure_at": "2012-02-22T02:06:58.147Z",
+            "last_failure_content": "500 Server Error\\n\\nCould not complete the request",
+            "last_success_at": "2012-02-22T02:06:58.147Z"
+          }
+        ]
+      }
+    }
+  },
+  {
+    "id": "asana:POST:/api/1.0/webhooks#0",
+    "match": {
+      "method": "POST",
+      "path": "/api/1.0/webhooks"
+    },
+    "respond": {
+      "status": 201,
+      "body": {
+        "data": {
+          "gid": "12345",
+          "resource_type": "task",
+          "active": false,
+          "resource": {},
+          "target": "https://example.com/receive-webhook/7654",
+          "created_at": "2012-02-22T02:06:58.147Z",
+          "filters": [
+            {
+              "action": {},
+              "fields": {},
+              "resource_subtype": {},
+              "resource_type": {}
+            }
+          ],
+          "last_failure_at": "2012-02-22T02:06:58.147Z",
+          "last_failure_content": "500 Server Error\\n\\nCould not complete the request",
+          "last_success_at": "2012-02-22T02:06:58.147Z"
+        }
+      }
+    }
+  },
+  {
+    "id": "asana:GET:/api/1.0/webhooks/:webhook_gid#0",
+    "match": {
+      "method": "GET",
+      "path": "/api/1.0/webhooks/:webhook_gid"
+    },
+    "respond": {
+      "status": 200,
+      "body": {
+        "data": {
+          "gid": "12345",
+          "resource_type": "task",
+          "active": false,
+          "resource": {},
+          "target": "https://example.com/receive-webhook/7654",
+          "created_at": "2012-02-22T02:06:58.147Z",
+          "filters": [
+            {
+              "action": {},
+              "fields": {},
+              "resource_subtype": {},
+              "resource_type": {}
+            }
+          ],
+          "last_failure_at": "2012-02-22T02:06:58.147Z",
+          "last_failure_content": "500 Server Error\\n\\nCould not complete the request",
+          "last_success_at": "2012-02-22T02:06:58.147Z"
+        }
+      }
+    }
+  },
+  {
+    "id": "asana:PUT:/api/1.0/webhooks/:webhook_gid#0",
+    "match": {
+      "method": "PUT",
+      "path": "/api/1.0/webhooks/:webhook_gid"
+    },
+    "respond": {
+      "status": 200,
+      "body": {
+        "data": {
+          "gid": "12345",
+          "resource_type": "task",
+          "active": false,
+          "resource": {},
+          "target": "https://example.com/receive-webhook/7654",
+          "created_at": "2012-02-22T02:06:58.147Z",
+          "filters": [
+            {
+              "action": {},
+              "fields": {},
+              "resource_subtype": {},
+              "resource_type": {}
+            }
+          ],
+          "last_failure_at": "2012-02-22T02:06:58.147Z",
+          "last_failure_content": "500 Server Error\\n\\nCould not complete the request",
+          "last_success_at": "2012-02-22T02:06:58.147Z"
+        }
+      }
+    }
+  },
+  {
+    "id": "asana:DELETE:/api/1.0/webhooks/:webhook_gid#0",
+    "match": {
+      "method": "DELETE",
+      "path": "/api/1.0/webhooks/:webhook_gid"
+    },
+    "respond": {
+      "status": 200,
+      "body": {
+        "data": {}
+      }
+    }
+  },
+  {
+    "id": "asana:GET:/api/1.0/workspace_memberships/:workspace_membership_gid#0",
+    "match": {
+      "method": "GET",
+      "path": "/api/1.0/workspace_memberships/:workspace_membership_gid"
+    },
+    "respond": {
+      "status": 200,
+      "body": {
+        "data": {
+          "gid": {},
+          "resource_type": {},
+          "user": {},
+          "workspace": {},
+          "is_active": true,
+          "is_admin": false,
+          "is_guest": true,
+          "user_task_list": {},
+          "vacation_dates": {
+            "end_on": "2022-11-07",
+            "start_on": "2022-11-05"
+          }
+        }
+      }
+    }
+  },
+  {
+    "id": "asana:GET:/api/1.0/workspaces#0",
+    "match": {
+      "method": "GET",
+      "path": "/api/1.0/workspaces"
+    },
+    "respond": {
+      "status": 200,
+      "body": {
+        "data": [
+          {
+            "gid": "12345",
+            "resource_type": "task",
+            "name": "My Company Workspace"
+          }
+        ]
+      }
+    }
+  },
+  {
+    "id": "asana:GET:/api/1.0/workspaces/:workspace_gid#0",
+    "match": {
+      "method": "GET",
+      "path": "/api/1.0/workspaces/:workspace_gid"
+    },
+    "respond": {
+      "status": 200,
+      "body": {
+        "data": {
+          "gid": {},
+          "resource_type": {},
+          "name": "My Company Workspace",
+          "email_domains": [
+            "asana.com"
+          ],
+          "is_organization": false
+        }
+      }
+    }
+  },
+  {
+    "id": "asana:PUT:/api/1.0/workspaces/:workspace_gid#0",
+    "match": {
+      "method": "PUT",
+      "path": "/api/1.0/workspaces/:workspace_gid"
+    },
+    "respond": {
+      "status": 200,
+      "body": {
+        "data": {
+          "gid": {},
+          "resource_type": {},
+          "name": "My Company Workspace",
+          "email_domains": [
+            "asana.com"
+          ],
+          "is_organization": false
+        }
+      }
+    }
+  },
+  {
+    "id": "asana:POST:/api/1.0/workspaces/:workspace_gid/addUser#0",
+    "match": {
+      "method": "POST",
+      "path": "/api/1.0/workspaces/:workspace_gid/addUser"
+    },
+    "respond": {
+      "status": 200,
+      "body": {
+        "data": {
+          "gid": {},
+          "resource_type": {},
+          "name": "Greg Sanchez",
+          "email": "gsanchez@example.com",
+          "photo": {
+            "image_1024x1024": "https://...",
+            "image_128x128": "https://...",
+            "image_21x21": "https://...",
+            "image_27x27": "https://...",
+            "image_36x36": "https://...",
+            "image_60x60": "https://..."
+          }
+        }
+      }
+    }
+  },
+  {
+    "id": "asana:GET:/api/1.0/workspaces/:workspace_gid/audit_log_events#0",
+    "match": {
+      "method": "GET",
+      "path": "/api/1.0/workspaces/:workspace_gid/audit_log_events"
+    },
+    "respond": {
+      "status": 200,
+      "body": {
+        "data": [
+          {
+            "actor": {
+              "actor_type": "user",
+              "email": "gregsanchez@example.com",
+              "gid": "1111",
+              "name": "Greg Sanchez"
+            },
+            "context": {
+              "api_authentication_method": {},
+              "client_ip_address": "1.1.1.1",
+              "context_type": "web",
+              "oauth_app_name": "s66532",
+              "user_agent": "Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/51.0.2704.103 Safari/537.36"
+            },
+            "created_at": "2021-01-01T00:00:00.000Z",
+            "details": {},
+            "event_category": "deletion",
+            "event_type": "task_deleted",
+            "gid": "12345",
+            "resource": {
+              "email": "s697141",
+              "gid": "1111",
+              "name": "Example Task",
+              "resource_subtype": "milestone",
+              "resource_type": "task"
+            }
+          }
+        ]
+      }
+    }
+  },
+  {
+    "id": "asana:GET:/api/1.0/workspaces/:workspace_gid/custom_fields#0",
+    "match": {
+      "method": "GET",
+      "path": "/api/1.0/workspaces/:workspace_gid/custom_fields"
+    },
+    "respond": {
+      "status": 200,
+      "body": {
+        "data": [
+          {
+            "asana_created_field": "priority",
+            "currency_code": "EUR",
+            "custom_label": "gold pieces",
+            "custom_label_position": "suffix",
+            "description": "Development team priority",
+            "enum_options": [
+              {}
+            ],
+            "format": "custom",
+            "has_notifications_enabled": true,
+            "is_global_to_workspace": true,
+            "precision": 2,
+            "created_by": {
+              "name": {}
+            },
+            "people_value": [
+              {}
+            ]
+          }
+        ]
+      }
+    }
+  },
+  {
+    "id": "asana:GET:/api/1.0/workspaces/:workspace_gid/projects#0",
+    "match": {
+      "method": "GET",
+      "path": "/api/1.0/workspaces/:workspace_gid/projects"
+    },
+    "respond": {
+      "status": 200,
+      "body": {
+        "data": [
+          {
+            "gid": "12345",
+            "resource_type": "task",
+            "name": "Stuff to buy"
+          }
+        ]
+      }
+    }
+  },
+  {
+    "id": "asana:POST:/api/1.0/workspaces/:workspace_gid/projects#0",
+    "match": {
+      "method": "POST",
+      "path": "/api/1.0/workspaces/:workspace_gid/projects"
+    },
+    "respond": {
+      "status": 201,
+      "body": {
+        "data": {
+          "name": {},
+          "archived": false,
+          "color": "light-green",
+          "created_at": "2012-02-22T02:06:58.147Z",
+          "current_status": {},
+          "current_status_update": {},
+          "custom_field_settings": [
+            {}
+          ],
+          "default_view": "calendar",
+          "due_date": "2019-09-15",
+          "due_on": "2019-09-15",
+          "html_notes": "<body>These are things we need to purchase.</body>",
+          "is_template": false,
+          "members": [
+            {}
+          ],
+          "modified_at": "2012-02-22T02:06:58.147Z",
+          "notes": "These are things we need to purchase.",
+          "public": false,
+          "start_on": "2019-09-14",
+          "workspace": {},
+          "completed": false,
+          "completed_at": "2012-02-22T02:06:58.147Z",
+          "completed_by": {
+            "gid": {},
+            "resource_type": {},
+            "name": {}
+          },
+          "created_from_template": {},
+          "custom_fields": [
+            {
+              "date_value": {},
+              "display_value": {},
+              "enabled": {},
+              "enum_options": {},
+              "enum_value": {},
+              "multi_enum_values": {},
+              "name": {},
+              "number_value": {},
+              "resource_subtype": {},
+              "text_value": {},
+              "type": {}
+            }
+          ],
+          "followers": [
+            {
+              "name": {}
+            }
+          ],
+          "icon": "chat_bubbles",
+          "owner": {},
+          "permalink_url": "https://app.asana.com/0/resource/123456789/list",
+          "project_brief": {},
+          "team": {}
+        }
+      }
+    }
+  },
+  {
+    "id": "asana:POST:/api/1.0/workspaces/:workspace_gid/removeUser#0",
+    "match": {
+      "method": "POST",
+      "path": "/api/1.0/workspaces/:workspace_gid/removeUser"
+    },
+    "respond": {
+      "status": 204,
+      "body": {
+        "data": {}
+      }
+    }
+  },
+  {
+    "id": "asana:GET:/api/1.0/workspaces/:workspace_gid/tags#0",
+    "match": {
+      "method": "GET",
+      "path": "/api/1.0/workspaces/:workspace_gid/tags"
+    },
+    "respond": {
+      "status": 200,
+      "body": {
+        "data": [
+          {
+            "gid": "12345",
+            "resource_type": "task",
+            "name": "Stuff to buy"
+          }
+        ]
+      }
+    }
+  },
+  {
+    "id": "asana:POST:/api/1.0/workspaces/:workspace_gid/tags#0",
+    "match": {
+      "method": "POST",
+      "path": "/api/1.0/workspaces/:workspace_gid/tags"
+    },
+    "respond": {
+      "status": 201,
+      "body": {
+        "data": {
+          "name": {},
+          "color": "light-green",
+          "notes": "Mittens really likes the stuff from Humboldt.",
+          "created_at": "2012-02-22T02:06:58.147Z",
+          "followers": [
+            {
+              "name": {}
+            }
+          ],
+          "permalink_url": "https://app.asana.com/0/resource/123456789/list",
+          "workspace": {
+            "gid": {},
+            "resource_type": {},
+            "name": {}
+          }
+        }
+      }
+    }
+  },
+  {
+    "id": "asana:GET:/api/1.0/workspaces/:workspace_gid/tasks/search#0",
+    "match": {
+      "method": "GET",
+      "path": "/api/1.0/workspaces/:workspace_gid/tasks/search"
+    },
+    "respond": {
+      "status": 200,
+      "body": {
+        "data": [
+          {
+            "gid": "12345",
+            "resource_type": "task",
+            "name": "Bug Task",
+            "resource_subtype": "default_task"
+          }
+        ]
+      }
+    }
+  },
+  {
+    "id": "asana:GET:/api/1.0/workspaces/:workspace_gid/teams#0",
+    "match": {
+      "method": "GET",
+      "path": "/api/1.0/workspaces/:workspace_gid/teams"
+    },
+    "respond": {
+      "status": 200,
+      "body": {
+        "data": [
+          {
+            "gid": "12345",
+            "resource_type": "task",
+            "name": "Marketing"
+          }
+        ]
+      }
+    }
+  },
+  {
+    "id": "asana:GET:/api/1.0/workspaces/:workspace_gid/typeahead#0",
+    "match": {
+      "method": "GET",
+      "path": "/api/1.0/workspaces/:workspace_gid/typeahead"
+    },
+    "respond": {
+      "status": 200,
+      "body": {
+        "data": [
+          {
+            "gid": "12345",
+            "resource_type": "task",
+            "name": "Bug Task"
+          }
+        ]
+      }
+    }
+  },
+  {
+    "id": "asana:GET:/api/1.0/workspaces/:workspace_gid/users#0",
+    "match": {
+      "method": "GET",
+      "path": "/api/1.0/workspaces/:workspace_gid/users"
+    },
+    "respond": {
+      "status": 200,
+      "body": {
+        "data": [
+          {
+            "gid": "12345",
+            "resource_type": "task",
+            "name": "Greg Sanchez"
+          }
+        ]
+      }
+    }
+  },
+  {
+    "id": "asana:GET:/api/1.0/workspaces/:workspace_gid/workspace_memberships#0",
+    "match": {
+      "method": "GET",
+      "path": "/api/1.0/workspaces/:workspace_gid/workspace_memberships"
+    },
+    "respond": {
+      "status": 200,
+      "body": {
+        "data": [
+          {
+            "gid": "12345",
+            "resource_type": "task",
+            "user": {
+              "name": {}
+            },
+            "workspace": {
+              "name": {}
+            }
+          }
+        ]
+      }
+    }
+  }
+]

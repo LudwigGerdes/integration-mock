@@ -1,0 +1,8 @@
+{
+  "id": "datadog",
+  "domains": [
+    "{subdomain}.{site}"
+  ],
+  "prefix": "/datadog",
+  "source": "openapi"
+}

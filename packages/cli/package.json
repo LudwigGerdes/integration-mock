@@ -1,0 +1,71 @@
+{
+	"name": "integration-mock",
+	"version": "0.1.0",
+	"description": "Mock the APIs an n8n workflow calls: vendor packs from OpenAPI, recorded traffic, snapshot and replay, fault injection",
+	"license": "MIT",
+	"repository": {
+		"type": "git",
+		"url": "git+https://github.com/LudwigGerdes/integration-mock.git",
+		"directory": "packages/cli"
+	},
+	"homepage": "https://github.com/LudwigGerdes/integration-mock#readme",
+	"bugs": {
+		"url": "https://github.com/LudwigGerdes/integration-mock/issues"
+	},
+	"keywords": [
+		"n8n",
+		"n8n-workflow",
+		"mock",
+		"mock-api",
+		"openapi",
+		"proxy",
+		"snapshot",
+		"testing"
+	],
+	"engines": {
+		"node": ">=20"
+	},
+	"publishConfig": {
+		"access": "public"
+	},
+	"type": "module",
+	"bin": {
+		"integration-mock": "./dist/bin.js"
+	},
+	"scripts": {
+		"build": "node build.mjs",
+		"typecheck": "tsc -p tsconfig.json --noEmit",
+		"test": "vitest run",
+		"bundle": "node build.mjs",
+		"prepack": "node build-index.mjs && node prepack.mjs && node build.mjs",
+		"postpack": "node postpack.mjs",
+		"index": "node build-index.mjs"
+	},
+	"dependencies": {
+		"ajv": "^8.17.1",
+		"commander": "^12.1.0",
+		"nanoid": "^5.0.7",
+		"node-forge": "^1.3.1",
+		"picomatch": "^4.0.2",
+		"undici": "^6.19.0",
+		"yaml": "^2.5.0"
+	},
+	"devDependencies": {
+		"esbuild": "^0.23.0",
+		"integration-mock-core": "workspace:*",
+		"integration-mock-packs": "workspace:*",
+		"integration-mock-proxy": "workspace:*"
+	},
+	"files": [
+		"dist",
+		"packs",
+		"schema",
+		"docker",
+		"skills",
+		"sources.yaml",
+		"LICENSE",
+		"NOTICE",
+		"THIRD_PARTY_NOTICES.md",
+		"README.md"
+	]
+}

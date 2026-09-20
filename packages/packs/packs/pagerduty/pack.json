@@ -1,0 +1,8 @@
+{
+  "id": "pagerduty",
+  "domains": [
+    "api.pagerduty.com"
+  ],
+  "prefix": "/pagerduty",
+  "source": "openapi"
+}

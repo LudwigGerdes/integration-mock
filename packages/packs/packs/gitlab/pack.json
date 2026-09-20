@@ -1,0 +1,8 @@
+{
+  "id": "gitlab",
+  "domains": [
+    "gitlab.com"
+  ],
+  "prefix": "/gitlab",
+  "source": "openapi"
+}

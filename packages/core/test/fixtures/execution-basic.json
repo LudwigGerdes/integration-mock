@@ -1,0 +1,43 @@
+{
+  "id": "4123",
+  "finished": true,
+  "mode": "manual",
+  "status": "success",
+  "startedAt": "2026-08-30T10:00:00.000Z",
+  "stoppedAt": "2026-08-30T10:00:02.000Z",
+  "workflowId": "8f3a",
+  "workflowData": {
+    "id": "8f3a",
+    "name": "Users to Slack",
+    "nodes": [
+      { "name": "Manual Trigger", "type": "n8n-nodes-base.manualTrigger", "typeVersion": 1, "position": [0, 0], "parameters": {} },
+      { "name": "Fetch Users", "type": "n8n-nodes-base.httpRequest", "typeVersion": 4.2, "position": [220, 0],
+        "parameters": { "url": "https://api.example.com/users", "method": "GET", "sendQuery": true,
+          "queryParameters": { "parameters": [ { "name": "page", "value": "1" } ] }, "options": {} } },
+      { "name": "Pick Fields", "type": "n8n-nodes-base.set", "typeVersion": 3.4, "position": [440, 0],
+        "parameters": { "assignments": { "assignments": [ { "id": "a1", "name": "email", "value": "={{ $json.email }}", "type": "string" } ] } } },
+      { "name": "Notify", "type": "n8n-nodes-base.slack", "typeVersion": 2.2, "position": [660, 0],
+        "parameters": { "resource": "message", "operation": "post", "select": "channel", "channelId": { "__rl": true, "value": "C123", "mode": "id" }, "text": "={{ $json.email }}" } }
+    ],
+    "connections": {
+      "Manual Trigger": { "main": [[ { "node": "Fetch Users", "type": "main", "index": 0 } ]] },
+      "Fetch Users": { "main": [[ { "node": "Pick Fields", "type": "main", "index": 0 } ]] },
+      "Pick Fields": { "main": [[ { "node": "Notify", "type": "main", "index": 0 } ]] }
+    }
+  },
+  "data": {
+    "resultData": {
+      "runData": {
+        "Manual Trigger": [ { "startTime": 1, "executionTime": 0, "data": { "main": [[ { "json": {} } ]] } } ],
+        "Fetch Users": [ { "startTime": 2, "executionTime": 120, "data": { "main": [[
+          { "json": { "id": 1, "email": "a@example.com" } },
+          { "json": { "id": 2, "email": "b@example.com" } } ]] } } ],
+        "Pick Fields": [ { "startTime": 3, "executionTime": 1, "data": { "main": [[
+          { "json": { "email": "a@example.com" } }, { "json": { "email": "b@example.com" } } ]] } } ],
+        "Notify": [ { "startTime": 4, "executionTime": 90, "data": { "main": [[
+          { "json": { "ok": true, "channel": "C123", "ts": "1725000000.000100", "message": { "text": "a@example.com", "type": "message" } } },
+          { "json": { "ok": true, "channel": "C123", "ts": "1725000000.000200", "message": { "text": "b@example.com", "type": "message" } } } ]] } } ]
+      }
+    }
+  }
+}

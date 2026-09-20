@@ -1,0 +1,3549 @@
+[
+  {
+    "id": "pandadoc:POST:/oauth2/access_token#auth",
+    "match": {
+      "method": "POST",
+      "path": "/oauth2/access_token"
+    },
+    "respond": {
+      "status": 200,
+      "body": {
+        "access_token": "mock-access-token",
+        "token_type": "Bearer",
+        "expires_in": 3600,
+        "refresh_token": "mock-refresh-token",
+        "scope": ""
+      }
+    }
+  },
+  {
+    "id": "pandadoc:POST:/oauth2/access_token#0",
+    "match": {
+      "method": "POST",
+      "path": "/oauth2/access_token"
+    },
+    "respond": {
+      "status": 200,
+      "body": {
+        "access_token": "2ff2dfe36322448c6953616740a910be57bbd4ca",
+        "expires_in": 31535999,
+        "refresh_token": "4c82f23d91a75961f4d08134fc5ad0dfe6a4c36a",
+        "scope": "read write",
+        "token_type": "Bearer"
+      }
+    }
+  },
+  {
+    "id": "pandadoc:POST:/public/beta/documents/ai-metadata#0",
+    "match": {
+      "method": "POST",
+      "path": "/public/beta/documents/ai-metadata"
+    },
+    "respond": {
+      "status": 200,
+      "body": {
+        "count": 6,
+        "results": [
+          {
+            "document_id": "BhVzRcxH9Z2LgfPPGXFUBa",
+            "status": "ok",
+            "ai_metadata": {
+              "count": 2,
+              "results": [
+                {
+                  "id": "3SBkwkGBbMn6btzHTiKkGn",
+                  "key": "Counterparty name",
+                  "field_type": "multi_line",
+                  "settings": {},
+                  "value": {
+                    "value": "Acme Corp",
+                    "acceptance_status": "pending"
+                  }
+                },
+                {
+                  "id": "aPpvJWCMNqf6mYbA2T3KdR",
+                  "key": "Contract value",
+                  "field_type": "currency",
+                  "settings": {},
+                  "value": {
+                    "value": "$250,000",
+                    "acceptance_status": "accepted"
+                  }
+                }
+              ]
+            }
+          },
+          {
+            "document_id": "msFYActMfJHqNTKH9ig2DF",
+            "status": "extraction_pending",
+            "retry_after": 5,
+            "description": "Result is being generated. You can try later."
+          },
+          {
+            "document_id": "9FeAY2NB3C9qDdtQRb4tTL",
+            "status": "extraction_failed",
+            "description": "We couldn't extract data for this document. Contact support."
+          },
+          {
+            "document_id": "Uf7yNEwkELsazbKHDMDAeV",
+            "status": "extraction_not_started",
+            "description": "Likely, the document is not yet completed."
+          },
+          {
+            "document_id": "pXwnAhg8bk9SoBEGGdNu3d",
+            "status": "not_found",
+            "description": "Document not found."
+          },
+          {
+            "document_id": "bQySP2djjJkNKxyVbQ8pu4",
+            "status": "access_denied",
+            "description": "Access to this document is denied."
+          }
+        ]
+      }
+    }
+  },
+  {
+    "id": "pandadoc:GET:/public/beta/documents/search#0",
+    "match": {
+      "method": "GET",
+      "path": "/public/beta/documents/search"
+    },
+    "respond": {
+      "status": 200,
+      "body": {
+        "results": [
+          {
+            "document_id": "msFYActMfJHqNTKH9ig2DF",
+            "name": "Service Agreement - Acme Corp",
+            "status": "document.completed",
+            "date_created": "2026-03-15T10:30:00Z",
+            "owner": {
+              "id": "9FeAY2NB3C9qDdtQRb4tTL",
+              "name": "Jane Doe",
+              "email": "jane.doe@example.com",
+              "avatar": null
+            },
+            "folder": {
+              "id": "Uf7yNEwkELsazbKHDMDAeV",
+              "name": "Active Contracts"
+            },
+            "extra_fields": {
+              "date_sent": "2026-03-16T09:00:00Z",
+              "date_completed": "2026-03-20T14:22:00Z",
+              "tags": [
+                "legal",
+                "Q1-2026"
+              ],
+              "recipients": [
+                {
+                  "id": "bQySP2djjJkNKxyVbQ8pu4",
+                  "email": "john.smith@example.com",
+                  "first_name": "John",
+                  "last_name": "Smith",
+                  "role_name": "Client",
+                  "date_signed": "2026-03-20T14:22:00Z",
+                  "type": "signer",
+                  "company": "Acme Corp",
+                  "is_done": true
+                }
+              ],
+              "recipient_count": 1,
+              "signed_count": 1,
+              "completion_rate": 1,
+              "total": {
+                "amount": 15000,
+                "currency": "USD"
+              },
+              "document_type": {
+                "id": "pXwnAhg8bk9SoBEGGdNu3d",
+                "type": "Non-Disclosure Agreement",
+                "general_type": "Agreement"
+              }
+            }
+          }
+        ],
+        "count": 1,
+        "suggestions": [
+          {
+            "text": "Show only completed contracts"
+          },
+          {
+            "text": "Filter by owner Jane Doe"
+          }
+        ],
+        "message": "Found 1 document matching your query.",
+        "intent": [
+          {
+            "field": "status",
+            "value": "document.completed"
+          },
+          {
+            "field": "date_created",
+            "value": "last month"
+          }
+        ]
+      }
+    }
+  },
+  {
+    "id": "pandadoc:GET:/public/beta/documents/:document_id/ai-metadata#0",
+    "match": {
+      "method": "GET",
+      "path": "/public/beta/documents/:document_id/ai-metadata"
+    },
+    "respond": {
+      "status": 200,
+      "body": {
+        "count": 2,
+        "results": [
+          {
+            "id": "3SBkwkGBbMn6btzHTiKkGn",
+            "key": "Counterparty name",
+            "field_type": "multi_line",
+            "settings": {},
+            "value": {
+              "id": "5KqRz9WLPzm4jx2hTb3vGz",
+              "value": "Acme Corp",
+              "source": "model",
+              "acceptance_status": "pending"
+            }
+          },
+          {
+            "id": "aPpvJWCMNqf6mYbA2T3KdR",
+            "key": "Contract value",
+            "field_type": "currency",
+            "settings": {},
+            "value": {
+              "id": "cQ7Y1XJpyTUf2gZ3hHkBNS",
+              "value": "$250,000",
+              "source": "user",
+              "acceptance_status": "accepted"
+            }
+          }
+        ]
+      }
+    }
+  },
+  {
+    "id": "pandadoc:GET:/public/beta/documents/:document_id/content#0",
+    "match": {
+      "method": "GET",
+      "path": "/public/beta/documents/:document_id/content"
+    },
+    "respond": {
+      "status": 200,
+      "body": {
+        "format": "plaintext",
+        "content": "Agreement between Party A and Party B..."
+      }
+    }
+  },
+  {
+    "id": "pandadoc:POST:/public/beta/documents/:document_id/docx-export-tasks#0",
+    "match": {
+      "method": "POST",
+      "path": "/public/beta/documents/:document_id/docx-export-tasks"
+    },
+    "respond": {
+      "status": 200,
+      "body": {
+        "id": "nPh2PDhFdDqAES9k64h9qX",
+        "document_id": "BhVzRcxH9Z2LgfPPGXFUBa",
+        "status": "done"
+      }
+    }
+  },
+  {
+    "id": "pandadoc:GET:/public/beta/documents/:document_id/docx-export-tasks/:task_id#0",
+    "match": {
+      "method": "GET",
+      "path": "/public/beta/documents/:document_id/docx-export-tasks/:task_id"
+    },
+    "respond": {
+      "status": 200,
+      "body": {
+        "id": "nPh2PDhFdDqAES9k64h9qX",
+        "document_id": "BhVzRcxH9Z2LgfPPGXFUBa",
+        "status": "done",
+        "docx_items": [
+          {
+            "section_title": "Section 1",
+            "url": "https://example.com/downloads/section1.docx"
+          },
+          {
+            "section_title": "Section 2",
+            "url": "https://example.com/downloads/section2.docx"
+          }
+        ]
+      }
+    }
+  },
+  {
+    "id": "pandadoc:GET:/public/beta/documents/:document_id/summary#0",
+    "match": {
+      "method": "GET",
+      "path": "/public/beta/documents/:document_id/summary"
+    },
+    "respond": {
+      "status": 200,
+      "body": {
+        "type": "detailed",
+        "summary": "This agreement establishes a partnership between Party A and Party B, covering terms of service, payment schedules, intellectual property rights, and termination clauses. The contract is effective from March 2026 and runs for 12 months with automatic renewal."
+      }
+    }
+  },
+  {
+    "id": "pandadoc:GET:/public/v1/contacts#0",
+    "match": {
+      "method": "GET",
+      "path": "/public/v1/contacts"
+    },
+    "respond": {
+      "status": 200,
+      "body": {
+        "results": [
+          {
+            "id": "kQDLgj54VGCocTSTzthywf",
+            "email": "john.doe@example.com",
+            "first_name": "John",
+            "last_name": "Doe",
+            "company": "ExampleCorp",
+            "job_title": "Software Engineer",
+            "phone": "+1-555-123-4567",
+            "country": "USA",
+            "state": "California",
+            "street_address": "1234 Elm Street",
+            "city": "San Francisco",
+            "postal_code": "94101"
+          },
+          {
+            "id": "kQDLgj54VGCocTSTzthywd",
+            "email": "jane.smith@example.com",
+            "first_name": "Jane",
+            "last_name": "Smith",
+            "company": "ExampleCorp",
+            "job_title": "Product Manager",
+            "phone": "+1-555-987-6543",
+            "country": "USA",
+            "state": "California",
+            "street_address": "5678 Oak Street",
+            "city": "San Francisco",
+            "postal_code": "94102"
+          }
+        ]
+      }
+    }
+  },
+  {
+    "id": "pandadoc:POST:/public/v1/contacts#0",
+    "match": {
+      "method": "POST",
+      "path": "/public/v1/contacts"
+    },
+    "respond": {
+      "status": 201,
+      "body": {
+        "id": "BCUWJhZm3k7grUNFAz6cD2",
+        "email": "user01@pandadoc.com",
+        "first_name": "John",
+        "last_name": "Doe",
+        "company": "John Doe Inc.",
+        "job_title": "CTO",
+        "phone": "+14842634627",
+        "country": "USA",
+        "state": "Texas",
+        "street_address": "1313 Mockingbird Lane",
+        "city": "Austin",
+        "postal_code": "75001"
+      }
+    }
+  },
+  {
+    "id": "pandadoc:GET:/public/v1/contacts/:id#0",
+    "match": {
+      "method": "GET",
+      "path": "/public/v1/contacts/:id"
+    },
+    "respond": {
+      "status": 200,
+      "body": {
+        "id": "SyoufNkJiHRn24LpuJ7RXb",
+        "email": "nobody@example.com",
+        "first_name": "FName",
+        "last_name": "LName",
+        "company": "CompanyName",
+        "job_title": "JobTitle",
+        "phone": "Phone",
+        "country": "Country",
+        "state": "State",
+        "street_address": "Av. de Moscavide 2",
+        "city": "City",
+        "postal_code": "1885-075"
+      }
+    }
+  },
+  {
+    "id": "pandadoc:PATCH:/public/v1/contacts/:id#0",
+    "match": {
+      "method": "PATCH",
+      "path": "/public/v1/contacts/:id"
+    },
+    "respond": {
+      "status": 200,
+      "body": {
+        "id": "SyoufNkJiHRn24LpuJ7RXb",
+        "email": "test@pandadoc.com",
+        "first_name": "new first_name",
+        "last_name": "new last_name",
+        "company": "new company",
+        "job_title": "new job_title",
+        "phone": "new phone",
+        "country": "new country",
+        "state": "new state",
+        "street_address": "new street_address",
+        "city": "new city",
+        "postal_code": "new postal_code"
+      }
+    }
+  },
+  {
+    "id": "pandadoc:DELETE:/public/v1/contacts/:id#0",
+    "match": {
+      "method": "DELETE",
+      "path": "/public/v1/contacts/:id"
+    },
+    "respond": {
+      "status": 204
+    }
+  },
+  {
+    "id": "pandadoc:GET:/public/v1/content-library-items#0",
+    "match": {
+      "method": "GET",
+      "path": "/public/v1/content-library-items"
+    },
+    "respond": {
+      "status": 200,
+      "body": {
+        "results": [
+          {
+            "date_created": "2021-04-12T08:43:51.090022Z",
+            "date_modified": "2021-04-12T08:43:51.190022Z",
+            "id": "a5UgY5J3rGqU7MtW5xwEGk",
+            "name": "Painting Blog Banner",
+            "version": "2"
+          }
+        ]
+      }
+    }
+  },
+  {
+    "id": "pandadoc:POST:/public/v1/content-library-items#0",
+    "match": {
+      "method": "POST",
+      "path": "/public/v1/content-library-items"
+    },
+    "respond": {
+      "status": 201,
+      "body": {
+        "id": "va9aNuj3uX2w9M7uytn967",
+        "name": "Sample CLI",
+        "date_created": "2024-07-08T14:41:42.625906Z",
+        "date_modified": "2024-07-08T14:41:42.700084Z",
+        "version": "2",
+        "status": "cli.PROCESSED"
+      }
+    }
+  },
+  {
+    "id": "pandadoc:GET:/public/v1/content-library-items/:id#0",
+    "match": {
+      "method": "GET",
+      "path": "/public/v1/content-library-items/:id"
+    },
+    "respond": {
+      "status": 200,
+      "body": {
+        "id": "vibuun3DXG8QDDLfXm27Ne",
+        "name": "API Sample PandaDoc CLI",
+        "date_created": "2024-07-15T17:44:07.524617Z",
+        "date_modified": "2024-07-15T17:44:07.613821Z",
+        "version": "2",
+        "status": "cli.PROCESSED"
+      }
+    }
+  },
+  {
+    "id": "pandadoc:GET:/public/v1/content-library-items/:id/details#0",
+    "match": {
+      "method": "GET",
+      "path": "/public/v1/content-library-items/:id/details"
+    },
+    "respond": {
+      "status": 200,
+      "body": {
+        "content_date_modified": "2021-10-23T21:07:04.147345Z",
+        "content_placeholders": [
+          {}
+        ],
+        "created_by": {
+          "avatar": "https://pd-live-media.s3.amazonaws.com/users/000GTSGwJw000L2KZqc000/avatar.jpg",
+          "email": "jane@example.com",
+          "first_name": "Jane",
+          "id": "b6RGTSGwJw838L2KZqckpD",
+          "last_name": "Roe"
+        },
+        "date_created": "2021-08-11T14:12:20.017074Z",
+        "date_modified": "2021-08-11T14:13:38.562290Z",
+        "fields": [
+          {}
+        ],
+        "id": "9d9k7VtSQ5KCXfsUQv4GxE",
+        "images": [
+          {}
+        ],
+        "metadata": {},
+        "name": "Sample Pricing Table",
+        "pricing": {
+          "quotes": [
+            {
+              "currency": "USD",
+              "id": "4b011d86-286b-4f86-b697-90a6ad3f1489",
+              "merge_rules": [
+                {
+                  "action": {},
+                  "condition": {},
+                  "enabled": {},
+                  "id": {}
+                }
+              ],
+              "sections": [
+                {
+                  "columns": {},
+                  "id": {},
+                  "items": {},
+                  "name": {},
+                  "settings": {},
+                  "summary": {},
+                  "total": {}
+                }
+              ],
+              "settings": {
+                "selection_type": {}
+              },
+              "summary": {
+                "custom_fields": {},
+                "discounts": {},
+                "fees": {},
+                "one_time_subtotal": {},
+                "recurring_subtotal": {},
+                "subtotal": {},
+                "taxes": {},
+                "total": {},
+                "total_contract_value": {},
+                "total_discount": {},
+                "total_fee": {},
+                "total_qty": {},
+                "total_savings": {},
+                "total_tax": {}
+              },
+              "total": "900"
+            }
+          ],
+          "tables": [
+            {
+              "currency": "USD",
+              "id": "065c5cbc-a065-4843-ba17-028e63779605",
+              "is_included_in_total": true,
+              "items": [
+                {
+                  "cost": {},
+                  "custom_columns": {},
+                  "custom_fields": {},
+                  "description": {},
+                  "discount": {},
+                  "discounts": {},
+                  "fees": {},
+                  "id": {},
+                  "merged_data": {},
+                  "name": {},
+                  "options": {},
+                  "price": {},
+                  "qty": {},
+                  "sale_price": {},
+                  "sku": {},
+                  "subtotal": {},
+                  "tax_first": {},
+                  "tax_second": {},
+                  "taxes": {}
+                }
+              ],
+              "name": "Pricing Table",
+              "summary": {
+                "discount": {},
+                "fee": {},
+                "subtotal": {},
+                "tax": {},
+                "total": {}
+              },
+              "total": "11500"
+            }
+          ],
+          "total": "11500"
+        },
+        "roles": [
+          {}
+        ],
+        "tables": [
+          {
+            "name": "s50459"
+          }
+        ],
+        "tags": [
+          "s947232"
+        ],
+        "tokens": [
+          {}
+        ],
+        "version": "2"
+      }
+    }
+  },
+  {
+    "id": "pandadoc:POST:/public/v1/content-library-items?upload#0",
+    "match": {
+      "method": "POST",
+      "path": "/public/v1/content-library-items?upload"
+    },
+    "respond": {
+      "status": 201,
+      "body": {
+        "id": "va9aNuj3uX2w9M7uytn967",
+        "name": "Sample CLI",
+        "date_created": "2024-07-08T14:41:42.625906Z",
+        "date_modified": "2024-07-08T14:41:42.700084Z",
+        "version": "2",
+        "status": "cli.PROCESSED"
+      }
+    }
+  },
+  {
+    "id": "pandadoc:GET:/public/v1/documents#0",
+    "match": {
+      "method": "GET",
+      "path": "/public/v1/documents"
+    },
+    "respond": {
+      "status": 200,
+      "body": {
+        "results": [
+          {
+            "id": "XjV64iXRJMerjSpk428QSF",
+            "name": "Sample Document",
+            "status": "document.draft",
+            "date_created": "2024-07-02T16:21:35.770196Z",
+            "date_modified": "2024-07-02T16:21:37.696724Z",
+            "expiration_date": null,
+            "version": "2"
+          },
+          {
+            "id": "6NbHUUu6uuYN2tqJvgtf9h",
+            "name": "Services Invoice",
+            "status": "document.completed",
+            "date_created": "2024-01-25T15:35:27.186107Z",
+            "date_modified": "2024-06-21T15:07:34.192101Z",
+            "expiration_date": "2024-08-20T15:07:32.869161Z",
+            "version": "2"
+          }
+        ]
+      }
+    }
+  },
+  {
+    "id": "pandadoc:POST:/public/v1/documents#0",
+    "match": {
+      "method": "POST",
+      "path": "/public/v1/documents"
+    },
+    "respond": {
+      "status": 201,
+      "body": {
+        "id": "D3okRfgHRX7NEhavcACReB",
+        "name": "Document from Template",
+        "status": "document.uploaded",
+        "date_created": "2024-07-04T19:27:14.927317Z",
+        "date_modified": "2024-07-04T19:27:14.927317Z",
+        "expiration_date": null,
+        "version": null,
+        "uuid": "D3okRfgHRX7NEhavcACReB",
+        "links": [
+          {
+            "rel": "status",
+            "href": "https://api.pandadoc.com/public/v1/documents/D3okRfgHRX7NEhavcACReB",
+            "type": "GET"
+          }
+        ],
+        "info_message": "You need to poll the Document Status method until the status will be changed to document.draft"
+      }
+    }
+  },
+  {
+    "id": "pandadoc:DELETE:/public/v1/documents#0",
+    "match": {
+      "method": "DELETE",
+      "path": "/public/v1/documents"
+    },
+    "respond": {
+      "status": 200,
+      "body": {
+        "id": [
+          "XjV64iXRJMerjSpk428QSF",
+          "6NbHUUu6uuYN2tqJvgtf9h"
+        ]
+      }
+    }
+  },
+  {
+    "id": "pandadoc:GET:/public/v1/documents/folders#0",
+    "match": {
+      "method": "GET",
+      "path": "/public/v1/documents/folders"
+    },
+    "respond": {
+      "status": 200,
+      "body": {
+        "results": [
+          {
+            "uuid": "dHPHDto4urFW2jx5JzaeaB",
+            "name": "My folder",
+            "date_created": "2024-07-15T17:19:21.048101Z",
+            "has_folders": false,
+            "has_items": false
+          }
+        ]
+      }
+    }
+  },
+  {
+    "id": "pandadoc:POST:/public/v1/documents/folders#0",
+    "match": {
+      "method": "POST",
+      "path": "/public/v1/documents/folders"
+    },
+    "respond": {
+      "status": 201,
+      "body": {
+        "uuid": "RuyjY9Us5XknaV1LyBnYxc",
+        "name": "A top level folder",
+        "date_created": "2024-07-15T17:37:34.523167Z"
+      }
+    }
+  },
+  {
+    "id": "pandadoc:PUT:/public/v1/documents/folders/:id#0",
+    "match": {
+      "method": "PUT",
+      "path": "/public/v1/documents/folders/:id"
+    },
+    "respond": {
+      "status": 200,
+      "body": {
+        "uuid": "gQxmeyuKitD693xV4WQ7yb",
+        "name": "New folder name",
+        "date_created": "2024-07-15T17:27:29.372983Z"
+      }
+    }
+  },
+  {
+    "id": "pandadoc:GET:/public/v1/documents/linked-objects#0",
+    "match": {
+      "method": "GET",
+      "path": "/public/v1/documents/linked-objects"
+    },
+    "respond": {
+      "status": 200,
+      "body": [
+        {
+          "id": "PG4YBFvSp9zW8nQf7zfmqb",
+          "status": "document.draft",
+          "date_created": "2023-11-27T14:11:13.198496Z",
+          "template_id": "5bAoesA6MDF97BG6wfhfZE"
+        }
+      ]
+    }
+  },
+  {
+    "id": "pandadoc:PATCH:/public/v1/documents/ownership#0",
+    "match": {
+      "method": "PATCH",
+      "path": "/public/v1/documents/ownership"
+    },
+    "respond": {
+      "status": 204
+    }
+  },
+  {
+    "id": "pandadoc:GET:/public/v1/documents/:document_id/auto-reminders#0",
+    "match": {
+      "method": "GET",
+      "path": "/public/v1/documents/:document_id/auto-reminders"
+    },
+    "respond": {
+      "status": 200,
+      "body": {
+        "enabled": true,
+        "delivery_method": "email",
+        "initial_delay_days": 3,
+        "is_recurring": true,
+        "recurrence_frequency_days": 5
+      }
+    }
+  },
+  {
+    "id": "pandadoc:PATCH:/public/v1/documents/:document_id/auto-reminders#0",
+    "match": {
+      "method": "PATCH",
+      "path": "/public/v1/documents/:document_id/auto-reminders"
+    },
+    "respond": {
+      "status": 200,
+      "body": {
+        "enabled": true,
+        "delivery_method": "email",
+        "initial_delay_days": 3,
+        "is_recurring": true,
+        "recurrence_frequency_days": 5
+      }
+    }
+  },
+  {
+    "id": "pandadoc:GET:/public/v1/documents/:document_id/auto-reminders/status#0",
+    "match": {
+      "method": "GET",
+      "path": "/public/v1/documents/:document_id/auto-reminders/status"
+    },
+    "respond": {
+      "status": 200,
+      "body": {
+        "reminders": [
+          {
+            "recipient_id": "2eWSKSvVqmuVCnuUK3iWwD",
+            "status": "sent"
+          },
+          {
+            "recipient_id": "2ZjA3A3RvjgVadJ9DpNQwz",
+            "status": "error"
+          },
+          {
+            "recipient_id": "udDBKqHFhJt9PxzS5cv7to",
+            "status": "scheduled"
+          }
+        ]
+      }
+    }
+  },
+  {
+    "id": "pandadoc:GET:/public/v1/documents/:document_id/esign-disclosure#0",
+    "match": {
+      "method": "GET",
+      "path": "/public/v1/documents/:document_id/esign-disclosure"
+    },
+    "respond": {
+      "status": 200,
+      "body": {
+        "result": {
+          "is_enabled": true,
+          "company_name": "Acme Corp",
+          "esign_disclosure_text": "<p>By signing this document electronically, you consent to use\nelectronic records and signatures. <strong>Your electronic signature</strong>\nis the legal equivalent of your\nhandwritten signature.</p>\n"
+        }
+      }
+    }
+  },
+  {
+    "id": "pandadoc:PUT:/public/v1/documents/:document_id/quotes/:quote_id#0",
+    "match": {
+      "method": "PUT",
+      "path": "/public/v1/documents/:document_id/quotes/:quote_id"
+    },
+    "respond": {
+      "status": 200,
+      "body": {
+        "currency": "USD",
+        "id": "4b011d86-286b-4f86-b697-90a6ad3f1489",
+        "merge_rules": [
+          {
+            "action": {
+              "section_id": "s61061",
+              "type": "s609943"
+            },
+            "condition": {
+              "comparison": [
+                {
+                  "type": "s822796",
+                  "value": "s257040"
+                }
+              ],
+              "field_name": "s749628",
+              "type": "s382323"
+            },
+            "enabled": true,
+            "id": "s147691"
+          }
+        ],
+        "sections": [
+          {
+            "columns": [
+              {
+                "header": "s82277",
+                "hidden": "s354207",
+                "merge_name": "s920632",
+                "name": "s977060"
+              }
+            ],
+            "id": "s745303",
+            "items": [
+              {
+                "billing_frequency": "weekly",
+                "contract_term": "s55814",
+                "cost": "s141250",
+                "custom_columns": {},
+                "description": "s826254",
+                "discounts": {},
+                "external_columns": {},
+                "fees": {},
+                "id": "s135343",
+                "multipliers": {},
+                "name": "s293317",
+                "options": {
+                  "qty_editable": true,
+                  "selected": true
+                },
+                "overall_total": "1000",
+                "price": "500",
+                "pricing_method": "s579380",
+                "qty": "1",
+                "reference_type": "s455078",
+                "sku": "s863183",
+                "taxes": {},
+                "total": "s526220",
+                "type": "s897286"
+              }
+            ],
+            "name": "s739938",
+            "settings": {
+              "optional": true,
+              "selected": false,
+              "selection_type": "custom"
+            },
+            "summary": {
+              "custom_fields": {},
+              "discounts": {},
+              "fees": {},
+              "one_time_subtotal": "500",
+              "recurring_subtotal": [
+                {
+                  "billing_cycle": "monthly",
+                  "value": "500"
+                }
+              ],
+              "subtotal": "1000",
+              "taxes": {},
+              "total": "1000",
+              "total_qty": "s33730",
+              "total_section_value": "1900"
+            },
+            "total": "1000"
+          }
+        ],
+        "settings": {
+          "selection_type": "custom"
+        },
+        "summary": {
+          "custom_fields": {},
+          "discounts": {},
+          "fees": {},
+          "one_time_subtotal": "500",
+          "recurring_subtotal": [
+            {
+              "billing_cycle": "monthly",
+              "value": "500"
+            }
+          ],
+          "subtotal": "1000",
+          "taxes": {},
+          "total": "900",
+          "total_contract_value": "1900",
+          "total_discount": "100",
+          "total_fee": "s707246",
+          "total_qty": "s710532",
+          "total_savings": "s145532",
+          "total_tax": "s12931"
+        },
+        "total": "900"
+      }
+    }
+  },
+  {
+    "id": "pandadoc:GET:/public/v1/documents/:document_id/sections#0",
+    "match": {
+      "method": "GET",
+      "path": "/public/v1/documents/:document_id/sections"
+    },
+    "respond": {
+      "status": 200,
+      "body": {
+        "results": [
+          {
+            "uuid": "fGE5F6rAeBSPokHMBt8Pbm",
+            "name": "[DEV] Test Template with HTML Tags"
+          },
+          {
+            "uuid": "MBMsxWgditbvUAgSKXR8kA",
+            "name": "Sample Document from PDF with Field Tags"
+          },
+          {
+            "uuid": "JKmXhd9e4ZwNMyaEYFJEkK",
+            "name": "Sample Document from PDF with Form Fields"
+          }
+        ]
+      }
+    }
+  },
+  {
+    "id": "pandadoc:POST:/public/v1/documents/:document_id/sections/uploads#0",
+    "match": {
+      "method": "POST",
+      "path": "/public/v1/documents/:document_id/sections/uploads"
+    },
+    "respond": {
+      "status": 201,
+      "body": {
+        "uuid": "LQ6cUT7xevPLUEgJeF8Zrm",
+        "document_uuid": "CFz2UnLXDck3UJkeGGEuB3",
+        "status": "document_sections_upload.UPLOADED",
+        "name": "null",
+        "date_created": "2023-08-28T15:48:09.379860Z",
+        "date_modified": "2023-08-28T15:48:09.379860Z",
+        "info_message": "You need to poll the Document Sections Upload Status method until the status will be changed to document_sections_upload.PROCESSED"
+      }
+    }
+  },
+  {
+    "id": "pandadoc:GET:/public/v1/documents/:document_id/sections/uploads/:upload_id#0",
+    "match": {
+      "method": "GET",
+      "path": "/public/v1/documents/:document_id/sections/uploads/:upload_id"
+    },
+    "respond": {
+      "status": 200,
+      "body": {
+        "uuid": "zVbriqiPaulqj4ThcLeKQG",
+        "name": "Sample Section",
+        "document_uuid": "Gpzd2nXgFjCSS3hTucci2E",
+        "status": "document_sections_upload.PROCESSED",
+        "section_uuids": [
+          "xn5gLB9ox1fbpZ9XDbAQsi"
+        ],
+        "date_created": "2024-07-15T08:20:28.187477Z",
+        "date_modified": "2024-07-15T08:20:31.839240Z",
+        "info_message": null
+      }
+    }
+  },
+  {
+    "id": "pandadoc:POST:/public/v1/documents/:document_id/sections/uploads?upload#0",
+    "match": {
+      "method": "POST",
+      "path": "/public/v1/documents/:document_id/sections/uploads?upload"
+    },
+    "respond": {
+      "status": 201,
+      "body": {
+        "uuid": "HiNXiDJazzufdxErSr5w6n",
+        "name": "My Section",
+        "document_uuid": "Gpzd2nXgFjCSЖzhTucci2E",
+        "status": "document_sections_upload.UPLOADED",
+        "date_created": "2024-07-15T08:14:33.050351Z",
+        "date_modified": "2024-07-15T08:14:33.050351Z",
+        "info_message": "You need to poll the Document Sections Upload Status method until the status will be changed to document_sections_upload.PROCESSED"
+      }
+    }
+  },
+  {
+    "id": "pandadoc:GET:/public/v1/documents/:document_id/sections/:section_id#0",
+    "match": {
+      "method": "GET",
+      "path": "/public/v1/documents/:document_id/sections/:section_id"
+    },
+    "respond": {
+      "status": 200,
+      "body": {
+        "uuid": "mcqRJhoEjDOUyT5AePMa9Z",
+        "name": "New document",
+        "document_uuid": "Gpzd2nXgFjCS3zipucci2E"
+      }
+    }
+  },
+  {
+    "id": "pandadoc:DELETE:/public/v1/documents/:document_id/sections/:section_id#0",
+    "match": {
+      "method": "DELETE",
+      "path": "/public/v1/documents/:document_id/sections/:section_id"
+    },
+    "respond": {
+      "status": 204
+    }
+  },
+  {
+    "id": "pandadoc:POST:/public/v1/documents/:document_id/send-reminder#0",
+    "match": {
+      "method": "POST",
+      "path": "/public/v1/documents/:document_id/send-reminder"
+    },
+    "respond": {
+      "status": 200,
+      "body": {
+        "result": [
+          {
+            "recipient_id": "2eWSKSvVqmuVCnuUK3iWwD",
+            "email": {
+              "status": "sent",
+              "sent_at": "2025-04-14T10:15:30Z"
+            },
+            "sms": {
+              "status": "sent",
+              "sent_at": "2025-04-14T10:15:31Z"
+            }
+          },
+          {
+            "recipient_id": "2ZjA3A3RvjgVadJ9DpNQwz",
+            "email": {
+              "status": "error",
+              "detail": "Can't send reminder. Signing order is enabled and this Recipient can't sign the document yet"
+            },
+            "sms": {
+              "status": "error",
+              "detail": "Can't send reminder. Signing order is enabled and this Recipient can't sign the document yet"
+            }
+          },
+          {
+            "recipient_id": "udDBKqHFhJt9PxzS5cv7to",
+            "sms": {
+              "status": "error",
+              "detail": "Can't send SMS reminder to the Recipient with invalid phone number"
+            },
+            "email": {
+              "status": "sent",
+              "sent_at": "2025-04-14T10:15:35Z"
+            }
+          }
+        ]
+      }
+    }
+  },
+  {
+    "id": "pandadoc:GET:/public/v1/documents/:id#0",
+    "match": {
+      "method": "GET",
+      "path": "/public/v1/documents/:id"
+    },
+    "respond": {
+      "status": 200,
+      "body": {
+        "id": "fANp5wW5EwY7AkiTkTGekZ",
+        "name": "Document from file",
+        "status": "document.uploaded",
+        "date_created": "2024-07-02T16:21:57.510203Z",
+        "date_modified": "2024-07-02T16:21:57.708251Z",
+        "expiration_date": null,
+        "version": null,
+        "uuid": "fANp5wW5EwY7AkiTkTGekZ"
+      }
+    }
+  },
+  {
+    "id": "pandadoc:PATCH:/public/v1/documents/:id#0",
+    "match": {
+      "method": "PATCH",
+      "path": "/public/v1/documents/:id"
+    },
+    "respond": {
+      "status": 204
+    }
+  },
+  {
+    "id": "pandadoc:DELETE:/public/v1/documents/:id#0",
+    "match": {
+      "method": "DELETE",
+      "path": "/public/v1/documents/:id"
+    },
+    "respond": {
+      "status": 204
+    }
+  },
+  {
+    "id": "pandadoc:POST:/public/v1/documents/:id/append-content-library-item#0",
+    "match": {
+      "method": "POST",
+      "path": "/public/v1/documents/:id/append-content-library-item"
+    },
+    "respond": {
+      "status": 201,
+      "body": {
+        "cli": {
+          "id": "QYCPtavst3DqqBK72ZRtbF",
+          "pages": [
+            {
+              "index": 0,
+              "name": "Introduction"
+            },
+            {
+              "index": 1,
+              "name": "Product Overview"
+            },
+            {
+              "index": 2,
+              "name": "Pricing"
+            }
+          ]
+        },
+        "block_mapping": {
+          "tables": [
+            {
+              "original_name": "Products_Table",
+              "new_name": "Products_Table_1"
+            },
+            {
+              "original_name": "Features_Comparison",
+              "new_name": "Features_Comparison"
+            }
+          ],
+          "pricing_tables": [
+            {
+              "original_name": "Services_Quote",
+              "new_name": "Services_Quote"
+            },
+            {
+              "original_name": "Monthly_Plans",
+              "new_name": "Monthly_Plans_2"
+            }
+          ],
+          "images": [
+            {
+              "original_name": "Hero_Image",
+              "new_name": "Hero_Image_2"
+            },
+            {
+              "original_name": "Product_Screenshot",
+              "new_name": "Product_Screenshot"
+            }
+          ],
+          "texts": [
+            {
+              "original_name": "Legal_Disclaimer",
+              "new_name": "Legal_Disclaimer"
+            },
+            {
+              "original_name": "Company_Description",
+              "new_name": "Company_Description_1"
+            }
+          ]
+        }
+      }
+    }
+  },
+  {
+    "id": "pandadoc:GET:/public/v1/documents/:id/attachments#0",
+    "match": {
+      "method": "GET",
+      "path": "/public/v1/documents/:id/attachments"
+    },
+    "respond": {
+      "status": 200,
+      "body": [
+        {
+          "uuid": "076797cd-dca6-4083-a3pi-6960714209d9",
+          "date_created": "2024-07-15T21:14:39.973077Z",
+          "created_by": {
+            "id": "bSfiuAJNokERwsBxynKjwA",
+            "email": "sergio@pandadoc.com",
+            "first_name": "Sergio",
+            "last_name": "",
+            "avatar": null
+          },
+          "name": "document.pdf",
+          "type": "general"
+        }
+      ]
+    }
+  },
+  {
+    "id": "pandadoc:POST:/public/v1/documents/:id/attachments#0",
+    "match": {
+      "method": "POST",
+      "path": "/public/v1/documents/:id/attachments"
+    },
+    "respond": {
+      "status": 200,
+      "body": {
+        "uuid": "1111bc85-b0f0-42a8-97e7-9265cd9a12a4",
+        "date_created": "2025-01-31T14:02:59.667160Z",
+        "created_by": {
+          "id": "bSfiuAJNokERwsBxynKjwA",
+          "email": "sergio@pandadoc.com",
+          "first_name": "Sergio",
+          "last_name": "",
+          "avatar": null
+        },
+        "name": "Wikipedia logo",
+        "type": "general"
+      }
+    }
+  },
+  {
+    "id": "pandadoc:GET:/public/v1/documents/:id/attachments/:attachment_id#0",
+    "match": {
+      "method": "GET",
+      "path": "/public/v1/documents/:id/attachments/:attachment_id"
+    },
+    "respond": {
+      "status": 200,
+      "body": {
+        "uuid": "076797cd-dca6-4083-a3pi-6960714209d9",
+        "date_created": "2024-07-15T21:14:39.973077Z",
+        "created_by": {
+          "id": "bSfiuAJNokERwsBxynKjwA",
+          "email": "sergio@pandadoc.com",
+          "first_name": "Sergio",
+          "last_name": "",
+          "avatar": null
+        },
+        "name": "document.pdf",
+        "type": "general"
+      }
+    }
+  },
+  {
+    "id": "pandadoc:DELETE:/public/v1/documents/:id/attachments/:attachment_id#0",
+    "match": {
+      "method": "DELETE",
+      "path": "/public/v1/documents/:id/attachments/:attachment_id"
+    },
+    "respond": {
+      "status": 204
+    }
+  },
+  {
+    "id": "pandadoc:GET:/public/v1/documents/:id/attachments/:attachment_id/download#0",
+    "match": {
+      "method": "GET",
+      "path": "/public/v1/documents/:id/attachments/:attachment_id/download"
+    },
+    "respond": {
+      "status": 200,
+      "body": "s306920"
+    }
+  },
+  {
+    "id": "pandadoc:POST:/public/v1/documents/:id/attachments?upload#0",
+    "match": {
+      "method": "POST",
+      "path": "/public/v1/documents/:id/attachments?upload"
+    },
+    "respond": {
+      "status": 200,
+      "body": {
+        "created_by": {
+          "avatar": "https://pd-live-media.s3.amazonaws.com/users/000GTSGwJw000L2KZqc000/avatar.jpg",
+          "email": "test_user@mail.com",
+          "first_name": "John",
+          "id": "WbAzFZFMgXHnoQREADTdnE",
+          "last_name": "Smith"
+        },
+        "date_created": "2021-10-27T20:54:18.757496Z",
+        "name": "AttachedPhoto.jpg",
+        "uuid": "5a2df796-6c65-492b-955c-5709229a89f7"
+      }
+    }
+  },
+  {
+    "id": "pandadoc:GET:/public/v1/documents/:id/details#0",
+    "match": {
+      "method": "GET",
+      "path": "/public/v1/documents/:id/details"
+    },
+    "respond": {
+      "status": 200,
+      "body": {
+        "approval_execution": null,
+        "content_date_modified": "2024-07-08T15:43:54.194562Z",
+        "linked_objects": [],
+        "date_completed": "2024-07-08T15:43:53.877522Z",
+        "id": "f9CbJKS4ZAs6nU629cuowb",
+        "name": "Digital Marketing Proposal",
+        "autonumbering_sequence_name_prefix": null,
+        "date_created": "2024-07-08T15:36:09.600947Z",
+        "date_modified": "2024-07-08T15:43:53.918819Z",
+        "date_sent": "2024-07-08T15:41:23.351853Z",
+        "ref_number": "MTMJR-FEUQB-ECEWW-3WVZP",
+        "created_by": {
+          "id": "FA5QAu8UGA3oVDQZuPL75B",
+          "email": "pandaDoc@pandadoc.com",
+          "first_name": "Panda",
+          "last_name": "Doc",
+          "avatar": null,
+          "membership_id": "RyMNXBjBPRppw56TfYBrXi"
+        },
+        "template": {
+          "id": "gZRVmyHiQV5riXSCMKsku2",
+          "name": "Sample Template"
+        },
+        "expiration_date": "2024-09-06T15:43:36.297737Z",
+        "metadata": {
+          "document__created_via_public_api": "true",
+          "document__creation_source": "public api"
+        },
+        "tokens": [],
+        "fields": [
+          {
+            "uuid": "f03e22f3-b3a8-4783-8b26-e43880ef87bf",
+            "name": "Signature",
+            "title": "",
+            "value": {},
+            "placeholder": "Signature",
+            "assigned_to": {
+              "id": "8KAZvGRL3W4u44a4fyDoeH",
+              "first_name": "Recipient First Name",
+              "last_name": "Recipient Last Name",
+              "email": "test@pandadoc.com",
+              "phone": "",
+              "recipient_type": "signer",
+              "has_completed": true,
+              "role": "Client",
+              "roles": [
+                "Client"
+              ],
+              "signing_order": null,
+              "delivery_methods": {
+                "sms": false,
+                "email": true
+              },
+              "redirect": {
+                "is_enabled": false,
+                "url": null
+              },
+              "type": "recipient"
+            },
+            "field_id": "signature_f03e22f3-b3a8-4783-8b26-e43880ef87bf",
+            "type": "signature"
+          }
+        ],
+        "pricing": {},
+        "tables": [
+          {
+            "name": "Table_1"
+          }
+        ],
+        "images": [
+          {
+            "name": "Image_1"
+          }
+        ],
+        "texts": [
+          {
+            "name": "Legal Terms Section"
+          }
+        ],
+        "tags": [
+          "tag1"
+        ],
+        "status": "document.completed",
+        "qes_status": "pending",
+        "recipients": [
+          {
+            "id": "8KAZvGRL3W4u44a4fyDoeH",
+            "first_name": "Recipient First Name",
+            "last_name": "Recipient Last Name",
+            "email": "test@pandadoc.com",
+            "phone": "",
+            "recipient_type": "signer",
+            "has_completed": true,
+            "role": "Client",
+            "roles": [
+              "Client"
+            ],
+            "signing_order": null,
+            "delivery_methods": {
+              "sms": false,
+              "email": true
+            },
+            "redirect": {
+              "is_enabled": false,
+              "url": null
+            },
+            "contact_id": "HzXnuyNraSXMhXchYjUmHJ",
+            "shared_link": "https://app.pandadoc.com/document/15d4b481384b652a298530ddc7023bfc07a67d59",
+            "signature_date": "2024-07-08T15:43:53.800135Z",
+            "verification_settings": {
+              "verification_place": "before_open",
+              "kba_verification": null,
+              "passcode_verification": null,
+              "phone_verification": null,
+              "id_verification": {
+                "enabled": true
+              }
+            },
+            "type": "recipient"
+          }
+        ],
+        "sent_by": {
+          "id": "FA5QAu8UGA3oVDQZuPL75B",
+          "email": "pandadoc@pandadoc.com",
+          "first_name": "Panda",
+          "last_name": "Doc",
+          "avatar": null
+        },
+        "grand_total": {
+          "amount": "0",
+          "currency": "EUR"
+        },
+        "version": "2",
+        "lock": null
+      }
+    }
+  },
+  {
+    "id": "pandadoc:GET:/public/v1/documents/:id/download#0",
+    "match": {
+      "method": "GET",
+      "path": "/public/v1/documents/:id/download"
+    },
+    "respond": {
+      "status": 200,
+      "body": "s629435"
+    }
+  },
+  {
+    "id": "pandadoc:GET:/public/v1/documents/:id/download-protected#0",
+    "match": {
+      "method": "GET",
+      "path": "/public/v1/documents/:id/download-protected"
+    },
+    "respond": {
+      "status": 200,
+      "body": "s599419"
+    }
+  },
+  {
+    "id": "pandadoc:POST:/public/v1/documents/:id/draft#0",
+    "match": {
+      "method": "POST",
+      "path": "/public/v1/documents/:id/draft"
+    },
+    "respond": {
+      "status": 200,
+      "body": {
+        "id": "msFYActMfJHqNTKH8YSvF1",
+        "name": "Document",
+        "status": "document.draft",
+        "date_created": "2017-08-06T08:42:13.836022Z",
+        "date_modified": "2017-09-04T02:21:13.963750Z",
+        "expiration_date": null,
+        "version": "2"
+      }
+    }
+  },
+  {
+    "id": "pandadoc:POST:/public/v1/documents/:id/editing-sessions#0",
+    "match": {
+      "method": "POST",
+      "path": "/public/v1/documents/:id/editing-sessions"
+    },
+    "respond": {
+      "status": 201,
+      "body": {
+        "id": "ce9825e5-3210-4a8f-1230-f32b643295d2",
+        "email": "john.doe@pandadoc.com",
+        "expires_at": "2025-01-10T00:09:09.612651Z",
+        "token": "985b695b56eaaa571e9bb8e522afd5bd335c32d7",
+        "document_id": "pSgK5XYZjyg3zXYZxsoUWg"
+      }
+    }
+  },
+  {
+    "id": "pandadoc:GET:/public/v1/documents/:id/fields#0",
+    "match": {
+      "method": "GET",
+      "path": "/public/v1/documents/:id/fields"
+    },
+    "respond": {
+      "status": 200,
+      "body": {
+        "fields": [
+          {
+            "uuid": "d6948f39-612a-4626-a439-ca9e0cbbda7c",
+            "name": "Text",
+            "title": "",
+            "value": "",
+            "assigned_to": {
+              "id": "",
+              "first_name": "",
+              "last_name": "",
+              "email": "",
+              "phone": "",
+              "recipient_type": "",
+              "has_completed": false,
+              "signing_order": null,
+              "delivery_methods": {},
+              "redirect": {},
+              "type": "recipient"
+            },
+            "field_id": "text_d6948f39-612a-4626-a439-ca9e0cbbda7c",
+            "type": "text",
+            "settings": {
+              "required": true,
+              "placeholder": "Enter value",
+              "masked": false,
+              "multiline": true
+            },
+            "layout": {
+              "page": 1,
+              "position": {
+                "offset_x": 1,
+                "offset_y": 1,
+                "anchor_point": "topleft"
+              },
+              "style": {
+                "width": 1,
+                "height": 1
+              }
+            },
+            "merge_field": null
+          }
+        ]
+      }
+    }
+  },
+  {
+    "id": "pandadoc:POST:/public/v1/documents/:id/fields#0",
+    "match": {
+      "method": "POST",
+      "path": "/public/v1/documents/:id/fields"
+    },
+    "respond": {
+      "status": 200,
+      "body": {
+        "fields": [
+          {
+            "uuid": "d6948f39-612a-4626-a439-ca9e0cbbda7c",
+            "name": "Text",
+            "title": "",
+            "value": "",
+            "assigned_to": {
+              "id": "",
+              "first_name": "",
+              "last_name": "",
+              "email": "",
+              "phone": "",
+              "recipient_type": "",
+              "has_completed": false,
+              "signing_order": null,
+              "delivery_methods": {},
+              "redirect": {},
+              "type": "recipient"
+            },
+            "field_id": "text_d6948f39-612a-4626-a439-ca9e0cbbda7c",
+            "type": "text",
+            "settings": {
+              "required": true,
+              "placeholder": "Enter value",
+              "masked": false,
+              "multiline": true
+            },
+            "layout": {
+              "page": 1,
+              "position": {
+                "offset_x": 1,
+                "offset_y": 1,
+                "anchor_point": "topleft"
+              },
+              "style": {
+                "width": 1,
+                "height": 1
+              }
+            },
+            "merge_field": null
+          }
+        ]
+      }
+    }
+  },
+  {
+    "id": "pandadoc:PATCH:/public/v1/documents/:id/fields#0",
+    "match": {
+      "method": "PATCH",
+      "path": "/public/v1/documents/:id/fields"
+    },
+    "respond": {
+      "status": 204
+    }
+  },
+  {
+    "id": "pandadoc:GET:/public/v1/documents/:id/linked-objects#0",
+    "match": {
+      "method": "GET",
+      "path": "/public/v1/documents/:id/linked-objects"
+    },
+    "respond": {
+      "status": 200,
+      "body": {
+        "linked_objects": [
+          {
+            "id": "abb4d3fc-919b-491e-9e08-775036660c0b",
+            "provider": "pipedrive",
+            "entity_type": "deal",
+            "entity_id": "134"
+          }
+        ]
+      }
+    }
+  },
+  {
+    "id": "pandadoc:POST:/public/v1/documents/:id/linked-objects#0",
+    "match": {
+      "method": "POST",
+      "path": "/public/v1/documents/:id/linked-objects"
+    },
+    "respond": {
+      "status": 201,
+      "body": {
+        "provider": "pipedrive",
+        "entity_type": "deal",
+        "entity_id": "134",
+        "id": "abb4d3fc-919b-491e-9e08-775036660c0b"
+      }
+    }
+  },
+  {
+    "id": "pandadoc:DELETE:/public/v1/documents/:id/linked-objects/:linked_object_id#0",
+    "match": {
+      "method": "DELETE",
+      "path": "/public/v1/documents/:id/linked-objects/:linked_object_id"
+    },
+    "respond": {
+      "status": 204
+    }
+  },
+  {
+    "id": "pandadoc:POST:/public/v1/documents/:id/move-to-folder/:folder_id#0",
+    "match": {
+      "method": "POST",
+      "path": "/public/v1/documents/:id/move-to-folder/:folder_id"
+    },
+    "respond": {
+      "status": 204
+    }
+  },
+  {
+    "id": "pandadoc:PATCH:/public/v1/documents/:id/ownership#0",
+    "match": {
+      "method": "PATCH",
+      "path": "/public/v1/documents/:id/ownership"
+    },
+    "respond": {
+      "status": 204
+    }
+  },
+  {
+    "id": "pandadoc:POST:/public/v1/documents/:id/recipients#0",
+    "match": {
+      "method": "POST",
+      "path": "/public/v1/documents/:id/recipients"
+    },
+    "respond": {
+      "status": 200,
+      "body": {
+        "recipient_id": "wdNMxCRFqH2DaZDcR2D2Gc"
+      }
+    }
+  },
+  {
+    "id": "pandadoc:PATCH:/public/v1/documents/:id/recipients/recipient/:recipient_id#0",
+    "match": {
+      "method": "PATCH",
+      "path": "/public/v1/documents/:id/recipients/recipient/:recipient_id"
+    },
+    "respond": {
+      "status": 204
+    }
+  },
+  {
+    "id": "pandadoc:DELETE:/public/v1/documents/:id/recipients/:recipient_id#0",
+    "match": {
+      "method": "DELETE",
+      "path": "/public/v1/documents/:id/recipients/:recipient_id"
+    },
+    "respond": {
+      "status": 204
+    }
+  },
+  {
+    "id": "pandadoc:POST:/public/v1/documents/:id/recipients/:recipient_id/reassign#0",
+    "match": {
+      "method": "POST",
+      "path": "/public/v1/documents/:id/recipients/:recipient_id/reassign"
+    },
+    "respond": {
+      "status": 200,
+      "body": {
+        "recipient_id": "XqbbPMNn9SAjX6fyCSSN2X"
+      }
+    }
+  },
+  {
+    "id": "pandadoc:POST:/public/v1/documents/:id/send#0",
+    "match": {
+      "method": "POST",
+      "path": "/public/v1/documents/:id/send"
+    },
+    "respond": {
+      "status": 200,
+      "body": {
+        "date_completed": "2021-10-23T21:07:04.147345Z",
+        "date_created": "2018-02-06T08:42:13.836022Z",
+        "date_modified": "2018-02-06T08:42:13.836022Z",
+        "expiration_date": "2018-02-06T08:42:13.836022Z",
+        "id": "msFYActMfJHqNTKH8YSvF1",
+        "name": "API Sample Document from PandaDoc Template",
+        "recipients": [
+          {
+            "delivery_methods": {
+              "email": true,
+              "sms": false
+            },
+            "email": "test@test.com",
+            "first_name": "Jhon",
+            "id": "7kqXgjFejB2toXxjcC5jfZ",
+            "last_name": "Dow",
+            "phone": "+14842634627",
+            "recipient_type": "signer",
+            "shared_link": "https://app.pandadoc.com/document/b7f11ea3c09d1c11208cc122457d4f3a2829d364",
+            "signing_order": 1,
+            "type": "recipient"
+          }
+        ],
+        "status": "document.sent",
+        "uuid": "msFYActMfJHqNTKH8YSvF1",
+        "version": "2"
+      }
+    }
+  },
+  {
+    "id": "pandadoc:POST:/public/v1/documents/:id/session#0",
+    "match": {
+      "method": "POST",
+      "path": "/public/v1/documents/:id/session"
+    },
+    "respond": {
+      "status": 201,
+      "body": {
+        "id": "nPh2PDhFdDqAES9k64h9qX",
+        "expires_at": "2024-07-01T08:03:57.536427Z"
+      }
+    }
+  },
+  {
+    "id": "pandadoc:PATCH:/public/v1/documents/:id/status#0",
+    "match": {
+      "method": "PATCH",
+      "path": "/public/v1/documents/:id/status"
+    },
+    "respond": {
+      "status": 204
+    }
+  },
+  {
+    "id": "pandadoc:PATCH:/public/v1/documents/:id/status?upload#0",
+    "match": {
+      "method": "PATCH",
+      "path": "/public/v1/documents/:id/status?upload"
+    },
+    "respond": {
+      "status": 204
+    }
+  },
+  {
+    "id": "pandadoc:POST:/public/v1/documents?upload#0",
+    "match": {
+      "method": "POST",
+      "path": "/public/v1/documents?upload"
+    },
+    "respond": {
+      "status": 201,
+      "body": {
+        "id": "D3okRfgHRX7NEhavcACReB",
+        "name": "Document from Template",
+        "status": "document.uploaded",
+        "date_created": "2024-07-04T19:27:14.927317Z",
+        "date_modified": "2024-07-04T19:27:14.927317Z",
+        "expiration_date": null,
+        "version": null,
+        "uuid": "D3okRfgHRX7NEhavcACReB",
+        "links": [
+          {
+            "rel": "status",
+            "href": "https://api.pandadoc.com/public/v1/documents/D3okRfgHRX7NEhavcACReB",
+            "type": "GET"
+          }
+        ],
+        "info_message": "Wait until the status is changed to document.draft. You may use webhooks or poll the Document Status method."
+      }
+    }
+  },
+  {
+    "id": "pandadoc:POST:/public/v1/documents?upload-markdown#0",
+    "match": {
+      "method": "POST",
+      "path": "/public/v1/documents?upload-markdown"
+    },
+    "respond": {
+      "status": 201,
+      "body": {
+        "id": "D3okRfgHRX7NEhavcACReB",
+        "name": "Document from Markdown",
+        "status": "document.uploaded",
+        "date_created": "2024-07-04T19:27:14.927317Z",
+        "date_modified": "2024-07-04T19:27:14.927317Z",
+        "expiration_date": null,
+        "version": null,
+        "uuid": "D3okRfgHRX7NEhavcACReB",
+        "links": [
+          {
+            "rel": "status",
+            "href": "https://api.pandadoc.com/public/v1/documents/D3okRfgHRX7NEhavcACReB",
+            "type": "GET"
+          }
+        ],
+        "info_message": "Wait until the status is changed to document.draft. You may use webhooks or poll the Document Status method."
+      }
+    }
+  },
+  {
+    "id": "pandadoc:GET:/public/v1/forms#0",
+    "match": {
+      "method": "GET",
+      "path": "/public/v1/forms"
+    },
+    "respond": {
+      "status": 200,
+      "body": {
+        "has_next_page": false,
+        "results": [
+          {
+            "date_created": "2021-10-15T10:41:00.162597Z",
+            "date_modified": "2021-10-15T10:41:15.305831Z",
+            "id": "d94c1b16-ea92-45e6-bc7e-f6d260bd4d42",
+            "name": "Blank form",
+            "status": "DRAFT"
+          }
+        ]
+      }
+    }
+  },
+  {
+    "id": "pandadoc:GET:/public/v1/members#0",
+    "match": {
+      "method": "GET",
+      "path": "/public/v1/members"
+    },
+    "respond": {
+      "status": 200,
+      "body": {
+        "results": [
+          {
+            "user_id": "FA5QAu8UGA3oVDDZuPL75B",
+            "membership_id": "RyMNXBjBPRppi56TfYBrXi",
+            "email": "joe.don@pandadoc.com",
+            "first_name": "Joe",
+            "last_name": "Don",
+            "is_active": true,
+            "workspace": "n7SK7prHeoWJSXb9VkrPve",
+            "workspace_name": "Workspace",
+            "email_verified": true,
+            "role": "Admin",
+            "user_license": "Full",
+            "date_created": "2023-08-03T11:49:16.364213Z",
+            "date_modified": "2024-07-11T20:36:43.362526Z"
+          },
+          {
+            "user_id": "nXN9uokLULUw4L4HPsJGHQ",
+            "membership_id": "mz4Ys3cVUSAyBpQKbHphtE",
+            "email": "user.with.custom.role@pandadoc.com",
+            "first_name": "",
+            "last_name": "",
+            "is_active": true,
+            "workspace": "n7SK7prHeoWJSXb9VkrPve",
+            "workspace_name": "Workspace",
+            "email_verified": true,
+            "role": "Custom",
+            "user_license": "Full",
+            "date_created": "2024-02-16T12:40:55.547303Z",
+            "date_modified": "2024-03-21T15:55:33.783886Z"
+          }
+        ]
+      }
+    }
+  },
+  {
+    "id": "pandadoc:GET:/public/v1/members/current#0",
+    "match": {
+      "method": "GET",
+      "path": "/public/v1/members/current"
+    },
+    "respond": {
+      "status": 200,
+      "body": {
+        "user_id": "FA5QAu8UGA3oVDDZuPL75B",
+        "membership_id": "RyMNXBjBPRppi56TfYBrXi",
+        "email": "siarhei@pandadoc.com",
+        "first_name": "Siarhei",
+        "last_name": "",
+        "is_active": true,
+        "workspace": "n7SK7prHeoWJSXb9VkrPve",
+        "workspace_name": "Workspace",
+        "email_verified": true,
+        "role": "Admin",
+        "user_license": "Full",
+        "date_created": "2023-08-03T11:49:16.364213Z",
+        "date_modified": "2024-07-11T20:36:43.362526Z"
+      }
+    }
+  },
+  {
+    "id": "pandadoc:GET:/public/v1/members/:id#0",
+    "match": {
+      "method": "GET",
+      "path": "/public/v1/members/:id"
+    },
+    "respond": {
+      "status": 200,
+      "body": {
+        "user_id": "nXN9uokLULUw4L4HPsJGHQ",
+        "membership_id": "mz4Ys3cVUSAyBpQKbHphtE",
+        "email": "user.with.custom.role@pandadoc.com",
+        "first_name": "",
+        "last_name": "",
+        "is_active": true,
+        "workspace": "n7SK7prHeoWJSXb9VkrPve",
+        "workspace_name": "Workspace",
+        "email_verified": true,
+        "role": "Custom",
+        "user_license": "Full",
+        "date_created": "2024-02-16T12:40:55.547303Z",
+        "date_modified": "2024-03-21T15:55:33.783886Z"
+      }
+    }
+  },
+  {
+    "id": "pandadoc:POST:/public/v1/members/:member_id/token#0",
+    "match": {
+      "method": "POST",
+      "path": "/public/v1/members/:member_id/token"
+    },
+    "respond": {
+      "status": 200,
+      "body": {
+        "token": "1fc7b52182405dbf004b9e9ffb555a6ac61419ba"
+      }
+    }
+  },
+  {
+    "id": "pandadoc:GET:/public/v1/sms-opt-outs#0",
+    "match": {
+      "method": "GET",
+      "path": "/public/v1/sms-opt-outs"
+    },
+    "respond": {
+      "status": 200,
+      "body": {
+        "results": [
+          {
+            "phone_number": "+1234567890",
+            "status": "opt-out",
+            "opt_out_changed": "2025-01-28T12:00:00Z"
+          },
+          {
+            "phone_number": "+1234567891",
+            "status": "opt-in",
+            "opt_out_changed": "2025-01-28T12:00:00Z"
+          }
+        ]
+      }
+    }
+  },
+  {
+    "id": "pandadoc:GET:/public/v1/templates#0",
+    "match": {
+      "method": "GET",
+      "path": "/public/v1/templates"
+    },
+    "respond": {
+      "status": 200,
+      "body": {
+        "results": [
+          {
+            "id": "iMymdDd9XFD3HyxP5VD67Q",
+            "name": "Blank",
+            "date_created": "2021-06-17T15:51:13.226974Z",
+            "date_modified": "2021-06-17T15:51:13.326974Z",
+            "version": "2",
+            "content_date_modified": "2021-06-17T15:51:13.426974Z"
+          }
+        ]
+      }
+    }
+  },
+  {
+    "id": "pandadoc:POST:/public/v1/templates#0",
+    "match": {
+      "method": "POST",
+      "path": "/public/v1/templates"
+    },
+    "respond": {
+      "status": 201,
+      "body": {
+        "id": "va9aNuj3uX2w9M7uytn967",
+        "name": "Sample Template",
+        "date_created": "2024-07-08T14:41:42.625906Z",
+        "date_modified": "2024-07-08T14:41:42.700084Z",
+        "version": "2"
+      }
+    }
+  },
+  {
+    "id": "pandadoc:GET:/public/v1/templates/folders#0",
+    "match": {
+      "method": "GET",
+      "path": "/public/v1/templates/folders"
+    },
+    "respond": {
+      "status": 200,
+      "body": {
+        "results": [
+          {
+            "uuid": "h3HyGDj6NuiDfKEiY4xSMD",
+            "name": "A new templates folder",
+            "date_created": "2024-07-15T17:35:52.981054Z",
+            "has_folders": true,
+            "has_items": false
+          }
+        ]
+      }
+    }
+  },
+  {
+    "id": "pandadoc:POST:/public/v1/templates/folders#0",
+    "match": {
+      "method": "POST",
+      "path": "/public/v1/templates/folders"
+    },
+    "respond": {
+      "status": 201,
+      "body": {
+        "uuid": "h3HyGDj6NuiDfKEiY4xSMD",
+        "name": "A new templates folder",
+        "date_created": "2024-07-15T17:35:52.981054Z"
+      }
+    }
+  },
+  {
+    "id": "pandadoc:PUT:/public/v1/templates/folders/:id#0",
+    "match": {
+      "method": "PUT",
+      "path": "/public/v1/templates/folders/:id"
+    },
+    "respond": {
+      "status": 200,
+      "body": {
+        "uuid": "h3HyGDj6NuiDfKEiY4xSMD",
+        "name": "New Folder Name",
+        "date_created": "2024-07-15T17:35:52.981054Z"
+      }
+    }
+  },
+  {
+    "id": "pandadoc:GET:/public/v1/templates/:id#0",
+    "match": {
+      "method": "GET",
+      "path": "/public/v1/templates/:id"
+    },
+    "respond": {
+      "status": 200,
+      "body": {
+        "id": "vibuun3DXG8QDDLfXm27Ne",
+        "name": "API Sample PandaDoc Template",
+        "date_created": "2024-07-15T17:44:07.524617Z",
+        "date_modified": "2024-07-15T17:44:07.613821Z",
+        "version": "2",
+        "status": "template.PROCESSED"
+      }
+    }
+  },
+  {
+    "id": "pandadoc:PATCH:/public/v1/templates/:id#0",
+    "match": {
+      "method": "PATCH",
+      "path": "/public/v1/templates/:id"
+    },
+    "respond": {
+      "status": 204
+    }
+  },
+  {
+    "id": "pandadoc:DELETE:/public/v1/templates/:id#0",
+    "match": {
+      "method": "DELETE",
+      "path": "/public/v1/templates/:id"
+    },
+    "respond": {
+      "status": 204
+    }
+  },
+  {
+    "id": "pandadoc:GET:/public/v1/templates/:id/details#0",
+    "match": {
+      "method": "GET",
+      "path": "/public/v1/templates/:id/details"
+    },
+    "respond": {
+      "status": 200,
+      "body": {
+        "id": "vibuun3DXG8QDDLfXm27Ne",
+        "name": "New template",
+        "date_created": "2024-07-15T17:44:07.524617Z",
+        "date_modified": "2024-07-15T17:44:07.613821Z",
+        "content_date_modified": "2024-07-15T17:44:08.685118Z",
+        "created_by": {
+          "id": "FA5QAu8UGA3oVDQZuPL75B",
+          "email": "siarhei.soroka@pandadoc.com",
+          "first_name": "Siarhei",
+          "last_name": "Soroka",
+          "avatar": null,
+          "membership_id": "RyMNXBjBPRppw56TfYBrXi"
+        },
+        "metadata": {},
+        "tokens": [],
+        "fields": [],
+        "pricing": {},
+        "tags": [],
+        "roles": [
+          {
+            "id": "UDhBsFhy4857fsdBJ11FuL",
+            "name": "Client",
+            "signing_order": null,
+            "preassigned_person": {
+              "email": "john@example.com",
+              "first_name": "John",
+              "last_name": "Doe",
+              "type": "preassigned contact",
+              "placeholder_name": null,
+              "placeholder_source": null
+            }
+          },
+          {
+            "id": "2mN5HBcG8JdKpQwXrLfYvT",
+            "name": "Manager",
+            "signing_order": "1",
+            "preassigned_person": {
+              "email": null,
+              "type": "preassigned contact group",
+              "placeholder_name": null,
+              "placeholder_source": null,
+              "members": [
+                {
+                  "email": "alice@example.com",
+                  "first_name": "Alice",
+                  "last_name": "Johnson"
+                },
+                {
+                  "email": "bob@example.com",
+                  "first_name": "Bob",
+                  "last_name": "Smith"
+                }
+              ]
+            }
+          }
+        ],
+        "version": "2",
+        "content_placeholders": [],
+        "tables": [
+          {
+            "name": "Table_1"
+          }
+        ],
+        "images": []
+      }
+    }
+  },
+  {
+    "id": "pandadoc:POST:/public/v1/templates/:id/duplicate#0",
+    "match": {
+      "method": "POST",
+      "path": "/public/v1/templates/:id/duplicate"
+    },
+    "respond": {
+      "status": 201,
+      "body": {
+        "id": "va9aNuj3uX2w9M7uytn967",
+        "name": "Copy of Sample Template",
+        "date_created": "2025-01-15T10:30:00.123456Z",
+        "date_modified": "2025-01-15T10:30:00.234567Z",
+        "meta": {
+          "source_template_id": "EE8yUNg5HztqVAuH85He8V"
+        }
+      }
+    }
+  },
+  {
+    "id": "pandadoc:POST:/public/v1/templates/:id/editing-sessions#0",
+    "match": {
+      "method": "POST",
+      "path": "/public/v1/templates/:id/editing-sessions"
+    },
+    "respond": {
+      "status": 201,
+      "body": {
+        "id": "ce9825e5-3210-4a8f-1230-f32b643295d2",
+        "email": "john.doe@pandadoc.com",
+        "expires_at": "2025-01-10T00:09:09.612651Z",
+        "token": "985b695b56eaaa571e9bb8e522afd5bd335c32d7",
+        "template_id": "a53a2f96b91d47f99ee33f"
+      }
+    }
+  },
+  {
+    "id": "pandadoc:GET:/public/v1/templates/:template_id/shares#0",
+    "match": {
+      "method": "GET",
+      "path": "/public/v1/templates/:template_id/shares"
+    },
+    "respond": {
+      "status": 200,
+      "body": {
+        "workspace_ids": [
+          "BhVzRcxH9Z2LgfPPGXFUBa",
+          "2eWSKSvVqmuVCnuUK3iWwD"
+        ]
+      }
+    }
+  },
+  {
+    "id": "pandadoc:PUT:/public/v1/templates/:template_id/shares#0",
+    "match": {
+      "method": "PUT",
+      "path": "/public/v1/templates/:template_id/shares"
+    },
+    "respond": {
+      "status": 200,
+      "body": {
+        "workspace_ids": [
+          "BhVzRcxH9Z2LgfPPGXFUBa",
+          "2eWSKSvVqmuVCnuUK3iWwD"
+        ]
+      }
+    }
+  },
+  {
+    "id": "pandadoc:POST:/public/v1/templates?upload#0",
+    "match": {
+      "method": "POST",
+      "path": "/public/v1/templates?upload"
+    },
+    "respond": {
+      "status": 201,
+      "body": {
+        "id": "va9aNuj3uX2w9M7uytn967",
+        "name": "Sample Template",
+        "date_created": "2024-07-08T14:41:42.625906Z",
+        "date_modified": "2024-07-08T14:41:42.700084Z",
+        "version": "2"
+      }
+    }
+  },
+  {
+    "id": "pandadoc:GET:/public/v1/users#0",
+    "match": {
+      "method": "GET",
+      "path": "/public/v1/users"
+    },
+    "respond": {
+      "status": 200,
+      "body": {
+        "total": 1,
+        "results": [
+          {
+            "user_id": "ajnN7eGutJZsRKjQrNuPkh",
+            "email": "josh@example.com",
+            "first_name": "Josh",
+            "last_name": "Doe",
+            "phone_number": "+14842634627",
+            "license": "Full",
+            "is_organization_owner": true,
+            "workspaces": [
+              {
+                "role": "Admin",
+                "workspace_id": "fERpqZdFaF9dHVAeVxPFaV",
+                "membership_id": "nPh2PDhFdDqAES9k64h9qX"
+              }
+            ]
+          }
+        ]
+      }
+    }
+  },
+  {
+    "id": "pandadoc:POST:/public/v1/users#0",
+    "match": {
+      "method": "POST",
+      "path": "/public/v1/users"
+    },
+    "respond": {
+      "status": 201,
+      "body": {
+        "workspaces": [
+          {
+            "workspace_id": "MwZbjUVD5C3srSSxkpF4Aj",
+            "role": "Member",
+            "member_id": "VQDH2hdAPJBhSWmMrYa3zu"
+          }
+        ],
+        "user_id": "KwahvjapLm4RDf6pfyYdjA"
+      }
+    }
+  },
+  {
+    "id": "pandadoc:GET:/public/v1/users/:user_id#0",
+    "match": {
+      "method": "GET",
+      "path": "/public/v1/users/:user_id"
+    },
+    "respond": {
+      "status": 200,
+      "body": {
+        "user_id": "ajnN7eGutJZsRKjQrNuPkh",
+        "email": "josh@example.com",
+        "first_name": "Josh",
+        "last_name": "Doe",
+        "phone_number": "+14842634627",
+        "license": "Full",
+        "is_organization_owner": true,
+        "workspaces": [
+          {
+            "role": "Admin",
+            "workspace_id": "fERpqZdFaF9dHVAeVxPFaV",
+            "membership_id": "nPh2PDhFdDqAES9k64h9qX"
+          }
+        ]
+      }
+    }
+  },
+  {
+    "id": "pandadoc:GET:/public/v1/webhook-events#0",
+    "match": {
+      "method": "GET",
+      "path": "/public/v1/webhook-events"
+    },
+    "respond": {
+      "status": 200,
+      "body": {
+        "items": [
+          {
+            "uuid": "6680b700-cbb8-4ab9-bf99-15d1cb4ab9f2",
+            "name": "TEST",
+            "type": "document_state_changed",
+            "error": null,
+            "http_status_code": 200,
+            "delivery_time": "2022-03-31T10:59:14.234658Z"
+          },
+          {
+            "uuid": "2b97b5ee-01e2-4cd9-9ff8-f28c4376bcb2",
+            "name": "TEST",
+            "type": "document_state_changed",
+            "error": null,
+            "http_status_code": 200,
+            "delivery_time": "2022-03-31T10:59:05.265944Z"
+          }
+        ]
+      }
+    }
+  },
+  {
+    "id": "pandadoc:GET:/public/v1/webhook-events/:id#0",
+    "match": {
+      "method": "GET",
+      "path": "/public/v1/webhook-events/:id"
+    },
+    "respond": {
+      "status": 200,
+      "body": {
+        "uuid": "8b61d111-5e0b-406d-a150-e8305fc7e97a",
+        "name": "My document",
+        "type": "document_state_changed",
+        "error": null,
+        "url": "https://webhook.example.pandadoc.com",
+        "signature": "f70111adccaa0111e89ae0a111a04c16f5c5d3d111bff018a111d22dcd28c2bb",
+        "http_status_code": 404,
+        "delivery_time": "2024-07-31T16:06:12.707814Z",
+        "request_body": "[{\"event\":\"document_state_changed\",\"data\":{\"id\":\"aahcZhiB6pKRbjagoZrrrr\",\"name\":\"Document from PandaDoc Template\",\"date_created\":\"2024-07-31T16:06:09.114744Z\",\"date_modified\":\"2024-07-31T16:06:09.157758Z\",\"expiration_date\":null,\"autonumbering_sequence_name\":null,\"created_by\":{\"id\":\"FA5QAu8UGA3oVDQZuPL7rr\",\"email\":\"test@pandadoc.com\",\"first_name\":\"FirstName\",\"last_name\":\"LastName\",\"avatar\":null,\"membership_id\":\"RyMNXBjBPRppw56TfYBrrr\"},\"tags\":[\"created_via_api\"],\"status\":\"document.draft\",\"recipients\":[{\"type\":\"recipient\",\"id\":\"TM2nqhKYgPmJA9hUPDKHrr\",\"first_name\":\"Josh\",\"last_name\":\"Ron\",\"email\":\"josh@example.com\",\"phone\":\"\",\"recipient_type\":\"CC\",\"has_completed\":false,\"role\":\"\",\"roles\":[],\"signing_order\":null,\"contact_id\":\"DrNfkrquTcXH83cgF5ZGrr\",\"shared_link\":\"\"}],\"sent_by\":null,\"grand_total\":{\"amount\":\"0.00\",\"currency\":\"EUR\"},\"template\":{\"id\":\"7Xfnrk7dTaWJ78wNUrg3rr\",\"name\":\"Sample Template\"},\"version\":\"2\",\"linked_objects\":[]}}]",
+        "response_body": "{\"success\":true}",
+        "response_headers": "[cache-control:\"no-cache, private\", content-type:\"application/json\", date:\"Wed, 31 Jul 2024 16:06:12 GMT\", server:\"nginx\", transfer-encoding:\"chunked\", vary:\"Accept-Encoding\"]",
+        "event_time": "2024-07-31T16:06:10.781000Z"
+      }
+    }
+  },
+  {
+    "id": "pandadoc:GET:/public/v1/webhook-subscriptions#0",
+    "match": {
+      "method": "GET",
+      "path": "/public/v1/webhook-subscriptions"
+    },
+    "respond": {
+      "status": 200,
+      "body": {
+        "items": [
+          {
+            "uuid": "65fc1ec8-fb9c-4986-9d95-e2cf07e504bc",
+            "name": "PandaDoc",
+            "url": "https://pandadoc.com/webhooks",
+            "status": "ACTIVE",
+            "active": true,
+            "payload": [
+              "pricing",
+              "metadata",
+              "tokens",
+              "products",
+              "fields"
+            ],
+            "triggers": [
+              "document_deleted",
+              "document_updated",
+              "document_state_changed",
+              "recipient_completed",
+              "document_creation_failed"
+            ],
+            "shared_key": "fhLyGE8umJ2MHuDUsJoPLG",
+            "workspace_id": "nzJyEf2JCG2od4DUYSIpDe"
+          }
+        ]
+      }
+    }
+  },
+  {
+    "id": "pandadoc:POST:/public/v1/webhook-subscriptions#0",
+    "match": {
+      "method": "POST",
+      "path": "/public/v1/webhook-subscriptions"
+    },
+    "respond": {
+      "status": 201,
+      "body": {
+        "uuid": "d173751d-0057-4d5c-ab75-49a670a4ca68",
+        "name": "PandaDoc",
+        "url": "https://pandadoc.com/webhooks",
+        "status": "ACTIVE",
+        "active": true,
+        "payload": [
+          "fields",
+          "pricing",
+          "tokens",
+          "metadata",
+          "products"
+        ],
+        "triggers": [
+          "document_state_changed",
+          "recipient_completed",
+          "document_updated",
+          "document_creation_failed",
+          "document_deleted"
+        ],
+        "shared_key": "GCQsdCMoVCcmXZo8yHiNIA",
+        "workspace_id": "fQ2pg3hcWgiPpa3JvfBHn2"
+      }
+    }
+  },
+  {
+    "id": "pandadoc:GET:/public/v1/webhook-subscriptions/:id#0",
+    "match": {
+      "method": "GET",
+      "path": "/public/v1/webhook-subscriptions/:id"
+    },
+    "respond": {
+      "status": 200,
+      "body": {
+        "uuid": "4fb6506c-02a0-427e-b445-b9e9ff0c822f",
+        "name": "PandaDoc",
+        "url": "https://pandadoc.com/webhooks",
+        "status": "ACTIVE",
+        "active": true,
+        "payload": [
+          "fields",
+          "pricing",
+          "tokens",
+          "metadata",
+          "products"
+        ],
+        "triggers": [
+          "document_state_changed",
+          "recipient_completed",
+          "document_updated",
+          "document_creation_failed",
+          "document_deleted"
+        ],
+        "shared_key": "GCQsdCMoVCcmXZo8yHiNGA",
+        "workspace_id": "fQ2pg3hcWgiPpa3JvfBhn2"
+      }
+    }
+  },
+  {
+    "id": "pandadoc:PATCH:/public/v1/webhook-subscriptions/:id#0",
+    "match": {
+      "method": "PATCH",
+      "path": "/public/v1/webhook-subscriptions/:id"
+    },
+    "respond": {
+      "status": 200,
+      "body": {
+        "uuid": "d173751d-0057-4d5c-ab75-49a670a4ca68",
+        "name": "PandaDoc",
+        "url": "https://pandadoc.com/webhooks",
+        "status": "ACTIVE",
+        "active": true,
+        "payload": [
+          "products",
+          "metadata",
+          "fields",
+          "pricing",
+          "tokens"
+        ],
+        "triggers": [
+          "document_creation_failed",
+          "document_deleted",
+          "document_state_changed",
+          "document_updated",
+          "recipient_completed"
+        ],
+        "shared_key": "GCQsdCMoVCcmXZo8yHiNGI",
+        "workspace_id": "fQ2pg3hcWgiPpa3JvfBPn2"
+      }
+    }
+  },
+  {
+    "id": "pandadoc:DELETE:/public/v1/webhook-subscriptions/:id#0",
+    "match": {
+      "method": "DELETE",
+      "path": "/public/v1/webhook-subscriptions/:id"
+    },
+    "respond": {
+      "status": 204
+    }
+  },
+  {
+    "id": "pandadoc:PATCH:/public/v1/webhook-subscriptions/:id/shared-key#0",
+    "match": {
+      "method": "PATCH",
+      "path": "/public/v1/webhook-subscriptions/:id/shared-key"
+    },
+    "respond": {
+      "status": 200,
+      "body": {
+        "shared_key": "DgwSJeYa2h5SCmzVZws2UM"
+      }
+    }
+  },
+  {
+    "id": "pandadoc:GET:/public/v1/workspaces#0",
+    "match": {
+      "method": "GET",
+      "path": "/public/v1/workspaces"
+    },
+    "respond": {
+      "status": 200,
+      "body": {
+        "results": [
+          {
+            "id": "QCTETChxCDRWfM2FW4g9fX",
+            "name": "Workspace",
+            "owner": "siarhei@pandadoc.com",
+            "date_created": "2022-05-14T22:22:41.255046Z"
+          }
+        ],
+        "total": 1
+      }
+    }
+  },
+  {
+    "id": "pandadoc:POST:/public/v1/workspaces#0",
+    "match": {
+      "method": "POST",
+      "path": "/public/v1/workspaces"
+    },
+    "respond": {
+      "status": 201,
+      "body": {
+        "id": "5RdKYSewV5vMtik3CmoDMR",
+        "name": "A new workspace"
+      }
+    }
+  },
+  {
+    "id": "pandadoc:POST:/public/v1/workspaces/:workspace_id/api-keys#0",
+    "match": {
+      "method": "POST",
+      "path": "/public/v1/workspaces/:workspace_id/api-keys"
+    },
+    "respond": {
+      "status": 200,
+      "body": {
+        "user_id": "ajnN7eGutJZsRKjQrNuPkh",
+        "type": "production",
+        "workspace_id": "BhVzRcxH9Z2LgfPPGXFUBa",
+        "key": "5606722917eaf631cce6256e64b4afbd30d0e5fa"
+      }
+    }
+  },
+  {
+    "id": "pandadoc:POST:/public/v1/workspaces/:workspace_id/deactivate#0",
+    "match": {
+      "method": "POST",
+      "path": "/public/v1/workspaces/:workspace_id/deactivate"
+    },
+    "respond": {
+      "status": 200,
+      "body": {}
+    }
+  },
+  {
+    "id": "pandadoc:POST:/public/v1/workspaces/:workspace_id/members#0",
+    "match": {
+      "method": "POST",
+      "path": "/public/v1/workspaces/:workspace_id/members"
+    },
+    "respond": {
+      "status": 201,
+      "body": {
+        "member_id": "iMymdDd9XFD3HyxP5VD67Q",
+        "workspace_id": "2eWSKSvVqmuVCnuUK3iWwD",
+        "role": "Admin",
+        "email": "email@example.com",
+        "first_name": "John",
+        "last_name": "Doe"
+      }
+    }
+  },
+  {
+    "id": "pandadoc:DELETE:/public/v1/workspaces/:workspace_id/members/:member_id#0",
+    "match": {
+      "method": "DELETE",
+      "path": "/public/v1/workspaces/:workspace_id/members/:member_id"
+    },
+    "respond": {
+      "status": 204
+    }
+  },
+  {
+    "id": "pandadoc:PATCH:/public/v1/workspaces/:workspace_id/members/:member_id/role#0",
+    "match": {
+      "method": "PATCH",
+      "path": "/public/v1/workspaces/:workspace_id/members/:member_id/role"
+    },
+    "respond": {
+      "status": 200,
+      "body": {
+        "member_id": "iMymdDd9XFD3HyxP5VD67Q",
+        "workspace_id": "2eWSKSvVqmuVCnuUK3iWwD",
+        "role": "Member",
+        "email": "email@example.com"
+      }
+    }
+  },
+  {
+    "id": "pandadoc:GET:/public/v2/documents/:document_id/audit-trail#0",
+    "match": {
+      "method": "GET",
+      "path": "/public/v2/documents/:document_id/audit-trail"
+    },
+    "respond": {
+      "status": 200,
+      "body": {
+        "count": 3,
+        "results": [
+          {
+            "id": "V9aG9KSREgTE8GnMqxWyzf",
+            "user": {
+              "id": "FA5QAu8UGA3oVDQZuPL75B",
+              "email": "pandadoc@pandadoc.com"
+            },
+            "action": 1,
+            "reason": null,
+            "date_created": "2025-05-22T09:03:19Z",
+            "ip_address": "8.8.8.8"
+          },
+          {
+            "id": "bWuXeU2bsToNyheeXfENAQ",
+            "user": {
+              "id": "FA5QAu8UGA3oVDQZuPL75B",
+              "email": "pandadoc@pandadoc.com"
+            },
+            "action": 6,
+            "reason": "",
+            "date_created": "2025-05-22T09:03:49Z",
+            "ip_address": "8.8.8.8"
+          },
+          {
+            "id": "TkgpWurccyfAZv9kazRs3D",
+            "user": {
+              "id": "6A3gGiRY7TQp4PHBqCpEjG",
+              "email": "astronaut@nasa.com"
+            },
+            "action": 8,
+            "reason": null,
+            "date_created": "2025-05-22T09:06:42Z",
+            "ip_address": "128.156.0.0"
+          }
+        ]
+      }
+    }
+  },
+  {
+    "id": "pandadoc:GET:/public/v2/documents/:document_id/settings#0",
+    "match": {
+      "method": "GET",
+      "path": "/public/v2/documents/:document_id/settings"
+    },
+    "respond": {
+      "status": 200,
+      "body": {
+        "language": "en-US",
+        "qualified_electronic_signature": true,
+        "expires_in": 30,
+        "suggest_edits": false
+      }
+    }
+  },
+  {
+    "id": "pandadoc:PATCH:/public/v2/documents/:document_id/settings#0",
+    "match": {
+      "method": "PATCH",
+      "path": "/public/v2/documents/:document_id/settings"
+    },
+    "respond": {
+      "status": 200,
+      "body": {
+        "language": "fr-FR",
+        "qualified_electronic_signature": true,
+        "expires_in": 60,
+        "suggest_edits": true
+      }
+    }
+  },
+  {
+    "id": "pandadoc:POST:/public/v2/dsv/:document_id/add-named-items#0",
+    "match": {
+      "method": "POST",
+      "path": "/public/v2/dsv/:document_id/add-named-items"
+    },
+    "respond": {
+      "status": 200,
+      "body": {
+        "results": [
+          {
+            "id": "0da526b8-0535-4a5c-9913-431ed252a6f5",
+            "name": "First Section",
+            "level": 0,
+            "page_name": "page_name_1",
+            "page_uuid": "8dcc8dcc-b5bd-4431-9885-1a60e829cdaf"
+          },
+          {
+            "id": "30dc3914-fd05-4b09-9eca-99a067b8767b",
+            "name": "Second Section",
+            "level": 0,
+            "page_name": "page_name_2",
+            "page_uuid": "4ae4e8ef-f2e8-4fe3-a47f-0833af49f31f"
+          }
+        ],
+        "count": 2
+      }
+    }
+  },
+  {
+    "id": "pandadoc:GET:/public/v2/logs#0",
+    "match": {
+      "method": "GET",
+      "path": "/public/v2/logs"
+    },
+    "respond": {
+      "status": 200,
+      "body": {
+        "results": [
+          {
+            "id": "AXyDkCYFy9B65Q_E9BY3",
+            "request_time": "2021-10-15T10:59:22.852",
+            "response_time": "2021-10-15T10:59:23.152",
+            "status": 200,
+            "url": "/public/v1/documents"
+          }
+        ]
+      }
+    }
+  },
+  {
+    "id": "pandadoc:GET:/public/v2/logs/:id#0",
+    "match": {
+      "method": "GET",
+      "path": "/public/v2/logs/:id"
+    },
+    "respond": {
+      "status": 200,
+      "body": {
+        "application": "Application One",
+        "id": "AXyDkCYFy9B65Q_E9BY3",
+        "key": "0a5eb48cf42fa507f3dfdd5bdbab7c5bfc20a1b9",
+        "method": "PUT",
+        "query_params_object": {
+          "moesif_meta": {
+            "root": {
+              "count": 2
+            },
+            "since": {
+              "count": 1
+            },
+            "to": {
+              "count": 1
+            }
+          },
+          "since": "-1d",
+          "to": "now"
+        },
+        "query_params_string": "since=-1d&to=now",
+        "request_body": {
+          "date_created": "2021-10-15T10:45:41.138489Z",
+          "name": "Another templates folder",
+          "uuid": "LKoqFUZZGowLAVo6ECFRyB"
+        },
+        "request_id": "94d232f6-fadd-4e2d-a330-702b0b172588",
+        "request_time": "2021-10-15T10:46:57.867",
+        "response_body": {
+          "name": "Another templates folder"
+        },
+        "response_time": "2021-10-15T10:46:57.969",
+        "status": 201,
+        "token_type": "OAUTH2_TOKEN",
+        "url": "/public/v1/templates/folders/LKoqFUZZGowLAVo6ECFRyB",
+        "user_email": "support@pandadoc.com",
+        "user_id": "KKj4kdqfrMeE6bni7pK5gK"
+      }
+    }
+  },
+  {
+    "id": "pandadoc:GET:/public/v2/notary/notaries#0",
+    "match": {
+      "method": "GET",
+      "path": "/public/v2/notary/notaries"
+    },
+    "respond": {
+      "status": 200,
+      "body": {
+        "results": [
+          {
+            "id": "nyAnVpY7pZ23FBve8s9xgk",
+            "email": "notary1@example.com",
+            "name": "John Doe",
+            "status": "ACTIVE",
+            "commission_state": "California"
+          },
+          {
+            "id": "def456ghi789",
+            "email": "notary2@example.com",
+            "name": "Jane Smith",
+            "status": "UNDER_REVIEW",
+            "commission_state": "Arizona"
+          }
+        ],
+        "count": 2
+      }
+    }
+  },
+  {
+    "id": "pandadoc:GET:/public/v2/notary/notarization-requests#0",
+    "match": {
+      "method": "GET",
+      "path": "/public/v2/notary/notarization-requests"
+    },
+    "respond": {
+      "status": 200,
+      "body": {
+        "results": [
+          {
+            "id": "0b2256a2-5803-4ae9-b1b8-595f48e37173",
+            "status": "COMPLETED",
+            "name": "Sample Notarization Request",
+            "document_id": "D3okRfgHRX7NEhavcACReB",
+            "date_created": "2025-01-13T10:25:53.800367Z",
+            "date_started": "2025-01-13T10:30:12.420000Z",
+            "date_completed": "2025-01-13T10:55:44.180000Z",
+            "created_by_user_id": "nyAnVpY7pZ23FBve8s9xgk"
+          },
+          {
+            "id": "f75e053a-25e8-40be-8681-fd755ade2a2b",
+            "status": "SENT",
+            "name": "Another Notarization Request",
+            "document_id": "BhVzRcxH9Z2LgfPPGXFUBa",
+            "date_created": "2025-02-03T09:00:00.000000Z",
+            "date_started": null,
+            "date_completed": null,
+            "created_by_user_id": "nyAnVpY7pZ23FBve8s9xgk"
+          }
+        ],
+        "count": 2
+      }
+    }
+  },
+  {
+    "id": "pandadoc:POST:/public/v2/notary/notarization-requests#0",
+    "match": {
+      "method": "POST",
+      "path": "/public/v2/notary/notarization-requests"
+    },
+    "respond": {
+      "status": 201,
+      "body": {
+        "id": "f75e053a-25e8-40be-8681-fd755ade2a2b",
+        "name": "test",
+        "status": "SENT",
+        "date_created": "2023-04-14T16:33:06.938984Z",
+        "date_accepted": null,
+        "created_by": {
+          "first_name": "test",
+          "last_name": "test",
+          "email": "user@example.com",
+          "user_id": "nyAnVpY7pZ23FBve8s9xgk"
+        },
+        "invitees": [
+          {
+            "first_name": "test",
+            "last_name": "test",
+            "email": "signer@example.com",
+            "notarization_link": "https://notarize.pandadoc.com/session-request#/?requestId=f75e053a-25e8-40be-8681-fd755ade2a2b&inviteeId=2fbb4cbf-d461-4421-94cf-eaadcb9627e0"
+          }
+        ]
+      }
+    }
+  },
+  {
+    "id": "pandadoc:GET:/public/v2/notary/notarization-requests/:session_request_id#0",
+    "match": {
+      "method": "GET",
+      "path": "/public/v2/notary/notarization-requests/:session_request_id"
+    },
+    "respond": {
+      "status": 200,
+      "body": {
+        "id": "string",
+        "status": "COMPLETED",
+        "document_id": "D3okRfgHRX7NEhavcACReB",
+        "date_created": "2024-01-25T15:07:10.845Z",
+        "date_started": "2024-01-25T15:07:10.845Z",
+        "date_completed": "2024-01-25T15:07:10.845Z",
+        "created_by": {
+          "user_id": "string",
+          "email": "string",
+          "first_name": "string",
+          "last_name": "string"
+        },
+        "invitees": [
+          {
+            "id": "string",
+            "email": "user@example.com",
+            "first_name": "string",
+            "last_name": "string"
+          }
+        ],
+        "signed_documents": [
+          {
+            "url": "string",
+            "document_name": "string",
+            "size": 200,
+            "document_type": "COMBINED"
+          },
+          {
+            "url": "string",
+            "document_name": "string",
+            "size": 100,
+            "document_type": "SINGLE"
+          },
+          {
+            "url": "string",
+            "document_name": "string",
+            "size": 100,
+            "document_type": "SINGLE"
+          }
+        ],
+        "recording": {
+          "url": "string",
+          "name": "string",
+          "size": 5242880
+        },
+        "termination_reason": null,
+        "termination_details": null
+      }
+    }
+  },
+  {
+    "id": "pandadoc:DELETE:/public/v2/notary/notarization-requests/:session_request_id#0",
+    "match": {
+      "method": "DELETE",
+      "path": "/public/v2/notary/notarization-requests/:session_request_id"
+    },
+    "respond": {
+      "status": 204
+    }
+  },
+  {
+    "id": "pandadoc:POST:/public/v2/product-catalog/items#0",
+    "match": {
+      "method": "POST",
+      "path": "/public/v2/product-catalog/items"
+    },
+    "respond": {
+      "status": 200,
+      "body": {
+        "uuid": "ea90c56c-1350-41e0-97d1-3b3be0764f9c",
+        "title": "New Product",
+        "date_created": "2024-07-18T13:11:42.326997",
+        "date_modified": "2024-07-18T13:11:42.326997",
+        "created_by": "FA5QAu8UGA3oVDQZuPL75B",
+        "modified_by": "FA5QAu8UGA3oVDQZuPL75B",
+        "default_price_configuration": {
+          "uuid": "71b0660f-f6a4-413a-a9cb-dd1f4d93754e",
+          "price": 1,
+          "cost": null,
+          "currency": "EUR",
+          "pricing_method": 0,
+          "tiers": null,
+          "billing_cycle": null,
+          "billing_type": "one_time"
+        },
+        "variants": [
+          {
+            "uuid": "ff6ae8fd-a31f-485b-8437-5ff72fe40d97",
+            "sku": "211813902327",
+            "description": null,
+            "custom_fields": [],
+            "images": [],
+            "date_created": "2024-07-18T13:11:42.326997",
+            "date_modified": "2024-07-18T13:11:42.326997",
+            "status": 0,
+            "price_configurations": [
+              {
+                "uuid": "71b0660f-f6a4-413a-a9cb-dd1f4d93754e",
+                "price": 1,
+                "cost": null,
+                "currency": "EUR",
+                "pricing_method": 0,
+                "tiers": null,
+                "billing_cycle": null,
+                "billing_type": "one_time"
+              }
+            ]
+          }
+        ],
+        "category_id": null,
+        "category_name": null,
+        "type": "regular",
+        "bundle_items": null
+      }
+    }
+  },
+  {
+    "id": "pandadoc:GET:/public/v2/product-catalog/items/search#0",
+    "match": {
+      "method": "GET",
+      "path": "/public/v2/product-catalog/items/search"
+    },
+    "respond": {
+      "status": 200,
+      "body": {
+        "items": [
+          {
+            "billing_cycle": null,
+            "billing_type": "one_time",
+            "bundle_items_count": 0,
+            "workspace_id": "n7SK7prHeoWJsmb9VkrPve",
+            "category_id": "0ac5f88a-bdd6-4836-304d-28d042b8d3a2",
+            "category_name": "Sample product",
+            "created_by": "FA5QAu8UGA3oVDQZuPL75B",
+            "currency": "USD",
+            "custom_fields": [],
+            "date_created": "2023-02-01T10:55:07+00:00",
+            "date_modified": "2023-02-01T10:55:07+00:00",
+            "description": "Its exceptionally effective vacuum brewing method extracts all precious oils of your favorite coffee. In addition, the brewing time and temperature are perfectly calibrated, ensuring a perfect cup of coffee with each brew.",
+            "image_src": "https://catalog-images.prod.pandadoc-static.com/images/bg78StVWLHzp3tYiubszPb/81361512-488e-42c8-8c13-5e61b8a27638/1.jpeg",
+            "images": [
+              {
+                "src": "https://catalog-images.prod.pandadoc-static.com/images/bg78StVWLHzp3tYiubszPb/81361512-488e-42c8-8c13-5e61b8a27638/1.jpeg",
+                "order": 0,
+                "is_main": true
+              },
+              {
+                "src": "https://catalog-images.prod.pandadoc-static.com/images/bg78StVWLHzp3tYiubszPb/a0aca18e-8074-4698-aadb-3f41c1bd6a88/2.jpeg",
+                "order": 1,
+                "is_main": false
+              }
+            ],
+            "max_tier_value": null,
+            "min_tier_value": null,
+            "modified_by": "FA5QAu8UGA3oVDQZuPL75B",
+            "price": 250,
+            "pricing_method": 0,
+            "sku": "coffee_maker",
+            "title": "Siphon vacuum coffee maker",
+            "type": "regular",
+            "uuid": "1725f759-3a1c-64e3-2daa-f67eafa589d7",
+            "highlights": null,
+            "tiers": null,
+            "cost": 100
+          },
+          {
+            "billing_cycle": null,
+            "billing_type": "one_time",
+            "bundle_items_count": 0,
+            "workspace_id": "n7SK7prHeoWJsmb9VkrPve",
+            "category_id": "0ac5f88a-bdd6-4836-304d-28d042b8d3a2",
+            "category_name": "Sample product",
+            "created_by": "FA5QAu8UGA3oVDQZuPL75B",
+            "currency": "USD",
+            "custom_fields": [],
+            "date_created": "2023-02-01T10:55:07+00:00",
+            "date_modified": "2023-02-01T10:55:07+00:00",
+            "description": "Double-layer Filter: Dual layers of 304 stainless steel allow fine oils from coffee powder to infuse themselves into your coffee, creating a richer, fuller flavor and no coffee ground deposits",
+            "image_src": "https://catalog-images.prod.pandadoc-static.com/images/bg78StVWLHzp3tYiubszPb/b593eb9a-74cd-40a0-8c38-6a9d39248d3d/3.jpeg",
+            "images": [
+              {
+                "src": "https://catalog-images.prod.pandadoc-static.com/images/bg78StVWLHzp3tYiubszPb/b593eb9a-74cd-40a0-8c38-6a9d39248d3d/3.jpeg",
+                "order": 0,
+                "is_main": true
+              },
+              {
+                "src": "https://catalog-images.prod.pandadoc-static.com/images/bg78StVWLHzp3tYiubszPb/ea09bd4a-c619-4b3e-8f99-f1a2180a97a8/4.jpeg",
+                "order": 1,
+                "is_main": false
+              },
+              {
+                "src": "https://catalog-images.prod.pandadoc-static.com/images/bg78StVWLHzp3tYiubszPb/6e6312f8-787d-4453-8772-ac81f481be00/5.jpeg",
+                "order": 2,
+                "is_main": false
+              }
+            ],
+            "max_tier_value": null,
+            "min_tier_value": null,
+            "modified_by": "FA5QAu8UGA3oVDQZuPL75B",
+            "price": 100,
+            "pricing_method": 0,
+            "sku": "coffee_brewer",
+            "title": "Jittermaster coffee brewer",
+            "type": "regular",
+            "uuid": "06cb0ce9-094b-1f38-2fe6-0a9d226cd22c",
+            "highlights": null,
+            "tiers": null,
+            "cost": 50
+          },
+          {
+            "billing_cycle": null,
+            "billing_type": "one_time",
+            "bundle_items_count": 0,
+            "workspace_id": "n7SK7prHeoWJsmb9VkrPve",
+            "category_id": "0ac5f88a-bdd6-4836-304d-28d042b8d3a2",
+            "category_name": "Sample product",
+            "created_by": "FA5QAu8UGA3oVDQZuPL75B",
+            "currency": "USD",
+            "custom_fields": [],
+            "date_created": "2023-02-01T10:55:07+00:00",
+            "date_modified": "2023-03-17T14:19:12+00:00",
+            "description": "<p>Meticulously crafted in Italy these classic glass coffee mugs or tea cups will complete any barware collection. Contemporary sleek drinking glasses designed to enhance any décor.</p>",
+            "image_src": "https://catalog-images.prod.pandadoc-static.com/images/bg78StVWLHzp3tYiubszPb/6267265d-2b29-4471-8181-c7544e35a69a/6.jpeg",
+            "images": [
+              {
+                "src": "https://catalog-images.prod.pandadoc-static.com/images/bg78StVWLHzp3tYiubszPb/6267265d-2b29-4471-8181-c7544e35a69a/6.jpeg",
+                "order": 0,
+                "is_main": true
+              }
+            ],
+            "max_tier_value": 30,
+            "min_tier_value": 20,
+            "modified_by": "FA5QAu8UGA3oVDQZuPL75B",
+            "price": null,
+            "pricing_method": 1,
+            "sku": "coffee_mug_v2",
+            "title": "Coffee Magic Mug",
+            "type": "regular",
+            "uuid": "ff137b79-e7f6-5710-17d3-c9ea81dac6b6",
+            "highlights": null,
+            "tiers": [
+              {
+                "value": 30,
+                "min_qty": 1
+              },
+              {
+                "value": 20,
+                "min_qty": 21
+              }
+            ],
+            "cost": 5
+          },
+          {
+            "billing_cycle": 1,
+            "billing_type": "recurring",
+            "bundle_items_count": 0,
+            "workspace_id": "n7SK7prHeoWJsmb9VkrPve",
+            "category_id": "0ac5f88a-bdd6-4836-304d-28d042b8d3a2",
+            "category_name": "Sample product",
+            "created_by": "FA5QAu8UGA3oVDQZuPL75B",
+            "currency": "USD",
+            "custom_fields": [],
+            "date_created": "2023-02-01T10:55:07+00:00",
+            "date_modified": "2023-02-01T10:55:07+00:00",
+            "description": "Enjoy a new light roast coffee each month. Box of white chocolate. Up to 20% off retail prices. Pause or cancel anytime.",
+            "image_src": "https://catalog-images.prod.pandadoc-static.com/images/bg78StVWLHzp3tYiubszPb/e818970c-5aa8-4645-941f-04ab0ab5b9b0/7.png",
+            "images": [
+              {
+                "src": "https://catalog-images.prod.pandadoc-static.com/images/bg78StVWLHzp3tYiubszPb/e818970c-5aa8-4645-941f-04ab0ab5b9b0/7.png",
+                "order": 0,
+                "is_main": true
+              }
+            ],
+            "max_tier_value": null,
+            "min_tier_value": null,
+            "modified_by": "FA5QAu8UGA3oVDQZuPL75B",
+            "price": 19,
+            "pricing_method": 0,
+            "sku": "light_coffee",
+            "title": "Light Roast Collection",
+            "type": "regular",
+            "uuid": "646ebcc2-58ba-8eb1-faaa-a93e4542b37b",
+            "highlights": null,
+            "tiers": null,
+            "cost": 5
+          },
+          {
+            "billing_cycle": 1,
+            "billing_type": "recurring",
+            "bundle_items_count": 0,
+            "workspace_id": "n7SK7prHeoWJsmb9VkrPve",
+            "category_id": "0ac5f88a-bdd6-4836-304d-28d042b8d3a2",
+            "category_name": "Sample product",
+            "created_by": "FA5QAu8UGA3oVDQZuPL75B",
+            "currency": "USD",
+            "custom_fields": [],
+            "date_created": "2023-02-01T10:55:07+00:00",
+            "date_modified": "2023-02-01T10:55:07+00:00",
+            "description": "Enjoy a new dark roast coffee each month. Box of white chocolate. Up to 20% off retail prices. Pause or cancel anytime.",
+            "image_src": "https://catalog-images.prod.pandadoc-static.com/images/bg78StVWLHzp3tYiubszPb/6cb41994-5a6e-4253-bc4c-f5e90bb9d7f8/8.png",
+            "images": [
+              {
+                "src": "https://catalog-images.prod.pandadoc-static.com/images/bg78StVWLHzp3tYiubszPb/6cb41994-5a6e-4253-bc4c-f5e90bb9d7f8/8.png",
+                "order": 0,
+                "is_main": true
+              }
+            ],
+            "max_tier_value": null,
+            "min_tier_value": null,
+            "modified_by": "FA5QAu8UGA3oVDQZuPL75B",
+            "price": 19,
+            "pricing_method": 0,
+            "sku": "dark_coffee",
+            "title": "Dark Roast Collection",
+            "type": "regular",
+            "uuid": "0d80ccaf-37e1-ce94-c339-d1f0405c3a62",
+            "highlights": null,
+            "tiers": null,
+            "cost": 5
+          }
+        ],
+        "has_more_items": false,
+        "total": 5
+      }
+    }
+  },
+  {
+    "id": "pandadoc:GET:/public/v2/product-catalog/items/:item_uuid#0",
+    "match": {
+      "method": "GET",
+      "path": "/public/v2/product-catalog/items/:item_uuid"
+    },
+    "respond": {
+      "status": 200,
+      "body": {
+        "uuid": "2e39c7e0-acb0-4ff2-b4cd-ea3141f95db8",
+        "title": "New Product",
+        "date_created": "2024-07-18T13:15:13.542219",
+        "date_modified": "2024-07-18T13:15:13.542219",
+        "created_by": "FA5QAu8UGA3oVDQZuPL75B",
+        "modified_by": "FA5QAu8UGA3oVDQZuPL75B",
+        "default_price_configuration": {
+          "uuid": "99dc088e-c42a-483f-8b07-01a482d3e85d",
+          "price": 1,
+          "cost": null,
+          "currency": "EUR",
+          "pricing_method": 0,
+          "tiers": null,
+          "billing_cycle": null,
+          "billing_type": "one_time"
+        },
+        "variants": [
+          {
+            "uuid": "f5a99f07-8cbb-46b2-beb2-5d4c52d3fb4e",
+            "sku": "211814113542",
+            "description": null,
+            "custom_fields": [],
+            "images": [],
+            "date_created": "2024-07-18T13:15:13.542219",
+            "date_modified": "2024-07-18T13:15:13.542219",
+            "status": 0,
+            "price_configurations": [
+              {
+                "uuid": "99dc088e-c42a-483f-8b07-01a482d3e85d",
+                "price": 1,
+                "cost": null,
+                "currency": "EUR",
+                "pricing_method": 0,
+                "tiers": null,
+                "billing_cycle": null,
+                "billing_type": "one_time"
+              }
+            ]
+          }
+        ],
+        "category_id": null,
+        "category_name": null,
+        "type": "regular",
+        "bundle_items": null
+      }
+    }
+  },
+  {
+    "id": "pandadoc:PATCH:/public/v2/product-catalog/items/:item_uuid#0",
+    "match": {
+      "method": "PATCH",
+      "path": "/public/v2/product-catalog/items/:item_uuid"
+    },
+    "respond": {
+      "status": 200,
+      "body": {
+        "uuid": "2e39c7e0-acb0-4ff2-b4cd-ea3141f95db8",
+        "title": "New name",
+        "date_created": "2024-07-18T13:15:13.542219",
+        "date_modified": "2024-07-18T13:19:21.692454",
+        "created_by": "FA5QAu8UGA3oVDQZuPL75B",
+        "modified_by": "FA5QAu8UGA3oVDQZuPL75B",
+        "default_price_configuration": {
+          "uuid": "99dc088e-c42a-483f-8b07-01a482d3e85d",
+          "price": 99,
+          "cost": 1,
+          "currency": "USD",
+          "pricing_method": 1,
+          "tiers": [
+            {
+              "min_qty": 1,
+              "value": 10
+            },
+            {
+              "min_qty": 2,
+              "value": 8
+            }
+          ],
+          "billing_cycle": null,
+          "billing_type": "one_time"
+        },
+        "variants": [
+          {
+            "uuid": "f5a99f07-8cbb-46b2-beb2-5d4c52d3fb4e",
+            "sku": "211813881147",
+            "description": "<p>New description</p>",
+            "custom_fields": [
+              {
+                "name": "Field",
+                "value": "Value"
+              }
+            ],
+            "images": [],
+            "date_created": "2024-07-18T13:15:13.542219",
+            "date_modified": "2024-07-18T13:19:21.692454",
+            "status": 0,
+            "price_configurations": [
+              {
+                "uuid": "99dc088e-c42a-483f-8b07-01a482d3e85d",
+                "price": 99,
+                "cost": 1,
+                "currency": "USD",
+                "pricing_method": 1,
+                "tiers": [
+                  {
+                    "min_qty": 1,
+                    "value": 10
+                  },
+                  {
+                    "min_qty": 2,
+                    "value": 8
+                  }
+                ],
+                "billing_cycle": null,
+                "billing_type": "one_time"
+              }
+            ]
+          }
+        ],
+        "category_id": null,
+        "category_name": null,
+        "type": "regular",
+        "bundle_items": null
+      }
+    }
+  },
+  {
+    "id": "pandadoc:DELETE:/public/v2/product-catalog/items/:item_uuid#0",
+    "match": {
+      "method": "DELETE",
+      "path": "/public/v2/product-catalog/items/:item_uuid"
+    },
+    "respond": {
+      "status": 200
+    }
+  },
+  {
+    "id": "pandadoc:GET:/public/v2/templates/:template_id/settings#0",
+    "match": {
+      "method": "GET",
+      "path": "/public/v2/templates/:template_id/settings"
+    },
+    "respond": {
+      "status": 200,
+      "body": {
+        "language": "en-US"
+      }
+    }
+  },
+  {
+    "id": "pandadoc:PATCH:/public/v2/templates/:template_id/settings#0",
+    "match": {
+      "method": "PATCH",
+      "path": "/public/v2/templates/:template_id/settings"
+    },
+    "respond": {
+      "status": 200,
+      "body": {
+        "language": "fr-FR"
+      }
+    }
+  }
+]

@@ -1,0 +1,8 @@
+{
+  "id": "hubspot",
+  "domains": [
+    "api.hubapi.com"
+  ],
+  "prefix": "/hubspot",
+  "source": "openapi"
+}

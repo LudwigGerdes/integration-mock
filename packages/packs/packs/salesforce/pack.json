@@ -1,0 +1,10 @@
+{
+  "id": "salesforce",
+  "domains": [
+    "*.my.salesforce.com",
+    "login.salesforce.com",
+    "test.salesforce.com"
+  ],
+  "prefix": "/salesforce",
+  "source": "authored"
+}

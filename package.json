@@ -1,0 +1,22 @@
+{
+	"name": "integration-mock-monorepo",
+	"private": true,
+	"type": "module",
+	"engines": {
+		"node": ">=20"
+	},
+	"packageManager": "pnpm@10.22.0",
+	"scripts": {
+		"build": "pnpm -r build",
+		"test": "vitest run",
+		"typecheck": "pnpm -r typecheck",
+		"smoke": "bash scripts/smoke.sh all",
+		"test:instance": "vitest run --workspace vitest.instance.workspace.ts --no-file-parallelism"
+	},
+	"devDependencies": {
+		"@types/node": "^20.14.0",
+		"typescript": "^5.5.0",
+		"vitest": "^2.0.0"
+	},
+	"license": "MIT"
+}

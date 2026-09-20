@@ -1,0 +1,8 @@
+{
+  "id": "close",
+  "domains": [
+    "api.close.com"
+  ],
+  "prefix": "/close",
+  "source": "openapi"
+}

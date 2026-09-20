@@ -1,0 +1,1931 @@
+[
+  {
+    "id": "gmail:POST:/o/oauth2/token#auth",
+    "match": {
+      "method": "POST",
+      "path": "/o/oauth2/token"
+    },
+    "respond": {
+      "status": 200,
+      "body": {
+        "access_token": "mock-access-token",
+        "token_type": "Bearer",
+        "expires_in": 3600,
+        "refresh_token": "mock-refresh-token",
+        "scope": ""
+      }
+    }
+  },
+  {
+    "id": "gmail:GET:/gmail/v1/users/:userId/drafts#0",
+    "match": {
+      "method": "GET",
+      "path": "/gmail/v1/users/:userId/drafts"
+    },
+    "respond": {
+      "status": 200,
+      "body": {
+        "drafts": [
+          {
+            "id": "s645003",
+            "message": {
+              "historyId": "s176755",
+              "id": "s86170",
+              "internalDate": "s570415",
+              "labelIds": [
+                "s668809"
+              ],
+              "payload": {
+                "body": {},
+                "filename": {},
+                "headers": {},
+                "mimeType": {},
+                "partId": {},
+                "parts": {}
+              },
+              "raw": "s126695",
+              "sizeEstimate": 347,
+              "snippet": "s346836",
+              "threadId": "s36972"
+            }
+          }
+        ],
+        "nextPageToken": "s617432",
+        "resultSizeEstimate": 407
+      }
+    }
+  },
+  {
+    "id": "gmail:POST:/gmail/v1/users/:userId/drafts#0",
+    "match": {
+      "method": "POST",
+      "path": "/gmail/v1/users/:userId/drafts"
+    },
+    "respond": {
+      "status": 200,
+      "body": {
+        "id": "s403448",
+        "message": {
+          "historyId": "s769874",
+          "id": "s79652",
+          "internalDate": "s715188",
+          "labelIds": [
+            "s654392"
+          ],
+          "payload": {
+            "body": {
+              "attachmentId": {},
+              "data": {},
+              "size": {}
+            },
+            "filename": "s872300",
+            "headers": [
+              {
+                "name": {},
+                "value": {}
+              }
+            ],
+            "mimeType": "s880245",
+            "partId": "s490228",
+            "parts": [
+              {}
+            ]
+          },
+          "raw": "s499156",
+          "sizeEstimate": 76,
+          "snippet": "s413350",
+          "threadId": "s931268"
+        }
+      }
+    }
+  },
+  {
+    "id": "gmail:POST:/gmail/v1/users/:userId/drafts/send#0",
+    "match": {
+      "method": "POST",
+      "path": "/gmail/v1/users/:userId/drafts/send"
+    },
+    "respond": {
+      "status": 200,
+      "body": {
+        "historyId": "s219255",
+        "id": "s832750",
+        "internalDate": "s923295",
+        "labelIds": [
+          "s737460"
+        ],
+        "payload": {
+          "body": {
+            "attachmentId": "s676732",
+            "data": "s205556",
+            "size": 262
+          },
+          "filename": "s103678",
+          "headers": [
+            {
+              "name": "s529312",
+              "value": "s466521"
+            }
+          ],
+          "mimeType": "s49035",
+          "partId": "s118870",
+          "parts": [
+            {}
+          ]
+        },
+        "raw": "s718275",
+        "sizeEstimate": 950,
+        "snippet": "s468416",
+        "threadId": "s135751"
+      }
+    }
+  },
+  {
+    "id": "gmail:GET:/gmail/v1/users/:userId/drafts/:id#0",
+    "match": {
+      "method": "GET",
+      "path": "/gmail/v1/users/:userId/drafts/:id"
+    },
+    "respond": {
+      "status": 200,
+      "body": {
+        "id": "s629837",
+        "message": {
+          "historyId": "s197342",
+          "id": "s585123",
+          "internalDate": "s80967",
+          "labelIds": [
+            "s230275"
+          ],
+          "payload": {
+            "body": {
+              "attachmentId": {},
+              "data": {},
+              "size": {}
+            },
+            "filename": "s732423",
+            "headers": [
+              {
+                "name": {},
+                "value": {}
+              }
+            ],
+            "mimeType": "s442223",
+            "partId": "s633793",
+            "parts": [
+              {}
+            ]
+          },
+          "raw": "s992054",
+          "sizeEstimate": 282,
+          "snippet": "s145145",
+          "threadId": "s651282"
+        }
+      }
+    }
+  },
+  {
+    "id": "gmail:PUT:/gmail/v1/users/:userId/drafts/:id#0",
+    "match": {
+      "method": "PUT",
+      "path": "/gmail/v1/users/:userId/drafts/:id"
+    },
+    "respond": {
+      "status": 200,
+      "body": {
+        "id": "s273101",
+        "message": {
+          "historyId": "s774519",
+          "id": "s680880",
+          "internalDate": "s376913",
+          "labelIds": [
+            "s466034"
+          ],
+          "payload": {
+            "body": {
+              "attachmentId": {},
+              "data": {},
+              "size": {}
+            },
+            "filename": "s28804",
+            "headers": [
+              {
+                "name": {},
+                "value": {}
+              }
+            ],
+            "mimeType": "s184249",
+            "partId": "s704979",
+            "parts": [
+              {}
+            ]
+          },
+          "raw": "s851620",
+          "sizeEstimate": 491,
+          "snippet": "s207720",
+          "threadId": "s10256"
+        }
+      }
+    }
+  },
+  {
+    "id": "gmail:DELETE:/gmail/v1/users/:userId/drafts/:id#0",
+    "match": {
+      "method": "DELETE",
+      "path": "/gmail/v1/users/:userId/drafts/:id"
+    },
+    "respond": {
+      "status": 200
+    }
+  },
+  {
+    "id": "gmail:GET:/gmail/v1/users/:userId/history#0",
+    "match": {
+      "method": "GET",
+      "path": "/gmail/v1/users/:userId/history"
+    },
+    "respond": {
+      "status": 200,
+      "body": {
+        "history": [
+          {
+            "id": "s701593",
+            "labelsAdded": [
+              {
+                "labelIds": [
+                  {}
+                ],
+                "message": {}
+              }
+            ],
+            "labelsRemoved": [
+              {
+                "labelIds": [
+                  {}
+                ],
+                "message": {}
+              }
+            ],
+            "messages": [
+              {
+                "historyId": "s67541",
+                "id": "s894638",
+                "internalDate": "s506214",
+                "labelIds": [
+                  {}
+                ],
+                "payload": {},
+                "raw": "s943085",
+                "sizeEstimate": 65,
+                "snippet": "s407515",
+                "threadId": "s326375"
+              }
+            ],
+            "messagesAdded": [
+              {
+                "message": {}
+              }
+            ],
+            "messagesDeleted": [
+              {
+                "message": {}
+              }
+            ]
+          }
+        ],
+        "historyId": "s636123",
+        "nextPageToken": "s100573"
+      }
+    }
+  },
+  {
+    "id": "gmail:GET:/gmail/v1/users/:userId/labels#0",
+    "match": {
+      "method": "GET",
+      "path": "/gmail/v1/users/:userId/labels"
+    },
+    "respond": {
+      "status": 200,
+      "body": {
+        "labels": [
+          {
+            "color": {
+              "backgroundColor": "s337410",
+              "textColor": "s869952"
+            },
+            "id": "s973347",
+            "labelListVisibility": "labelShow",
+            "messageListVisibility": "show",
+            "messagesTotal": 819,
+            "messagesUnread": 85,
+            "name": "s252237",
+            "threadsTotal": 83,
+            "threadsUnread": 238,
+            "type": "system"
+          }
+        ]
+      }
+    }
+  },
+  {
+    "id": "gmail:POST:/gmail/v1/users/:userId/labels#0",
+    "match": {
+      "method": "POST",
+      "path": "/gmail/v1/users/:userId/labels"
+    },
+    "respond": {
+      "status": 200,
+      "body": {
+        "color": {
+          "backgroundColor": "s498199",
+          "textColor": "s480563"
+        },
+        "id": "s214731",
+        "labelListVisibility": "labelShow",
+        "messageListVisibility": "show",
+        "messagesTotal": 852,
+        "messagesUnread": 319,
+        "name": "s399039",
+        "threadsTotal": 746,
+        "threadsUnread": 672,
+        "type": "system"
+      }
+    }
+  },
+  {
+    "id": "gmail:GET:/gmail/v1/users/:userId/labels/:id#0",
+    "match": {
+      "method": "GET",
+      "path": "/gmail/v1/users/:userId/labels/:id"
+    },
+    "respond": {
+      "status": 200,
+      "body": {
+        "color": {
+          "backgroundColor": "s818423",
+          "textColor": "s899110"
+        },
+        "id": "s958305",
+        "labelListVisibility": "labelShow",
+        "messageListVisibility": "show",
+        "messagesTotal": 400,
+        "messagesUnread": 746,
+        "name": "s230097",
+        "threadsTotal": 388,
+        "threadsUnread": 479,
+        "type": "system"
+      }
+    }
+  },
+  {
+    "id": "gmail:PUT:/gmail/v1/users/:userId/labels/:id#0",
+    "match": {
+      "method": "PUT",
+      "path": "/gmail/v1/users/:userId/labels/:id"
+    },
+    "respond": {
+      "status": 200,
+      "body": {
+        "color": {
+          "backgroundColor": "s305274",
+          "textColor": "s654051"
+        },
+        "id": "s128302",
+        "labelListVisibility": "labelShow",
+        "messageListVisibility": "show",
+        "messagesTotal": 654,
+        "messagesUnread": 70,
+        "name": "s272969",
+        "threadsTotal": 399,
+        "threadsUnread": 997,
+        "type": "system"
+      }
+    }
+  },
+  {
+    "id": "gmail:PATCH:/gmail/v1/users/:userId/labels/:id#0",
+    "match": {
+      "method": "PATCH",
+      "path": "/gmail/v1/users/:userId/labels/:id"
+    },
+    "respond": {
+      "status": 200,
+      "body": {
+        "color": {
+          "backgroundColor": "s206003",
+          "textColor": "s240804"
+        },
+        "id": "s99760",
+        "labelListVisibility": "labelShow",
+        "messageListVisibility": "show",
+        "messagesTotal": 948,
+        "messagesUnread": 170,
+        "name": "s672967",
+        "threadsTotal": 990,
+        "threadsUnread": 103,
+        "type": "system"
+      }
+    }
+  },
+  {
+    "id": "gmail:DELETE:/gmail/v1/users/:userId/labels/:id#0",
+    "match": {
+      "method": "DELETE",
+      "path": "/gmail/v1/users/:userId/labels/:id"
+    },
+    "respond": {
+      "status": 200
+    }
+  },
+  {
+    "id": "gmail:GET:/gmail/v1/users/:userId/messages#0",
+    "match": {
+      "method": "GET",
+      "path": "/gmail/v1/users/:userId/messages"
+    },
+    "respond": {
+      "status": 200,
+      "body": {
+        "messages": [
+          {
+            "historyId": "s684939",
+            "id": "s106591",
+            "internalDate": "s465743",
+            "labelIds": [
+              "s916820"
+            ],
+            "payload": {
+              "body": {
+                "attachmentId": {},
+                "data": {},
+                "size": {}
+              },
+              "filename": "s733173",
+              "headers": [
+                {}
+              ],
+              "mimeType": "s497439",
+              "partId": "s990039",
+              "parts": [
+                {}
+              ]
+            },
+            "raw": "s276531",
+            "sizeEstimate": 467,
+            "snippet": "s824502",
+            "threadId": "s42677"
+          }
+        ],
+        "nextPageToken": "s267233",
+        "resultSizeEstimate": 809
+      }
+    }
+  },
+  {
+    "id": "gmail:POST:/gmail/v1/users/:userId/messages#0",
+    "match": {
+      "method": "POST",
+      "path": "/gmail/v1/users/:userId/messages"
+    },
+    "respond": {
+      "status": 200,
+      "body": {
+        "historyId": "s888467",
+        "id": "s563283",
+        "internalDate": "s826352",
+        "labelIds": [
+          "s384886"
+        ],
+        "payload": {
+          "body": {
+            "attachmentId": "s73840",
+            "data": "s357317",
+            "size": 430
+          },
+          "filename": "s460610",
+          "headers": [
+            {
+              "name": "s671468",
+              "value": "s499441"
+            }
+          ],
+          "mimeType": "s561137",
+          "partId": "s522120",
+          "parts": [
+            {}
+          ]
+        },
+        "raw": "s575615",
+        "sizeEstimate": 41,
+        "snippet": "s902072",
+        "threadId": "s509294"
+      }
+    }
+  },
+  {
+    "id": "gmail:POST:/gmail/v1/users/:userId/messages/batchDelete#0",
+    "match": {
+      "method": "POST",
+      "path": "/gmail/v1/users/:userId/messages/batchDelete"
+    },
+    "respond": {
+      "status": 200
+    }
+  },
+  {
+    "id": "gmail:POST:/gmail/v1/users/:userId/messages/batchModify#0",
+    "match": {
+      "method": "POST",
+      "path": "/gmail/v1/users/:userId/messages/batchModify"
+    },
+    "respond": {
+      "status": 200
+    }
+  },
+  {
+    "id": "gmail:POST:/gmail/v1/users/:userId/messages/import#0",
+    "match": {
+      "method": "POST",
+      "path": "/gmail/v1/users/:userId/messages/import"
+    },
+    "respond": {
+      "status": 200,
+      "body": {
+        "historyId": "s747688",
+        "id": "s987290",
+        "internalDate": "s991424",
+        "labelIds": [
+          "s266215"
+        ],
+        "payload": {
+          "body": {
+            "attachmentId": "s205626",
+            "data": "s387688",
+            "size": 420
+          },
+          "filename": "s415703",
+          "headers": [
+            {
+              "name": "s698564",
+              "value": "s718967"
+            }
+          ],
+          "mimeType": "s768049",
+          "partId": "s519047",
+          "parts": [
+            {}
+          ]
+        },
+        "raw": "s287488",
+        "sizeEstimate": 632,
+        "snippet": "s825134",
+        "threadId": "s792852"
+      }
+    }
+  },
+  {
+    "id": "gmail:POST:/gmail/v1/users/:userId/messages/send#0",
+    "match": {
+      "method": "POST",
+      "path": "/gmail/v1/users/:userId/messages/send"
+    },
+    "respond": {
+      "status": 200,
+      "body": {
+        "historyId": "s440702",
+        "id": "s952811",
+        "internalDate": "s882061",
+        "labelIds": [
+          "s921504"
+        ],
+        "payload": {
+          "body": {
+            "attachmentId": "s842092",
+            "data": "s519222",
+            "size": 341
+          },
+          "filename": "s884617",
+          "headers": [
+            {
+              "name": "s89586",
+              "value": "s695930"
+            }
+          ],
+          "mimeType": "s236196",
+          "partId": "s693124",
+          "parts": [
+            {}
+          ]
+        },
+        "raw": "s380529",
+        "sizeEstimate": 923,
+        "snippet": "s85164",
+        "threadId": "s18032"
+      }
+    }
+  },
+  {
+    "id": "gmail:GET:/gmail/v1/users/:userId/messages/:id#0",
+    "match": {
+      "method": "GET",
+      "path": "/gmail/v1/users/:userId/messages/:id"
+    },
+    "respond": {
+      "status": 200,
+      "body": {
+        "historyId": "s54349",
+        "id": "s264555",
+        "internalDate": "s764412",
+        "labelIds": [
+          "s479758"
+        ],
+        "payload": {
+          "body": {
+            "attachmentId": "s247809",
+            "data": "s438601",
+            "size": 802
+          },
+          "filename": "s794544",
+          "headers": [
+            {
+              "name": "s82380",
+              "value": "s992205"
+            }
+          ],
+          "mimeType": "s584586",
+          "partId": "s755761",
+          "parts": [
+            {}
+          ]
+        },
+        "raw": "s678001",
+        "sizeEstimate": 95,
+        "snippet": "s974894",
+        "threadId": "s779757"
+      }
+    }
+  },
+  {
+    "id": "gmail:DELETE:/gmail/v1/users/:userId/messages/:id#0",
+    "match": {
+      "method": "DELETE",
+      "path": "/gmail/v1/users/:userId/messages/:id"
+    },
+    "respond": {
+      "status": 200
+    }
+  },
+  {
+    "id": "gmail:POST:/gmail/v1/users/:userId/messages/:id/modify#0",
+    "match": {
+      "method": "POST",
+      "path": "/gmail/v1/users/:userId/messages/:id/modify"
+    },
+    "respond": {
+      "status": 200,
+      "body": {
+        "historyId": "s453652",
+        "id": "s406332",
+        "internalDate": "s421029",
+        "labelIds": [
+          "s258447"
+        ],
+        "payload": {
+          "body": {
+            "attachmentId": "s955216",
+            "data": "s974579",
+            "size": 916
+          },
+          "filename": "s859334",
+          "headers": [
+            {
+              "name": "s519306",
+              "value": "s517870"
+            }
+          ],
+          "mimeType": "s728266",
+          "partId": "s286290",
+          "parts": [
+            {}
+          ]
+        },
+        "raw": "s637169",
+        "sizeEstimate": 550,
+        "snippet": "s929364",
+        "threadId": "s840961"
+      }
+    }
+  },
+  {
+    "id": "gmail:POST:/gmail/v1/users/:userId/messages/:id/trash#0",
+    "match": {
+      "method": "POST",
+      "path": "/gmail/v1/users/:userId/messages/:id/trash"
+    },
+    "respond": {
+      "status": 200,
+      "body": {
+        "historyId": "s628208",
+        "id": "s607693",
+        "internalDate": "s251282",
+        "labelIds": [
+          "s219617"
+        ],
+        "payload": {
+          "body": {
+            "attachmentId": "s558652",
+            "data": "s706672",
+            "size": 894
+          },
+          "filename": "s565205",
+          "headers": [
+            {
+              "name": "s927816",
+              "value": "s728385"
+            }
+          ],
+          "mimeType": "s26502",
+          "partId": "s625848",
+          "parts": [
+            {}
+          ]
+        },
+        "raw": "s189730",
+        "sizeEstimate": 662,
+        "snippet": "s889996",
+        "threadId": "s979696"
+      }
+    }
+  },
+  {
+    "id": "gmail:POST:/gmail/v1/users/:userId/messages/:id/untrash#0",
+    "match": {
+      "method": "POST",
+      "path": "/gmail/v1/users/:userId/messages/:id/untrash"
+    },
+    "respond": {
+      "status": 200,
+      "body": {
+        "historyId": "s502969",
+        "id": "s631683",
+        "internalDate": "s979920",
+        "labelIds": [
+          "s393837"
+        ],
+        "payload": {
+          "body": {
+            "attachmentId": "s670557",
+            "data": "s216400",
+            "size": 680
+          },
+          "filename": "s782012",
+          "headers": [
+            {
+              "name": "s388576",
+              "value": "s912508"
+            }
+          ],
+          "mimeType": "s857582",
+          "partId": "s593384",
+          "parts": [
+            {}
+          ]
+        },
+        "raw": "s771135",
+        "sizeEstimate": 378,
+        "snippet": "s440085",
+        "threadId": "s422174"
+      }
+    }
+  },
+  {
+    "id": "gmail:GET:/gmail/v1/users/:userId/messages/:messageId/attachments/:id#0",
+    "match": {
+      "method": "GET",
+      "path": "/gmail/v1/users/:userId/messages/:messageId/attachments/:id"
+    },
+    "respond": {
+      "status": 200,
+      "body": {
+        "attachmentId": "s747201",
+        "data": "s610404",
+        "size": 147
+      }
+    }
+  },
+  {
+    "id": "gmail:GET:/gmail/v1/users/:userId/profile#0",
+    "match": {
+      "method": "GET",
+      "path": "/gmail/v1/users/:userId/profile"
+    },
+    "respond": {
+      "status": 200,
+      "body": {
+        "emailAddress": "s421258",
+        "historyId": "s913198",
+        "messagesTotal": 517,
+        "threadsTotal": 202
+      }
+    }
+  },
+  {
+    "id": "gmail:GET:/gmail/v1/users/:userId/settings/autoForwarding#0",
+    "match": {
+      "method": "GET",
+      "path": "/gmail/v1/users/:userId/settings/autoForwarding"
+    },
+    "respond": {
+      "status": 200,
+      "body": {
+        "disposition": "dispositionUnspecified",
+        "emailAddress": "s162065",
+        "enabled": true
+      }
+    }
+  },
+  {
+    "id": "gmail:PUT:/gmail/v1/users/:userId/settings/autoForwarding#0",
+    "match": {
+      "method": "PUT",
+      "path": "/gmail/v1/users/:userId/settings/autoForwarding"
+    },
+    "respond": {
+      "status": 200,
+      "body": {
+        "disposition": "dispositionUnspecified",
+        "emailAddress": "s639592",
+        "enabled": false
+      }
+    }
+  },
+  {
+    "id": "gmail:GET:/gmail/v1/users/:userId/settings/cse/identities#0",
+    "match": {
+      "method": "GET",
+      "path": "/gmail/v1/users/:userId/settings/cse/identities"
+    },
+    "respond": {
+      "status": 200,
+      "body": {
+        "cseIdentities": [
+          {
+            "emailAddress": "s666190",
+            "primaryKeyPairId": "s281912"
+          }
+        ],
+        "nextPageToken": "s496872"
+      }
+    }
+  },
+  {
+    "id": "gmail:POST:/gmail/v1/users/:userId/settings/cse/identities#0",
+    "match": {
+      "method": "POST",
+      "path": "/gmail/v1/users/:userId/settings/cse/identities"
+    },
+    "respond": {
+      "status": 200,
+      "body": {
+        "emailAddress": "s260072",
+        "primaryKeyPairId": "s410053"
+      }
+    }
+  },
+  {
+    "id": "gmail:GET:/gmail/v1/users/:userId/settings/cse/identities/:cseEmailAddress#0",
+    "match": {
+      "method": "GET",
+      "path": "/gmail/v1/users/:userId/settings/cse/identities/:cseEmailAddress"
+    },
+    "respond": {
+      "status": 200,
+      "body": {
+        "emailAddress": "s557582",
+        "primaryKeyPairId": "s840511"
+      }
+    }
+  },
+  {
+    "id": "gmail:DELETE:/gmail/v1/users/:userId/settings/cse/identities/:cseEmailAddress#0",
+    "match": {
+      "method": "DELETE",
+      "path": "/gmail/v1/users/:userId/settings/cse/identities/:cseEmailAddress"
+    },
+    "respond": {
+      "status": 200
+    }
+  },
+  {
+    "id": "gmail:PATCH:/gmail/v1/users/:userId/settings/cse/identities/:emailAddress#0",
+    "match": {
+      "method": "PATCH",
+      "path": "/gmail/v1/users/:userId/settings/cse/identities/:emailAddress"
+    },
+    "respond": {
+      "status": 200,
+      "body": {
+        "emailAddress": "s304934",
+        "primaryKeyPairId": "s517662"
+      }
+    }
+  },
+  {
+    "id": "gmail:GET:/gmail/v1/users/:userId/settings/cse/keypairs#0",
+    "match": {
+      "method": "GET",
+      "path": "/gmail/v1/users/:userId/settings/cse/keypairs"
+    },
+    "respond": {
+      "status": 200,
+      "body": {
+        "cseKeyPairs": [
+          {
+            "disableTime": "s106036",
+            "enablementState": "stateUnspecified",
+            "keyPairId": "s141335",
+            "pem": "s621557",
+            "pkcs7": "s336902",
+            "privateKeyMetadata": [
+              {
+                "kaclsKeyMetadata": {},
+                "privateKeyMetadataId": "s721738"
+              }
+            ],
+            "subjectEmailAddresses": [
+              "s673127"
+            ]
+          }
+        ],
+        "nextPageToken": "s250714"
+      }
+    }
+  },
+  {
+    "id": "gmail:POST:/gmail/v1/users/:userId/settings/cse/keypairs#0",
+    "match": {
+      "method": "POST",
+      "path": "/gmail/v1/users/:userId/settings/cse/keypairs"
+    },
+    "respond": {
+      "status": 200,
+      "body": {
+        "disableTime": "s865685",
+        "enablementState": "stateUnspecified",
+        "keyPairId": "s354073",
+        "pem": "s170565",
+        "pkcs7": "s842982",
+        "privateKeyMetadata": [
+          {
+            "kaclsKeyMetadata": {
+              "kaclsData": "s542559",
+              "kaclsUri": "s940134"
+            },
+            "privateKeyMetadataId": "s291421"
+          }
+        ],
+        "subjectEmailAddresses": [
+          "s60916"
+        ]
+      }
+    }
+  },
+  {
+    "id": "gmail:GET:/gmail/v1/users/:userId/settings/cse/keypairs/:keyPairId#0",
+    "match": {
+      "method": "GET",
+      "path": "/gmail/v1/users/:userId/settings/cse/keypairs/:keyPairId"
+    },
+    "respond": {
+      "status": 200,
+      "body": {
+        "disableTime": "s55070",
+        "enablementState": "stateUnspecified",
+        "keyPairId": "s332992",
+        "pem": "s312032",
+        "pkcs7": "s3441",
+        "privateKeyMetadata": [
+          {
+            "kaclsKeyMetadata": {
+              "kaclsData": "s956586",
+              "kaclsUri": "s425108"
+            },
+            "privateKeyMetadataId": "s725219"
+          }
+        ],
+        "subjectEmailAddresses": [
+          "s763649"
+        ]
+      }
+    }
+  },
+  {
+    "id": "gmail:POST:/gmail/v1/users/:userId/settings/cse/keypairs/:keyPairId:disable#0",
+    "match": {
+      "method": "POST",
+      "path": "/gmail/v1/users/:userId/settings/cse/keypairs/:keyPairId:disable"
+    },
+    "respond": {
+      "status": 200,
+      "body": {
+        "disableTime": "s871794",
+        "enablementState": "stateUnspecified",
+        "keyPairId": "s951953",
+        "pem": "s575524",
+        "pkcs7": "s410085",
+        "privateKeyMetadata": [
+          {
+            "kaclsKeyMetadata": {
+              "kaclsData": "s543811",
+              "kaclsUri": "s12588"
+            },
+            "privateKeyMetadataId": "s738380"
+          }
+        ],
+        "subjectEmailAddresses": [
+          "s686044"
+        ]
+      }
+    }
+  },
+  {
+    "id": "gmail:POST:/gmail/v1/users/:userId/settings/cse/keypairs/:keyPairId:enable#0",
+    "match": {
+      "method": "POST",
+      "path": "/gmail/v1/users/:userId/settings/cse/keypairs/:keyPairId:enable"
+    },
+    "respond": {
+      "status": 200,
+      "body": {
+        "disableTime": "s571999",
+        "enablementState": "stateUnspecified",
+        "keyPairId": "s523098",
+        "pem": "s646773",
+        "pkcs7": "s65984",
+        "privateKeyMetadata": [
+          {
+            "kaclsKeyMetadata": {
+              "kaclsData": "s29712",
+              "kaclsUri": "s9873"
+            },
+            "privateKeyMetadataId": "s693444"
+          }
+        ],
+        "subjectEmailAddresses": [
+          "s473628"
+        ]
+      }
+    }
+  },
+  {
+    "id": "gmail:POST:/gmail/v1/users/:userId/settings/cse/keypairs/:keyPairId:obliterate#0",
+    "match": {
+      "method": "POST",
+      "path": "/gmail/v1/users/:userId/settings/cse/keypairs/:keyPairId:obliterate"
+    },
+    "respond": {
+      "status": 200
+    }
+  },
+  {
+    "id": "gmail:GET:/gmail/v1/users/:userId/settings/delegates#0",
+    "match": {
+      "method": "GET",
+      "path": "/gmail/v1/users/:userId/settings/delegates"
+    },
+    "respond": {
+      "status": 200,
+      "body": {
+        "delegates": [
+          {
+            "delegateEmail": "s59739",
+            "verificationStatus": "verificationStatusUnspecified"
+          }
+        ]
+      }
+    }
+  },
+  {
+    "id": "gmail:POST:/gmail/v1/users/:userId/settings/delegates#0",
+    "match": {
+      "method": "POST",
+      "path": "/gmail/v1/users/:userId/settings/delegates"
+    },
+    "respond": {
+      "status": 200,
+      "body": {
+        "delegateEmail": "s880884",
+        "verificationStatus": "verificationStatusUnspecified"
+      }
+    }
+  },
+  {
+    "id": "gmail:GET:/gmail/v1/users/:userId/settings/delegates/:delegateEmail#0",
+    "match": {
+      "method": "GET",
+      "path": "/gmail/v1/users/:userId/settings/delegates/:delegateEmail"
+    },
+    "respond": {
+      "status": 200,
+      "body": {
+        "delegateEmail": "s936458",
+        "verificationStatus": "verificationStatusUnspecified"
+      }
+    }
+  },
+  {
+    "id": "gmail:DELETE:/gmail/v1/users/:userId/settings/delegates/:delegateEmail#0",
+    "match": {
+      "method": "DELETE",
+      "path": "/gmail/v1/users/:userId/settings/delegates/:delegateEmail"
+    },
+    "respond": {
+      "status": 200
+    }
+  },
+  {
+    "id": "gmail:GET:/gmail/v1/users/:userId/settings/filters#0",
+    "match": {
+      "method": "GET",
+      "path": "/gmail/v1/users/:userId/settings/filters"
+    },
+    "respond": {
+      "status": 200,
+      "body": {
+        "filter": [
+          {
+            "action": {
+              "addLabelIds": [
+                "s669636"
+              ],
+              "forward": "s455068",
+              "removeLabelIds": [
+                "s298694"
+              ]
+            },
+            "criteria": {
+              "excludeChats": true,
+              "from": "s277232",
+              "hasAttachment": true,
+              "negatedQuery": "s672081",
+              "query": "s727635",
+              "size": 567,
+              "sizeComparison": "unspecified",
+              "subject": "s112206",
+              "to": "s528230"
+            },
+            "id": "s809373"
+          }
+        ]
+      }
+    }
+  },
+  {
+    "id": "gmail:POST:/gmail/v1/users/:userId/settings/filters#0",
+    "match": {
+      "method": "POST",
+      "path": "/gmail/v1/users/:userId/settings/filters"
+    },
+    "respond": {
+      "status": 200,
+      "body": {
+        "action": {
+          "addLabelIds": [
+            "s651466"
+          ],
+          "forward": "s275794",
+          "removeLabelIds": [
+            "s886060"
+          ]
+        },
+        "criteria": {
+          "excludeChats": false,
+          "from": "s858056",
+          "hasAttachment": false,
+          "negatedQuery": "s524777",
+          "query": "s339282",
+          "size": 811,
+          "sizeComparison": "unspecified",
+          "subject": "s372143",
+          "to": "s982894"
+        },
+        "id": "s769065"
+      }
+    }
+  },
+  {
+    "id": "gmail:GET:/gmail/v1/users/:userId/settings/filters/:id#0",
+    "match": {
+      "method": "GET",
+      "path": "/gmail/v1/users/:userId/settings/filters/:id"
+    },
+    "respond": {
+      "status": 200,
+      "body": {
+        "action": {
+          "addLabelIds": [
+            "s846432"
+          ],
+          "forward": "s239145",
+          "removeLabelIds": [
+            "s382450"
+          ]
+        },
+        "criteria": {
+          "excludeChats": false,
+          "from": "s467328",
+          "hasAttachment": true,
+          "negatedQuery": "s29399",
+          "query": "s55991",
+          "size": 91,
+          "sizeComparison": "unspecified",
+          "subject": "s579966",
+          "to": "s535764"
+        },
+        "id": "s326375"
+      }
+    }
+  },
+  {
+    "id": "gmail:DELETE:/gmail/v1/users/:userId/settings/filters/:id#0",
+    "match": {
+      "method": "DELETE",
+      "path": "/gmail/v1/users/:userId/settings/filters/:id"
+    },
+    "respond": {
+      "status": 200
+    }
+  },
+  {
+    "id": "gmail:GET:/gmail/v1/users/:userId/settings/forwardingAddresses#0",
+    "match": {
+      "method": "GET",
+      "path": "/gmail/v1/users/:userId/settings/forwardingAddresses"
+    },
+    "respond": {
+      "status": 200,
+      "body": {
+        "forwardingAddresses": [
+          {
+            "forwardingEmail": "s793245",
+            "verificationStatus": "verificationStatusUnspecified"
+          }
+        ]
+      }
+    }
+  },
+  {
+    "id": "gmail:POST:/gmail/v1/users/:userId/settings/forwardingAddresses#0",
+    "match": {
+      "method": "POST",
+      "path": "/gmail/v1/users/:userId/settings/forwardingAddresses"
+    },
+    "respond": {
+      "status": 200,
+      "body": {
+        "forwardingEmail": "s812516",
+        "verificationStatus": "verificationStatusUnspecified"
+      }
+    }
+  },
+  {
+    "id": "gmail:GET:/gmail/v1/users/:userId/settings/forwardingAddresses/:forwardingEmail#0",
+    "match": {
+      "method": "GET",
+      "path": "/gmail/v1/users/:userId/settings/forwardingAddresses/:forwardingEmail"
+    },
+    "respond": {
+      "status": 200,
+      "body": {
+        "forwardingEmail": "s781360",
+        "verificationStatus": "verificationStatusUnspecified"
+      }
+    }
+  },
+  {
+    "id": "gmail:DELETE:/gmail/v1/users/:userId/settings/forwardingAddresses/:forwardingEmail#0",
+    "match": {
+      "method": "DELETE",
+      "path": "/gmail/v1/users/:userId/settings/forwardingAddresses/:forwardingEmail"
+    },
+    "respond": {
+      "status": 200
+    }
+  },
+  {
+    "id": "gmail:GET:/gmail/v1/users/:userId/settings/imap#0",
+    "match": {
+      "method": "GET",
+      "path": "/gmail/v1/users/:userId/settings/imap"
+    },
+    "respond": {
+      "status": 200,
+      "body": {
+        "autoExpunge": true,
+        "enabled": false,
+        "expungeBehavior": "expungeBehaviorUnspecified",
+        "maxFolderSize": 114
+      }
+    }
+  },
+  {
+    "id": "gmail:PUT:/gmail/v1/users/:userId/settings/imap#0",
+    "match": {
+      "method": "PUT",
+      "path": "/gmail/v1/users/:userId/settings/imap"
+    },
+    "respond": {
+      "status": 200,
+      "body": {
+        "autoExpunge": false,
+        "enabled": true,
+        "expungeBehavior": "expungeBehaviorUnspecified",
+        "maxFolderSize": 105
+      }
+    }
+  },
+  {
+    "id": "gmail:GET:/gmail/v1/users/:userId/settings/language#0",
+    "match": {
+      "method": "GET",
+      "path": "/gmail/v1/users/:userId/settings/language"
+    },
+    "respond": {
+      "status": 200,
+      "body": {
+        "displayLanguage": "s677704"
+      }
+    }
+  },
+  {
+    "id": "gmail:PUT:/gmail/v1/users/:userId/settings/language#0",
+    "match": {
+      "method": "PUT",
+      "path": "/gmail/v1/users/:userId/settings/language"
+    },
+    "respond": {
+      "status": 200,
+      "body": {
+        "displayLanguage": "s388645"
+      }
+    }
+  },
+  {
+    "id": "gmail:GET:/gmail/v1/users/:userId/settings/pop#0",
+    "match": {
+      "method": "GET",
+      "path": "/gmail/v1/users/:userId/settings/pop"
+    },
+    "respond": {
+      "status": 200,
+      "body": {
+        "accessWindow": "accessWindowUnspecified",
+        "disposition": "dispositionUnspecified"
+      }
+    }
+  },
+  {
+    "id": "gmail:PUT:/gmail/v1/users/:userId/settings/pop#0",
+    "match": {
+      "method": "PUT",
+      "path": "/gmail/v1/users/:userId/settings/pop"
+    },
+    "respond": {
+      "status": 200,
+      "body": {
+        "accessWindow": "accessWindowUnspecified",
+        "disposition": "dispositionUnspecified"
+      }
+    }
+  },
+  {
+    "id": "gmail:GET:/gmail/v1/users/:userId/settings/sendAs#0",
+    "match": {
+      "method": "GET",
+      "path": "/gmail/v1/users/:userId/settings/sendAs"
+    },
+    "respond": {
+      "status": 200,
+      "body": {
+        "sendAs": [
+          {
+            "displayName": "s601547",
+            "isDefault": true,
+            "isPrimary": true,
+            "replyToAddress": "s56076",
+            "sendAsEmail": "s684863",
+            "signature": "s647340",
+            "smtpMsa": {
+              "host": "s712432",
+              "password": "s554517",
+              "port": 86,
+              "securityMode": "securityModeUnspecified",
+              "username": "s410228"
+            },
+            "treatAsAlias": false,
+            "verificationStatus": "verificationStatusUnspecified"
+          }
+        ]
+      }
+    }
+  },
+  {
+    "id": "gmail:POST:/gmail/v1/users/:userId/settings/sendAs#0",
+    "match": {
+      "method": "POST",
+      "path": "/gmail/v1/users/:userId/settings/sendAs"
+    },
+    "respond": {
+      "status": 200,
+      "body": {
+        "displayName": "s487827",
+        "isDefault": true,
+        "isPrimary": false,
+        "replyToAddress": "s367915",
+        "sendAsEmail": "s63598",
+        "signature": "s547786",
+        "smtpMsa": {
+          "host": "s915888",
+          "password": "s597589",
+          "port": 426,
+          "securityMode": "securityModeUnspecified",
+          "username": "s772320"
+        },
+        "treatAsAlias": true,
+        "verificationStatus": "verificationStatusUnspecified"
+      }
+    }
+  },
+  {
+    "id": "gmail:GET:/gmail/v1/users/:userId/settings/sendAs/:sendAsEmail#0",
+    "match": {
+      "method": "GET",
+      "path": "/gmail/v1/users/:userId/settings/sendAs/:sendAsEmail"
+    },
+    "respond": {
+      "status": 200,
+      "body": {
+        "displayName": "s963361",
+        "isDefault": false,
+        "isPrimary": true,
+        "replyToAddress": "s778099",
+        "sendAsEmail": "s467899",
+        "signature": "s120466",
+        "smtpMsa": {
+          "host": "s419288",
+          "password": "s892136",
+          "port": 328,
+          "securityMode": "securityModeUnspecified",
+          "username": "s230511"
+        },
+        "treatAsAlias": true,
+        "verificationStatus": "verificationStatusUnspecified"
+      }
+    }
+  },
+  {
+    "id": "gmail:PUT:/gmail/v1/users/:userId/settings/sendAs/:sendAsEmail#0",
+    "match": {
+      "method": "PUT",
+      "path": "/gmail/v1/users/:userId/settings/sendAs/:sendAsEmail"
+    },
+    "respond": {
+      "status": 200,
+      "body": {
+        "displayName": "s682137",
+        "isDefault": false,
+        "isPrimary": false,
+        "replyToAddress": "s313608",
+        "sendAsEmail": "s860257",
+        "signature": "s549634",
+        "smtpMsa": {
+          "host": "s309623",
+          "password": "s179598",
+          "port": 493,
+          "securityMode": "securityModeUnspecified",
+          "username": "s571675"
+        },
+        "treatAsAlias": false,
+        "verificationStatus": "verificationStatusUnspecified"
+      }
+    }
+  },
+  {
+    "id": "gmail:PATCH:/gmail/v1/users/:userId/settings/sendAs/:sendAsEmail#0",
+    "match": {
+      "method": "PATCH",
+      "path": "/gmail/v1/users/:userId/settings/sendAs/:sendAsEmail"
+    },
+    "respond": {
+      "status": 200,
+      "body": {
+        "displayName": "s716854",
+        "isDefault": false,
+        "isPrimary": false,
+        "replyToAddress": "s564895",
+        "sendAsEmail": "s660559",
+        "signature": "s285328",
+        "smtpMsa": {
+          "host": "s217332",
+          "password": "s538929",
+          "port": 116,
+          "securityMode": "securityModeUnspecified",
+          "username": "s146668"
+        },
+        "treatAsAlias": false,
+        "verificationStatus": "verificationStatusUnspecified"
+      }
+    }
+  },
+  {
+    "id": "gmail:DELETE:/gmail/v1/users/:userId/settings/sendAs/:sendAsEmail#0",
+    "match": {
+      "method": "DELETE",
+      "path": "/gmail/v1/users/:userId/settings/sendAs/:sendAsEmail"
+    },
+    "respond": {
+      "status": 200
+    }
+  },
+  {
+    "id": "gmail:GET:/gmail/v1/users/:userId/settings/sendAs/:sendAsEmail/smimeInfo#0",
+    "match": {
+      "method": "GET",
+      "path": "/gmail/v1/users/:userId/settings/sendAs/:sendAsEmail/smimeInfo"
+    },
+    "respond": {
+      "status": 200,
+      "body": {
+        "smimeInfo": [
+          {
+            "encryptedKeyPassword": "s955399",
+            "expiration": "s162665",
+            "id": "s907825",
+            "isDefault": true,
+            "issuerCn": "s551307",
+            "pem": "s906353",
+            "pkcs12": "s693850"
+          }
+        ]
+      }
+    }
+  },
+  {
+    "id": "gmail:POST:/gmail/v1/users/:userId/settings/sendAs/:sendAsEmail/smimeInfo#0",
+    "match": {
+      "method": "POST",
+      "path": "/gmail/v1/users/:userId/settings/sendAs/:sendAsEmail/smimeInfo"
+    },
+    "respond": {
+      "status": 200,
+      "body": {
+        "encryptedKeyPassword": "s346815",
+        "expiration": "s605107",
+        "id": "s930338",
+        "isDefault": true,
+        "issuerCn": "s302153",
+        "pem": "s701385",
+        "pkcs12": "s845165"
+      }
+    }
+  },
+  {
+    "id": "gmail:GET:/gmail/v1/users/:userId/settings/sendAs/:sendAsEmail/smimeInfo/:id#0",
+    "match": {
+      "method": "GET",
+      "path": "/gmail/v1/users/:userId/settings/sendAs/:sendAsEmail/smimeInfo/:id"
+    },
+    "respond": {
+      "status": 200,
+      "body": {
+        "encryptedKeyPassword": "s305915",
+        "expiration": "s684690",
+        "id": "s937539",
+        "isDefault": false,
+        "issuerCn": "s552326",
+        "pem": "s631831",
+        "pkcs12": "s163258"
+      }
+    }
+  },
+  {
+    "id": "gmail:DELETE:/gmail/v1/users/:userId/settings/sendAs/:sendAsEmail/smimeInfo/:id#0",
+    "match": {
+      "method": "DELETE",
+      "path": "/gmail/v1/users/:userId/settings/sendAs/:sendAsEmail/smimeInfo/:id"
+    },
+    "respond": {
+      "status": 200
+    }
+  },
+  {
+    "id": "gmail:POST:/gmail/v1/users/:userId/settings/sendAs/:sendAsEmail/smimeInfo/:id/setDefault#0",
+    "match": {
+      "method": "POST",
+      "path": "/gmail/v1/users/:userId/settings/sendAs/:sendAsEmail/smimeInfo/:id/setDefault"
+    },
+    "respond": {
+      "status": 200
+    }
+  },
+  {
+    "id": "gmail:POST:/gmail/v1/users/:userId/settings/sendAs/:sendAsEmail/verify#0",
+    "match": {
+      "method": "POST",
+      "path": "/gmail/v1/users/:userId/settings/sendAs/:sendAsEmail/verify"
+    },
+    "respond": {
+      "status": 200
+    }
+  },
+  {
+    "id": "gmail:GET:/gmail/v1/users/:userId/settings/vacation#0",
+    "match": {
+      "method": "GET",
+      "path": "/gmail/v1/users/:userId/settings/vacation"
+    },
+    "respond": {
+      "status": 200,
+      "body": {
+        "enableAutoReply": false,
+        "endTime": "s252225",
+        "responseBodyHtml": "s757096",
+        "responseBodyPlainText": "s66086",
+        "responseSubject": "s56535",
+        "restrictToContacts": true,
+        "restrictToDomain": false,
+        "startTime": "s407273"
+      }
+    }
+  },
+  {
+    "id": "gmail:PUT:/gmail/v1/users/:userId/settings/vacation#0",
+    "match": {
+      "method": "PUT",
+      "path": "/gmail/v1/users/:userId/settings/vacation"
+    },
+    "respond": {
+      "status": 200,
+      "body": {
+        "enableAutoReply": true,
+        "endTime": "s493285",
+        "responseBodyHtml": "s592268",
+        "responseBodyPlainText": "s199055",
+        "responseSubject": "s985927",
+        "restrictToContacts": true,
+        "restrictToDomain": false,
+        "startTime": "s513561"
+      }
+    }
+  },
+  {
+    "id": "gmail:POST:/gmail/v1/users/:userId/stop#0",
+    "match": {
+      "method": "POST",
+      "path": "/gmail/v1/users/:userId/stop"
+    },
+    "respond": {
+      "status": 200
+    }
+  },
+  {
+    "id": "gmail:GET:/gmail/v1/users/:userId/threads#0",
+    "match": {
+      "method": "GET",
+      "path": "/gmail/v1/users/:userId/threads"
+    },
+    "respond": {
+      "status": 200,
+      "body": {
+        "nextPageToken": "s261913",
+        "resultSizeEstimate": 441,
+        "threads": [
+          {
+            "historyId": "s727707",
+            "id": "s620112",
+            "messages": [
+              {
+                "historyId": "s63647",
+                "id": "s779085",
+                "internalDate": "s364177",
+                "labelIds": [
+                  {}
+                ],
+                "payload": {},
+                "raw": "s245871",
+                "sizeEstimate": 301,
+                "snippet": "s950517",
+                "threadId": "s682402"
+              }
+            ],
+            "snippet": "s531180"
+          }
+        ]
+      }
+    }
+  },
+  {
+    "id": "gmail:GET:/gmail/v1/users/:userId/threads/:id#0",
+    "match": {
+      "method": "GET",
+      "path": "/gmail/v1/users/:userId/threads/:id"
+    },
+    "respond": {
+      "status": 200,
+      "body": {
+        "historyId": "s564350",
+        "id": "s613667",
+        "messages": [
+          {
+            "historyId": "s227120",
+            "id": "s47001",
+            "internalDate": "s642031",
+            "labelIds": [
+              "s365382"
+            ],
+            "payload": {
+              "body": {
+                "attachmentId": {},
+                "data": {},
+                "size": {}
+              },
+              "filename": "s298418",
+              "headers": [
+                {}
+              ],
+              "mimeType": "s518048",
+              "partId": "s882307",
+              "parts": [
+                {}
+              ]
+            },
+            "raw": "s555715",
+            "sizeEstimate": 364,
+            "snippet": "s721386",
+            "threadId": "s952512"
+          }
+        ],
+        "snippet": "s353559"
+      }
+    }
+  },
+  {
+    "id": "gmail:DELETE:/gmail/v1/users/:userId/threads/:id#0",
+    "match": {
+      "method": "DELETE",
+      "path": "/gmail/v1/users/:userId/threads/:id"
+    },
+    "respond": {
+      "status": 200
+    }
+  },
+  {
+    "id": "gmail:POST:/gmail/v1/users/:userId/threads/:id/modify#0",
+    "match": {
+      "method": "POST",
+      "path": "/gmail/v1/users/:userId/threads/:id/modify"
+    },
+    "respond": {
+      "status": 200,
+      "body": {
+        "historyId": "s490",
+        "id": "s497813",
+        "messages": [
+          {
+            "historyId": "s462388",
+            "id": "s969155",
+            "internalDate": "s500723",
+            "labelIds": [
+              "s434074"
+            ],
+            "payload": {
+              "body": {
+                "attachmentId": {},
+                "data": {},
+                "size": {}
+              },
+              "filename": "s51972",
+              "headers": [
+                {}
+              ],
+              "mimeType": "s21360",
+              "partId": "s69788",
+              "parts": [
+                {}
+              ]
+            },
+            "raw": "s421735",
+            "sizeEstimate": 602,
+            "snippet": "s965960",
+            "threadId": "s234985"
+          }
+        ],
+        "snippet": "s605736"
+      }
+    }
+  },
+  {
+    "id": "gmail:POST:/gmail/v1/users/:userId/threads/:id/trash#0",
+    "match": {
+      "method": "POST",
+      "path": "/gmail/v1/users/:userId/threads/:id/trash"
+    },
+    "respond": {
+      "status": 200,
+      "body": {
+        "historyId": "s866906",
+        "id": "s504357",
+        "messages": [
+          {
+            "historyId": "s440725",
+            "id": "s668463",
+            "internalDate": "s895463",
+            "labelIds": [
+              "s743076"
+            ],
+            "payload": {
+              "body": {
+                "attachmentId": {},
+                "data": {},
+                "size": {}
+              },
+              "filename": "s469227",
+              "headers": [
+                {}
+              ],
+              "mimeType": "s828821",
+              "partId": "s910126",
+              "parts": [
+                {}
+              ]
+            },
+            "raw": "s610230",
+            "sizeEstimate": 283,
+            "snippet": "s403732",
+            "threadId": "s893715"
+          }
+        ],
+        "snippet": "s66854"
+      }
+    }
+  },
+  {
+    "id": "gmail:POST:/gmail/v1/users/:userId/threads/:id/untrash#0",
+    "match": {
+      "method": "POST",
+      "path": "/gmail/v1/users/:userId/threads/:id/untrash"
+    },
+    "respond": {
+      "status": 200,
+      "body": {
+        "historyId": "s69336",
+        "id": "s459740",
+        "messages": [
+          {
+            "historyId": "s866840",
+            "id": "s29529",
+            "internalDate": "s431919",
+            "labelIds": [
+              "s169644"
+            ],
+            "payload": {
+              "body": {
+                "attachmentId": {},
+                "data": {},
+                "size": {}
+              },
+              "filename": "s863787",
+              "headers": [
+                {}
+              ],
+              "mimeType": "s523533",
+              "partId": "s417703",
+              "parts": [
+                {}
+              ]
+            },
+            "raw": "s889014",
+            "sizeEstimate": 790,
+            "snippet": "s597686",
+            "threadId": "s815682"
+          }
+        ],
+        "snippet": "s109580"
+      }
+    }
+  },
+  {
+    "id": "gmail:POST:/gmail/v1/users/:userId/watch#0",
+    "match": {
+      "method": "POST",
+      "path": "/gmail/v1/users/:userId/watch"
+    },
+    "respond": {
+      "status": 200,
+      "body": {
+        "expiration": "s775286",
+        "historyId": "s41636"
+      }
+    }
+  }
+]

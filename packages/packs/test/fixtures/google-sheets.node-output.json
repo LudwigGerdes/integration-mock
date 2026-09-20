@@ -1,0 +1,10 @@
+{
+  "_note": "hand-authored from n8n Google Sheets node v4 output; replace with real capture",
+  "read": [
+    { "Name": "A", "Email": "a@x.com" },
+    { "Name": "B", "Email": "b@x.com" }
+  ],
+  "append": [
+    { "Name": "C", "Email": "c@x.com" }
+  ]
+}
