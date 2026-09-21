@@ -85,7 +85,7 @@ function satisfies(matcher: Matcher, actual: unknown, expected: unknown): boolea
 }
 
 /**
- * Evaluate one assertion (suite seam S3).
+ * Evaluate one assertion.
  *
  * `count` compares how many values the path selected. Every other matcher must
  * hold for *all* selected values and requires at least one — so a path that

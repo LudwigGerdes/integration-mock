@@ -2,7 +2,7 @@
   "$schema": "https://json-schema.org/draft/2020-12/schema",
   "$id": "https://github.com/LudwigGerdes/integration-mock/schema/integration-mock.test.schema.json",
   "title": "integration-mock test file",
-  "description": "A workflow test file. Carries either a single case (top-level when/then) or a cases list — never both. Owner: integration-mock (suite seam S2).",
+  "description": "A workflow test file. Carries either a single case (top-level when/then) or a cases list — never both.",
   "type": "object",
   "properties": {
     "workflow": {
@@ -48,7 +48,7 @@
           "additionalProperties": { "$ref": "#/$defs/faultSpec" }
         },
         "pinData": {
-          "description": "Seam S8: INodeExecutionData[] pinned per node, so a case can start from recorded boundary items.",
+          "description": "Items pinned per node (n8n's INodeExecutionData[]), so a case can start from recorded boundary items.",
           "type": "object",
           "additionalProperties": {
             "type": "array",

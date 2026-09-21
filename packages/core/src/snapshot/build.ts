@@ -49,8 +49,7 @@ export const snapshotPath = (workflowId: string, executionId: string, cwd = proc
 	join(cwd, '.integration-mock', 'snapshots', workflowId, `${executionId}.json`);
 
 /**
- * Where the untouched `GET /executions/:id?includeData=true` payload is kept
- * (suite seam S4).
+ * Where the untouched `GET /executions/:id?includeData=true` payload is kept.
  *
  * A derived snapshot is lossy and integration-mock's own format; canvas and the test
  * runner need the API's real bytes, so the export is written beside it.

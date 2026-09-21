@@ -83,7 +83,7 @@ describe('snapshot cli', () => {
 		expect(out).toContain('Retry the workflow from anywhere');
 	});
 
-	it('writes the raw execution export beside the snapshot (seam S4)', async () => {
+	it('writes the raw execution export beside the snapshot', async () => {
 		await run(['snapshot', '4123']);
 		const exportPath = join(cwd, '.integration-mock', 'snapshots', '8f3a', '4123.export.json');
 		expect(existsSync(exportPath)).toBe(true);

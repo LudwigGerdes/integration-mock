@@ -1,6 +1,6 @@
 import type { FaultSpec } from './types.js';
 
-/** Pinned boundary items for a node (seam S8). */
+/** Pinned boundary items for a node. */
 export interface PinnedItem {
 	json: unknown;
 	binary?: Record<string, unknown>;
@@ -42,7 +42,7 @@ const obj = (v: unknown): Record<string, unknown> =>
 	v !== null && typeof v === 'object' && !Array.isArray(v) ? (v as Record<string, unknown>) : {};
 
 /**
- * Resolve a test file to a flat list of cases (suite seam S2).
+ * Resolve a test file to a flat list of cases.
  *
  * File-level `given` supplies defaults and a case's own `given` overrides it key
  * by key — replacing `faults` wholesale rather than deep-merging, so a case that

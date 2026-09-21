@@ -68,7 +68,7 @@ export function registerSnapshot(p: Command, io: CliIo): void {
 				await mkdir(dirname(file), { recursive: true });
 				await writeFile(file, JSON.stringify(snap, null, 2));
 
-				// Seam S4: keep the API's own payload beside the derived snapshot, so
+				// Keep the API's own payload beside the derived snapshot, so
 				// canvas and the test runner consume the real shape rather than ours.
 				// Redacted with the same rules as the snapshot: an execution export is
 				// full of live response bodies, and `--commit` deliberately skips the
