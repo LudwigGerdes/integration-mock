@@ -78,4 +78,13 @@ describe('cli', () => {
 		expect((await loadProjectConfig()).enabledPacks).toEqual([]);
 	});
 
+	it('packs enable refuses an unknown pack and saves nothing', async () => {
+		// The "in the index but not installed" branch needs the published
+		// layout, where only the core packs ship; scripts/smoke.sh covers it.
+		await expect(run(['packs', 'enable', 'nosuchpack'])).rejects.toThrow(
+			/no pack "nosuchpack".*integration-mock packs list/,
+		);
+		expect((await loadProjectConfig()).enabledPacks).toEqual([]);
+	});
+
 });

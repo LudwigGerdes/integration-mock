@@ -119,6 +119,17 @@ export function registerPacks(
 		});
 
 	c.command('enable <ids...>').action(async (ids: string[]) => {
+		// Refuse before saving: an id no layer holds would be reported as
+		// enabled and then serve nothing.
+		const have = new Set((await listPacks()).map((r) => r.id));
+		for (const id of ids) {
+			if (have.has(id)) continue;
+			throw new Error(
+				PACK_INDEX[id] !== undefined
+					? `integration-mock: pack "${id}" is not installed — run \`integration-mock packs install ${id}\` first`
+					: `integration-mock: no pack "${id}" — \`integration-mock packs list\` shows what is installed and available`,
+			);
+		}
 		const cfg = await loadProjectConfig();
 		cfg.enabledPacks = [...new Set([...cfg.enabledPacks, ...ids])];
 		await saveProjectConfig(cfg);

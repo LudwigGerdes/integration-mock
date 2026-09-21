@@ -170,6 +170,15 @@ quickstart() {
 			"$project/node_modules/integration-mock/docker/docker-compose.yml") pass "npm: compose file resolves inside the installed package" ;;
 			*) fail "npm: compose file resolves inside the installed package" "$compose" ;;
 		esac
+		# Only the core packs ship in the tarball, so an index pack such as
+		# notion is "available", not installed: enabling it must fail loudly.
+		local en_out en_code=0
+		en_out="$("${im[@]}" packs enable notion 2>&1)" || en_code=$?
+		if [ "$en_code" -ne 0 ] && grep -q 'is not installed.*packs install notion' <<<"$en_out"; then
+			pass "npm: packs enable refuses a pack that is not installed"
+		else
+			fail "npm: packs enable refuses a pack that is not installed (exit $en_code)" "$en_out"
+		fi
 	fi
 
 	expect_ok "$label: stop" '^stopped$' "${im[@]}" stop

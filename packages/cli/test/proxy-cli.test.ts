@@ -127,9 +127,10 @@ describe('packs enable reaches a running proxy', () => {
 		const prev = process.cwd();
 		process.chdir(project);
 		try {
-			await run(['packs', 'enable', 'hub']);
+			// A library pack: `enable` refuses ids no layer holds.
+			await run(['packs', 'enable', 'slack']);
 			const { loadProjectConfig } = await import('integration-mock-core');
-			expect((await loadProjectConfig()).enabledPacks).toEqual(['hub']);
+			expect((await loadProjectConfig()).enabledPacks).toEqual(['slack']);
 		} finally {
 			process.chdir(prev);
 		}

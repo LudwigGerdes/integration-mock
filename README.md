@@ -271,7 +271,7 @@ Git hygiene: `.integration-mock/packs/` is yours to commit (a recorded or author
 
 ### Proxy mode
 
-n8n reaches third-party APIs through the mock by being pointed at it as an HTTP proxy and told to trust its local CA. `integration-mock ca install` generates the CA on first run and prints the env for a local process, a docker-compose snippet and the hosted form:
+n8n reaches third-party APIs through the mock by being pointed at it as an HTTP proxy and told to trust its local CA. The CA (`ca.pem` and its private key `ca-key.pem`, under `~/.integration-mock/`) is generated the first time the daemon starts or `ca install` runs, whichever comes first; it never leaves your machine. `integration-mock ca install` prints the env for a local process, a docker-compose snippet and the hosted form:
 
 ```bash
 HTTP_PROXY=http://127.0.0.1:8080
