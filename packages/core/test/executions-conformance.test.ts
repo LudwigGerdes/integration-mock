@@ -21,7 +21,7 @@ describe('S4 conformance — execution exports', () => {
 	for (const name of ['success', 'error', 'multi-run']) {
 		it(`${name} carries the fields S4 promises`, () => {
 			const e = load(name) as N8nExecution & { mode?: string; startedAt?: string };
-			// Consumers (canvas, workflow-test) rely on exactly these.
+			// Consumers (canvas, workflow-tester) rely on exactly these.
 			expect(typeof e.id).toBe('string');
 			expect(typeof e.workflowId).toBe('string');
 			expect(e.status).toBeDefined();

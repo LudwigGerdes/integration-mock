@@ -87,7 +87,7 @@ describe('snapshot cli', () => {
 		await run(['snapshot', '4123']);
 		const exportPath = join(cwd, '.integration-mock', 'snapshots', '8f3a', '4123.export.json');
 		expect(existsSync(exportPath)).toBe(true);
-		// The API's own payload, redacted: canvas and workflow-test consume this shape,
+		// The API's own payload, redacted: canvas and workflow-tester consume this shape,
 		// and a derived snapshot is not an interchange format.
 		expect(JSON.parse(readFileSync(exportPath, 'utf8'))).toEqual(redact(basic));
 	});

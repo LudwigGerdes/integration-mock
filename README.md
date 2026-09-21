@@ -389,7 +389,7 @@ Every operation becomes a route. Bodies come from the spec's `example`, then a n
 
 ## Status
 
-Shipped and tested offline on every push: the pack format, layered resolution, resource store, faults and redaction helpers; proxy mode with CA, TLS termination, record and replay; base-URL mode with parity asserted by a test; `snapshot` and `diff` with five native-node reverse-mappers; the OpenAPI generator, spec sourcing, `packs build` / `eject` / `update`; a 26-pack vendor library; `packs init` / `validate` and the authoring skill; `verify`; `creds push` / `swap`. Dropped by design: an MCP server (the skill replaced it) and a YAML test runner (n8n's public API has no run endpoint; see [workflow-test](https://github.com/LudwigGerdes/workflow-test) for contract tests). The end-to-end loop runs via `pnpm test:instance` against an n8n you configure.
+Shipped and tested offline on every push: the pack format, layered resolution, resource store, faults and redaction helpers; proxy mode with CA, TLS termination, record and replay; base-URL mode with parity asserted by a test; `snapshot` and `diff` with five native-node reverse-mappers; the OpenAPI generator, spec sourcing, `packs build` / `eject` / `update`; a 26-pack vendor library; `packs init` / `validate` and the authoring skill; `verify`; `creds push` / `swap`. Dropped by design: an MCP server (the skill replaced it) and a YAML test runner (n8n's public API has no run endpoint; see [workflow-tester](https://github.com/LudwigGerdes/workflow-tester) for contract tests). The end-to-end loop runs via `pnpm test:instance` against an n8n you configure.
 
 ## Support and maintenance
 
@@ -407,7 +407,7 @@ Four standalone tools for workflow JSON, built by one maintainer. Each works on 
 |---|---|
 | [workflow-lint](https://github.com/LudwigGerdes/workflow-lint) | Lint and format workflow JSON; pre-commit hook, GitHub Action, MCP server |
 | [integration-mock](https://github.com/LudwigGerdes/integration-mock) | Mock the APIs a workflow's integrations call; snapshot real runs and replay them |
-| [workflow-test](https://github.com/LudwigGerdes/workflow-test) | Generate and run contract tests from the payloads a trigger can receive |
+| [workflow-tester](https://github.com/LudwigGerdes/workflow-tester) | Generate and run contract tests from the payloads a trigger can receive |
 | [workflow-render](https://github.com/LudwigGerdes/workflow-render) | Render workflow and execution JSON to SVG/PNG offline; embed and export |
 
 Not affiliated with n8n GmbH.
