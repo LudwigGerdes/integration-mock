@@ -6,6 +6,18 @@ All notable changes to this project are documented here. The format follows
 ## [Unreleased]
 
 ### Fixed
+
+- `packs enable` refuses an id that no layer holds instead of reporting it as enabled: a pack from the index that is not installed points at `packs install <id>`, anything else at `packs list`. Nothing is saved on refusal.
+
+### Changed
+
+- README states that the local CA and its private key are created on the first `start` or `ca install`.
+
+## 0.1.0 — 2026-09-20
+
+Initial public release.
+
+### Fixed
 - `up`: the host CLI could not control the Docker pair. The admin API inside the pair requires the
   bearer token the daemon mints into the container's volume, and `up` wrote the host's
   `proxy.json` without it, so `status`, `on`, `log` and `packs enable` all answered 401. `up` now
@@ -66,5 +78,3 @@ All notable changes to this project are documented here. The format follows
   PR templates. CI runs on Node 20 and 22.
 - Package metadata prepared for publishing `integration-mock`; `integration-mock-*` stay
   private workspace packages bundled into the CLI. All versions set to 0.1.0.
-
-## 0.1.0 — unreleased
