@@ -110,7 +110,7 @@ quickstart() {
 		return 0
 	fi
 
-	expect_ok "$label: --version prints 0.1.0" '^0\.1\.0$' "${im[@]}" --version
+	expect_ok "$label: --version prints 0.1.1" '^0\.1\.1$' "${im[@]}" --version
 	expect_ok "$label: --help lists the verbs" 'start.*' "${im[@]}" --help
 	expect_ok "$label: packs list shows the library (slack)" '(^|[[:space:]])slack([[:space:]]|$)' "${im[@]}" packs list
 	expect_ok "$label: packs list shows the library (generic-rest)" 'generic-rest' "${im[@]}" packs list

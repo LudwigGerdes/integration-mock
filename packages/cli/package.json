@@ -1,6 +1,6 @@
 {
 	"name": "integration-mock",
-	"version": "0.1.0",
+	"version": "0.1.1",
 	"description": "Mock the APIs an n8n workflow calls: vendor packs from OpenAPI, recorded traffic, snapshot and replay, fault injection",
 	"license": "MIT",
 	"repository": {

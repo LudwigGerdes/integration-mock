@@ -5,6 +5,8 @@ All notable changes to this project are documented here. The format follows
 
 ## [Unreleased]
 
+## 0.1.1 — 2026-09-21
+
 ### Fixed
 
 - The weekly `packs-refresh` job failed: a bare `packs update` rebuilt every vendored source into the library, including `petstore-example`, a reference spec that is not a pack. It appeared as a 27th pack with no domains and failed the library tests. Sources can now be marked `reference: true`, and a bare `packs update` skips them; a test checks that everything it would refresh is already a library pack.

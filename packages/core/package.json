@@ -1,6 +1,6 @@
 {
 	"name": "integration-mock-core",
-	"version": "0.1.0",
+	"version": "0.1.1",
 	"private": true,
 	"description": "integration-mock internals: pack model, matcher, layered resolution, request log, faults, snapshot build/diff (bundled into the integration-mock CLI; not published)",
 	"license": "MIT",

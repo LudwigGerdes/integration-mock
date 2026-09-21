@@ -1,6 +1,6 @@
 {
 	"name": "integration-mock-proxy",
-	"version": "0.1.0",
+	"version": "0.1.1",
 	"private": true,
 	"description": "integration-mock internals: the mock daemon — CA, TLS termination, MockEngine, base-URL serving, admin API (bundled into the integration-mock CLI; not published)",
 	"license": "MIT",
