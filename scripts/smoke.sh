@@ -28,6 +28,10 @@ set -euo pipefail
 
 MODE="${1:-all}"
 ROOT="$(cd "$(dirname "${BASH_SOURCE[0]}")/.." && pwd)"
+# The version every --version check expects: the one being released, read from
+# the package rather than written here, so a release bump cannot leave it behind.
+VERSION="$(node -p "require('$ROOT/packages/cli/package.json').version")"
+VERSION_RE="^${VERSION//./\\.}\$"
 PORT="${SMOKE_PORT:-18180}"
 ADMIN_PORT="${SMOKE_ADMIN_PORT:-18181}"
 
@@ -110,7 +114,7 @@ quickstart() {
 		return 0
 	fi
 
-	expect_ok "$label: --version prints 0.1.1" '^0\.1\.1$' "${im[@]}" --version
+	expect_ok "$label: --version prints $VERSION" "$VERSION_RE" "${im[@]}" --version
 	expect_ok "$label: --help lists the verbs" 'start.*' "${im[@]}" --help
 	expect_ok "$label: packs list shows the library (slack)" '(^|[[:space:]])slack([[:space:]]|$)' "${im[@]}" packs list
 	expect_ok "$label: packs list shows the library (generic-rest)" 'generic-rest' "${im[@]}" packs list
@@ -288,7 +292,7 @@ run_npm() {
 	else
 		pass "npm: no workspace-internal package was installed"
 	fi
-	expect_ok "npm: npx --no-install integration-mock --version" '^0\.1\.0$' \
+	expect_ok "npm: npx --no-install integration-mock --version" "$VERSION_RE" \
 		env HOME="$TMP/home-npx" INTEGRATION_MOCK_HOME="$TMP/mockhome-npx" sh -c "mkdir -p '$TMP/home-npx' && cd '$app' && npx --no-install integration-mock --version"
 
 	# The tracked example pack, as a user would author it in their own project.
