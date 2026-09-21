@@ -45,8 +45,11 @@ jobs:
       - name: Test
         run: pnpm test
 
+      # Only pack and source changes are worth a pull request. The audit file is
+      # rewritten on every run, so including it would open one every week.
       - uses: peter-evans/create-pull-request@v6
         with:
+          add-paths: packages/packs
           branch: packs/refresh
           title: 'chore(packs): refresh vendor specs'
           body-path: /tmp/update.log
