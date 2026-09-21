@@ -10,6 +10,12 @@ on:
 jobs:
   refresh:
     runs-on: ubuntu-latest
+    # The last step pushes a branch and opens a pull request. The repository
+    # setting "Allow GitHub Actions to create and approve pull requests" must
+    # also be on, or that step is refused whatever this block says.
+    permissions:
+      contents: write
+      pull-requests: write
     steps:
       - uses: actions/checkout@v4
 
