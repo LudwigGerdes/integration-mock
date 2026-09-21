@@ -9,6 +9,7 @@ import {
 	loadSources,
 	parseSpec,
 	readVendoredSpec,
+	refreshable,
 	mergePacks,
 	saveGeneratedRoutes,
 	specVersionOf,
@@ -106,9 +107,7 @@ export function registerPacksBuild(packs: Command, io: CliIo): void {
 		.description('refresh vendored specs from sources.yaml and rebuild what changed')
 		.action(async (services: string[]) => {
 			const sources = await loadSources();
-			const names = services.length
-				? services
-				: Object.keys(sources).filter((k) => sources[k]!.vendored);
+			const names = services.length ? services : refreshable(sources);
 			for (const name of names) {
 				const src = sources[name];
 				if (src === undefined) {

@@ -12,12 +12,25 @@ export interface SpecSource {
 	/** Which cached spec version under ~/.integration-mock/vendor-specs/<vendor>/ was used. */
 	specVersion?: string;
 	vendored: boolean;
+	/**
+	 * A spec kept for the audit and as a generator reference, not a pack in the
+	 * library. `packs update` leaves it alone unless it is named explicitly.
+	 */
+	reference?: boolean;
 	notes?: string;
 }
 
 export type Sources = Record<string, SpecSource>;
 
 export const sourcesPath = (): string => dataPaths().sourcesFile;
+
+/**
+ * What a bare `packs update` refreshes: the vendored sources that back a library
+ * pack. Whatever it refreshes is regenerated into the library, so a reference
+ * spec in this list would become a pack nobody asked for.
+ */
+export const refreshable = (sources: Sources): string[] =>
+	Object.keys(sources).filter((name) => sources[name]!.vendored && sources[name]!.reference !== true);
 
 export async function loadSources(file: string = sourcesPath()): Promise<Sources> {
 	try {

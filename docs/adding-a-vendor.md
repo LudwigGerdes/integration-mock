@@ -55,6 +55,10 @@ pnpm install && pnpm -r build
    licence field is catalogue metadata, not a redistribution grant from the
    vendor — when in doubt, do not vendor.
 
+   The weekly refresh (`packs update` with no names) rebuilds every vendored
+   source into the library. An entry that is only a reference spec, not a pack,
+   sets `reference: true` so the refresh leaves it alone.
+
    A vendor that publishes **one spec per API** uses a `urls` list instead; they
    are generated separately and merged, first `method:path` winning:
 

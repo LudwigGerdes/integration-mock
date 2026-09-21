@@ -7,6 +7,7 @@ All notable changes to this project are documented here. The format follows
 
 ### Fixed
 
+- The weekly `packs-refresh` job failed: a bare `packs update` rebuilt every vendored source into the library, including `petstore-example`, a reference spec that is not a pack. It appeared as a 27th pack with no domains and failed the library tests. Sources can now be marked `reference: true`, and a bare `packs update` skips them; a test checks that everything it would refresh is already a library pack.
 - The request log on disk (`~/.integration-mock/requests.jsonl`) no longer stores credentials as sent. Credential headers, token-shaped strings and the project config's `redact` paths are replaced with `[REDACTED]` before a line is written; the in-memory log that `log`, `diff` and recording read is unchanged.
 - `packs enable` refuses an id that no layer holds instead of reporting it as enabled: a pack from the index that is not installed points at `packs install <id>`, anything else at `packs list`. Nothing is saved on refusal.
 - `ca install` prints `NO_PROXY=localhost,127.0.0.1` in all three forms; without it n8n's task runner breaks behind the proxy.

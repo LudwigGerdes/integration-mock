@@ -177,7 +177,8 @@ petstore-example:
   url: https://petstore3.swagger.io/api/v3/openapi.json
   license: Apache-2.0
   vendored: true
-  notes: Reference spec used by the generator's own tests.
+  reference: true
+  notes: Reference spec for the audit and the generator; not a library pack.
 pipedrive:
   url: https://developers.pipedrive.com/docs/api/v1/openapi.yaml
   license: unknown
