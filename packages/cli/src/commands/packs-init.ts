@@ -1,6 +1,6 @@
 import type { Command } from 'commander';
 import { existsSync } from 'node:fs';
-import { join } from 'node:path';
+import { join, relative } from 'node:path';
 import { mockHome, projectPacksDir, savePack } from 'integration-mock-core';
 import type { CliIo } from '../index.js';
 
@@ -46,7 +46,8 @@ export function registerPacksInit(packs: Command, io: CliIo): void {
 					},
 				],
 			});
-			io.write(`created ${dir}`);
+			// Relative to where the user stands, so the line can be pasted into `cd`.
+			io.write(`created ./${relative(process.cwd(), dir)}`);
 			io.write(`next: edit routes/main.json, then \`integration-mock packs validate ${service}\``);
 		});
 }

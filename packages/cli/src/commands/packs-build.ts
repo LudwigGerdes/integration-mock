@@ -1,6 +1,6 @@
 import type { Command } from 'commander';
 import { cp, mkdir, readFile, stat } from 'node:fs/promises';
-import { join } from 'node:path';
+import { join, relative } from 'node:path';
 import { projectPacksDir } from 'integration-mock-core';
 import {
 	fetchSpec,
@@ -150,6 +150,6 @@ export function registerPacksBuild(packs: Command, io: CliIo): void {
 			// The project copy now shadows the library one; a running daemon
 			// must re-read its layers or keep serving the original.
 			await syncPacksWithProxy();
-			io.write(`ejected ${service} → ${to}`);
+			io.write(`ejected ${service} → ./${relative(process.cwd(), to)}`);
 		});
 }

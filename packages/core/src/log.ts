@@ -1,5 +1,6 @@
 import { appendFile } from 'node:fs/promises';
 import { nanoid } from 'nanoid';
+import { redact } from './redact.js';
 import type { LogEntry } from './types.js';
 
 /**
@@ -12,11 +13,13 @@ export class RequestLog {
 	private entries: LogEntry[] = [];
 	private max: number;
 	private file?: string;
+	private redactPaths: string[];
 	private pending: Promise<void> = Promise.resolve();
 
-	constructor(opts: { max?: number; file?: string } = {}) {
+	constructor(opts: { max?: number; file?: string; redactPaths?: string[] } = {}) {
 		this.max = opts.max ?? 5000;
 		this.file = opts.file;
+		this.redactPaths = opts.redactPaths ?? [];
 	}
 
 	append(e: Omit<LogEntry, 'id' | 'ts'>): LogEntry {
@@ -28,7 +31,10 @@ export class RequestLog {
 		if (this.file) {
 			const f = this.file;
 			this.pending = this.pending
-				.then(() => appendFile(f, JSON.stringify(entry) + '\n'))
+				// The file outlives the process and is plain text, so credentials never
+				// reach it: credential headers, token-shaped strings and the project's
+				// own `redact` paths. The in-memory entry stays as sent.
+				.then(() => appendFile(f, JSON.stringify(redact(entry, { paths: this.redactPaths })) + '\n'))
 				.catch(() => {});
 		}
 		return entry;

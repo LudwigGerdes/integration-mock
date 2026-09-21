@@ -7,11 +7,15 @@ All notable changes to this project are documented here. The format follows
 
 ### Fixed
 
+- The request log on disk (`~/.integration-mock/requests.jsonl`) no longer stores credentials as sent. Credential headers, token-shaped strings and the project config's `redact` paths are replaced with `[REDACTED]` before a line is written; the in-memory log that `log`, `diff` and recording read is unchanged.
 - `packs enable` refuses an id that no layer holds instead of reporting it as enabled: a pack from the index that is not installed points at `packs install <id>`, anything else at `packs list`. Nothing is saved on refusal.
+- `ca install` prints `NO_PROXY=localhost,127.0.0.1` in all three forms; without it n8n's task runner breaks behind the proxy.
+- `ca install` defaults to the port the running mock listens on. It used to print `:8080` whatever the mock was started with.
+- Every subcommand has a description in `--help`; twelve had none.
 
 ### Changed
 
-- README states that the local CA and its private key are created on the first `start` or `ca install`.
+- README cut down to description, installation, getting started and core usage; the reference moved to `docs/` (`cli.md`, `n8n.md`, `packs.md`, `snapshots.md`, `faq.md`).
 
 ## 0.1.0 — 2026-09-20
 

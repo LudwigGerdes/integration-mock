@@ -6,6 +6,7 @@ export function registerInstances(p: Command, io: CliIo): void {
 	const c = p.command('instances').description('n8n instances (url + API key)');
 
 	c.command('add <name> <url> <apiKey>')
+		.description('save an n8n instance and its API key')
 		.option('--default', 'make default')
 		.action(async (name: string, url: string, apiKey: string, o: { default?: boolean }) => {
 			const cfg = await loadGlobalConfig();
@@ -15,14 +16,14 @@ export function registerInstances(p: Command, io: CliIo): void {
 			io.write(`added ${name}`);
 		});
 
-	c.command('list').action(async () => {
+	c.command('list').description('list saved n8n instances').action(async () => {
 		const cfg = await loadGlobalConfig();
 		for (const i of cfg.instances) {
 			io.write(`${cfg.defaultInstance === i.name ? '*' : ' '} ${i.name}\t${i.url}`);
 		}
 	});
 
-	c.command('use <name>').action(async (name: string) => {
+	c.command('use <name>').description('make a saved instance the default').action(async (name: string) => {
 		const cfg = await loadGlobalConfig();
 		if (!cfg.instances.some((i) => i.name === name)) throw new Error(`unknown instance ${name}`);
 		cfg.defaultInstance = name;

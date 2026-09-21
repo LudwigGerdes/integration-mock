@@ -38,7 +38,7 @@ describe.skipIf(!built)('bundled CLI against the checkout', () => {
 	it('ejects a shipped pack into the project layer', () => {
 		const { out, code } = cli('packs', 'eject', 'stripe');
 		expect(code).toBe(0);
-		expect(out).toMatch(/^ejected stripe/);
+		expect(out).toMatch(/^ejected stripe → \.\/\.integration-mock\/packs\/stripe$/);
 		expect(existsSync(join(cwd, '.integration-mock', 'packs', 'stripe', 'pack.json'))).toBe(true);
 	});
 

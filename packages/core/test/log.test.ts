@@ -54,4 +54,27 @@ describe('RequestLog', () => {
 		await log.flush();
 		expect(readFileSync(file, 'utf8').trim().split('\n')).toHaveLength(1);
 	});
+
+	it('redacts credentials in the file, and keeps the in-memory entry as sent', async () => {
+		const dir = mkdtempSync(join(tmpdir(), 'n8nmock-'));
+		const file = join(dir, 'log.jsonl');
+		const log = new RequestLog({ file, redactPaths: ['reqBody.customer.email'] });
+		const kept = log.append({
+			...entry('a'),
+			reqHeaders: { authorization: 'Bearer sk_live_abcdefghijklmnopqrstuvwxyz', accept: 'application/json' },
+			reqBody: { customer: { email: 'ada@example.com', plan: 'pro' } },
+		});
+		await log.flush();
+
+		const onDisk = readFileSync(file, 'utf8');
+		expect(onDisk).not.toContain('sk_live_abcdefghijklmnopqrstuvwxyz');
+		expect(onDisk).not.toContain('ada@example.com');
+		const written = JSON.parse(onDisk) as { reqHeaders: Record<string, string>; reqBody: { customer: { plan: string } } };
+		expect(written.reqHeaders.authorization).toBe('[REDACTED]');
+		expect(written.reqHeaders.accept).toBe('application/json');
+		expect(written.reqBody.customer.plan).toBe('pro');
+
+		// Snapshot diffing and recording read the entry in memory and need it whole.
+		expect(kept.reqHeaders.authorization).toBe('Bearer sk_live_abcdefghijklmnopqrstuvwxyz');
+	});
 });

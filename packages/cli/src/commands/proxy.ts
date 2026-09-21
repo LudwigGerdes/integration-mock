@@ -295,11 +295,11 @@ export function registerProxy(p: Command, io: CliIo): void {
 		});
 
 	const rec = p.command('record').description('record real traffic into a pack');
-	rec.command('start').action(async () => {
+	rec.command('start').description('start recording real traffic for the enabled services').action(async () => {
 		await (await adminClient()).setMode('record');
 		io.write('mode: record');
 	});
-	rec.command('stop').action(async () => {
+	rec.command('stop').description('stop recording and switch to replay').action(async () => {
 		await (await adminClient()).setMode('replay');
 		io.write('mode: replay');
 	});
@@ -307,24 +307,31 @@ export function registerProxy(p: Command, io: CliIo): void {
 	p.command('ca')
 		.description('certificate authority')
 		.command('install')
+		.description('create the local CA if needed and print the proxy environment for n8n')
 		.option('--host <h>', 'proxy host as seen by n8n', 'host.docker.internal')
-		.option('--port <n>', 'proxy port', '8080')
-		.action(async (o: { host: string; port: string }) => {
+		.option('--port <n>', 'proxy port (default: the running mock\'s port, else 8080)')
+		.action(async (o: { host: string; port?: string }) => {
 			const ca = await ensureCA();
+			// The port n8n must reach is the one the mock listens on, so ask the
+			// running mock before falling back to the default.
+			const port = o.port ?? String(await readInfo().then((info) => info.port, () => 8080));
+			// Without NO_PROXY n8n's task runner sends its loopback traffic to the mock and breaks.
+			const noProxy = 'localhost,127.0.0.1';
 			io.write(
-				`# env for n8n (local process)\nHTTP_PROXY=http://127.0.0.1:${o.port}\nHTTPS_PROXY=http://127.0.0.1:${o.port}\nNODE_EXTRA_CA_CERTS=${ca.certPath}\n`,
+				`# env for n8n (local process)\nHTTP_PROXY=http://127.0.0.1:${port}\nHTTPS_PROXY=http://127.0.0.1:${port}\nNO_PROXY=${noProxy}\nNODE_EXTRA_CA_CERTS=${ca.certPath}\n`,
 			);
 			io.write(
-				`# docker-compose service snippet\n  environment:\n    HTTP_PROXY: http://${o.host}:${o.port}\n    HTTPS_PROXY: http://${o.host}:${o.port}\n    NODE_EXTRA_CA_CERTS: /certs/ca.pem\n  volumes:\n    - ${ca.certPath}:/certs/ca.pem:ro\n`,
+				`# docker-compose service snippet\n  environment:\n    HTTP_PROXY: http://${o.host}:${port}\n    HTTPS_PROXY: http://${o.host}:${port}\n    NO_PROXY: ${noProxy}\n    NODE_EXTRA_CA_CERTS: /certs/ca.pem\n  volumes:\n    - ${ca.certPath}:/certs/ca.pem:ro\n`,
 			);
 			io.write(
-				`# hosted n8n (any platform that lets you set env vars; mock reachable at <public-host>)\nHTTP_PROXY=http://<public-host>:${o.port}\nHTTPS_PROXY=http://<public-host>:${o.port}\nNODE_EXTRA_CA_CERTS=/certs/ca.pem`,
+				`# hosted n8n (any platform that lets you set env vars; mock reachable at <public-host>)\nHTTP_PROXY=http://<public-host>:${port}\nHTTPS_PROXY=http://<public-host>:${port}\nNO_PROXY=${noProxy}\nNODE_EXTRA_CA_CERTS=/certs/ca.pem`,
 			);
 		});
 
 	const faults = p.command('faults').description('fault injection');
 	faults
 		.command('set <service>')
+		.description('make calls to a service fail, slow down or return nothing')
 		.option('--status <n>', 'respond with this status')
 		.option('--delay <ms>', 'delay before responding')
 		.option('--empty', 'respond with an empty body')
@@ -345,7 +352,7 @@ export function registerProxy(p: Command, io: CliIo): void {
 				io.write(`fault set: ${service} ${JSON.stringify(spec)}`);
 			},
 		);
-	faults.command('clear [service]').action(async (service?: string) => {
+	faults.command('clear [service]').description('remove faults from one service, or from all').action(async (service?: string) => {
 		await (await adminClient()).clearFaults(service);
 		io.write('faults cleared');
 	});

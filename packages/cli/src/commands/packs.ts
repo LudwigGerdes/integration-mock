@@ -64,6 +64,7 @@ export function registerPacks(
 	// Offline by design: installed packs come from disk, and everything else
 	// from the index compiled into this binary. Only `install` needs a network.
 	c.command('list')
+		.description('list shipped, installed and available packs')
 		.option('--installed', 'hide packs that are available but not installed')
 		.action(async (o: { installed?: boolean }) => {
 			const rows = await listPacks();
@@ -118,7 +119,7 @@ export function registerPacks(
 			}
 		});
 
-	c.command('enable <ids...>').action(async (ids: string[]) => {
+	c.command('enable <ids...>').description('start mocking these services').action(async (ids: string[]) => {
 		// Refuse before saving: an id no layer holds would be reported as
 		// enabled and then serve nothing.
 		const have = new Set((await listPacks()).map((r) => r.id));
@@ -137,7 +138,7 @@ export function registerPacks(
 		io.write(`enabled: ${ids.join(', ')}${live ? '' : ' (saved; takes effect on `integration-mock start`)'}`);
 	});
 
-	c.command('disable <ids...>').action(async (ids: string[]) => {
+	c.command('disable <ids...>').description('stop mocking these services').action(async (ids: string[]) => {
 		const cfg = await loadProjectConfig();
 		cfg.enabledPacks = cfg.enabledPacks.filter((x) => !ids.includes(x));
 		await saveProjectConfig(cfg);
@@ -150,7 +151,7 @@ export function registerPacks(
 	registerPacksInit(c, io);
 	registerPacksValidate(c, io);
 
-	c.command('reset').action(async () => {
+	c.command('reset').description('reset stored resources to their seed data').action(async () => {
 		await (await adminClient()).resetPacks();
 		io.write('stores reset to seed');
 	});

@@ -17,7 +17,7 @@ writing:
 |---|---|---|
 | n8n API key | `integration-mock instances add <name> <url> <apiKey>` | **Yes** — plain text in `~/.integration-mock/config.json`, read back by `snapshot`, `diff`, `creds push` and `pnpm test:instance`. Remove an instance by editing that file. |
 | Vendor auth header | `integration-mock verify <service> --header "Authorization: Bearer …"` | No — used for the run and discarded. |
-| Traffic the mock serves | any mocked call, proxy or base-URL mode | **Yes** — every intercepted request is appended to `~/.integration-mock/requests.jsonl` with its headers and body as n8n sent them, including `Authorization` values. The `redact` list in the project config is declared but not yet applied to that file. Treat the log as sensitive and delete it when done. |
+| Traffic the mock serves | any mocked call, proxy or base-URL mode | **Yes, redacted** — every intercepted request is appended to `~/.integration-mock/requests.jsonl` with its headers and body. Before a line is written, credential headers (`Authorization`, `Cookie`, `Set-Cookie`, `X-API-Key`, `X-N8N-API-Key`), token-shaped strings and the paths in the project config's `redact` list are replaced with `[REDACTED]`. Request and response bodies can still hold personal data, so treat the log as sensitive and delete it when done. |
 | Recorded responses | `integration-mock record start` | Yes — `./.integration-mock/packs/<service>/`, response bodies verbatim. |
 | Executions | `integration-mock snapshot` | Yes — `./.integration-mock/snapshots/`, gitignored; `--commit` keeps one as a fixture. |
 

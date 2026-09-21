@@ -86,6 +86,20 @@ describe('proxy cli', () => {
 		expect(out).toMatch(/NODE_EXTRA_CA_CERTS=.*ca\.pem/);
 		expect(out).toMatch(/# hosted n8n .*<public-host>/);
 	});
+
+	it('ca install prints NO_PROXY in every form, which n8n\'s task runner needs', async () => {
+		const out = await run(['ca', 'install']);
+		expect(out.match(/NO_PROXY[=:] ?localhost,127\.0\.0\.1/g)).toHaveLength(3);
+	});
+
+	it('ca install defaults to the port the running mock listens on', async () => {
+		writeFileSync(
+			join(process.env.INTEGRATION_MOCK_HOME!, 'proxy.json'),
+			JSON.stringify({ port: 9191, adminPort: 9192, pid: 0 }),
+		);
+		expect(await run(['ca', 'install'])).toMatch(/HTTP_PROXY=http:\/\/127\.0\.0\.1:9191/);
+		expect(await run(['ca', 'install', '--port', '7000'])).toMatch(/HTTP_PROXY=http:\/\/127\.0\.0\.1:7000/);
+	});
 });
 
 describe('docker pair', () => {

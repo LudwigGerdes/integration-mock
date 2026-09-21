@@ -38,7 +38,7 @@ export async function runDaemon(): Promise<void> {
 
 	const engine = new MockEngine({
 		packs: { library, user, project: proj, snapshot: [] },
-		log: new RequestLog({ file: join(mockHome(), 'requests.jsonl') }),
+		log: new RequestLog({ file: join(mockHome(), 'requests.jsonl'), redactPaths: project.redact }),
 		faults: new FaultController(),
 		enabledPacks: project.enabledPacks,
 	});
