@@ -6,6 +6,7 @@ import {
 	projectPacksDir,
 	resolve,
 	savePack,
+	redact,
 	serviceForHost,
 	serviceForPrefix,
 	type FaultSpec,
@@ -45,16 +46,26 @@ export class MockEngine {
 	private stores = new Map<string, ResourceStore>();
 	private recording = new Map<string, ServicePack>();
 
+	/** The project config's `redact` paths, applied to everything written to disk. */
+	private readonly redactPaths: string[];
+
 	constructor(opts: {
 		packs: LayeredPacks;
 		log: RequestLog;
 		faults: FaultController;
 		enabledPacks?: string[];
+		redactPaths?: string[];
 	}) {
 		this.packs = opts.packs;
 		this.log = opts.log;
 		this.faults = opts.faults;
 		this.enabled = new Set(opts.enabledPacks ?? []);
+		this.redactPaths = opts.redactPaths ?? [];
+	}
+
+	/** The in-memory log, as it is served: credentials replaced, as in the file on disk. */
+	redactedLog(filter: Parameters<RequestLog['list']>[0] = {}): ReturnType<RequestLog['list']> {
+		return this.log.list(filter).map((entry) => redact(entry, { paths: this.redactPaths }));
 	}
 
 	get logRef(): RequestLog {
@@ -253,18 +264,23 @@ export class MockEngine {
 		const n = pack.routes.filter(
 			(r) => r.match.method === req.method && r.match.path === req.path,
 		).length;
+		// The pack is written to a directory the docs say to commit, so nothing a
+		// vendor returned or n8n sent may reach it as sent: token query params,
+		// credential headers and token-shaped values are replaced before the
+		// route is built. The in-memory log above keeps the entry whole.
 		const contentType = up.headers['content-type'];
+		const query = redact(req.query, { paths: this.redactPaths });
 		const route: Route = {
 			id: `${service}:${req.method}:${req.path}#${n}`,
 			match: {
 				method: req.method,
 				path: req.path,
-				...(Object.keys(req.query).length ? { query: req.query } : {}),
+				...(Object.keys(query).length ? { query } : {}),
 			},
 			respond: {
 				status: up.status,
 				headers: contentType !== undefined ? { 'content-type': contentType } : {},
-				body: up.body,
+				body: redact(up.body, { paths: this.redactPaths }),
 			},
 		};
 		pack.routes.push(route);

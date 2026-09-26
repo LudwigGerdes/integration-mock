@@ -5,8 +5,10 @@ import {
 	compareRoute,
 	isSafe,
 	loadLayer,
+	loadProjectConfig,
 	mockHome,
 	projectPacksDir,
+	redact,
 	savePack,
 	type Route,
 	type RouteFinding,
@@ -62,6 +64,7 @@ export function registerVerify(program: Command, io: CliIo, fetcher: Fetcher = r
 		}) => {
 			const projectDir = join(projectPacksDir(), service);
 			const userDir = join(mockHome(), 'packs', service);
+			const proj = await loadProjectConfig();
 			const [user, project] = await Promise.all([
 				loadLayer(join(mockHome(), 'packs')),
 				loadLayer(projectPacksDir()),
@@ -111,7 +114,8 @@ export function registerVerify(program: Command, io: CliIo, fetcher: Fetcher = r
 				if (o.patch === true && !('error' in actual) && route.respond !== undefined) {
 					// Bodies only: a matcher change alters which requests are served
 					// and is a human's call.
-					patched.push({ ...route, respond: { ...route.respond, body: actual.body } });
+					// The vendor's real body goes into a committed pack: strip credentials first.
+					patched.push({ ...route, respond: { ...route.respond, body: redact(actual.body, { paths: proj.redact }) } });
 				} else {
 					patched.push(route);
 				}

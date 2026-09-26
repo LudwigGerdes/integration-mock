@@ -1,5 +1,5 @@
 import { describe, it, expect, vi } from 'vitest';
-import { mkdtempSync } from 'node:fs';
+import { mkdtempSync, readFileSync } from 'node:fs';
 import { tmpdir } from 'node:os';
 import { join } from 'node:path';
 import {
@@ -106,6 +106,28 @@ describe('MockEngine', () => {
 		const d = await engine.handleReplay('slack', req({}));
 		expect(Date.now() - t).toBeGreaterThanOrEqual(18);
 		expect(d.body).toEqual({ ok: true });
+	});
+
+	it('record never writes a credential to the pack: query, headers and body are redacted on disk', async () => {
+		const cwd = mkdtempSync(join(tmpdir(), 'rec-'));
+		const spy = vi.spyOn(process, 'cwd').mockReturnValue(cwd);
+		const { engine } = mk({ library: [] }, ['hub']);
+		engine.setMode('record');
+		engine.registerPack({ id: 'hub', domains: ['hub.com'], prefix: '/hub', routes: [], source: 'library' });
+		const r = req({ host: 'hub.com', path: '/v1/me', query: { token: 'xoxb-0123456789abcdefghijk', page: '1' } });
+		await engine.recordUpstream('hub', r, {
+			status: 200,
+			headers: { 'content-type': 'application/json', 'set-cookie': 'sid=abc' },
+			body: { ok: true, access_token: 'sk_live_0123456789abcdefghijkl', name: 'Ada' },
+		});
+		const raw = readFileSync(join(cwd, '.integration-mock', 'packs', 'hub', 'routes', 'main.json'), 'utf8');
+		expect(raw).not.toContain('xoxb-');
+		expect(raw).not.toContain('sk_live_');
+		expect(raw).not.toContain('sid=abc');
+		const saved = await loadPack(join(cwd, '.integration-mock', 'packs', 'hub'));
+		expect(saved.routes[0]!.match.query).toEqual({ token: '[REDACTED]', page: '1' });
+		expect((saved.routes[0]!.respond?.body as { name: string }).name).toBe('Ada');
+		spy.mockRestore();
 	});
 
 	it('record appends route, saves pack, replays immediately', async () => {

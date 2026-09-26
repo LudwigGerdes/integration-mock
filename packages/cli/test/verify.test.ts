@@ -109,6 +109,19 @@ describe('verify', () => {
 		expect(after.routes.find((r) => r.id === 'create')?.respond?.body).toEqual({ id: 'a' });
 	});
 
+	it('--patch never writes a credential the vendor returned', async () => {
+		const leaky: Fetcher = async () => ({
+			status: 200,
+			body: { items: [{ id: 'real' }], access_token: 'sk_live_0123456789abcdefghijkl', authorization: 'x' },
+		});
+		await run(['verify', 'acme', '--base-url', 'https://api.acme.test', '--patch'], leaky);
+		const after = await loadPack(join(cwd, '.integration-mock', 'packs', 'acme'));
+		const body = after.routes.find((r) => r.id === 'list')!.respond!.body as Record<string, unknown>;
+		expect(body.access_token).toBe('[REDACTED]');
+		expect(body.authorization).toBe('[REDACTED]');
+		expect(body.items).toEqual([{ id: 'real' }]);
+	});
+
 	it('reports an unreachable vendor', async () => {
 		const dead: Fetcher = async () => ({ error: 'ENOTFOUND api.acme.test' });
 		expect(await run(['verify', 'acme', '--base-url', 'https://api.acme.test'], dead)).toMatch(

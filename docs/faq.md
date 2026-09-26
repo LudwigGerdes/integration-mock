@@ -42,7 +42,7 @@ No. `packs enable` tells the running mock to re-read your packs.
 
 ### Where are my API key and the request log stored?
 
-Both are plain text under `~/.integration-mock/`. Credential headers and token-shaped strings are redacted in the log file. See [SECURITY.md](https://github.com/LudwigGerdes/integration-mock/blob/main/SECURITY.md).
+Both are plain text under `~/.integration-mock/`. Credential headers and query parameters, token-shaped strings, JWTs and Basic credentials are redacted in the log, in recorded packs and in `verify --patch` output. See [SECURITY.md](https://github.com/LudwigGerdes/integration-mock/blob/main/SECURITY.md).
 
 ## Alternatives
 

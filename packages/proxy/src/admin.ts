@@ -108,7 +108,7 @@ export async function startAdmin(opts: {
 					return json(
 						res,
 						200,
-						engine.logRef.list({
+						engine.redactedLog({
 							service: q.get('service') ?? undefined,
 							since: since === null ? undefined : Number(since),
 							limit: limit === null ? undefined : Number(limit),

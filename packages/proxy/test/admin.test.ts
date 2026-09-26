@@ -35,6 +35,19 @@ beforeAll(async () => {
 afterAll(() => admin.close());
 
 describe('admin api', () => {
+	it('serves the request log with credentials redacted, the same as the file on disk', async () => {
+		log.append({
+			service: 'weather', method: 'GET', url: 'https://api.example.com/x', path: '/x', query: { token: 'abc' },
+			reqHeaders: { authorization: 'Bearer sk_live_0123456789abcdefghijkl', accept: 'application/json' },
+			status: 200, resHeaders: {}, resBody: { ok: true }, latencyMs: 1, matchedRoute: 'unmatched',
+		});
+		const [entry] = await client.getLog({ service: "weather" });
+		expect(entry!.reqHeaders.authorization).toBe('[REDACTED]');
+		expect(entry!.reqHeaders.accept).toBe('application/json');
+		expect(entry!.query).toEqual({ token: '[REDACTED]' });
+		log.clear();
+	});
+
 	it('state + mode + packs', async () => {
 		expect((await client.getState()).mode).toBe('off');
 		await client.setMode('replay');

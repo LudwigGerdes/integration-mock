@@ -1,6 +1,18 @@
 const R = '[REDACTED]';
-const KEY_RE = /^(authorization|cookie|set-cookie|x-api-key|x-n8n-api-key)$/i;
+/**
+ * Keys whose value is a credential whatever it looks like: the standard auth
+ * headers, the API-key headers vendors actually use (Azure APIM, GitLab, AWS,
+ * generic `apikey`), and the query parameters OAuth and vendor SDKs put
+ * tokens in. Matched case-insensitively on the key alone.
+ */
+const KEY_RE =
+	/^(authorization|proxy-authorization|cookie|set-cookie|x-api-key|api-key|apikey|api_key|x-auth-token|x-n8n-api-key|private-token|ocp-apim-subscription-key|x-amz-security-token|token|access_token|refresh_token|id_token|client_secret|password|secret)$/i;
+/** Opaque tokens: a long unbroken run of token characters, with or without `Bearer`. */
 const TOKEN_RE = /^(?:Bearer\s+)?[A-Za-z0-9_-]{20,}$/;
+/** JWTs: three base64url segments joined by dots; the dots defeat TOKEN_RE. */
+const JWT_RE = /^(?:Bearer\s+)?[A-Za-z0-9_-]{8,}\.[A-Za-z0-9_-]{8,}\.[A-Za-z0-9_-]{8,}$/;
+/** HTTP Basic: the scheme word plus base64, whose `=` padding defeats TOKEN_RE. */
+const BASIC_RE = /^Basic\s+[A-Za-z0-9+/]{8,}={0,2}$/;
 
 function pathMatches(path: string[], pattern: string): boolean {
 	const segs = pattern.replace(/\[\*\]/g, '.*').split('.').filter(Boolean);
@@ -16,7 +28,7 @@ function pathMatches(path: string[], pattern: string): boolean {
  * strings, plus any caller-supplied dotted paths and regexes.
  */
 export function redact<T>(value: T, rules: { paths?: string[]; patterns?: RegExp[] } = {}): T {
-	const patterns = [TOKEN_RE, ...(rules.patterns ?? [])];
+	const patterns = [TOKEN_RE, JWT_RE, BASIC_RE, ...(rules.patterns ?? [])];
 	const paths = rules.paths ?? [];
 
 	const walk = (v: unknown, path: string[]): unknown => {

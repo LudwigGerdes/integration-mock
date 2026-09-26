@@ -41,6 +41,7 @@ export async function runDaemon(): Promise<void> {
 		log: new RequestLog({ file: join(mockHome(), 'requests.jsonl'), redactPaths: project.redact }),
 		faults: new FaultController(),
 		enabledPacks: project.enabledPacks,
+		redactPaths: project.redact,
 	});
 
 	// Loopback keeps the zero-config local path; any reachable bind gets a token.
