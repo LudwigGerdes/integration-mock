@@ -15,6 +15,8 @@ export interface N8nWorkflow {
 	name: string;
 	nodes: N8nNode[];
 	connections: unknown;
+	versionId?: string;
+	active?: boolean;
 }
 
 export interface N8nRunItem {
@@ -30,6 +32,9 @@ export interface N8nExecution {
 	status: string;
 	workflowData: N8nWorkflow;
 	data: { resultData: { runData: Record<string, N8nRunItem[]> } };
+	startedAt?: string;
+	stoppedAt?: string;
+	mode?: string;
 }
 
 /**

@@ -23,6 +23,26 @@ describe('buildSnapshot', () => {
 		]);
 	});
 
+	it('records provenance: tool, workflow, execution, and that it is redacted', () => {
+		const snap = buildSnapshot(load('execution-basic'), { instance: 'dev', version: '9.9.9' });
+		expect(snap.provenance).toMatchObject({
+			tool: { name: 'integration-mock', version: '9.9.9' },
+			workflow: { id: '8f3a', name: expect.any(String) },
+			execution: { id: '4123', status: expect.any(String), mode: 'manual' },
+			redacted: true,
+		});
+		// Nothing key-shaped, and no instance URL: the instance is the saved name.
+		const text = JSON.stringify(snap.provenance);
+		expect(text).not.toMatch(/https?:\/\//);
+		expect(text).not.toMatch(/api[-_]?key|token|secret/i);
+	});
+
+	it('provenance is optional for callers without a version', () => {
+		const snap = buildSnapshot(load('execution-basic'), { instance: 'dev' });
+		expect(snap.provenance?.tool).toBeUndefined();
+		expect(snap.provenance?.workflow).toEqual({ id: '8f3a', name: expect.any(String) });
+	});
+
 	it('HTTP Request → pack with route', () => {
 		const snap = buildSnapshot(load('execution-basic'), { instance: 'dev' });
 		const pack = snap.packs.find((p) => p.id === 'api-example-com')!;

@@ -19,6 +19,22 @@ const base: ServicePack = {
 const codes = (p: unknown, others?: ServicePack[]): string[] =>
 	validatePack(p, { others }).map((x) => x.code);
 
+describe('provenance', () => {
+	it('is accepted when present and when absent', () => {
+		expect(codes(base)).toEqual([]);
+		expect(
+			codes({
+				...base,
+				source: 'recorded',
+				provenance: { recordedAt: '2026-09-25T00:00:00.000Z', tool: { name: 'integration-mock', version: '0.1.1' }, redacted: true },
+			}),
+		).toEqual([]);
+	});
+	it('rejects a provenance block with unknown keys', () => {
+		expect(codes({ ...base, provenance: { apiKey: 'x' } }).length).toBeGreaterThan(0);
+	});
+});
+
 describe('validatePack', () => {
 	it('passes a well-formed pack with no problems', () => {
 		expect(validatePack(base)).toEqual([]);

@@ -9,6 +9,7 @@ import { loadProjectConfig, mockHome, type FaultSpec, type LogEntry } from 'inte
 import { dataPaths } from 'integration-mock-packs';
 import { AdminClient, ensureCA } from 'integration-mock-proxy';
 import type { CliIo } from '../index.js';
+import { CLI_VERSION } from '../version.js';
 
 export interface ProxyInfo {
 	port: number;
@@ -157,6 +158,7 @@ export function registerProxy(p: Command, io: CliIo): void {
 		.action(async (o: { port: string; adminPort: string; foreground?: boolean }) => {
 			if (o.foreground) {
 				process.env.INTEGRATION_MOCK_PORT = o.port;
+				process.env.INTEGRATION_MOCK_VERSION = CLI_VERSION;
 				process.env.INTEGRATION_MOCK_ADMIN_PORT = o.adminPort;
 				const { runDaemon } = await import('integration-mock-proxy/daemon');
 				await runDaemon();
@@ -165,7 +167,12 @@ export function registerProxy(p: Command, io: CliIo): void {
 			const child = spawn(process.execPath, [daemonEntry()], {
 				detached: true,
 				stdio: 'ignore',
-				env: { ...process.env, INTEGRATION_MOCK_PORT: o.port, INTEGRATION_MOCK_ADMIN_PORT: o.adminPort },
+				env: {
+					...process.env,
+					INTEGRATION_MOCK_PORT: o.port,
+					INTEGRATION_MOCK_ADMIN_PORT: o.adminPort,
+					INTEGRATION_MOCK_VERSION: CLI_VERSION,
+				},
 			});
 			child.unref();
 			for (let i = 0; i < 25; i++) {

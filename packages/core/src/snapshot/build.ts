@@ -1,7 +1,7 @@
 import { createHash } from 'node:crypto';
 import { join } from 'node:path';
 import { redact } from '../redact.js';
-import type { Route, ServicePack, Snapshot } from '../types.js';
+import type { Route, ServicePack, Snapshot, SnapshotProvenance } from '../types.js';
 import { mapperFor, resolveNodeUrl } from './mappers.js';
 import type { N8nExecution, N8nNode, N8nWorkflow } from './n8n-client.js';
 
@@ -75,7 +75,7 @@ export function outputsOf(exec: N8nExecution, nodeName: string): unknown[] {
  */
 export function buildSnapshot(
 	exec: N8nExecution,
-	opts: { instance: string; redact?: Parameters<typeof redact>[1] },
+	opts: { instance: string; redact?: Parameters<typeof redact>[1]; version?: string; n8nVersion?: string },
 ): Snapshot {
 	const wf = exec.workflowData;
 	const warnings: string[] = [];
@@ -137,6 +137,25 @@ export function buildSnapshot(
 	// every hash and make each node look edited on the next diff.
 	const safe = redact({ packs: [...byService.values()], nodeOutputs }, opts.redact);
 
+	const provenance: SnapshotProvenance = {
+		...(opts.version === undefined ? {} : { tool: { name: 'integration-mock', version: opts.version } }),
+		...(opts.n8nVersion === undefined ? {} : { n8nVersion: opts.n8nVersion }),
+		workflow: {
+			id: wf.id,
+			...(wf.name === undefined ? {} : { name: wf.name }),
+			...(wf.versionId === undefined ? {} : { versionId: wf.versionId }),
+			...(wf.active === undefined ? {} : { active: wf.active }),
+		},
+		execution: {
+			id: exec.id,
+			...(exec.status === undefined ? {} : { status: exec.status }),
+			...(exec.startedAt === undefined ? {} : { startedAt: exec.startedAt }),
+			...(exec.stoppedAt === undefined ? {} : { stoppedAt: exec.stoppedAt }),
+			...(exec.mode === undefined ? {} : { mode: exec.mode }),
+		},
+		redacted: true,
+	};
+
 	return {
 		executionId: exec.id,
 		workflowId: wf.id,
@@ -147,5 +166,6 @@ export function buildSnapshot(
 		packs: safe.packs,
 		nodeOutputs: safe.nodeOutputs,
 		warnings,
+		provenance,
 	};
 }

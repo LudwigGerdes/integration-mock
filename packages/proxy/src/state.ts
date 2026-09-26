@@ -48,6 +48,8 @@ export class MockEngine {
 
 	/** The project config's `redact` paths, applied to everything written to disk. */
 	private readonly redactPaths: string[];
+	/** The release that is recording, for the stamp on a recorded pack. */
+	private readonly version: string | undefined;
 
 	constructor(opts: {
 		packs: LayeredPacks;
@@ -55,12 +57,14 @@ export class MockEngine {
 		faults: FaultController;
 		enabledPacks?: string[];
 		redactPaths?: string[];
+		version?: string;
 	}) {
 		this.packs = opts.packs;
 		this.log = opts.log;
 		this.faults = opts.faults;
 		this.enabled = new Set(opts.enabledPacks ?? []);
 		this.redactPaths = opts.redactPaths ?? [];
+		this.version = opts.version;
 	}
 
 	/** The in-memory log, as it is served: credentials replaced, as in the file on disk. */
@@ -255,6 +259,13 @@ export class MockEngine {
 				prefix: '/' + service,
 				routes: [],
 				source: 'recorded',
+				// The file will be committed; say when and by what it was made,
+				// and that what is in it went through the redactor.
+				provenance: {
+					recordedAt: new Date().toISOString(),
+					...(this.version === undefined ? {} : { tool: { name: 'integration-mock', version: this.version } }),
+					redacted: true,
+				},
 			};
 			this.recording.set(service, pack);
 			this.packs.project = this.packs.project.filter((p) => p.id !== service).concat(pack);

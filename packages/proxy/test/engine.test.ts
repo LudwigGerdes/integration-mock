@@ -33,7 +33,7 @@ const slack: ServicePack = {
 	seed: { things: [{ id: 't1' }] },
 };
 
-const mk = (over: Partial<LayeredPacks> = {}, enabled = ['slack']) => {
+const mk = (over: Partial<LayeredPacks> = {}, enabled = ['slack'], extra: { version?: string } = {}) => {
 	const log = new RequestLog();
 	const faults = new FaultController();
 	const engine = new MockEngine({
@@ -41,6 +41,7 @@ const mk = (over: Partial<LayeredPacks> = {}, enabled = ['slack']) => {
 		log,
 		faults,
 		enabledPacks: enabled,
+		...extra,
 	});
 	return { engine, log, faults };
 };
@@ -127,6 +128,19 @@ describe('MockEngine', () => {
 		const saved = await loadPack(join(cwd, '.integration-mock', 'packs', 'hub'));
 		expect(saved.routes[0]!.match.query).toEqual({ token: '[REDACTED]', page: '1' });
 		expect((saved.routes[0]!.respond?.body as { name: string }).name).toBe('Ada');
+		spy.mockRestore();
+	});
+
+	it('record stamps the pack with when, which release, and that it was redacted', async () => {
+		const cwd = mkdtempSync(join(tmpdir(), 'rec-'));
+		const spy = vi.spyOn(process, 'cwd').mockReturnValue(cwd);
+		const { engine } = mk({ library: [] }, ['hub'], { version: '9.9.9' });
+		engine.setMode('record');
+		engine.registerPack({ id: 'hub', domains: ['hub.com'], prefix: '/hub', routes: [], source: 'library' });
+		await engine.recordUpstream('hub', req({ host: 'hub.com', path: '/v1/me' }), { status: 200, headers: {}, body: { ok: true } });
+		const saved = await loadPack(join(cwd, '.integration-mock', 'packs', 'hub'));
+		expect(saved.provenance).toMatchObject({ tool: { name: 'integration-mock', version: '9.9.9' }, redacted: true });
+		expect(saved.provenance?.recordedAt).toMatch(/^\d{4}-\d{2}-\d{2}T/);
 		spy.mockRestore();
 	});
 

@@ -45,6 +45,14 @@ export interface ServicePack {
 	seed?: Record<string, unknown[]>;
 	source: PackSource;
 	spec?: { url?: string; file?: string; version?: string; vendorSha?: string };
+	/** Written by `record`: when, by which release, and that the bodies were redacted. */
+	provenance?: PackProvenance;
+}
+
+export interface PackProvenance {
+	recordedAt?: string;
+	tool?: { name: string; version: string };
+	redacted?: boolean;
 }
 
 export type Layer = 'library' | 'user' | 'project' | 'snapshot' | 'store';
@@ -106,6 +114,20 @@ export interface Snapshot {
 	packs: ServicePack[];
 	nodeOutputs: Record<string, unknown[]>;
 	warnings: string[];
+	/**
+	 * What the snapshot was taken from, for an audit trail. Absent on
+	 * snapshots written before it existed. Never a URL, key or cookie: the
+	 * instance is the saved name, and the payloads are redacted.
+	 */
+	provenance?: SnapshotProvenance;
+}
+
+export interface SnapshotProvenance {
+	tool?: { name: string; version: string };
+	n8nVersion?: string;
+	workflow: { id: string; name?: string; versionId?: string; active?: boolean };
+	execution: { id: string; status?: string; startedAt?: string; stoppedAt?: string; mode?: string };
+	redacted: true;
 }
 
 export type Mode = 'off' | 'replay' | 'record';

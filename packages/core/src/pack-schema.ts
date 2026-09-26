@@ -95,6 +95,34 @@ export const PACK_SCHEMA = {
 					}
 				}
 			},
+			"provenance": {
+				"type": "object",
+				"additionalProperties": false,
+				"properties": {
+					"recordedAt": {
+						"type": "string"
+					},
+					"tool": {
+						"type": "object",
+						"additionalProperties": false,
+						"required": [
+							"name",
+							"version"
+						],
+						"properties": {
+							"name": {
+								"type": "string"
+							},
+							"version": {
+								"type": "string"
+							}
+						}
+					},
+					"redacted": {
+						"type": "boolean"
+					}
+				}
+			},
 			"routes": {
 				"type": "array",
 				"items": {

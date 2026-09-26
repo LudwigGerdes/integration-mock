@@ -42,6 +42,9 @@ export async function runDaemon(): Promise<void> {
 		faults: new FaultController(),
 		enabledPacks: project.enabledPacks,
 		redactPaths: project.redact,
+		// The CLI that spawned us says which release it is; the daemon has no
+		// manifest of its own to read.
+		...(process.env.INTEGRATION_MOCK_VERSION === undefined ? {} : { version: process.env.INTEGRATION_MOCK_VERSION }),
 	});
 
 	// Loopback keeps the zero-config local path; any reachable bind gets a token.

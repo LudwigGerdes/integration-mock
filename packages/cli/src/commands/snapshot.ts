@@ -17,6 +17,7 @@ import {
 import { registerAllMappers } from 'integration-mock-packs';
 import type { CliIo } from '../index.js';
 import { adminClient } from './proxy.js';
+import { CLI_VERSION } from '../version.js';
 
 // Native-node mappers must be in the registry before any snapshot is built.
 registerAllMappers();
@@ -62,7 +63,7 @@ export function registerSnapshot(p: Command, io: CliIo): void {
 				const proj = await loadProjectConfig();
 				const exec =
 					id === 'latest' ? await c.getLatestExecution(o.workflow) : await c.getExecution(id);
-				const snap = buildSnapshot(exec, { instance: name, redact: { paths: proj.redact } });
+				const snap = buildSnapshot(exec, { instance: name, redact: { paths: proj.redact }, version: CLI_VERSION });
 
 				const file = snapshotPath(snap.workflowId, snap.executionId);
 				await mkdir(dirname(file), { recursive: true });
