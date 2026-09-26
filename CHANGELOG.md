@@ -7,6 +7,7 @@ All notable changes to this project are documented here. The format follows
 
 ### Fixed
 
+- `verify` exits 1 when it finds a difference or cannot reach the vendor, so contract drift fails a CI job. `--fail-on <kinds>` chooses which finding kinds count (`status,shape,unreachable` by default; `none` reports only). It used to exit 0 whatever it found.
 - Recorded packs and `verify --patch` output are redacted before they are written. A `record` run used to write the vendor's response body and the request's query string as sent, so a `?token=…` or an `access_token` in a body landed in `./.integration-mock/packs`, a directory the docs say to commit.
 - `integration-mock log` and the admin API's `GET /log` serve the redacted view, the same as the file on disk. The in-memory entries that recording and `diff` use are unchanged.
 - Redaction recognises more credential shapes: JWTs, `Basic` credentials, the API-key headers vendors use (`X-Auth-Token`, `apikey`, `Api-Key`, `Private-Token`, `Ocp-Apim-Subscription-Key`, `X-Amz-Security-Token`, `Proxy-Authorization`) and credential query parameters by name (`token`, `access_token`, `refresh_token`, `api_key`, `client_secret`, …).

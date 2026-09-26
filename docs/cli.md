@@ -51,7 +51,7 @@
 | `diff [id]` | Compare a later execution against the active snapshot |
 | `creds push <type> [--name n] [--field k=v] [--dry-run]` | Create a placeholder credential on the instance |
 | `creds swap <workflow.json> [--in-place] [--real] [--via proxy]` | Point a workflow's URLs at the mock, or back at the real service |
-| `verify <service> --base-url u [--header h] [--param k=v] [--unsafe] [--patch]` | Compare a pack against the real service |
+| `verify <service> --base-url u [--header h] [--param k=v] [--unsafe] [--patch] [--fail-on kinds]` | Compare a pack against the real service. Exits 1 on a difference |
 
 ## Fault injection
 

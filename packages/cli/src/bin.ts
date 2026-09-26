@@ -20,5 +20,7 @@ buildProgram()
 			process.exit(err.exitCode ?? 0);
 		}
 		console.error(e instanceof Error ? e.message : e);
-		process.exit(1);
+		// An error that names its own exit code (findings → 1) keeps it; anything
+		// else is a usage or configuration problem.
+		process.exit(typeof err?.exitCode === 'number' ? err.exitCode : 1);
 	});

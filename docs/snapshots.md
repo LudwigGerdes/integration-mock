@@ -103,6 +103,9 @@ It compares the shape of each response, never the values.
 | `--param name=value` | Fill a `:name` segment in a path |
 | `--patch` | Rewrite the pack's response bodies from what the service returned, for review as a `git diff` |
 | `--unsafe` | Also run methods that change data |
+| `--fail-on <kinds>` | Which findings exit 1: `status`, `shape`, `unreachable`, `skipped`, or `none`. Default `status,shape,unreachable` |
+
+The report is always printed. With the default `--fail-on`, any difference or an unreachable service exits 1, so a scheduled `verify` fails the job when a vendor changes something a workflow relies on. Skipped routes never fail on their own.
 
 > [!CAUTION]
 > Without `--unsafe`, only GET, HEAD and OPTIONS run. With it, a Slack pack would post real messages.

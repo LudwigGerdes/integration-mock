@@ -46,6 +46,25 @@ export function urlFor(
 	return u.toString();
 }
 
+const FINDING_KINDS = new Set(['status', 'shape', 'unreachable', 'skipped']);
+
+/** A failed verification: findings were printed, the process should exit 1. */
+export class FindingsError extends Error {
+	readonly exitCode = 1;
+}
+
+function parseFailOn(raw: string): Set<string> {
+	if (raw.trim() === 'none') return new Set();
+	const kinds = raw.split(',').map((k) => k.trim()).filter(Boolean);
+	const bad = kinds.filter((k) => !FINDING_KINDS.has(k));
+	if (bad.length > 0) {
+		throw new Error(
+			`integration-mock verify: --fail-on does not know "${bad.join('", "')}" — use ${[...FINDING_KINDS].join(', ')} or none`,
+		);
+	}
+	return new Set(kinds);
+}
+
 export function registerVerify(program: Command, io: CliIo, fetcher: Fetcher = realFetcher): void {
 	program
 		.command('verify <service>')
@@ -58,10 +77,16 @@ export function registerVerify(program: Command, io: CliIo, fetcher: Fetcher = r
 		.option('--unsafe', 'also replay non-read methods — these have real side effects')
 		.option('--patch', 'rewrite response bodies from what the vendor returned')
 		.option('--json', 'machine-readable findings')
+		.option(
+			'--fail-on <kinds>',
+			'finding kinds that make the run exit 1, comma-separated (status, shape, unreachable, skipped), or "none"',
+			'status,shape,unreachable',
+		)
 		.action(async (service: string, o: {
 			baseUrl: string; header: string[]; param: string[];
-			unsafe?: boolean; patch?: boolean; json?: boolean;
+			unsafe?: boolean; patch?: boolean; json?: boolean; failOn: string;
 		}) => {
+			const failOn = parseFailOn(o.failOn);
 			const projectDir = join(projectPacksDir(), service);
 			const userDir = join(mockHome(), 'packs', service);
 			const proj = await loadProjectConfig();
@@ -148,6 +173,16 @@ export function registerVerify(program: Command, io: CliIo, fetcher: Fetcher = r
 				const dir = existsSync(projectDir) ? projectDir : userDir;
 				await savePack(dir, { ...pack, routes: patched });
 				io.write(`patched ${dir} — review with \`git diff\``);
+			}
+
+			// The report is printed whatever happens; the exit code is what makes
+			// drift a red build rather than a line in a log. Skips are a choice
+			// (--unsafe, --param), not drift, so they never fail by default.
+			const failing = findings.filter((f) => failOn.has(f.kind));
+			if (failing.length > 0) {
+				throw new FindingsError(
+					`integration-mock verify: ${failing.length} difference(s) against the vendor (--fail-on ${o.failOn})`,
+				);
 			}
 		});
 }
