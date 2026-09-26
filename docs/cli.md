@@ -83,7 +83,7 @@ Each line has the time, method, service, path, status and the route that answere
 
 | Path | Contents | Commit it? |
 |---|---|---|
-| `./.integration-mock/packs/` | Packs you wrote, recorded or ejected | Yes |
+| `./.integration-mock/packs/` | Packs you wrote, recorded or ejected. A recorded pack's `provenance` says when it was recorded, by which release, and that it was redacted | Yes |
 | `./.integration-mock/config.json` | Which packs are enabled | No. It is gitignored |
 | `./.integration-mock/snapshots/` | Snapshots | No, unless you pass `--commit` |
 | `~/.integration-mock/config.json` | Saved n8n instances and API keys, in plain text | |

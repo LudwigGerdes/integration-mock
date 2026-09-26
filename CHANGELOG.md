@@ -5,6 +5,10 @@ All notable changes to this project are documented here. The format follows
 
 ## [Unreleased]
 
+### Added
+
+- Snapshots carry a `provenance` block: the integration-mock release, the workflow's id, name, `versionId` and active flag, the execution's id, status, times and mode, and `redacted: true`. Recorded packs carry `provenance.recordedAt`, the release, and `redacted: true`. Older files without the block still load.
+
 ### Fixed
 
 - `verify` exits 1 when it finds a difference or cannot reach the vendor, so contract drift fails a CI job. `--fail-on <kinds>` chooses which finding kinds count (`status,shape,unreachable` by default; `none` reports only). It used to exit 0 whatever it found.
