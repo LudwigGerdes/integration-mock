@@ -1,3 +1,4 @@
+import { createHash } from 'node:crypto';
 import type { Command } from 'commander';
 import { loadLibraryLayer } from 'integration-mock-packs';
 import {
@@ -26,6 +27,8 @@ export interface PackRow {
 	id: string;
 	layer: string;
 	enabled: boolean;
+	version?: string;
+	owner?: string;
 }
 
 /**
@@ -40,17 +43,23 @@ export async function listPacks(): Promise<PackRow[]> {
 		loadLayer(projectPacksDir()),
 		loadProjectConfig(),
 	]);
-	const winner = new Map<string, string>();
+	const winner = new Map<string, { layer: string; version?: string; owner?: string }>();
 	// Least specific first: a later layer overwrites the recorded winner.
 	for (const [layer, packs] of [
 		['library', library],
 		['user', user],
 		['project', project],
 	] as const) {
-		for (const p of packs) winner.set(p.id, layer);
+		for (const p of packs) {
+			winner.set(p.id, {
+				layer,
+				...(p.version === undefined ? {} : { version: p.version }),
+				...(p.owner === undefined ? {} : { owner: p.owner }),
+			});
+		}
 	}
 	return [...winner]
-		.map(([id, layer]) => ({ id, layer, enabled: cfg.enabledPacks.includes(id) }))
+		.map(([id, w]) => ({ id, ...w, enabled: cfg.enabledPacks.includes(id) }))
 		.sort((a, b) => a.id.localeCompare(b.id));
 }
 
@@ -69,7 +78,10 @@ export function registerPacks(
 		.action(async (o: { installed?: boolean }) => {
 			const rows = await listPacks();
 			for (const r of rows) {
-				io.write(`${r.id}\t${r.layer}\t${r.enabled ? 'enabled' : 'disabled'}`);
+				// Version and owner trail the three fixed columns, so a script
+				// that reads the first three keeps working.
+				const meta = [r.version === undefined ? '' : `v${r.version}`, r.owner ?? ''].filter((s) => s !== '');
+				io.write(`${r.id}\t${r.layer}\t${r.enabled ? 'enabled' : 'disabled'}${meta.length ? `\t${meta.join(' · ')}` : ''}`);
 			}
 			if (o.installed === true) return;
 			const have = new Set(rows.map((r) => r.id));
@@ -84,7 +96,13 @@ export function registerPacks(
 		.description('download packs this release did not ship with')
 		.option('--ref <ref>', 'git ref to install from', `v${CLI_VERSION}`)
 		.option('--force', 'overwrite an already-installed pack')
-		.action(async (ids: string[], o: { ref: string; force?: boolean }) => {
+		.option('--no-verify', 'skip the sha256 check against this release\'s index')
+		.action(async (ids: string[], o: { ref: string; force?: boolean; verify: boolean }) => {
+			// The index carries the hash of every file as this release shipped
+			// it. Another ref legitimately differs, so the check is skipped for
+			// one — and said so, because "installed" must not read as "verified".
+			const releaseRef = `v${CLI_VERSION}`;
+			const verify = o.verify && o.ref === releaseRef;
 			for (const id of ids) {
 				const entry = PACK_INDEX[id];
 				if (entry === undefined) {
@@ -97,7 +115,20 @@ export function registerPacks(
 				}
 
 				for (const file of entry.files) {
-					const body = await fetcher(packFileUrl(o.ref, id, file));
+					const url = packFileUrl(o.ref, id, file);
+					const body = await fetcher(url);
+					if (verify) {
+						const actual = createHash('sha256').update(body).digest('hex');
+						const expected = entry.sha256[file];
+						if (expected !== undefined && actual !== expected) {
+							await rm(dir, { recursive: true, force: true });
+							throw new Error(
+								`integration-mock: ${id}/${file} from ${url} does not match this release's index ` +
+									`(sha256 ${actual.slice(0, 12)}…, expected ${expected.slice(0, 12)}…); nothing installed. ` +
+									'Pass --no-verify only if you trust the source.',
+							);
+						}
+					}
 					const target = join(dir, file);
 					await mkdir(dirname(target), { recursive: true });
 					await writeFile(target, body);
@@ -115,7 +146,9 @@ export function registerPacks(
 						`integration-mock: ${id} downloaded but failed validation (${problems[0]!.message}); removed`,
 					);
 				}
-				io.write(`installed ${id} (${entry.files.length} file(s)) — integration-mock packs enable ${id}`);
+				io.write(
+					`installed ${id} (${entry.files.length} file(s), ${verify ? 'sha256 verified' : `not verified: ${o.verify ? `--ref ${o.ref}` : '--no-verify'}`}) — integration-mock packs enable ${id}`,
+				);
 			}
 		});
 

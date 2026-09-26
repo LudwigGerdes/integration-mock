@@ -10,6 +10,10 @@ export interface PackIndexEntry {
 	prefix: string;
 	bytes: number;
 	files: string[];
+	/** sha256 of each file as this release shipped it; `packs install` checks downloads against it. */
+	sha256: Record<string, string>;
+	version?: string;
+	owner?: string;
 }
 
 export const PACK_INDEX: Record<string, PackIndexEntry> = {
@@ -22,7 +26,11 @@ export const PACK_INDEX: Record<string, PackIndexEntry> = {
 			"files": [
 				"pack.json",
 				"routes/10-generated.json"
-			]
+			],
+			"sha256": {
+				"pack.json": "2a00b4383ec17196e3652aefa42af502af46dcde0595fe864b55de8019bd50e3",
+				"routes/10-generated.json": "048036754444ace29cff40a637b44bcb1dfcbbbf63c6e0596efa8cb7023fc37b"
+			}
 		},
 		"clickup": {
 			"domains": [
@@ -33,7 +41,11 @@ export const PACK_INDEX: Record<string, PackIndexEntry> = {
 			"files": [
 				"pack.json",
 				"routes/10-generated.json"
-			]
+			],
+			"sha256": {
+				"pack.json": "e20cb587787c65258897053065776195111918d90f2124792ec0b25a6cd23c35",
+				"routes/10-generated.json": "02faaa147b016f8b904a42c9d45d4b8f9ca46eb8c6fd8d733ca47278544bc01b"
+			}
 		},
 		"close": {
 			"domains": [
@@ -44,7 +56,11 @@ export const PACK_INDEX: Record<string, PackIndexEntry> = {
 			"files": [
 				"pack.json",
 				"routes/10-generated.json"
-			]
+			],
+			"sha256": {
+				"pack.json": "ba9bb2bbc98a6a23234e5caca115f03e3952ff29da5617b5304ff03138c77551",
+				"routes/10-generated.json": "71747c1060d71097281965c04069f4b82d015802180ec4e07b180e4eece10964"
+			}
 		},
 		"datadog": {
 			"domains": [
@@ -55,7 +71,11 @@ export const PACK_INDEX: Record<string, PackIndexEntry> = {
 			"files": [
 				"pack.json",
 				"routes/10-generated.json"
-			]
+			],
+			"sha256": {
+				"pack.json": "bcac5eb334ee206d68b95b2f38d0b07417c1ed0d55e54e5e227fe48a362f44b1",
+				"routes/10-generated.json": "303f50734b0672dfeaf759652dc847dd4f64013852195ca8aafc8e15ec0ebe21"
+			}
 		},
 		"generic-rest": {
 			"domains": [],
@@ -64,7 +84,11 @@ export const PACK_INDEX: Record<string, PackIndexEntry> = {
 			"files": [
 				"pack.json",
 				"routes/00-overrides.json"
-			]
+			],
+			"sha256": {
+				"pack.json": "febbf63f9c346731ca5b4f59686abdc8bcb1e6b0614f9023f7aeed8a5d9285c5",
+				"routes/00-overrides.json": "37517e5f3dc66819f61f5a7bb8ace1921282415f10551d2defa5c3eb0985b570"
+			}
 		},
 		"github": {
 			"domains": [
@@ -75,7 +99,11 @@ export const PACK_INDEX: Record<string, PackIndexEntry> = {
 			"files": [
 				"pack.json",
 				"routes/10-generated.json"
-			]
+			],
+			"sha256": {
+				"pack.json": "04e71e6fb32da3765ed7ac5727fbacfeb78915b5b3b3c5c145e695c348037048",
+				"routes/10-generated.json": "a3d82c29da8cd1d6889ca60b0536414e51b86555e73249ea3a6d8cd6b37de72b"
+			}
 		},
 		"gitlab": {
 			"domains": [
@@ -86,7 +114,11 @@ export const PACK_INDEX: Record<string, PackIndexEntry> = {
 			"files": [
 				"pack.json",
 				"routes/10-generated.json"
-			]
+			],
+			"sha256": {
+				"pack.json": "8e8bb8832f49ac52a3ace54d2446809d0d240fc8d905f4d8a232648378bcabc6",
+				"routes/10-generated.json": "eb260eb943b8a9bd4c0d61f8920661a073de9ad457b8ff4de3dba07ebd4284a6"
+			}
 		},
 		"gmail": {
 			"domains": [
@@ -97,7 +129,11 @@ export const PACK_INDEX: Record<string, PackIndexEntry> = {
 			"files": [
 				"pack.json",
 				"routes/10-generated.json"
-			]
+			],
+			"sha256": {
+				"pack.json": "e0a2985650da1f8226849e0c34e0f18cff37da46eb76df34b4a9a5132b87a621",
+				"routes/10-generated.json": "f32ec373a709918503203e896a483fdc2a15ec708193dfe5405194e4526a714f"
+			}
 		},
 		"google-drive": {
 			"domains": [
@@ -108,7 +144,11 @@ export const PACK_INDEX: Record<string, PackIndexEntry> = {
 			"files": [
 				"pack.json",
 				"routes/10-generated.json"
-			]
+			],
+			"sha256": {
+				"pack.json": "36c7d659fd97346a3e2967ff2b537f2580eaa03c5859b0ab7986cb972e884b56",
+				"routes/10-generated.json": "a52fde43eab53977963be2e2ce5a1b42ce3ba31d3920a3bad7592dc6076e1855"
+			}
 		},
 		"google-sheets": {
 			"domains": [
@@ -119,7 +159,11 @@ export const PACK_INDEX: Record<string, PackIndexEntry> = {
 			"files": [
 				"pack.json",
 				"routes/10-generated.json"
-			]
+			],
+			"sha256": {
+				"pack.json": "e927d1f9bfa379574cdc8813a2f91ae8cd12e7387f1ec3027ec75ba7ec57e48e",
+				"routes/10-generated.json": "add2584eadb63573675e91a23e587bd958e5cc90e1b47ca40e0fc410565c5b10"
+			}
 		},
 		"hubspot": {
 			"domains": [
@@ -130,7 +174,11 @@ export const PACK_INDEX: Record<string, PackIndexEntry> = {
 			"files": [
 				"pack.json",
 				"routes/10-generated.json"
-			]
+			],
+			"sha256": {
+				"pack.json": "961ef61ff3d85c6b3cf8cff8a8b12d4a39263271bd060555d708e5c16fb6b6c8",
+				"routes/10-generated.json": "1eed273aef04890a335df1e7199306cf083097ab7440e2a3e1b68750a1402c5f"
+			}
 		},
 		"intercom": {
 			"domains": [
@@ -143,7 +191,11 @@ export const PACK_INDEX: Record<string, PackIndexEntry> = {
 			"files": [
 				"pack.json",
 				"routes/10-generated.json"
-			]
+			],
+			"sha256": {
+				"pack.json": "d988f74979f8eaae2fbb05962e0eadb26c5f4ca3984187b240650c932fc1e540",
+				"routes/10-generated.json": "a5ee724614ec2e89dc0721aec7d8fec4e078300f2fd02434781c5ec0c7ae5eaa"
+			}
 		},
 		"jira": {
 			"domains": [
@@ -154,7 +206,11 @@ export const PACK_INDEX: Record<string, PackIndexEntry> = {
 			"files": [
 				"pack.json",
 				"routes/10-generated.json"
-			]
+			],
+			"sha256": {
+				"pack.json": "e49446c598a090c23491854a4465f15ed7042692cf2ab657e6c7623c9b520fa6",
+				"routes/10-generated.json": "f0bc88458480c84c31b594ea8b9a8f9af7d64190b8c98a23b7fd4fa878adf7e6"
+			}
 		},
 		"microsoft-graph": {
 			"domains": [
@@ -165,7 +221,11 @@ export const PACK_INDEX: Record<string, PackIndexEntry> = {
 			"files": [
 				"pack.json",
 				"routes/10-generated.json"
-			]
+			],
+			"sha256": {
+				"pack.json": "40c7323eef97bae05013048863cf5371c8625fd9696e21d925a3f43c8d2c4d29",
+				"routes/10-generated.json": "f35742f694d7b9a494121cda486c482282c13b9b16934be965e18bb53bdf3fdb"
+			}
 		},
 		"notion": {
 			"domains": [
@@ -176,7 +236,11 @@ export const PACK_INDEX: Record<string, PackIndexEntry> = {
 			"files": [
 				"pack.json",
 				"routes/10-generated.json"
-			]
+			],
+			"sha256": {
+				"pack.json": "215694e5ea3fb2066a63a1c2b4bc32af825af5064703bf3b00d6ea5094e7a601",
+				"routes/10-generated.json": "3a40bae2c810d8cc8afd3613461deacbaca536825630d4e7efd1f7dee173e201"
+			}
 		},
 		"openai": {
 			"domains": [
@@ -187,7 +251,11 @@ export const PACK_INDEX: Record<string, PackIndexEntry> = {
 			"files": [
 				"pack.json",
 				"routes/10-generated.json"
-			]
+			],
+			"sha256": {
+				"pack.json": "0c528b4b973c3edeed171231be448471ea5404e89289a9946125479ed248b79a",
+				"routes/10-generated.json": "a5e4fc454626c475bd76e97ef9f79c61d2da9c5b225977bb19336cf8609ad2ec"
+			}
 		},
 		"pagerduty": {
 			"domains": [
@@ -198,7 +266,11 @@ export const PACK_INDEX: Record<string, PackIndexEntry> = {
 			"files": [
 				"pack.json",
 				"routes/10-generated.json"
-			]
+			],
+			"sha256": {
+				"pack.json": "120f02c63e808ab54c6ddb1040517b684bde01e7a7a36b7dde5c234db749a69d",
+				"routes/10-generated.json": "4b51f998f5b482d051e9636cbd8b5b2603ea658715875e6bd91bb0985ed1d6c9"
+			}
 		},
 		"pandadoc": {
 			"domains": [
@@ -209,7 +281,11 @@ export const PACK_INDEX: Record<string, PackIndexEntry> = {
 			"files": [
 				"pack.json",
 				"routes/10-generated.json"
-			]
+			],
+			"sha256": {
+				"pack.json": "66e8afe821b908397d399773be9b0c0edcb703e546ca12b0e1f003c6c81c76bb",
+				"routes/10-generated.json": "4241e69bc7e175b1f100684c86564feee33f31153f428bdf7be773a585d0070d"
+			}
 		},
 		"pipedrive": {
 			"domains": [
@@ -220,7 +296,11 @@ export const PACK_INDEX: Record<string, PackIndexEntry> = {
 			"files": [
 				"pack.json",
 				"routes/10-generated.json"
-			]
+			],
+			"sha256": {
+				"pack.json": "0daacf9f4d7e593ce8725f894a660a0f22e09d39cb952c1968ed395a03eb5bbb",
+				"routes/10-generated.json": "661289caafb1fbe25d624fa6e4cbc2c3ff85bbf9124fa5cadbba61ed86340530"
+			}
 		},
 		"salesforce": {
 			"domains": [
@@ -233,7 +313,11 @@ export const PACK_INDEX: Record<string, PackIndexEntry> = {
 			"files": [
 				"pack.json",
 				"routes/main.json"
-			]
+			],
+			"sha256": {
+				"pack.json": "3666cf8932ed11776f7768a4470ba2a390c0ad4e446584e827c7524724e08aa1",
+				"routes/main.json": "61a8fcfe1dcd88673754c70aae5acd4c2da84976bd0e11686ef4190b22ed5c16"
+			}
 		},
 		"sendgrid": {
 			"domains": [
@@ -244,7 +328,11 @@ export const PACK_INDEX: Record<string, PackIndexEntry> = {
 			"files": [
 				"pack.json",
 				"routes/10-generated.json"
-			]
+			],
+			"sha256": {
+				"pack.json": "e8174b82ef0435e590a659af05a96f35af60cfcb86e194927525cdd58db227da",
+				"routes/10-generated.json": "721ffa19c257435c9a43d731232dc0ad991da8f50436acd395448df7088f8690"
+			}
 		},
 		"slack": {
 			"domains": [
@@ -255,7 +343,11 @@ export const PACK_INDEX: Record<string, PackIndexEntry> = {
 			"files": [
 				"pack.json",
 				"routes/10-generated.json"
-			]
+			],
+			"sha256": {
+				"pack.json": "3ef6f2d6f12e88d0da6094087ca1e34fd7ccf6ac62c0eda3272a04ff7f98cbd5",
+				"routes/10-generated.json": "a371dcf4bc13fc760666b553729c43ea923b2e22bc3ad28463033d4d0dfa0365"
+			}
 		},
 		"snowflake": {
 			"domains": [
@@ -266,7 +358,11 @@ export const PACK_INDEX: Record<string, PackIndexEntry> = {
 			"files": [
 				"pack.json",
 				"routes/10-generated.json"
-			]
+			],
+			"sha256": {
+				"pack.json": "6f5db96cff1f0ed5da06468170f109c4148a5e1fec43441c1aaa20392340cd2d",
+				"routes/10-generated.json": "8fadfb69d7aa512a8df9f52f091a5b57f9aeab9fe94b2a9f03fcf63433e4923c"
+			}
 		},
 		"stripe": {
 			"domains": [
@@ -277,7 +373,11 @@ export const PACK_INDEX: Record<string, PackIndexEntry> = {
 			"files": [
 				"pack.json",
 				"routes/10-generated.json"
-			]
+			],
+			"sha256": {
+				"pack.json": "ccdd7f3c6b724b170b21bac0313cc2188bc8350b9c462fb0d1c66c0f18874bb7",
+				"routes/10-generated.json": "1a8339c5c5768f4af5f9d88cad26f43b9537e568ee631c9e0dc4addba6924db1"
+			}
 		},
 		"twilio": {
 			"domains": [
@@ -288,7 +388,11 @@ export const PACK_INDEX: Record<string, PackIndexEntry> = {
 			"files": [
 				"pack.json",
 				"routes/10-generated.json"
-			]
+			],
+			"sha256": {
+				"pack.json": "2a61671d36ef7965d19efbc91215840feb7a854a4c446e76dd8df8c3d8fc7568",
+				"routes/10-generated.json": "01b0422112e114c3bea001b4b7f4bd4bb280c190ff65411c8584b5a30c5012bd"
+			}
 		},
 		"xero": {
 			"domains": [
@@ -299,6 +403,10 @@ export const PACK_INDEX: Record<string, PackIndexEntry> = {
 			"files": [
 				"pack.json",
 				"routes/10-generated.json"
-			]
+			],
+			"sha256": {
+				"pack.json": "bd09bec44ad1983f3d11adc35c595fda84726aa9b78f4941be460f1841a59450",
+				"routes/10-generated.json": "095d796df214addac6df52306c97080ea8577435415d84b85123d2cd5254b9ef"
+			}
 		}
 	};

@@ -117,6 +117,18 @@
 					"type": "boolean"
 				}
 			}
+		},
+		"version": {
+			"type": "string"
+		},
+		"owner": {
+			"type": "string"
+		},
+		"description": {
+			"type": "string"
+		},
+		"license": {
+			"type": "string"
 		}
 	},
 	"$defs": {

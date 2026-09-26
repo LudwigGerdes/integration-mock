@@ -17,7 +17,7 @@
 |---|---|
 | `packs list [--installed]` | List shipped, installed and available packs |
 | `packs enable <ids…>` / `packs disable <ids…>` | Choose which services are mocked |
-| `packs install <ids…> [--ref r]` | Download a pack that is not shipped in the package |
+| `packs install <ids…> [--ref r] [--no-verify]` | Download a pack that is not shipped in the package, checking each file's sha256 against the release index |
 | `packs init <service> --domain <host>` | Scaffold a pack to write by hand |
 | `packs validate [service] [--json]` | Check hand-written packs |
 | `packs build <service> [--spec f] [--fetch] [--domains a,b]` | Generate a pack from an OpenAPI file |
@@ -90,4 +90,4 @@ Each line has the time, method, service, path, status and the route that answere
 | `~/.integration-mock/requests.jsonl` | The request log, in plain text | |
 | `~/.integration-mock/ca.pem`, `ca-key.pem` | The local certificate authority for proxy mode. Created on first `start` | |
 
-Set `INTEGRATION_MOCK_HOME` to move the `~/.integration-mock` folder.
+Set `INTEGRATION_MOCK_HOME` to move the `~/.integration-mock` folder. Set `INTEGRATION_MOCK_PACK_INDEX_URL` to download packs from a mirror (`<url>/<pack id>/<file>`).

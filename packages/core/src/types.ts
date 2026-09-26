@@ -45,6 +45,13 @@ export interface ServicePack {
 	seed?: Record<string, unknown[]>;
 	source: PackSource;
 	spec?: { url?: string; file?: string; version?: string; vendorSha?: string };
+	/** The pack's own version, for a team that publishes and pins its packs. */
+	version?: string;
+	/** Who maintains it: a team, a person, a mailbox. Free text. */
+	owner?: string;
+	description?: string;
+	/** Licence of the pack's contents, where the source spec's licence applies. */
+	license?: string;
 	/** Written by `record`: when, by which release, and that the bodies were redacted. */
 	provenance?: PackProvenance;
 }

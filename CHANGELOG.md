@@ -7,6 +7,8 @@ All notable changes to this project are documented here. The format follows
 
 ### Added
 
+- `packs install` checks every downloaded file against the sha256 the release's index recorded for it and refuses a file that differs. `--ref <other>` installs unverified and says so; `--no-verify` skips the check. `INTEGRATION_MOCK_PACK_INDEX_URL` points install at a mirror (`<url>/<pack id>/<file>`).
+- `pack.json` may carry `version`, `owner`, `description` and `license`; `packs list` shows version and owner.
 - Snapshots carry a `provenance` block: the integration-mock release, the workflow's id, name, `versionId` and active flag, the execution's id, status, times and mode, and `redacted: true`. Recorded packs carry `provenance.recordedAt`, the release, and `redacted: true`. Older files without the block still load.
 
 ### Fixed

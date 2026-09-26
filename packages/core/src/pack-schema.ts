@@ -128,6 +128,18 @@ export const PACK_SCHEMA = {
 				"items": {
 					"$ref": "#/$defs/route"
 				}
+			},
+			"version": {
+				"type": "string"
+			},
+			"owner": {
+				"type": "string"
+			},
+			"description": {
+				"type": "string"
+			},
+			"license": {
+				"type": "string"
 			}
 		},
 		"$defs": {

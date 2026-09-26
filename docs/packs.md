@@ -13,7 +13,28 @@ integration-mock packs enable notion
 - The npm package ships eight packs: `generic-rest`, `gmail`, `google-drive`, `google-sheets`, `hubspot`, `openai`, `salesforce` and `slack`.
 - `packs list` also shows the packs you can download, marked `available`.
 - `packs install` downloads a pack into `~/.integration-mock/packs/`. It is the only `packs` command besides `build --fetch`, `update` and `audit` that uses the network.
+- Every file it downloads is checked against the sha256 the release's index recorded for it; a file that differs is refused and nothing is installed. `--ref <other>` installs from another git ref without the check and says so; `--no-verify` skips it.
+- `INTEGRATION_MOCK_PACK_INDEX_URL=https://packs.example.internal/integration-mock` downloads from a mirror instead of GitHub: files are fetched at `<url>/<pack id>/<file>` and checked the same way.
 - Only enabled packs answer calls.
+
+## Pack metadata
+
+`pack.json` may name who owns a pack and which version it is, for a team that publishes and pins its own packs:
+
+```json
+{
+  "id": "erp",
+  "domains": ["erp.example.internal"],
+  "prefix": "/erp",
+  "source": "authored",
+  "version": "1.4.0",
+  "owner": "integration-platform@example.com",
+  "description": "The ERP order and invoice endpoints the fulfilment workflows call",
+  "license": "internal"
+}
+```
+
+`packs validate` accepts all four; `packs list` shows the version and owner when a pack has them. A recorded pack also carries `provenance` (when, by which release, redacted).
 
 ## Which pack answers a call
 

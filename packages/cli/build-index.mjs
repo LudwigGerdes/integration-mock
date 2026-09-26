@@ -1,3 +1,4 @@
+import { createHash } from 'node:crypto';
 import { readdir, stat, readFile, writeFile } from 'node:fs/promises';
 import { join } from 'node:path';
 
@@ -28,9 +29,22 @@ for (const id of (await readdir(packsDir)).sort()) {
 	if (!(await stat(dir)).isDirectory()) continue;
 	const files = await walk(dir);
 	let bytes = 0;
-	for (const f of files) bytes += (await stat(join(dir, f))).size;
+	const sha256 = {};
+	for (const f of files) {
+		const content = await readFile(join(dir, f));
+		bytes += content.length;
+		sha256[f] = createHash('sha256').update(content).digest('hex');
+	}
 	const meta = JSON.parse(await readFile(join(dir, 'pack.json'), 'utf8'));
-	entries[id] = { domains: meta.domains ?? [], prefix: meta.prefix, bytes, files };
+	entries[id] = {
+		domains: meta.domains ?? [],
+		prefix: meta.prefix,
+		bytes,
+		files,
+		sha256,
+		...(meta.version === undefined ? {} : { version: meta.version }),
+		...(meta.owner === undefined ? {} : { owner: meta.owner }),
+	};
 }
 
 const body = JSON.stringify(entries, null, '\t').replace(/\n/g, '\n\t');
@@ -48,6 +62,10 @@ export interface PackIndexEntry {
 	prefix: string;
 	bytes: number;
 	files: string[];
+	/** sha256 of each file as this release shipped it; \`packs install\` checks downloads against it. */
+	sha256: Record<string, string>;
+	version?: string;
+	owner?: string;
 }
 
 export const PACK_INDEX: Record<string, PackIndexEntry> = ${body};

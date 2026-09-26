@@ -3,9 +3,25 @@ export type PackFetcher = (url: string) => Promise<string>;
 
 export const PACK_REPO = 'LudwigGerdes/integration-mock';
 
-/** Where a pack's file lives in the repository at a given ref. */
+/** The environment variable that points \`packs install\` at a mirror. */
+export const PACK_INDEX_URL_ENV = 'INTEGRATION_MOCK_PACK_INDEX_URL';
+
+/**
+ * Where packs are downloaded from: \`<base>/<id>/<file>\`. The default is this
+ * repository at the release tag; \`INTEGRATION_MOCK_PACK_INDEX_URL\` replaces the
+ * base with a mirror a team controls (an internal web server, an artifact
+ * store), which is what an allow-listed network needs. The files are checked
+ * against the release's own sha256 index either way.
+ */
+export const packBaseUrl = (ref: string): string => {
+	const mirror = process.env[PACK_INDEX_URL_ENV];
+	if (mirror !== undefined && mirror !== '') return mirror.replace(/\/+$/, '');
+	return `https://raw.githubusercontent.com/${PACK_REPO}/${ref}/packages/packs/packs`;
+};
+
+/** Where a pack's file lives at a given ref (or on the configured mirror). */
 export const packFileUrl = (ref: string, id: string, file: string): string =>
-	`https://raw.githubusercontent.com/${PACK_REPO}/${ref}/packages/packs/packs/${id}/${file}`;
+	`${packBaseUrl(ref)}/${id}/${file}`;
 
 /** The innermost message: `fetch failed` alone says nothing a user can act on. */
 const rootCause = (e: unknown): string => {

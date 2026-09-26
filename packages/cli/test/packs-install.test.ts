@@ -94,8 +94,39 @@ describe('packs install', () => {
 			url.endsWith('pack.json')
 				? JSON.stringify({ id: 'stripe', domains: [], prefix: 'no-leading-slash', source: 'openapi' })
 				: fromDisk(url);
-		await expect(run(['packs', 'install', 'stripe'], corrupt)).rejects.toThrow(/failed validation/);
+		await expect(run(['packs', 'install', 'stripe', '--no-verify'], corrupt)).rejects.toThrow(/failed validation/);
 		expect(existsSync(join(process.env.INTEGRATION_MOCK_HOME!, 'packs', 'stripe'))).toBe(false);
+	});
+
+	it('checks every file against the release index and removes a download that differs', async () => {
+		const tampered: PackFetcher = async (url) => {
+			const body = await fromDisk(url);
+			return url.endsWith('.json') && !url.endsWith('pack.json') ? body.replace('[', '[{"id":"evil","match":{"method":"GET","path":"/x"}},') : body;
+		};
+		await expect(run(['packs', 'install', 'stripe'], tampered)).rejects.toThrow(/does not match this release's index.*sha256/s);
+		expect(existsSync(join(process.env.INTEGRATION_MOCK_HOME!, 'packs', 'stripe'))).toBe(false);
+		expect(await run(['packs', 'install', 'stripe'], fromDisk)).toMatch(/sha256 verified/);
+	});
+
+	it('another ref is installed unverified, and says so', async () => {
+		const out = await run(['packs', 'install', 'stripe', '--ref', 'main'], fromDisk);
+		expect(out).toMatch(/not verified: --ref main/);
+	});
+
+	it('INTEGRATION_MOCK_PACK_INDEX_URL points install at a mirror', async () => {
+		process.env.INTEGRATION_MOCK_PACK_INDEX_URL = 'https://packs.example.test/mirror/';
+		try {
+			expect(packFileUrl('v1.2.3', 'stripe', 'pack.json')).toBe('https://packs.example.test/mirror/stripe/pack.json');
+			const seen: string[] = [];
+			const mirror: PackFetcher = async (url) => {
+				seen.push(url);
+				return fromDisk(url.replace('https://packs.example.test/mirror', 'x/packages/packs/packs'));
+			};
+			expect(await run(['packs', 'install', 'stripe'], mirror)).toMatch(/sha256 verified/);
+			expect(seen[0]).toMatch(/^https:\/\/packs\.example\.test\/mirror\/stripe\//);
+		} finally {
+			delete process.env.INTEGRATION_MOCK_PACK_INDEX_URL;
+		}
 	});
 
 	it('builds the documented URL shape', () => {
