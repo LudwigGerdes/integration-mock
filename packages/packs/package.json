@@ -1,6 +1,6 @@
 {
 	"name": "integration-mock-packs",
-	"version": "0.1.1",
+	"version": "0.2.0",
 	"private": true,
 	"description": "integration-mock internals: OpenAPI pack generator, spec sourcing, reverse-mappers and the shipped vendor packs (bundled into the integration-mock CLI; not published)",
 	"license": "MIT",

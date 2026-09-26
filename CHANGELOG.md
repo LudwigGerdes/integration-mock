@@ -5,6 +5,8 @@ All notable changes to this project are documented here. The format follows
 
 ## [Unreleased]
 
+## 0.2.0 — 2026-09-26
+
 ### Added
 
 - Routes can answer differently over time: `sequence` gives responses in call order (then `respond`, or the last entry repeats), and `respond.template: true` renders `{{request.body.x}}`, `{{request.query.x}}`, `{{request.params.x}}`, `{{request.headers.x}}`, `{{uuid}}`, `{{now}}`, `{{timestamp}}` and `{{counter}}` into the body and headers. Both are opt-in per route; counts reset with `packs reset`.

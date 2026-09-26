@@ -20,7 +20,7 @@ pnpm monorepo, TypeScript, ESM, strict.
 `integration-mock-core`, `integration-mock-proxy` and `integration-mock-packs` stay `"private": true`
 on purpose: they are compile-time inputs of the `integration-mock` bundle, listed as its
 `devDependencies`, and are never published. Only `packages/cli` carries publish
-metadata. Everything sits at one version (`0.1.1`); `packages/cli/src/version.ts`
+metadata. Everything sits at one version (`0.2.0`); `packages/cli/src/version.ts`
 must match `packages/cli/package.json` (`version.test.ts` checks).
 
 Other top-level directories: `schema/` (JSON Schemas for pack and test files),
