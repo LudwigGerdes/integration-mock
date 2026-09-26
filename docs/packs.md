@@ -89,6 +89,48 @@ This creates:
 
 [`skills/integration-mock-author-pack/SKILL.md`](https://github.com/LudwigGerdes/integration-mock/blob/main/skills/integration-mock-author-pack/SKILL.md) is an agent skill that writes a pack from a service's documentation. The agent writes the files and `packs validate --json` tells it what is wrong. integration-mock itself never calls a model.
 
+## Responses that change
+
+A static body cannot test a workflow that creates a record and then reads it back. Two additions to a route cover most of that.
+
+`sequence` answers each call in turn — the first call gets the first response, the second the second — and past the end `respond` answers (or, without one, the last entry repeats). Counts reset with `packs reset`.
+
+```json
+{
+  "id": "create-order",
+  "match": { "method": "POST", "path": "/orders" },
+  "sequence": [
+    { "status": 201, "body": { "id": "o_1" } },
+    { "status": 429, "body": { "error": "rate limited" } }
+  ],
+  "respond": { "status": 201, "body": { "id": "o_n" } }
+}
+```
+
+`template: true` renders placeholders in the body and headers from the request:
+
+```json
+{
+  "id": "get-order",
+  "match": { "method": "GET", "path": "/orders/:id" },
+  "respond": {
+    "status": 200,
+    "template": true,
+    "body": { "id": "{{request.params.id}}", "customer": "{{request.body.customer}}", "seen": "{{counter}}", "at": "{{now}}" }
+  }
+}
+```
+
+| Placeholder | Value |
+|---|---|
+| `request.body.<path>`, `request.query.<key>`, `request.params.<name>`, `request.headers.<name>` | From the request. A string that is only a placeholder yields the value itself, so an object is echoed as an object |
+| `request.path`, `request.method` | The request line |
+| `uuid` | A fresh v4 id |
+| `now`, `timestamp` | ISO time, epoch seconds |
+| `counter` | How many times this route has answered, from 1 |
+
+Templating is off unless the route asks for it, so a recorded body that happens to contain `{{…}}` replays as it was. An unknown placeholder is left as written.
+
 ## Generating a pack from OpenAPI
 
 ```bash

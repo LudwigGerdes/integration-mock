@@ -167,6 +167,14 @@ export const PACK_SCHEMA = {
 					"note": {
 						"description": "Free text: where this route came from. An authored pack should cite the documentation section it was derived from, so a later verification run has something to diff against.",
 						"type": "string"
+					},
+					"sequence": {
+						"description": "Responses in call order; past the end, respond answers, or the last entry repeats.",
+						"type": "array",
+						"minItems": 1,
+						"items": {
+							"$ref": "#/$defs/respond"
+						}
 					}
 				}
 			},
@@ -221,7 +229,11 @@ export const PACK_SCHEMA = {
 							"type": "string"
 						}
 					},
-					"body": true
+					"body": true,
+					"template": {
+						"description": "Render {{\u2026}} placeholders in body and headers from the request: request.body.x, request.query.x, request.params.x, request.headers.x, request.path, request.method, uuid, now, timestamp, counter. Off by default.",
+						"type": "boolean"
+					}
 				}
 			}
 		}

@@ -18,6 +18,7 @@ import {
 	type Route,
 	type ServicePack,
 	type Snapshot,
+	type CallCounters,
 } from 'integration-mock-core';
 
 export interface ProxyState {
@@ -44,6 +45,8 @@ export class MockEngine {
 	private enabled: Set<string>;
 	private snapshot?: Snapshot;
 	private stores = new Map<string, ResourceStore>();
+	/** Per-route answer counts, for `sequence` and `{{counter}}`; reset with the stores. */
+	private counters: CallCounters = new Map();
 	private recording = new Map<string, ServicePack>();
 
 	/** The project config's `redact` paths, applied to everything written to disk. */
@@ -113,6 +116,7 @@ export class MockEngine {
 			this.packs.project = layers.project.filter((p) => !liveIds.has(p.id)).concat(live);
 		}
 		this.stores.clear();
+		this.counters.clear();
 	}
 
 	/** Add a pack to the library layer at runtime (tests, and record's host lookup). */
@@ -125,10 +129,12 @@ export class MockEngine {
 		this.packs.snapshot = s?.packs ?? [];
 		for (const p of this.packs.snapshot) this.enabled.add(p.id);
 		this.stores.clear();
+		this.counters.clear();
 	}
 
 	resetStores(): void {
 		this.stores.clear();
+		this.counters.clear();
 	}
 
 	/** Service id when this host should be intercepted, else `null` (raw tunnel). */
@@ -219,7 +225,7 @@ export class MockEngine {
 				matched: 'unmatched',
 			};
 		} else {
-			res = resolve(this.packs, service, req, this.store(service));
+			res = resolve(this.packs, service, req, this.store(service), this.counters);
 		}
 		this.logCall(service, req, res, started, fault);
 		return res;

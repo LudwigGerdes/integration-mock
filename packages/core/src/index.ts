@@ -18,3 +18,4 @@ export * from './config.js';
 export * from './snapshot/index.js';
 export * from './test-file.js';
 export * from './assert.js';
+export * from './template.js';

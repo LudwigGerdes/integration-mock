@@ -11,12 +11,20 @@ export interface RouteResponse {
 	status: number;
 	headers?: Record<string, string>;
 	body?: unknown;
+	/** Render `{{…}}` placeholders in body and headers from the request (see template.ts). Off by default. */
+	template?: boolean;
 }
 
 export interface Route {
 	id: string;
 	match: RouteMatch;
 	respond?: RouteResponse;
+	/**
+	 * Responses in call order: the first call gets the first, the second the
+	 * second. Past the end, `respond` answers; without one, the last entry
+	 * repeats. Counts reset with `packs reset`.
+	 */
+	sequence?: RouteResponse[];
 	handler?: string;
 	/** Where this route came from — a doc section for authored packs. */
 	note?: string;

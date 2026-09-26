@@ -1,6 +1,10 @@
-import { matchRoute } from './matcher.js';
-import type { Layer, MockRequest, Resolution, ServicePack } from './types.js';
+import { matchPath, matchRoute } from './matcher.js';
+import { renderTemplate } from './template.js';
+import type { Layer, MockRequest, Resolution, RouteResponse, ServicePack } from './types.js';
 import type { ResourceStore } from './store.js';
+
+/** How many times each route has answered, keyed `<service>/<route id>`. Owned by the engine. */
+export type CallCounters = Map<string, number>;
 
 export interface LayeredPacks {
 	library: ServicePack[];
@@ -66,6 +70,7 @@ export function resolve(
 	service: string,
 	req: MockRequest,
 	store: ResourceStore,
+	counters: CallCounters = new Map(),
 ): Resolution {
 	for (const layer of ORDER) {
 		for (const pk of packs[layer]) {
@@ -73,11 +78,23 @@ export function resolve(
 			for (const route of pk.routes) {
 				if (!matchRoute(route, req)) continue;
 				// Handler routes are executed from phase 3 onward; until then they are skipped.
-				if (!route.respond) continue;
+				if (!route.respond && !route.sequence?.length) continue;
+				const key = `${service}/${route.id}`;
+				const count = (counters.get(key) ?? 0) + 1;
+				counters.set(key, count);
+				const chosen: RouteResponse | undefined =
+					route.sequence?.[count - 1] ?? route.respond ?? route.sequence?.at(-1);
+				if (chosen === undefined) continue;
+				const ctx = { request: req, params: matchPath(route.match.path, req.path) ?? {}, count };
+				const body = chosen.template === true ? renderTemplate(chosen.body, ctx) : chosen.body;
+				const headers =
+					chosen.template === true
+						? (renderTemplate(chosen.headers ?? {}, ctx) as Record<string, string>)
+						: (chosen.headers ?? {});
 				return {
-					status: route.respond.status,
-					headers: { 'content-type': 'application/json', ...route.respond.headers },
-					body: route.respond.body,
+					status: chosen.status,
+					headers: { 'content-type': 'application/json', ...headers },
+					body,
 					matched: { routeId: route.id, layer },
 				};
 			}

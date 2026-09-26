@@ -55,6 +55,6 @@ Both are plain text under `~/.integration-mock/`. Credential headers and query p
 
 ## Limitations
 
-- Identical repeated calls get the first matching route's answer. A node that posted three different messages replays the first response three times.
+- A route answers the same way every time unless it has a `sequence` or `template: true` (see [Packs](https://workflowtools.dev/integration-mock/packs)). A recorded pack has neither, so a node that posted three different messages replays the first response three times.
 - Pagination is recorded as a single page, with a warning.
 - The mock port has no authentication and serves plain HTTP. Do not expose it to the internet as it is.
