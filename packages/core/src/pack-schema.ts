@@ -321,6 +321,15 @@ export const PACK_SCHEMA = {
 								"pattern": "^(query|body|params)\\."
 							}
 						}
+					},
+					"coerce": {
+						"type": "object",
+						"additionalProperties": {
+							"enum": [
+								"number",
+								"boolean"
+							]
+						}
 					}
 				}
 			},
@@ -439,7 +448,8 @@ export const PACK_SCHEMA = {
 							"style": {
 								"enum": [
 									"hubspot",
-									"soql"
+									"soql",
+									"unsupported"
 								]
 							}
 						}

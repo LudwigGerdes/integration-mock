@@ -164,6 +164,7 @@ A route with a `store` block reads and writes the mock's records instead of answ
 | `id` | `field` holds the id (default `id`); `format` mints new ones: literal text plus `{{seq:N}}` (a counter, zero-padded to N) or `{{uuid}}` |
 | `stamp` | Fields added to a new record, rendered as a template (`{{record.id}}`, `{{now}}`, `{{timestamp}}`) |
 | `update` | `merge` (default; nested objects merge key by key) or `replace` |
+| `coerce` | Fields to turn from form-encoded strings into the type the vendor returns: `{ "amount": "number", "paid": "boolean" }` |
 | `notFound`, `badRequest`, `conflict` | The vendor's own error responses. `{{error}}` holds the reason |
 
 A JSON body must be an object. A form-encoded body (`application/x-www-form-urlencoded`) is read with brackets: `metadata[plan]=pro` is `{ "metadata": { "plan": "pro" } }`.
@@ -194,14 +195,14 @@ A JSON body must be an object. A form-encoded body (`application/x-www-form-urle
 ]
 ```
 
-`from` is `query.<name>`, `body.<path>` or `params.<name>`; a filter whose input is absent is skipped. `op` is `eq` (default), `ne`, `gt`, `gte`, `lt`, `lte`, `contains` or `in` (comma-separated). Two vendor styles:
+`from` is `query.<name>`, `body.<path>` or `params.<name>`; a filter whose input is absent or empty is skipped. A filter the mock does not implement can be declared `{ "from": "body.query", "style": "unsupported" }`: sending it answers `400` instead of returning everything. A SOQL `FROM` naming an object the pack does not model answers `400` too. `op` is `eq` (default), `ne`, `gt`, `gte`, `lt`, `lte`, `contains` or `in` (comma-separated). Two vendor styles:
 
 - `hubspot` reads `filterGroups` (groups OR'd, filters within a group AND'd) with `EQ`, `NEQ`, `GT`, `GTE`, `LT`, `LTE` and `CONTAINS_TOKEN` on `properties.<name>`.
 - `soql` reads `SELECT … FROM <Type> [WHERE a = 'x' AND b > 5] [ORDER BY f DESC] [LIMIT n]`. `FROM` picks the collection, so one route serves every object. `OR`, parentheses, functions, relationship fields and `IN` answer `400` naming the construct.
 
 ### Idempotency
 
-`"idempotency": { "header": "Idempotency-Key" }` on a `create` or `update`: the same key with the same body returns the first response again; with a different body it answers `conflict` (`409`). `packs reset` clears records, counters, page tokens and keys.
+`"idempotency": { "header": "Idempotency-Key" }` on a `create` or `update`: the same key with the same body returns the first response again; with a different body it answers `conflict` (`409`). `packs reset` clears records, counters, page tokens and keys. The mock keeps at most 1,000 page tokens and 10,000 idempotency keys per service, dropping the oldest.
 
 Salesforce (Opportunity, Account, Contact), HubSpot (contacts, companies, deals) and Stripe (customers, charges) ship with stateful routes. `verify` compares only the status of a stateful route, since its body is computed.
 

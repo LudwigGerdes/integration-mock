@@ -361,6 +361,9 @@
             "message": "Keys for idempotent requests can only be used with the same parameters they were first used with."
           }
         }
+      },
+      "coerce": {
+        "balance": "number"
       }
     },
     "respond": {
@@ -385,6 +388,26 @@
         {
           "from": "query.email",
           "field": "email"
+        },
+        {
+          "from": "query.created[gte]",
+          "field": "created",
+          "op": "gte"
+        },
+        {
+          "from": "query.created[gt]",
+          "field": "created",
+          "op": "gt"
+        },
+        {
+          "from": "query.created[lte]",
+          "field": "created",
+          "op": "lte"
+        },
+        {
+          "from": "query.created[lt]",
+          "field": "created",
+          "op": "lt"
         }
       ],
       "pagination": {
@@ -481,6 +504,9 @@
             "message": "Keys for idempotent requests can only be used with the same parameters they were first used with."
           }
         }
+      },
+      "coerce": {
+        "balance": "number"
       }
     },
     "respond": {
@@ -565,6 +591,11 @@
             "message": "Keys for idempotent requests can only be used with the same parameters they were first used with."
           }
         }
+      },
+      "coerce": {
+        "amount": "number",
+        "amount_captured": "number",
+        "amount_refunded": "number"
       }
     },
     "respond": {
@@ -589,6 +620,26 @@
         {
           "from": "query.customer",
           "field": "customer"
+        },
+        {
+          "from": "query.created[gte]",
+          "field": "created",
+          "op": "gte"
+        },
+        {
+          "from": "query.created[gt]",
+          "field": "created",
+          "op": "gt"
+        },
+        {
+          "from": "query.created[lte]",
+          "field": "created",
+          "op": "lte"
+        },
+        {
+          "from": "query.created[lt]",
+          "field": "created",
+          "op": "lt"
         }
       ],
       "pagination": {

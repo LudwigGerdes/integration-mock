@@ -86,3 +86,13 @@ describe('sortRows', () => {
 		expect(sortRows(rows.slice(0, 3), undefined)).toEqual(rows.slice(0, 3));
 	});
 });
+
+describe('review fixes: page tokens', () => {
+	it('keeps at most 1000 tokens, evicting the oldest', () => {
+		const tokens = new PageTokens();
+		const first = tokens.issue({ collection: 'c', ids: [], offset: 1, limit: 1 });
+		for (let i = 0; i < 1000; i++) tokens.issue({ collection: 'c', ids: [], offset: 1, limit: 1 });
+		expect(tokens.get(first)).toBeUndefined();
+		expect(tokens.size).toBe(1000);
+	});
+});

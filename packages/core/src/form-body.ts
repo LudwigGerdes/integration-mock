@@ -2,6 +2,8 @@ import type { MockRequest } from './types.js';
 
 type Container = Record<string, unknown> | unknown[];
 
+/** The largest array index a form key may name; a larger one would allocate a huge sparse array. */
+const MAX_INDEX = 10_000;
 const UNSAFE = new Set(['__proto__', 'constructor', 'prototype']);
 const KEY = /^([^[\]]+)((?:\[[^[\]]*\])*)$/;
 
@@ -9,7 +11,7 @@ const isContainer = (v: unknown): v is Container => v !== null && typeof v === '
 
 /** Set `value` at `path`, creating arrays for `[]`/`[n]` steps and objects otherwise. */
 function assign(target: Record<string, unknown>, path: string[], value: string): void {
-	if (path.some((p) => UNSAFE.has(p))) return;
+	if (path.some((p) => UNSAFE.has(p) || (/^\d+$/.test(p) && Number(p) > MAX_INDEX))) return;
 	let cur: Container = target;
 	for (let i = 0; i < path.length; i++) {
 		const key = path[i]!;

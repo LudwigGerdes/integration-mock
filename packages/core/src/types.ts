@@ -192,7 +192,8 @@ export interface FlatFilter {
 /** A structured filter in a vendor's own shape. */
 export interface StyledFilter {
 	from: string;
-	style: 'hubspot' | 'soql';
+	/** `unsupported`: the vendor honours this input but the mock does not; sending it answers 400. */
+	style: 'hubspot' | 'soql' | 'unsupported';
 }
 
 export type FilterSpec = FlatFilter | StyledFilter;
@@ -217,4 +218,6 @@ export interface StoreSpec {
 	pagination?: PaginationSpec;
 	filters?: FilterSpec[];
 	idempotency?: IdempotencySpec;
+	/** Form-encoded values arrive as strings; coerce the named fields to the type the vendor returns. */
+	coerce?: Record<string, 'number' | 'boolean'>;
 }

@@ -39,3 +39,9 @@ describe('isFormRequest', () => {
 		expect(isFormRequest(req())).toBe(false);
 	});
 });
+
+describe('review fixes: form bodies', () => {
+	it('drops an array index above 10000 instead of allocating it', () => {
+		expect(parseFormBody('items[50000000][price]=x&ok=1')).toEqual({ ok: '1' });
+	});
+});

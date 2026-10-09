@@ -10,6 +10,9 @@ export interface PageToken {
 	fields?: string[] | '*';
 }
 
+/** Tokens kept per store; the oldest is evicted past this. */
+const MAX_TOKENS = 1000;
+
 /** Opaque page tokens for `nextUrl` paging. Owned by the store, cleared with it. */
 export class PageTokens {
 	private next = 1;
@@ -18,7 +21,13 @@ export class PageTokens {
 	issue(token: PageToken): string {
 		const id = `mock${String(this.next++).padStart(6, '0')}-${token.offset}`;
 		this.tokens.set(id, token);
+		// A long-running daemon must not keep every snapshot it ever issued.
+		if (this.tokens.size > MAX_TOKENS) this.tokens.delete(this.tokens.keys().next().value!);
 		return id;
+	}
+
+	get size(): number {
+		return this.tokens.size;
 	}
 
 	get(id: string): PageToken | undefined {

@@ -223,3 +223,15 @@ describe('store route semantics', () => {
 		expect(codes(pack([r('l', '/l', 'GET', { op: 'list', collection: 'c' })], seed))).toContain('unpaged-list');
 	});
 });
+
+describe('review fixes: validation', () => {
+	it('a route-level store beside a sequence without respond is an error', () => {
+		const route = {
+			id: 's',
+			match: { method: 'POST', path: '/s' },
+			store: { op: 'create', collection: 'c' },
+			sequence: [{ status: 201, template: true, body: '{{record}}' }],
+		};
+		expect(codes({ ...base, routes: [...base.routes, route] })).toContain('store-respond');
+	});
+});

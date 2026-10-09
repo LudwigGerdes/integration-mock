@@ -26,6 +26,19 @@ function idFrom(spec: StoreSpec, params: Record<string, string>): string | undef
 	return values.length === 1 ? values[0] : undefined;
 }
 
+/** Turn form-encoded strings into the types the vendor returns, for the fields `coerce` names. */
+function coerced(record: Row, coerce: StoreSpec['coerce']): Row | undefined {
+	if (coerce === undefined) return undefined;
+	const patch: Row = {};
+	for (const [field, type] of Object.entries(coerce)) {
+		const v = record[field];
+		if (typeof v !== 'string') continue;
+		if (type === 'number' && v.trim() !== '' && Number.isFinite(Number(v))) patch[field] = Number(v);
+		if (type === 'boolean' && (v === 'true' || v === 'false')) patch[field] = v === 'true';
+	}
+	return Object.keys(patch).length === 0 ? undefined : patch;
+}
+
 /** The object a create/update stores; an absent body is `{}`, anything not an object is refused. */
 function objectBody(body: unknown): Row | undefined {
 	if (body === undefined || body === null || body === '') return {};
@@ -47,6 +60,8 @@ export function runStoreOp(spec: StoreSpec, req: MockRequest, params: Record<str
 			const stamped = renderTemplate(spec.stamp, { request: req, params, count: 1, extra: { record } });
 			if (isPlain(stamped)) record = store.updateRecord(collection, String(record[store.idField(collection)]), stamped, 'merge') ?? record;
 		}
+		const typed = coerced(record, spec.coerce);
+		if (typed !== undefined) record = store.updateRecord(collection, String(record[store.idField(collection)]), typed, 'merge') ?? record;
 		return { kind: 'ok', record };
 	}
 
@@ -60,8 +75,11 @@ export function runStoreOp(spec: StoreSpec, req: MockRequest, params: Record<str
 	if (spec.op === 'update') {
 		const patch = objectBody(body);
 		if (patch === undefined) return { kind: 'badRequest', error: 'expected a JSON object body' };
-		const record = store.updateRecord(collection, id, patch, spec.update ?? 'merge');
-		return record === undefined ? { kind: 'notFound' } : { kind: 'ok', record };
+		let record = store.updateRecord(collection, id, patch, spec.update ?? 'merge');
+		if (record === undefined) return { kind: 'notFound' };
+		const typed = coerced(record, spec.coerce);
+		if (typed !== undefined) record = store.updateRecord(collection, id, typed, 'merge') ?? record;
+		return { kind: 'ok', record };
 	}
 	const record = store.get(collection, id);
 	if (record === undefined) return { kind: 'notFound' };
@@ -95,7 +113,10 @@ function listOp(spec: StoreSpec, req: MockRequest, params: Record<string, string
 		const parsed = parseSoql(input);
 		if (!parsed.ok) return { kind: 'badRequest', error: parsed.error };
 		soql = parsed.query;
-		collection = store.resolveCollection(soql.from);
+		collection = store.knows(soql.from);
+		// Real Salesforce answers INVALID_TYPE; an empty 200 would let the
+		// workflow carry on as though the query had matched nothing.
+		if (collection === undefined) return { kind: 'badRequest', error: `sObject type '${soql.from}' is not supported by this pack` };
 	}
 	if (collection === undefined) return { kind: 'badRequest', error: 'this route names no collection' };
 

@@ -196,6 +196,28 @@ describe('Stripe', () => {
 		call({ method: 'POST', path: '/v1/charges', headers: form, body: 'amount=500&currency=usd&customer=cus_B' });
 		const list = call({ path: '/v1/charges', query: { customer: 'cus_A' } }).body as { data: Array<{ id: string; amount: string }> };
 		expect(list.data).toHaveLength(1);
-		expect(list.data[0]).toMatchObject({ id: 'ch_MOCK000001', amount: '2000', object: 'charge', status: 'succeeded' });
+		expect(list.data[0]).toMatchObject({ id: 'ch_MOCK000001', amount: 2000, object: 'charge', status: 'succeeded' });
+	});
+});
+
+describe('review fixes: proof packs', () => {
+	it('Stripe filters customers by created range, typed as numbers', async () => {
+		const { call } = await harness('stripe');
+		const form = { 'content-type': 'application/x-www-form-urlencoded' };
+		call({ method: 'POST', path: '/v1/customers', headers: form, body: 'email=a%40x.io' });
+		const res = call({ path: '/v1/customers', query: { 'created[gte]': '9999999999' } }).body as { data: unknown[] };
+		expect(res.data).toEqual([]);
+		const all = call({ path: '/v1/customers', query: { 'created[lte]': '9999999999' } }).body as { data: Array<{ created: unknown }> };
+		expect(all.data).toHaveLength(1);
+		expect(typeof all.data[0]!.created).toBe('number');
+	});
+
+	it('HubSpot search refuses free-text query and sorts rather than returning everything', async () => {
+		const { call } = await harness('hubspot');
+		expect(call({ method: 'POST', path: '/crm/v3/objects/contacts/search', body: { query: 'ada' } })).toMatchObject({
+			status: 400,
+			body: { error: 'body.query is not supported by integration-mock' },
+		});
+		expect(call({ method: 'POST', path: '/crm/v3/objects/contacts/search', body: { sorts: [{ propertyName: 'email' }] } }).status).toBe(400);
 	});
 });

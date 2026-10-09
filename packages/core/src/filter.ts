@@ -124,9 +124,10 @@ export function applyFilters(
 	let out = rows;
 	for (const f of filters) {
 		const input = readInput(f.from, req, body, params);
-		if (input === undefined || input === '') continue;
+		if (input === undefined || input === '' || (Array.isArray(input) && input.length === 0)) continue;
 		if ('style' in f) {
 			if (f.style === 'soql') continue;
+			if (f.style === 'unsupported') return { ok: false, error: `${f.from} is not supported by integration-mock` };
 			const r = hubspot(out, input);
 			if (!r.ok) return r;
 			out = r.rows;

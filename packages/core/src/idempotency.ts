@@ -8,6 +8,9 @@ export interface RememberedResponse {
 	body: unknown;
 }
 
+/** Keys kept per store; the oldest is evicted past this. */
+const MAX_ENTRIES = 10_000;
+
 export type IdempotencyLookup = { kind: 'miss' } | { kind: 'hit'; response: RememberedResponse } | { kind: 'conflict' };
 
 const stable = (v: unknown): unknown =>
@@ -58,6 +61,12 @@ export class IdempotencyCache {
 
 	remember(scope: string, key: string, body: unknown, response: RememberedResponse): void {
 		this.entries.set(`${scope}\u0000${key}`, { hash: bodyHash(body), response: structuredClone(response) });
+		// Bounded, as a long-running daemon would otherwise keep every response.
+		if (this.entries.size > MAX_ENTRIES) this.entries.delete(this.entries.keys().next().value!);
+	}
+
+	get size(): number {
+		return this.entries.size;
 	}
 
 	clear(): void {
