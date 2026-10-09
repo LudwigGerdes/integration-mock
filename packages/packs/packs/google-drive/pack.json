@@ -8,62 +8,56 @@
   "scenarios": {
     "revoked": {
       "status": 401,
-      "headers": {
-        "WWW-Authenticate": "Bearer realm=\"https://accounts.google.com/\""
-      },
       "body": {
         "error": {
-          "code": 401,
-          "message": "Request had invalid authentication credentials.",
           "errors": [
             {
-              "message": "Invalid Credentials",
               "domain": "global",
               "reason": "authError",
-              "location": "Authorization",
-              "locationType": "header"
+              "message": "Invalid Credentials",
+              "locationType": "header",
+              "location": "Authorization"
             }
           ],
-          "status": "UNAUTHENTICATED"
+          "code": 401,
+          "message": "Invalid Credentials"
         }
       },
-      "note": "https://developers.google.com/workspace/drive/api/guides/handle-errors — reason authError / Invalid Credentials per the docs; status field per https://google.aip.dev/193"
+      "note": "https://developers.google.com/workspace/drive/api/guides/handle-errors: the documented 401 body"
     },
     "forbidden": {
       "status": 403,
       "body": {
         "error": {
-          "code": 403,
-          "message": "Request had insufficient authentication scopes.",
           "errors": [
             {
-              "message": "Insufficient Permission",
               "domain": "global",
-              "reason": "insufficientPermissions"
+              "reason": "insufficientFilePermissions",
+              "message": "The user does not have sufficient permissions for file {fileId}."
             }
           ],
-          "status": "PERMISSION_DENIED"
+          "code": 403,
+          "message": "The user does not have sufficient permissions for file {fileId}."
         }
       },
-      "note": "https://developers.google.com/workspace/drive/api/guides/handle-errors — insufficientPermissions; message and status field from observed responses, not shown in the docs"
+      "note": "https://developers.google.com/workspace/drive/api/guides/handle-errors: the documented 403 insufficientFilePermissions body, {fileId} as the docs print it"
     },
     "rateLimit": {
       "status": 429,
       "body": {
         "error": {
-          "code": 429,
-          "message": "Rate Limit Exceeded",
           "errors": [
             {
-              "message": "Rate Limit Exceeded",
               "domain": "usageLimits",
-              "reason": "rateLimitExceeded"
+              "reason": "rateLimitExceeded",
+              "message": "Rate Limit Exceeded"
             }
           ],
-          "status": "RESOURCE_EXHAUSTED"
+          "code": 429,
+          "message": "Rate Limit Exceeded"
         }
       },
-      "note": "https://developers.google.com/workspace/drive/api/guides/handle-errors — 429 rateLimitExceeded body as documented (Drive also answers 403 userRateLimitExceeded)"
+      "note": "https://developers.google.com/workspace/drive/api/guides/handle-errors: the documented 429 rateLimitExceeded body"
     }
   }
 }

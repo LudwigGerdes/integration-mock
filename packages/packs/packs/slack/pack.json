@@ -12,7 +12,7 @@
         "ok": false,
         "error": "invalid_auth"
       },
-      "note": "https://docs.slack.dev/reference/methods/chat.postMessage — invalid_auth (token_revoked, account_inactive and not_authed are the other credential errors); Slack answers HTTP 200 with ok:false"
+      "note": "https://docs.slack.dev/reference/methods/chat.postMessage lists invalid_auth; Slack's own SDK test server answers HTTP 200 with exactly this body (slackapi/python-slack-sdk tests/slack_sdk/web/mock_web_api_handler.py)"
     },
     "forbidden": {
       "status": 200,
@@ -20,7 +20,7 @@
         "ok": false,
         "error": "missing_scope"
       },
-      "note": "https://docs.slack.dev/reference/methods/chat.postMessage — missing_scope; live answers also carry needed/provided, which the docs do not list"
+      "note": "https://docs.slack.dev/reference/methods/chat.postMessage lists missing_scope; method errors arrive as HTTP 200 with ok:false (slackapi/java-slack-sdk docs/english/guides/web-api-basics.md)"
     },
     "rateLimit": {
       "status": 429,
@@ -31,7 +31,7 @@
         "ok": false,
         "error": "ratelimited"
       },
-      "note": "https://docs.slack.dev/apis/web-api/rate-limits — 429 with Retry-After; the docs show no body, ratelimited is the documented error string"
+      "note": "https://docs.slack.dev/apis/web-api/rate-limits documents 429 with Retry-After; the body is the one Slack's own SDK test server sends (slackapi/python-slack-sdk tests/slack_sdk/web/mock_web_api_handler.py)"
     }
   }
 }
