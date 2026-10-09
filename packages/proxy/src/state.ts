@@ -1,6 +1,10 @@
 import { join } from 'node:path';
 import {
 	FaultController,
+	ScenarioController,
+	scenarioResponse,
+	scenarioShapes,
+	type ScenarioState,
 	RequestLog,
 	ResourceStore,
 	projectPacksDir,
@@ -27,6 +31,7 @@ export interface ProxyState {
 	enabledPacks: string[];
 	activeSnapshot?: Snapshot;
 	faults: Faults;
+	scenarios: ScenarioState;
 }
 
 const sleep = (ms: number): Promise<void> => new Promise((r) => setTimeout(r, ms));
@@ -42,6 +47,7 @@ export class MockEngine {
 	private packs: LayeredPacks;
 	private log: RequestLog;
 	private faults: FaultController;
+	private readonly scenarios: ScenarioController;
 	private mode: Mode = 'off';
 	private enabled: Set<string>;
 	private snapshot?: Snapshot;
@@ -59,6 +65,7 @@ export class MockEngine {
 		packs: LayeredPacks;
 		log: RequestLog;
 		faults: FaultController;
+		scenarios?: ScenarioController;
 		enabledPacks?: string[];
 		redactPaths?: string[];
 		version?: string;
@@ -66,6 +73,7 @@ export class MockEngine {
 		this.packs = opts.packs;
 		this.log = opts.log;
 		this.faults = opts.faults;
+		this.scenarios = opts.scenarios ?? new ScenarioController();
 		this.enabled = new Set(opts.enabledPacks ?? []);
 		this.redactPaths = opts.redactPaths ?? [];
 		this.version = opts.version;
@@ -84,12 +92,17 @@ export class MockEngine {
 		return this.faults;
 	}
 
+	get scenariosRef(): ScenarioController {
+		return this.scenarios;
+	}
+
 	state(): ProxyState {
 		return {
 			mode: this.mode,
 			enabledPacks: [...this.enabled],
 			activeSnapshot: this.snapshot,
 			faults: this.faults.snapshot(),
+			scenarios: this.scenarios.snapshot(),
 		};
 	}
 
@@ -192,6 +205,7 @@ export class MockEngine {
 		res: Resolution,
 		started: number,
 		fault?: FaultSpec,
+		scenario?: 'auth' | 'rate-limit',
 	): void {
 		this.log.append({
 			service,
@@ -208,12 +222,19 @@ export class MockEngine {
 			matchedRoute: res.matched === 'unmatched' ? 'unmatched' : res.matched.routeId,
 			layer: res.matched === 'unmatched' ? undefined : res.matched.layer,
 			...(fault ? { fault } : {}),
+			...(scenario ? { scenario } : {}),
 		});
 	}
 
 	/** Serve one intercepted call in replay mode: faults first, then layered resolution. */
 	async handleReplay(service: string, req: MockRequest): Promise<Resolution> {
 		const started = Date.now();
+		const hit = this.scenarios.check(service, req);
+		if (hit) {
+			const res = scenarioResponse(hit, scenarioShapes(this.packs, service), req);
+			this.logCall(service, req, res, started, undefined, hit.kind === 'auth' ? 'auth' : 'rate-limit');
+			return res;
+		}
 		const fault = this.faults.next(service) ?? undefined;
 		if (fault?.delayMs) await sleep(fault.delayMs);
 
