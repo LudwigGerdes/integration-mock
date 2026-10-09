@@ -170,13 +170,15 @@ export const PACK_INDEX: Record<string, PackIndexEntry> = {
 				"api.hubapi.com"
 			],
 			"prefix": "/hubspot",
-			"bytes": 29303,
+			"bytes": 42500,
 			"files": [
 				"pack.json",
+				"routes/00-overrides.json",
 				"routes/10-generated.json"
 			],
 			"sha256": {
 				"pack.json": "961ef61ff3d85c6b3cf8cff8a8b12d4a39263271bd060555d708e5c16fb6b6c8",
+				"routes/00-overrides.json": "22ab2844169587861a61049e6b2dcd26c52a7a7d73c1a3fcdd250a599d4380c2",
 				"routes/10-generated.json": "1eed273aef04890a335df1e7199306cf083097ab7440e2a3e1b68750a1402c5f"
 			}
 		},

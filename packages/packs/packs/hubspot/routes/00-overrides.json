@@ -1,0 +1,590 @@
+[
+  {
+    "id": "hubspot:contacts-search",
+    "note": "Search: filterGroups (OR of AND groups), after/limit in the body.",
+    "match": {
+      "method": "POST",
+      "path": "/crm/v3/objects/contacts/search"
+    },
+    "store": {
+      "op": "list",
+      "collection": "contacts",
+      "filters": [
+        {
+          "from": "body.filterGroups",
+          "style": "hubspot"
+        }
+      ],
+      "pagination": {
+        "style": "cursor",
+        "in": "body",
+        "cursorParam": "after",
+        "limitParam": "limit",
+        "defaultLimit": 10,
+        "maxLimit": 200
+      }
+    },
+    "respond": {
+      "status": 200,
+      "template": true,
+      "headers": {
+        "content-type": "application/json"
+      },
+      "body": {
+        "total": "{{page.total}}",
+        "results": "{{records}}",
+        "paging": {
+          "next": {
+            "after": "{{page.next}}"
+          }
+        }
+      }
+    }
+  },
+  {
+    "id": "hubspot:contacts-create",
+    "match": {
+      "method": "POST",
+      "path": "/crm/v3/objects/contacts"
+    },
+    "store": {
+      "op": "create",
+      "collection": "contacts",
+      "id": {
+        "field": "id",
+        "format": "10{{seq:7}}"
+      },
+      "stamp": {
+        "createdAt": "{{now}}",
+        "updatedAt": "{{now}}",
+        "archived": false
+      }
+    },
+    "respond": {
+      "status": 201,
+      "template": true,
+      "headers": {
+        "content-type": "application/json"
+      },
+      "body": "{{record}}"
+    }
+  },
+  {
+    "id": "hubspot:contacts-list",
+    "note": "Cursor paging: paging.next.after is empty on the last page.",
+    "match": {
+      "method": "GET",
+      "path": "/crm/v3/objects/contacts"
+    },
+    "store": {
+      "op": "list",
+      "collection": "contacts",
+      "pagination": {
+        "style": "cursor",
+        "cursorParam": "after",
+        "limitParam": "limit",
+        "defaultLimit": 10,
+        "maxLimit": 100
+      }
+    },
+    "respond": {
+      "status": 200,
+      "template": true,
+      "headers": {
+        "content-type": "application/json"
+      },
+      "body": {
+        "results": "{{records}}",
+        "paging": {
+          "next": {
+            "after": "{{page.next}}"
+          }
+        }
+      }
+    }
+  },
+  {
+    "id": "hubspot:contacts-get",
+    "match": {
+      "method": "GET",
+      "path": "/crm/v3/objects/contacts/:id"
+    },
+    "store": {
+      "op": "get",
+      "collection": "contacts",
+      "notFound": {
+        "status": 404,
+        "headers": {
+          "content-type": "application/json"
+        },
+        "template": true,
+        "body": {
+          "status": "error",
+          "message": "resource not found",
+          "category": "OBJECT_NOT_FOUND",
+          "correlationId": "00000000-0000-4000-8000-000000000000"
+        }
+      }
+    },
+    "respond": {
+      "status": 200,
+      "template": true,
+      "headers": {
+        "content-type": "application/json"
+      },
+      "body": "{{record}}"
+    }
+  },
+  {
+    "id": "hubspot:contacts-update",
+    "note": "PATCH merges properties into the stored record.",
+    "match": {
+      "method": "PATCH",
+      "path": "/crm/v3/objects/contacts/:id"
+    },
+    "store": {
+      "op": "update",
+      "collection": "contacts",
+      "notFound": {
+        "status": 404,
+        "headers": {
+          "content-type": "application/json"
+        },
+        "template": true,
+        "body": {
+          "status": "error",
+          "message": "resource not found",
+          "category": "OBJECT_NOT_FOUND",
+          "correlationId": "00000000-0000-4000-8000-000000000000"
+        }
+      }
+    },
+    "respond": {
+      "status": 200,
+      "template": true,
+      "headers": {
+        "content-type": "application/json"
+      },
+      "body": "{{record}}"
+    }
+  },
+  {
+    "id": "hubspot:contacts-delete",
+    "match": {
+      "method": "DELETE",
+      "path": "/crm/v3/objects/contacts/:id"
+    },
+    "store": {
+      "op": "delete",
+      "collection": "contacts",
+      "notFound": {
+        "status": 404,
+        "headers": {
+          "content-type": "application/json"
+        },
+        "template": true,
+        "body": {
+          "status": "error",
+          "message": "resource not found",
+          "category": "OBJECT_NOT_FOUND",
+          "correlationId": "00000000-0000-4000-8000-000000000000"
+        }
+      }
+    },
+    "respond": {
+      "status": 204
+    }
+  },
+  {
+    "id": "hubspot:companies-search",
+    "note": "Search: filterGroups (OR of AND groups), after/limit in the body.",
+    "match": {
+      "method": "POST",
+      "path": "/crm/v3/objects/companies/search"
+    },
+    "store": {
+      "op": "list",
+      "collection": "companies",
+      "filters": [
+        {
+          "from": "body.filterGroups",
+          "style": "hubspot"
+        }
+      ],
+      "pagination": {
+        "style": "cursor",
+        "in": "body",
+        "cursorParam": "after",
+        "limitParam": "limit",
+        "defaultLimit": 10,
+        "maxLimit": 200
+      }
+    },
+    "respond": {
+      "status": 200,
+      "template": true,
+      "headers": {
+        "content-type": "application/json"
+      },
+      "body": {
+        "total": "{{page.total}}",
+        "results": "{{records}}",
+        "paging": {
+          "next": {
+            "after": "{{page.next}}"
+          }
+        }
+      }
+    }
+  },
+  {
+    "id": "hubspot:companies-create",
+    "match": {
+      "method": "POST",
+      "path": "/crm/v3/objects/companies"
+    },
+    "store": {
+      "op": "create",
+      "collection": "companies",
+      "id": {
+        "field": "id",
+        "format": "10{{seq:7}}"
+      },
+      "stamp": {
+        "createdAt": "{{now}}",
+        "updatedAt": "{{now}}",
+        "archived": false
+      }
+    },
+    "respond": {
+      "status": 201,
+      "template": true,
+      "headers": {
+        "content-type": "application/json"
+      },
+      "body": "{{record}}"
+    }
+  },
+  {
+    "id": "hubspot:companies-list",
+    "note": "Cursor paging: paging.next.after is empty on the last page.",
+    "match": {
+      "method": "GET",
+      "path": "/crm/v3/objects/companies"
+    },
+    "store": {
+      "op": "list",
+      "collection": "companies",
+      "pagination": {
+        "style": "cursor",
+        "cursorParam": "after",
+        "limitParam": "limit",
+        "defaultLimit": 10,
+        "maxLimit": 100
+      }
+    },
+    "respond": {
+      "status": 200,
+      "template": true,
+      "headers": {
+        "content-type": "application/json"
+      },
+      "body": {
+        "results": "{{records}}",
+        "paging": {
+          "next": {
+            "after": "{{page.next}}"
+          }
+        }
+      }
+    }
+  },
+  {
+    "id": "hubspot:companies-get",
+    "match": {
+      "method": "GET",
+      "path": "/crm/v3/objects/companies/:id"
+    },
+    "store": {
+      "op": "get",
+      "collection": "companies",
+      "notFound": {
+        "status": 404,
+        "headers": {
+          "content-type": "application/json"
+        },
+        "template": true,
+        "body": {
+          "status": "error",
+          "message": "resource not found",
+          "category": "OBJECT_NOT_FOUND",
+          "correlationId": "00000000-0000-4000-8000-000000000000"
+        }
+      }
+    },
+    "respond": {
+      "status": 200,
+      "template": true,
+      "headers": {
+        "content-type": "application/json"
+      },
+      "body": "{{record}}"
+    }
+  },
+  {
+    "id": "hubspot:companies-update",
+    "note": "PATCH merges properties into the stored record.",
+    "match": {
+      "method": "PATCH",
+      "path": "/crm/v3/objects/companies/:id"
+    },
+    "store": {
+      "op": "update",
+      "collection": "companies",
+      "notFound": {
+        "status": 404,
+        "headers": {
+          "content-type": "application/json"
+        },
+        "template": true,
+        "body": {
+          "status": "error",
+          "message": "resource not found",
+          "category": "OBJECT_NOT_FOUND",
+          "correlationId": "00000000-0000-4000-8000-000000000000"
+        }
+      }
+    },
+    "respond": {
+      "status": 200,
+      "template": true,
+      "headers": {
+        "content-type": "application/json"
+      },
+      "body": "{{record}}"
+    }
+  },
+  {
+    "id": "hubspot:companies-delete",
+    "match": {
+      "method": "DELETE",
+      "path": "/crm/v3/objects/companies/:id"
+    },
+    "store": {
+      "op": "delete",
+      "collection": "companies",
+      "notFound": {
+        "status": 404,
+        "headers": {
+          "content-type": "application/json"
+        },
+        "template": true,
+        "body": {
+          "status": "error",
+          "message": "resource not found",
+          "category": "OBJECT_NOT_FOUND",
+          "correlationId": "00000000-0000-4000-8000-000000000000"
+        }
+      }
+    },
+    "respond": {
+      "status": 204
+    }
+  },
+  {
+    "id": "hubspot:deals-search",
+    "note": "Search: filterGroups (OR of AND groups), after/limit in the body.",
+    "match": {
+      "method": "POST",
+      "path": "/crm/v3/objects/deals/search"
+    },
+    "store": {
+      "op": "list",
+      "collection": "deals",
+      "filters": [
+        {
+          "from": "body.filterGroups",
+          "style": "hubspot"
+        }
+      ],
+      "pagination": {
+        "style": "cursor",
+        "in": "body",
+        "cursorParam": "after",
+        "limitParam": "limit",
+        "defaultLimit": 10,
+        "maxLimit": 200
+      }
+    },
+    "respond": {
+      "status": 200,
+      "template": true,
+      "headers": {
+        "content-type": "application/json"
+      },
+      "body": {
+        "total": "{{page.total}}",
+        "results": "{{records}}",
+        "paging": {
+          "next": {
+            "after": "{{page.next}}"
+          }
+        }
+      }
+    }
+  },
+  {
+    "id": "hubspot:deals-create",
+    "match": {
+      "method": "POST",
+      "path": "/crm/v3/objects/deals"
+    },
+    "store": {
+      "op": "create",
+      "collection": "deals",
+      "id": {
+        "field": "id",
+        "format": "10{{seq:7}}"
+      },
+      "stamp": {
+        "createdAt": "{{now}}",
+        "updatedAt": "{{now}}",
+        "archived": false
+      }
+    },
+    "respond": {
+      "status": 201,
+      "template": true,
+      "headers": {
+        "content-type": "application/json"
+      },
+      "body": "{{record}}"
+    }
+  },
+  {
+    "id": "hubspot:deals-list",
+    "note": "Cursor paging: paging.next.after is empty on the last page.",
+    "match": {
+      "method": "GET",
+      "path": "/crm/v3/objects/deals"
+    },
+    "store": {
+      "op": "list",
+      "collection": "deals",
+      "pagination": {
+        "style": "cursor",
+        "cursorParam": "after",
+        "limitParam": "limit",
+        "defaultLimit": 10,
+        "maxLimit": 100
+      }
+    },
+    "respond": {
+      "status": 200,
+      "template": true,
+      "headers": {
+        "content-type": "application/json"
+      },
+      "body": {
+        "results": "{{records}}",
+        "paging": {
+          "next": {
+            "after": "{{page.next}}"
+          }
+        }
+      }
+    }
+  },
+  {
+    "id": "hubspot:deals-get",
+    "match": {
+      "method": "GET",
+      "path": "/crm/v3/objects/deals/:id"
+    },
+    "store": {
+      "op": "get",
+      "collection": "deals",
+      "notFound": {
+        "status": 404,
+        "headers": {
+          "content-type": "application/json"
+        },
+        "template": true,
+        "body": {
+          "status": "error",
+          "message": "resource not found",
+          "category": "OBJECT_NOT_FOUND",
+          "correlationId": "00000000-0000-4000-8000-000000000000"
+        }
+      }
+    },
+    "respond": {
+      "status": 200,
+      "template": true,
+      "headers": {
+        "content-type": "application/json"
+      },
+      "body": "{{record}}"
+    }
+  },
+  {
+    "id": "hubspot:deals-update",
+    "note": "PATCH merges properties into the stored record.",
+    "match": {
+      "method": "PATCH",
+      "path": "/crm/v3/objects/deals/:id"
+    },
+    "store": {
+      "op": "update",
+      "collection": "deals",
+      "notFound": {
+        "status": 404,
+        "headers": {
+          "content-type": "application/json"
+        },
+        "template": true,
+        "body": {
+          "status": "error",
+          "message": "resource not found",
+          "category": "OBJECT_NOT_FOUND",
+          "correlationId": "00000000-0000-4000-8000-000000000000"
+        }
+      }
+    },
+    "respond": {
+      "status": 200,
+      "template": true,
+      "headers": {
+        "content-type": "application/json"
+      },
+      "body": "{{record}}"
+    }
+  },
+  {
+    "id": "hubspot:deals-delete",
+    "match": {
+      "method": "DELETE",
+      "path": "/crm/v3/objects/deals/:id"
+    },
+    "store": {
+      "op": "delete",
+      "collection": "deals",
+      "notFound": {
+        "status": 404,
+        "headers": {
+          "content-type": "application/json"
+        },
+        "template": true,
+        "body": {
+          "status": "error",
+          "message": "resource not found",
+          "category": "OBJECT_NOT_FOUND",
+          "correlationId": "00000000-0000-4000-8000-000000000000"
+        }
+      }
+    },
+    "respond": {
+      "status": 204
+    }
+  }
+]

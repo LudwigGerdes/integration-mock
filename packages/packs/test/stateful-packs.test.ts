@@ -92,3 +92,61 @@ describe('Salesforce', () => {
 		expect((contact.body as { id: string }).id).toMatch(/^003MOCK/);
 	});
 });
+
+describe('HubSpot', () => {
+	const base = '/crm/v3/objects';
+
+	it('validates without errors', async () => {
+		const pack = await loadPack(join(libraryPacksDir(), 'hubspot'));
+		expect(validatePack(pack).filter((p) => p.level === 'error')).toEqual([]);
+	});
+
+	it('walks three pages of contacts with after, searches, deep-merges a PATCH, deletes', async () => {
+		const { call } = await harness('hubspot');
+		const ids: string[] = [];
+		for (let i = 1; i <= 25; i++) {
+			const res = call({
+				method: 'POST',
+				path: `${base}/contacts`,
+				body: { properties: { email: `p${i}@example.com`, firstname: `P${i}`, lifecyclestage: i % 5 === 0 ? 'customer' : 'lead' } },
+			});
+			expect(res.status).toBe(201);
+			ids.push((res.body as { id: string }).id);
+		}
+		const pages: string[][] = [];
+		let after: string | undefined;
+		do {
+			const res = call({ path: `${base}/contacts`, query: { limit: '10', ...(after ? { after } : {}) } }).body as {
+				results: Array<{ id: string }>;
+				paging: { next: { after: string } };
+			};
+			pages.push(res.results.map((r) => r.id));
+			after = res.paging.next.after || undefined;
+		} while (after !== undefined);
+		expect(pages.map((p) => p.length)).toEqual([10, 10, 5]);
+		expect(pages.flat()).toEqual(ids);
+
+		const search = call({
+			method: 'POST',
+			path: `${base}/contacts/search`,
+			body: { filterGroups: [{ filters: [{ propertyName: 'lifecyclestage', operator: 'EQ', value: 'customer' }] }], limit: 3 },
+		}).body as { total: number; results: unknown[] };
+		expect(search.total).toBe(5);
+		expect(search.results).toHaveLength(3);
+
+		const id = ids[0]!;
+		const patched = call({ method: 'PATCH', path: `${base}/contacts/${id}`, body: { properties: { firstname: 'Ada' } } }).body as {
+			properties: Record<string, string>;
+		};
+		expect(patched.properties).toMatchObject({ email: 'p1@example.com', firstname: 'Ada' });
+
+		expect(call({ method: 'DELETE', path: `${base}/contacts/${id}` }).status).toBe(204);
+		expect(call({ path: `${base}/contacts/${id}` })).toMatchObject({ status: 404, body: { category: 'OBJECT_NOT_FOUND' } });
+	});
+
+	it('companies and deals are separate collections', async () => {
+		const { call } = await harness('hubspot');
+		call({ method: 'POST', path: `${base}/companies`, body: { properties: { name: 'Acme' } } });
+		expect((call({ path: `${base}/deals` }).body as { results: unknown[] }).results).toEqual([]);
+	});
+});
