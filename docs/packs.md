@@ -204,7 +204,7 @@ A JSON body must be an object. A form-encoded body (`application/x-www-form-urle
 
 `"idempotency": { "header": "Idempotency-Key" }` on a `create` or `update`: the same key with the same body returns the first response again; with a different body it answers `conflict` (`409`). `packs reset` clears records, counters, page tokens and keys. The mock keeps at most 1,000 page tokens and 10,000 idempotency keys per service, dropping the oldest.
 
-Salesforce (Opportunity, Account, Contact), HubSpot (contacts, companies, deals) and Stripe (customers, charges) ship with stateful routes. `verify` compares only the status of a stateful route, since its body is computed.
+Salesforce (Opportunity, Account, Contact, Lead), HubSpot (contacts, companies, deals) and Stripe (customers, charges) ship with stateful routes. `verify` compares only the status of a stateful route, since its body is computed.
 
 ## Generating a pack from OpenAPI
 

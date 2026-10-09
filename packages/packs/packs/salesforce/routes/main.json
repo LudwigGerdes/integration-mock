@@ -563,5 +563,126 @@
     "respond": {
       "status": 204
     }
+  },
+  {
+    "id": "salesforce:lead-create",
+    "note": "Create returns {id, success, errors} with 201, not the record.",
+    "match": {
+      "method": "POST",
+      "path": "/services/data/:version/sobjects/Lead"
+    },
+    "store": {
+      "op": "create",
+      "collection": "Lead",
+      "id": {
+        "field": "Id",
+        "format": "00QMOCK{{seq:11}}"
+      },
+      "stamp": {
+        "attributes": {
+          "type": "Lead",
+          "url": "/services/data/{{request.params.version}}/sobjects/Lead/{{record.Id}}"
+        }
+      }
+    },
+    "respond": {
+      "status": 201,
+      "template": true,
+      "headers": {
+        "content-type": "application/json"
+      },
+      "body": {
+        "id": "{{record.Id}}",
+        "success": true,
+        "errors": []
+      }
+    }
+  },
+  {
+    "id": "salesforce:lead-get",
+    "match": {
+      "method": "GET",
+      "path": "/services/data/:version/sobjects/Lead/:id"
+    },
+    "store": {
+      "op": "get",
+      "collection": "Lead",
+      "idParam": "id",
+      "notFound": {
+        "status": 404,
+        "headers": {
+          "content-type": "application/json"
+        },
+        "body": [
+          {
+            "errorCode": "NOT_FOUND",
+            "message": "The requested resource does not exist"
+          }
+        ]
+      }
+    },
+    "respond": {
+      "status": 200,
+      "template": true,
+      "headers": {
+        "content-type": "application/json"
+      },
+      "body": "{{record}}"
+    }
+  },
+  {
+    "id": "salesforce:lead-update",
+    "note": "PATCH returns 204 with an empty body.",
+    "match": {
+      "method": "PATCH",
+      "path": "/services/data/:version/sobjects/Lead/:id"
+    },
+    "store": {
+      "op": "update",
+      "collection": "Lead",
+      "idParam": "id",
+      "notFound": {
+        "status": 404,
+        "headers": {
+          "content-type": "application/json"
+        },
+        "body": [
+          {
+            "errorCode": "NOT_FOUND",
+            "message": "The requested resource does not exist"
+          }
+        ]
+      }
+    },
+    "respond": {
+      "status": 204
+    }
+  },
+  {
+    "id": "salesforce:lead-delete",
+    "match": {
+      "method": "DELETE",
+      "path": "/services/data/:version/sobjects/Lead/:id"
+    },
+    "store": {
+      "op": "delete",
+      "collection": "Lead",
+      "idParam": "id",
+      "notFound": {
+        "status": 404,
+        "headers": {
+          "content-type": "application/json"
+        },
+        "body": [
+          {
+            "errorCode": "NOT_FOUND",
+            "message": "The requested resource does not exist"
+          }
+        ]
+      }
+    },
+    "respond": {
+      "status": 204
+    }
   }
 ]
