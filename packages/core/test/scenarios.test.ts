@@ -1,6 +1,8 @@
 import { describe, it, expect } from 'vitest';
 import { ScenarioController } from '../src/scenarios.js';
 import type { MockRequest } from '../src/types.js';
+import { scenarioResponse, scenarioShapes } from '../src/scenarios.js';
+import type { ServicePack } from '../src/types.js';
 
 const req = (method: MockRequest['method'] = 'GET', path = '/x'): MockRequest => ({
 	method, host: 'h', path, query: {}, headers: {},
@@ -94,5 +96,61 @@ describe('ScenarioController', () => {
 		s.clearAuth();
 		s.clearLimit('a');
 		expect(s.snapshot()).toEqual({ auth: {}, limits: {} });
+	});
+});
+
+const pack = (id: string, scenarios?: ServicePack['scenarios']): ServicePack => ({
+	id, domains: [], prefix: `/${id}`, source: 'library', routes: [], ...(scenarios ? { scenarios } : {}),
+});
+
+describe('scenarioResponse', () => {
+	const rl = { kind: 'rateLimit' as const, retryAfterSec: 3, limit: 10, resetAt: 1_700_000_000 };
+
+	it('falls back to generic answers', () => {
+		expect(scenarioResponse({ kind: 'auth', mode: 'revoked' }, undefined, req())).toMatchObject({
+			status: 401, body: { error: 'unauthorized' }, matched: 'unmatched',
+		});
+		expect(scenarioResponse({ kind: 'auth', mode: 'forbidden' }, {}, req())).toMatchObject({
+			status: 403, body: { error: 'forbidden' },
+		});
+		const r = scenarioResponse(rl, undefined, req());
+		expect(r).toMatchObject({ status: 429, body: { error: 'rate limited' } });
+		expect(r.headers['retry-after']).toBe('3');
+		expect(r.headers['content-type']).toBe('application/json');
+	});
+
+	it('renders the pack shape with retryAfter, limit and resetAt; header values are strings', () => {
+		const r = scenarioResponse(rl, {
+			rateLimit: {
+				status: 429,
+				headers: { 'X-RateLimit-Max': '{{limit}}', 'retry-after': '{{retryAfter}}' },
+				body: { message: 'slow down, reset {{resetAt}}', retry: '{{retryAfter}}' },
+			},
+		}, req());
+		expect(r.headers).toMatchObject({ 'x-ratelimit-max': '10', 'retry-after': '3' });
+		expect(r.body).toEqual({ message: 'slow down, reset 1700000000', retry: 3 });
+	});
+
+	it('adds retry-after when the pack rateLimit shape leaves it out', () => {
+		const r = scenarioResponse(rl, { rateLimit: { status: 403, body: { errorCode: 'REQUEST_LIMIT_EXCEEDED' } } }, req());
+		expect(r.status).toBe(403);
+		expect(r.headers['retry-after']).toBe('3');
+	});
+
+	it('does not put a note on the wire', () => {
+		const r = scenarioResponse({ kind: 'auth', mode: 'revoked' }, { revoked: { status: 200, body: { ok: false }, note: 'docs' } }, req());
+		expect(r).toMatchObject({ status: 200, body: { ok: false } });
+		expect(JSON.stringify(r)).not.toContain('docs');
+	});
+});
+
+describe('scenarioShapes', () => {
+	it('takes the nearest layer that has a scenarios block', () => {
+		const lib = pack('slack', { revoked: { status: 200, body: { ok: false, error: 'invalid_auth' } } });
+		const proj = pack('slack');
+		expect(scenarioShapes({ snapshot: [], project: [proj], user: [], library: [lib] }, 'slack')).toBe(lib.scenarios);
+		const user = pack('slack', { revoked: { status: 401 } });
+		expect(scenarioShapes({ snapshot: [], project: [proj], user: [user], library: [lib] }, 'slack')).toBe(user.scenarios);
+		expect(scenarioShapes({ snapshot: [], project: [], user: [], library: [] }, 'slack')).toBeUndefined();
 	});
 });
