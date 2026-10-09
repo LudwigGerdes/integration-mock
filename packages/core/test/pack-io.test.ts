@@ -88,3 +88,39 @@ it('round-trips an authored pack', async () => {
 	});
 	expect((await loadPack(dir)).source).toBe('authored');
 });
+
+describe('route files: an earlier file replaces what it overrides', () => {
+	const write = (files: Record<string, unknown[]>) => {
+		const dir = join(mkdtempSync(join(tmpdir(), 'pk-')), 'acme');
+		mkdirSync(join(dir, 'routes'), { recursive: true });
+		writeFileSync(join(dir, 'pack.json'), JSON.stringify({ id: 'acme', domains: ['acme.test'], prefix: '/acme', source: 'openapi' }));
+		for (const [name, routes] of Object.entries(files)) writeFileSync(join(dir, 'routes', name), JSON.stringify(routes));
+		return dir;
+	};
+	const route = (id: string, method: string, path: string, extra: Record<string, unknown> = {}) => ({
+		id,
+		match: { method, path, ...extra },
+		respond: { status: 200 },
+	});
+
+	it('drops a later route with the same method and path shape, param names aside', async () => {
+		const dir = write({
+			'00-overrides.json': [route('mine', 'GET', '/things/:id')],
+			'10-generated.json': [route('gen-get', 'GET', '/things/:thingId'), route('gen-list', 'GET', '/things'), route('gen-post', 'POST', '/things/:thingId')],
+		});
+		expect((await loadPack(dir)).routes.map((r) => r.id)).toEqual(['mine', 'gen-list', 'gen-post']);
+	});
+
+	it('keeps a later route when the earlier one is narrower (query or body matcher)', async () => {
+		const dir = write({
+			'00-overrides.json': [route('narrow', 'GET', '/things', { query: { q: 'x' } })],
+			'10-generated.json': [route('gen-list', 'GET', '/things')],
+		});
+		expect((await loadPack(dir)).routes.map((r) => r.id)).toEqual(['narrow', 'gen-list']);
+	});
+
+	it('never drops routes within one file', async () => {
+		const dir = write({ 'main.json': [route('a', 'GET', '/x/:id'), route('b', 'GET', '/x/:other')] });
+		expect((await loadPack(dir)).routes.map((r) => r.id)).toEqual(['a', 'b']);
+	});
+});

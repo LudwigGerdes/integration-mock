@@ -33,6 +33,16 @@ function assertPackMeta(v: unknown, dir: string): asserts v is Omit<ServicePack,
  * route files are merged in filename order so generated and hand-tuned routes
  * can live side by side.
  */
+/** Method plus path with param names erased: `/things/:id` and `/things/:thingId` are one shape. */
+const shapeOf = (r: Route): string =>
+	`${r.match.method} ${r.match.path
+		.split('/')
+		.map((s) => (s.startsWith(':') ? ':' : s))
+		.join('/')}`;
+
+/** Only an unconditional route replaces another; one with a query or body matcher is narrower. */
+const replaces = (r: Route): boolean => r.match.query === undefined && r.match.bodyMatch === undefined;
+
 export async function loadPack(dir: string): Promise<ServicePack> {
 	const metaPath = join(dir, 'pack.json');
 	if (!(await exists(metaPath))) throw new Error(`invalid pack: missing ${metaPath}`);
@@ -45,7 +55,13 @@ export async function loadPack(dir: string): Promise<ServicePack> {
 	if (await exists(routesDir)) {
 		const files = (await readdir(routesDir)).filter((f) => f.endsWith('.json')).sort();
 		for (const f of files) {
-			routes = routes.concat(JSON.parse(await readFile(join(routesDir, f), 'utf8')) as Route[]);
+			const fromFile = JSON.parse(await readFile(join(routesDir, f), 'utf8')) as Route[];
+			// An earlier file (00-overrides.json) wins over a later one
+			// (10-generated.json): a later route with the same method and path
+			// shape is the one being replaced, so it is dropped rather than
+			// left behind as a route that can never serve.
+			const replaced = new Set(routes.filter(replaces).map(shapeOf));
+			routes = routes.concat(fromFile.filter((r) => !replaced.has(shapeOf(r))));
 		}
 	}
 	return { ...meta, routes };
