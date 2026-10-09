@@ -6,6 +6,7 @@ export * from './store.js';
 export * from './layers.js';
 export * from './log.js';
 export * from './faults.js';
+export * from './scenarios.js';
 export * from './redact.js';
 export * from './pack-io.js';
 export * from './pack-schema.js';
