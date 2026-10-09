@@ -12,7 +12,7 @@ pnpm monorepo, TypeScript, ESM, strict.
 
 | Package | Publishes as | What it is |
 |---|---|---|
-| `packages/core` | `integration-mock-core` (workspace-only) | Pure functions: pack model and schema, matcher, layered resolution, resource store, request log, faults, redaction, pack I/O and validation, config, snapshot build/diff, reverse-mapper registry, `N8nClient`, creds, verify |
+| `packages/core` | `integration-mock-core` (workspace-only) | Pure functions: pack model and schema, matcher, layered resolution, resource store and stateful routes (`store-op.ts`, `filter.ts`, `soql.ts`, `paginate.ts`, `idempotency.ts`, `form-body.ts`), request log, faults, failure scenarios (`scenarios.ts`), redaction, pack I/O and validation, config, snapshot build/diff, reverse-mapper registry, `N8nClient`, creds, verify |
 | `packages/proxy` | `integration-mock-proxy` (workspace-only) | The daemon: CA + per-host leaf certs, CONNECT tunnelling, TLS termination, `MockEngine`, base-URL serving, the loopback admin API and its client |
 | `packages/packs` | `integration-mock-packs` (workspace-only) | OpenAPI → pack generator, spec sourcing/vendoring, the library loader, the five native-node reverse-mappers, and the shipped packs under `packs/` |
 | `packages/cli` | `integration-mock` | The `integration-mock` binary and the daemon entry point. esbuild bundles the three workspace packages in; third-party deps stay external |
@@ -133,7 +133,7 @@ node packages/cli/dist/bin.js packs audit --out docs/vendor-audit.md
 Vendored specs are cached gzipped at `~/.integration-mock/vendor-specs/<vendor>/<version>/`
 (`INTEGRATION_MOCK_HOME` overrides the root). Generation writes only
 `10-generated.json` under a pack's `routes/`; hand fixes go in
-`00-overrides.json` beside it, which sorts first and therefore wins. `.github/workflows/packs-refresh.yml` runs
+`00-overrides.json` beside it, which sorts first and therefore wins: `loadPack` drops a later route with the same method and path shape when an earlier file has an unconditional route that answers. A stateful override with a param (`/v1/customers/:customer`) would also capture a literal generated path (`/v1/customers/search`); `packages/packs/scripts/order-overrides.py` writes the overrides file with those literal routes copied ahead. `.github/workflows/packs-refresh.yml` runs
 `packs update` weekly and opens a PR.
 
 Adding a vendor to the library is documented end-to-end in

@@ -165,7 +165,7 @@ A route with a `store` block reads and writes the mock's records instead of answ
 | `stamp` | Fields added to a new record, rendered as a template (`{{record.id}}`, `{{now}}`, `{{timestamp}}`) |
 | `update` | `merge` (default; nested objects merge key by key) or `replace` |
 | `coerce` | Fields to turn from form-encoded strings into the type the vendor returns: `{ "amount": "number", "paid": "boolean" }` |
-| `notFound`, `badRequest`, `conflict` | The vendor's own error responses. `{{error}}` holds the reason |
+| `notFound`, `badRequest`, `conflict` | The vendor's own error responses. `{{error}}` holds the reason. `conflict` also answers a `create` whose body carries an id that already exists |
 
 A JSON body must be an object. A form-encoded body (`application/x-www-form-urlencoded`) is read with brackets: `metadata[plan]=pro` is `{ "metadata": { "plan": "pro" } }`.
 
@@ -202,7 +202,7 @@ A JSON body must be an object. A form-encoded body (`application/x-www-form-urle
 
 ### Idempotency
 
-`"idempotency": { "header": "Idempotency-Key" }` on a `create` or `update`: the same key with the same body returns the first response again; with a different body it answers `conflict` (`409`). `packs reset` clears records, counters, page tokens and keys. The mock keeps at most 1,000 page tokens and 10,000 idempotency keys per service, dropping the oldest.
+`"idempotency": { "header": "Idempotency-Key" }` on a `create` or `update`: the same key with the same body returns the first response again, errors included (a `404`, or a `409` for an existing id), as Stripe does; a request refused as malformed (`badRequest`) is not saved, so it can be retried. With a different body the key answers `conflict` (`409`). `packs reset` clears records, counters, page tokens and keys. The mock keeps at most 1,000 page tokens and 10,000 idempotency keys per service, dropping the oldest.
 
 Salesforce (Opportunity, Account, Contact, Lead), HubSpot (contacts, companies, deals) and Stripe (customers, charges) ship with stateful routes. `verify` compares only the status of a stateful route, since its body is computed.
 
