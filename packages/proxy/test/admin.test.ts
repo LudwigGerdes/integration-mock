@@ -177,3 +177,14 @@ describe('scenarios', () => {
 		await bad('/scenarios/limits/weather', { calls: 1, perMs: 10, route: { method: 'GET' } }, 'route.path');
 	});
 });
+
+describe('admin paths', () => {
+	it('answers 404 for a fault or scenario path with extra segments, changing nothing', async () => {
+		const put = (p: string, b: unknown) =>
+			fetch(`http://127.0.0.1:${admin.port}${p}`, { method: 'PUT', body: JSON.stringify(b) });
+		expect((await put('/scenarios/auth/weather/extra', { mode: 'revoked' })).status).toBe(404);
+		expect((await put('/faults/weather/extra', { status: 503 })).status).toBe(404);
+		expect(engine.state().scenarios.auth).toEqual({});
+		expect(engine.state().faults).toEqual({});
+	});
+});

@@ -109,7 +109,8 @@ export async function startAdmin(opts: {
 				engine.resetStores();
 				return json(res, 204);
 			}
-			if (p.startsWith('/scenarios/')) {
+			// /scenarios/<kind>[/<service>] and /faults[/<service>]: anything deeper is a 404.
+			if (p.startsWith('/scenarios/') && p.split('/').length <= 4) {
 				const [, , kind, service] = p.split('/');
 				const one = service === undefined || service === '' ? undefined : service;
 				if (m === 'DELETE' && kind === 'auth') {
@@ -136,7 +137,7 @@ export async function startAdmin(opts: {
 					return json(res, 204);
 				}
 			}
-			if (p.startsWith('/faults')) {
+			if (p.startsWith('/faults') && p.split('/').length <= 3) {
 				const service = p.split('/')[2];
 				if (m === 'PUT' && service !== undefined && service !== '') {
 					engine.faultsRef.set(service, (await body()) as FaultSpec);
