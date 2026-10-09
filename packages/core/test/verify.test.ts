@@ -69,6 +69,11 @@ describe('store routes', () => {
 		]);
 	});
 
+	it('skips the body of a route whose respond entry carries the store op', () => {
+		const onRespond = route({ respond: { status: 200, template: true, body: '{{record}}', store: { op: 'get', collection: 'Opportunity' } } });
+		expect(compareRoute(onRespond, { status: 200, body: { Id: 'real' } })[0]?.kind).toBe('skipped');
+	});
+
 	it('still reports a status difference', () => {
 		expect(compareRoute(stored, { status: 404, body: {} })[0]?.kind).toBe('status');
 	});

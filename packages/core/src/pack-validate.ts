@@ -93,8 +93,16 @@ function storeProblems(r: Route, p: ServicePack): PackProblem[] {
 		if (s.idempotency !== undefined && s.op !== 'create' && s.op !== 'update') {
 			err('store-idempotency', `"${r.id}" idempotency only applies to create and update, not ${s.op}`);
 		}
-		if (s.pagination?.style === 'nextUrl' && s.pagination.nextUrlTemplate === undefined && s.pagination.tokenParam === undefined) {
-			err('store-next-url', `"${r.id}" nextUrl paging needs nextUrlTemplate (to issue) or tokenParam (to follow)`);
+		if (s.idempotency !== undefined && s.idempotency.header === undefined && s.idempotency.from === undefined) {
+			err('store-idempotency', `"${r.id}" idempotency names neither header nor from, so no key is ever read`);
+		}
+		if (s.pagination?.style === 'nextUrl' && s.pagination.nextUrlTemplate === undefined) {
+			err(
+				'store-next-url',
+				s.pagination.tokenParam === undefined
+					? `"${r.id}" nextUrl paging needs nextUrlTemplate to issue the next page's URL`
+					: `"${r.id}" follows a nextUrl token but has no nextUrlTemplate, so paging would end after its page`,
+			);
 		}
 		if (s.op === 'list' && s.pagination === undefined && s.collection !== undefined && (p.seed?.[s.collection]?.length ?? 0) > 100) {
 			out.push({
@@ -188,7 +196,7 @@ export function validatePack(
 		}
 	}
 
-	if (p.routes.length > 0 && !p.routes.some((r) => (r.respond?.status ?? 200) >= 400)) {
+	if (p.routes.length > 0 && p.scenarios === undefined && !p.routes.some((r) => (r.respond?.status ?? 200) >= 400)) {
 		problems.push({
 			level: 'warning',
 			code: 'no-error-routes',

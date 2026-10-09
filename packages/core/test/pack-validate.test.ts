@@ -201,7 +201,7 @@ describe('store route semantics', () => {
 	it('needs a collection, except a SOQL list or a nextUrl follow-up', () => {
 		expect(codes(pack([r('a', '/a', 'POST', { op: 'create' })]))).toContain('store-collection');
 		expect(codes(pack([r('q', '/q', 'GET', { op: 'list', filters: [{ from: 'query.q', style: 'soql' }] })]))).toEqual([]);
-		expect(codes(pack([r('n', '/q/:token', 'GET', { op: 'list', pagination: { style: 'nextUrl', tokenParam: 'token' } })]))).toEqual([]);
+		expect(codes(pack([r('n', '/q/:token', 'GET', { op: 'list', pagination: { style: 'nextUrl', tokenParam: 'token', nextUrlTemplate: '/q/{{token}}' } })]))).toEqual([]);
 	});
 
 	it('needs idParam when the path has more than one param, and it must be a param', () => {
@@ -233,5 +233,25 @@ describe('review fixes: validation', () => {
 			sequence: [{ status: 201, template: true, body: '{{record}}' }],
 		};
 		expect(codes({ ...base, routes: [...base.routes, route] })).toContain('store-respond');
+	});
+});
+
+describe('deferred minors', () => {
+	const one = (r: ServicePack['routes'][number], extra: Partial<ServicePack> = {}): string[] => codes({ ...base, ...extra, routes: [r, base.routes[1]!] });
+
+	it('rejects an idempotency block that names neither a header nor a body path', () => {
+		expect(one({ id: 'c', match: { method: 'POST', path: '/t' }, store: { op: 'create', collection: 't', idempotency: {} }, respond: { status: 201 } })).toContain('store-idempotency');
+	});
+
+	it('rejects a follow-up nextUrl route without nextUrlTemplate, which would end paging after one page', () => {
+		expect(
+			one({ id: 'more', match: { method: 'GET', path: '/q/:token' }, store: { op: 'list', pagination: { style: 'nextUrl', tokenParam: 'token' } }, respond: { status: 200 } }),
+		).toContain('store-next-url');
+	});
+
+	it('does not warn no-error-routes on a pack that declares failure scenarios', () => {
+		const ok = { ...base, routes: [base.routes[0]!] };
+		expect(codes(ok)).toContain('no-error-routes');
+		expect(codes({ ...ok, scenarios: { revoked: { status: 401 } } })).not.toContain('no-error-routes');
 	});
 });
