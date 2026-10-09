@@ -1,3 +1,4 @@
+import type { PackScenarios } from './scenarios.js';
 export type HttpMethod = 'GET' | 'POST' | 'PUT' | 'PATCH' | 'DELETE' | 'HEAD' | 'OPTIONS';
 
 export interface RouteMatch {
@@ -55,6 +56,8 @@ export interface ServicePack {
 	baseUrlCredential?: { type: string; field: string };
 	routes: Route[];
 	seed?: Record<string, unknown[]>;
+	/** How this vendor answers a revoked/forbidden credential or a rate limit (see scenarios.ts). */
+	scenarios?: PackScenarios;
 	source: PackSource;
 	spec?: { url?: string; file?: string; version?: string; vendorSha?: string };
 	/** The pack's own version, for a team that publishes and pins its packs. */
@@ -121,6 +124,8 @@ export interface LogEntry {
 	matchedRoute: string | 'passthrough' | 'unmatched';
 	layer?: Layer;
 	fault?: FaultSpec;
+	/** Answered by a failure scenario rather than a route. */
+	scenario?: 'auth' | 'rate-limit';
 }
 
 export interface Snapshot {

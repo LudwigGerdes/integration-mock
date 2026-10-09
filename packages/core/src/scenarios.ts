@@ -1,5 +1,7 @@
 import { matchPath } from './matcher.js';
-import type { HttpMethod, MockRequest } from './types.js';
+import type { LayeredPacks } from './layers.js';
+import { renderTemplate } from './template.js';
+import type { HttpMethod, MockRequest, Resolution } from './types.js';
 
 export type AuthMode = 'revoked' | 'forbidden';
 
@@ -87,4 +89,56 @@ export class ScenarioController {
 			limits: Object.fromEntries([...this.limits].map(([k, w]) => [k, { ...w.spec }])),
 		};
 	}
+}
+
+export interface ScenarioResponse {
+	status: number;
+	headers?: Record<string, string>;
+	body?: unknown;
+	/** Where the shape comes from (vendor docs). Never sent. */
+	note?: string;
+}
+
+export interface PackScenarios {
+	revoked?: ScenarioResponse;
+	forbidden?: ScenarioResponse;
+	rateLimit?: ScenarioResponse;
+}
+
+const GENERIC: Required<PackScenarios> = {
+	revoked: { status: 401, body: { error: 'unauthorized' } },
+	forbidden: { status: 403, body: { error: 'forbidden' } },
+	rateLimit: { status: 429, body: { error: 'rate limited' } },
+};
+
+const ORDER: Array<keyof LayeredPacks> = ['snapshot', 'project', 'user', 'library'];
+
+/** The most specific layer's `scenarios` block for a service, if any pack has one. */
+export function scenarioShapes(packs: LayeredPacks, service: string): PackScenarios | undefined {
+	for (const layer of ORDER) {
+		for (const p of packs[layer]) if (p.id === service && p.scenarios) return p.scenarios;
+	}
+	return undefined;
+}
+
+/** A scenario hit as the vendor would answer it: the pack's shape, else the generic one. */
+export function scenarioResponse(hit: ScenarioHit, shapes: PackScenarios | undefined, req: MockRequest): Resolution {
+	const key: keyof PackScenarios = hit.kind === 'auth' ? hit.mode : 'rateLimit';
+	const shape = shapes?.[key] ?? GENERIC[key];
+	const extra = hit.kind === 'rateLimit' ? { retryAfter: hit.retryAfterSec, limit: hit.limit, resetAt: hit.resetAt } : {};
+	const ctx = { request: req, params: {}, count: 1, extra };
+
+	const headers: Record<string, string> = { 'content-type': 'application/json' };
+	for (const [k, v] of Object.entries(shape.headers ?? {})) {
+		headers[k.toLowerCase()] = String(renderTemplate(v, ctx));
+	}
+	if (hit.kind === 'rateLimit' && headers['retry-after'] === undefined) {
+		headers['retry-after'] = String(hit.retryAfterSec);
+	}
+	return {
+		status: shape.status,
+		headers,
+		body: shape.body === undefined ? undefined : renderTemplate(shape.body, ctx),
+		matched: 'unmatched',
+	};
 }

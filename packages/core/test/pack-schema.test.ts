@@ -71,3 +71,21 @@ it('the published JSON file matches the schema actually used to validate', async
 	const onDisk = JSON.parse(await readFile(fileURLToPath(schemaPath), 'utf8')) as unknown;
 	expect(onDisk).toEqual(PACK_SCHEMA);
 });
+
+const valid = async (o: unknown): Promise<boolean> => (await compile())(o) as boolean;
+describe('scenarios block', async () => {
+	const base = { id: 'p', domains: ['p.test'], prefix: '/p', source: 'library', routes: [] };
+	it('accepts revoked, forbidden and rateLimit responses with a note', async () => {
+		expect(await valid({ ...base, scenarios: {
+			revoked: { status: 401, body: { error: 'x' }, note: 'docs url' },
+			forbidden: { status: 403 },
+			rateLimit: { status: 429, headers: { 'retry-after': '{{retryAfter}}' } },
+		} })).toBe(true);
+	});
+	it('rejects an unknown key inside the block', async () => {
+		expect(await valid({ ...base, scenarios: { expired: { status: 401 } } })).toBe(false);
+	});
+	it('rejects an entry without a status', async () => {
+		expect(await valid({ ...base, scenarios: { revoked: { body: {} } } })).toBe(false);
+	});
+});

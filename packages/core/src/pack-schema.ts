@@ -13,7 +13,7 @@ export const PACK_SCHEMA = {
 		"$schema": "https://json-schema.org/draft/2020-12/schema",
 		"$id": "https://github.com/LudwigGerdes/integration-mock/schema/integration-mock.pack.schema.json",
 		"title": "integration-mock service pack",
-		"description": "One mocked service: its domains, its base-URL prefix, and its routes. Describes the ASSEMBLED pack as loadPack returns it \u2014 on disk, pack.json omits routes and savePack splits them into routes/*.json. Owner: integration-mock.",
+		"description": "One mocked service: its domains, its base-URL prefix, and its routes. Describes the ASSEMBLED pack as loadPack returns it — on disk, pack.json omits routes and savePack splits them into routes/*.json. Owner: integration-mock.",
 		"type": "object",
 		"required": [
 			"id",
@@ -75,6 +75,22 @@ export const PACK_SCHEMA = {
 				"type": "object",
 				"additionalProperties": {
 					"type": "array"
+				}
+			},
+			"scenarios": {
+				"description": "How this vendor answers a revoked or forbidden credential and a rate limit. Rendered as a template; {{retryAfter}}, {{limit}} and {{resetAt}} are available to rateLimit.",
+				"type": "object",
+				"additionalProperties": false,
+				"properties": {
+					"revoked": {
+						"$ref": "#/$defs/scenarioResponse"
+					},
+					"forbidden": {
+						"$ref": "#/$defs/scenarioResponse"
+					},
+					"rateLimit": {
+						"$ref": "#/$defs/scenarioResponse"
+					}
 				}
 			},
 			"spec": {
@@ -234,7 +250,7 @@ export const PACK_SCHEMA = {
 					},
 					"body": true,
 					"template": {
-						"description": "Render {{\u2026}} placeholders in body and headers from the request: request.body.x, request.query.x, request.params.x, request.headers.x, request.path, request.method, uuid, now, timestamp, counter. Off by default.",
+						"description": "Render {{…}} placeholders in body and headers from the request: request.body.x, request.query.x, request.params.x, request.headers.x, request.path, request.method, uuid, now, timestamp, counter. Off by default.",
 						"type": "boolean"
 					},
 					"store": {
@@ -455,6 +471,30 @@ export const PACK_SCHEMA = {
 						}
 					}
 				]
+			},
+			"scenarioResponse": {
+				"type": "object",
+				"additionalProperties": false,
+				"required": [
+					"status"
+				],
+				"properties": {
+					"status": {
+						"type": "integer",
+						"minimum": 100,
+						"maximum": 599
+					},
+					"headers": {
+						"type": "object",
+						"additionalProperties": {
+							"type": "string"
+						}
+					},
+					"body": {},
+					"note": {
+						"type": "string"
+					}
+				}
 			}
 		}
 	} as const;
