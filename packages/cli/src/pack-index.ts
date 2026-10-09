@@ -311,14 +311,14 @@ export const PACK_INDEX: Record<string, PackIndexEntry> = {
 				"test.salesforce.com"
 			],
 			"prefix": "/salesforce",
-			"bytes": 14915,
+			"bytes": 17584,
 			"files": [
 				"pack.json",
 				"routes/main.json"
 			],
 			"sha256": {
 				"pack.json": "1d2e33b020db19ca357f3863f01254c407cd45701849f7a7086d728a089e6bf0",
-				"routes/main.json": "465fd00f1c4aa2f96492e23d240910f2e824f05c6ebd7270143b698bcf533241"
+				"routes/main.json": "f084af211a5c10f33956827009f1c6c080c2953bdf0d26a80dab51d7a25ff61d"
 			}
 		},
 		"sendgrid": {

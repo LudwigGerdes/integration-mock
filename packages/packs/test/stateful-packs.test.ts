@@ -221,3 +221,22 @@ describe('review fixes: proof packs', () => {
 		expect(call({ method: 'POST', path: '/crm/v3/objects/contacts/search', body: { sorts: [{ propertyName: 'email' }] } }).status).toBe(400);
 	});
 });
+
+describe('Salesforce Lead', () => {
+	it('creates, reads, updates, queries and deletes Leads', async () => {
+		const { call } = await harness('salesforce');
+		const v = '/services/data/v59.0';
+		const created = call({ method: 'POST', path: `${v}/sobjects/Lead`, body: { LastName: 'Lovelace', Company: 'Analytical Engines', Status: 'Open - Not Contacted' } });
+		expect(created.status).toBe(201);
+		const id = (created.body as { id: string }).id;
+		expect(id).toMatch(/^00QMOCK\d{11}$/);
+		expect(call({ path: `${v}/sobjects/Lead/${id}` }).body).toMatchObject({ Id: id, LastName: 'Lovelace', attributes: { type: 'Lead' } });
+		expect(call({ method: 'PATCH', path: `${v}/sobjects/Lead/${id}`, body: { Status: 'Working - Contacted' } }).status).toBe(204);
+		expect(call({ path: `${v}/query`, query: { q: "SELECT Id, Status FROM Lead WHERE Company = 'Analytical Engines'" } }).body).toMatchObject({
+			totalSize: 1,
+			records: [{ Id: id, Status: 'Working - Contacted' }],
+		});
+		expect(call({ method: 'DELETE', path: `${v}/sobjects/Lead/${id}` }).status).toBe(204);
+		expect(call({ path: `${v}/sobjects/Lead/${id}` }).status).toBe(404);
+	});
+});
