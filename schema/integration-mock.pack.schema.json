@@ -310,6 +310,15 @@
 							"pattern": "^(query|body|params)\\."
 						}
 					}
+				},
+				"coerce": {
+					"type": "object",
+					"additionalProperties": {
+						"enum": [
+							"number",
+							"boolean"
+						]
+					}
 				}
 			}
 		},
@@ -428,7 +437,8 @@
 						"style": {
 							"enum": [
 								"hubspot",
-								"soql"
+								"soql",
+								"unsupported"
 							]
 						}
 					}

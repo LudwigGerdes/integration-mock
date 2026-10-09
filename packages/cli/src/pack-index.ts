@@ -170,7 +170,7 @@ export const PACK_INDEX: Record<string, PackIndexEntry> = {
 				"api.hubapi.com"
 			],
 			"prefix": "/hubspot",
-			"bytes": 42500,
+			"bytes": 43016,
 			"files": [
 				"pack.json",
 				"routes/00-overrides.json",
@@ -178,7 +178,7 @@ export const PACK_INDEX: Record<string, PackIndexEntry> = {
 			],
 			"sha256": {
 				"pack.json": "961ef61ff3d85c6b3cf8cff8a8b12d4a39263271bd060555d708e5c16fb6b6c8",
-				"routes/00-overrides.json": "22ab2844169587861a61049e6b2dcd26c52a7a7d73c1a3fcdd250a599d4380c2",
+				"routes/00-overrides.json": "ae5a9fe58516b61fe510d825d13aa073d31f1e6ec9091c69668a940c0aa33ba3",
 				"routes/10-generated.json": "1eed273aef04890a335df1e7199306cf083097ab7440e2a3e1b68750a1402c5f"
 			}
 		},
@@ -371,7 +371,7 @@ export const PACK_INDEX: Record<string, PackIndexEntry> = {
 				"api.stripe.com"
 			],
 			"prefix": "/stripe",
-			"bytes": 1280397,
+			"bytes": 1281531,
 			"files": [
 				"pack.json",
 				"routes/00-overrides.json",
@@ -379,7 +379,7 @@ export const PACK_INDEX: Record<string, PackIndexEntry> = {
 			],
 			"sha256": {
 				"pack.json": "ccdd7f3c6b724b170b21bac0313cc2188bc8350b9c462fb0d1c66c0f18874bb7",
-				"routes/00-overrides.json": "cad5ff5d4b70e3237c9cb58355ea55164b6ff7a6580cd066b908598090c0e50f",
+				"routes/00-overrides.json": "13393041ed2bfc12290077bb1c8b3431d8f8ad3d8ec46f084c490f52d838a7b5",
 				"routes/10-generated.json": "1a8339c5c5768f4af5f9d88cad26f43b9537e568ee631c9e0dc4addba6924db1"
 			}
 		},

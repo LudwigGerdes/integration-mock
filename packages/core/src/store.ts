@@ -64,7 +64,7 @@ export class ResourceStore {
 
 	/** The property that holds a collection's ids. */
 	idField(c: string): string {
-		return this.idSpecs[c]?.field ?? 'id';
+		return this.spec(c)?.field ?? 'id';
 	}
 
 	/** Whether the collection exists: seeded, or created during this session. */
@@ -74,12 +74,21 @@ export class ResourceStore {
 
 	/** A collection this store knows, matched case-insensitively (SOQL object names); else the name as given. */
 	resolveCollection(name: string): string {
+		return this.knows(name) ?? name;
+	}
+
+	/** The known collection a name refers to (seeded, created, or declared by a route), or undefined. */
+	knows(name: string): string | undefined {
 		const lower = name.toLowerCase();
-		return [...this.data.keys(), ...Object.keys(this.idSpecs)].find((k) => k.toLowerCase() === lower) ?? name;
+		return [...this.data.keys(), ...Object.keys(this.idSpecs)].find((k) => k.toLowerCase() === lower);
+	}
+
+	private spec(c: string): IdSpec | undefined {
+		return Object.prototype.hasOwnProperty.call(this.idSpecs, c) ? this.idSpecs[c] : undefined;
 	}
 
 	private mint(c: string): string {
-		const spec = this.idSpecs[c];
+		const spec = this.spec(c);
 		if (spec === undefined) return nanoid(10);
 		const format = spec.format ?? '{{uuid}}';
 		return format.replace(/\{\{\s*(?:seq:(\d+)|uuid)\s*\}\}/g, (_m, width: string | undefined) => {
@@ -104,15 +113,16 @@ export class ResourceStore {
 
 	private indexOf(c: string, id: string): number {
 		const field = this.idField(c);
-		return this.coll(c).findIndex((i) => i[field] === id);
+		return (this.data.get(c) ?? []).findIndex((i) => i[field] === id);
 	}
 
+	/** Reads never create a collection: only `create` does, so an unknown one stays unknown. */
 	list(c: string): Item[] {
-		return clone(this.coll(c));
+		return clone(this.data.get(c) ?? []);
 	}
 
 	get(c: string, id: string): Item | undefined {
-		const f = this.coll(c)[this.indexOf(c, id)];
+		const f = (this.data.get(c) ?? [])[this.indexOf(c, id)];
 		return f && clone(f);
 	}
 

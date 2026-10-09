@@ -13,6 +13,14 @@
         {
           "from": "body.filterGroups",
           "style": "hubspot"
+        },
+        {
+          "from": "body.query",
+          "style": "unsupported"
+        },
+        {
+          "from": "body.sorts",
+          "style": "unsupported"
         }
       ],
       "pagination": {
@@ -209,6 +217,14 @@
         {
           "from": "body.filterGroups",
           "style": "hubspot"
+        },
+        {
+          "from": "body.query",
+          "style": "unsupported"
+        },
+        {
+          "from": "body.sorts",
+          "style": "unsupported"
         }
       ],
       "pagination": {
@@ -405,6 +421,14 @@
         {
           "from": "body.filterGroups",
           "style": "hubspot"
+        },
+        {
+          "from": "body.query",
+          "style": "unsupported"
+        },
+        {
+          "from": "body.sorts",
+          "style": "unsupported"
         }
       ],
       "pagination": {

@@ -7,7 +7,7 @@ All notable changes to this project are documented here. The format follows
 
 ### Added
 
-- Stateful routes: a route's `store` block creates, reads, updates, deletes and lists records in the mock's store, with vendor-style paging (`cursor`, `offset`, `page`, `nextUrl`), filtering (flat comparisons, HubSpot `filterGroups`, a SOQL subset), idempotency keys and form-encoded bodies. Salesforce (Opportunity, Account, Contact), HubSpot (contacts, companies, deals) and Stripe (customers, charges) ship with stateful routes. `packs validate` checks store routes; `verify` compares only their status.
+- Stateful routes: a route's `store` block creates, reads, updates, deletes and lists records in the mock's store, with vendor-style paging (`cursor`, `offset`, `page`, `nextUrl`), filtering (flat comparisons, HubSpot `filterGroups`, a SOQL subset), idempotency keys and form-encoded bodies. Salesforce (Opportunity, Account, Contact), HubSpot (contacts, companies, deals) and Stripe (customers, charges) ship with stateful routes. `packs validate` checks store routes; `verify` compares only their status. `coerce` types form-encoded fields (Stripe `amount` is a number), and a filter declared `unsupported` answers 400 instead of being ignored.
 
 ### Fixed
 

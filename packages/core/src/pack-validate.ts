@@ -66,8 +66,13 @@ const paramsOf = (path: string): string[] =>
 function storeProblems(r: Route, p: ServicePack): PackProblem[] {
 	const out: PackProblem[] = [];
 	const err = (code: string, message: string): void => void out.push({ level: 'error', code, message, route: r.id });
-	if (r.store !== undefined && r.respond === undefined && !(r.sequence?.length)) {
-		err('store-respond', `"${r.id}" has a store block but no respond to render`);
+	if (r.store !== undefined && r.respond === undefined) {
+		err(
+			'store-respond',
+			r.sequence?.length
+				? `"${r.id}" has a route-level store block but no respond; move the store block onto the sequence entries that should use it`
+				: `"${r.id}" has a store block but no respond to render`,
+		);
 	}
 	const specs = [r.store, r.respond?.store, ...(r.sequence ?? []).map((s) => s.store)].filter(
 		(s): s is StoreSpec => s !== undefined,

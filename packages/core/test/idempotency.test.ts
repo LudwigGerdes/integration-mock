@@ -42,3 +42,14 @@ describe('IdempotencyCache', () => {
 		expect(cache.lookup('s', 'k', {})).toEqual({ kind: 'miss' });
 	});
 });
+
+describe('review fixes: idempotency cache', () => {
+	it('keeps at most 10000 keys, evicting the oldest', () => {
+		const cache = new IdempotencyCache();
+		const r = { status: 200, headers: {}, body: {} };
+		for (let i = 0; i <= 10000; i++) cache.remember('s', `k${i}`, {}, r);
+		expect(cache.lookup('s', 'k0', {})).toEqual({ kind: 'miss' });
+		expect(cache.lookup('s', 'k10000', {}).kind).toBe('hit');
+		expect(cache.size).toBe(10000);
+	});
+});

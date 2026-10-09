@@ -159,3 +159,55 @@ describe('idSpecsFor', () => {
 		expect(idSpecsFor([acme])).toEqual({ things: { field: 'id', format: 't_{{seq:3}}' } });
 	});
 });
+
+describe('review fixes', () => {
+	it('SOQL FROM an object nothing declared answers 400 and creates nothing', () => {
+		const call = harness();
+		expect(call({ path: '/query', query: { q: 'SELECT Id FROM Lead' } })).toMatchObject({
+			status: 400,
+			body: { error: "sObject type 'Lead' is not supported by this pack" },
+		});
+		expect(call({ path: '/query', query: { q: 'SELECT Id FROM constructor' } }).status).toBe(400);
+	});
+
+	it('coerce turns form strings into the numbers and booleans the vendor returns', () => {
+		const pack: ServicePack = {
+			...acme,
+			routes: [
+				{
+					id: 'charge',
+					match: { method: 'POST', path: '/charges' },
+					store: { op: 'create', collection: 'charges', coerce: { amount: 'number', paid: 'boolean', note: 'number' } },
+					respond: { status: 200, template: true, body: '{{record}}' },
+				},
+			],
+		};
+		const res = resolve(
+			{ library: [pack], user: [], project: [], snapshot: [] },
+			'acme',
+			{ method: 'POST', host: 'acme.test', path: '/charges', query: {}, headers: { 'content-type': 'application/x-www-form-urlencoded' }, body: 'amount=2000&paid=true&note=abc' },
+			new ResourceStore(),
+		);
+		expect(res.body).toMatchObject({ amount: 2000, paid: true, note: 'abc' });
+	});
+
+	it('an unsupported filter input answers 400 naming it; absent, it is ignored', () => {
+		const pack: ServicePack = {
+			...acme,
+			routes: [
+				{
+					id: 'search',
+					match: { method: 'POST', path: '/search' },
+					store: { op: 'list', collection: 'things', filters: [{ from: 'body.query', style: 'unsupported' }] },
+					respond: { status: 200, template: true, body: { results: '{{records}}' } },
+				},
+			],
+		};
+		const call = (body: unknown) =>
+			resolve({ library: [pack], user: [], project: [], snapshot: [] }, 'acme', { method: 'POST', host: 'acme.test', path: '/search', query: {}, headers: {}, body }, new ResourceStore());
+		expect(call({ query: 'ada' })).toMatchObject({ status: 400, body: { error: 'body.query is not supported by integration-mock' } });
+		expect(call({}).status).toBe(200);
+		expect(call({ query: '' }).status).toBe(200);
+		expect(call({ query: [] }).status).toBe(200);
+	});
+});
