@@ -182,3 +182,44 @@ describe('store routes in the schema', () => {
 		expect(codes({ ...base, routes: [...base.routes, seq] })).toEqual([]);
 	});
 });
+
+describe('store route semantics', () => {
+	const r = (id: string, path: string, method: string, store: unknown, extra: Record<string, unknown> = {}) => ({
+		id,
+		match: { method, path },
+		store,
+		respond: { status: 200, template: true, body: '{{record}}' },
+		...extra,
+	});
+	const pack = (routes: unknown[], seed?: Record<string, unknown[]>) => ({ ...base, routes: [...base.routes, ...routes], ...(seed ? { seed } : {}) });
+
+	it('needs a respond to render', () => {
+		const route = { id: 's', match: { method: 'POST', path: '/s' }, store: { op: 'create', collection: 'c' } };
+		expect(codes(pack([route]))).toContain('store-respond');
+	});
+
+	it('needs a collection, except a SOQL list or a nextUrl follow-up', () => {
+		expect(codes(pack([r('a', '/a', 'POST', { op: 'create' })]))).toContain('store-collection');
+		expect(codes(pack([r('q', '/q', 'GET', { op: 'list', filters: [{ from: 'query.q', style: 'soql' }] })]))).toEqual([]);
+		expect(codes(pack([r('n', '/q/:token', 'GET', { op: 'list', pagination: { style: 'nextUrl', tokenParam: 'token' } })]))).toEqual([]);
+	});
+
+	it('needs idParam when the path has more than one param, and it must be a param', () => {
+		expect(codes(pack([r('g', '/v/:version/things/:id', 'GET', { op: 'get', collection: 'c' })]))).toContain('store-id-param');
+		expect(codes(pack([r('g', '/v/:version/things/:id', 'GET', { op: 'get', collection: 'c', idParam: 'id' })]))).toEqual([]);
+		expect(codes(pack([r('g', '/things/:id', 'GET', { op: 'get', collection: 'c', idParam: 'thing' })]))).toContain('store-id-param');
+	});
+
+	it('allows idempotency only on create and update', () => {
+		expect(codes(pack([r('l', '/l', 'GET', { op: 'list', collection: 'c', idempotency: { header: 'Idempotency-Key' } })]))).toContain('store-idempotency');
+	});
+
+	it('needs a nextUrl route to issue or follow tokens', () => {
+		expect(codes(pack([r('q', '/q', 'GET', { op: 'list', collection: 'c', pagination: { style: 'nextUrl' } })]))).toContain('store-next-url');
+	});
+
+	it('warns about an unpaged list over a large seed', () => {
+		const seed = { c: Array.from({ length: 101 }, (_, i) => ({ id: String(i) })) };
+		expect(codes(pack([r('l', '/l', 'GET', { op: 'list', collection: 'c' })], seed))).toContain('unpaged-list');
+	});
+});
