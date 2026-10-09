@@ -21,3 +21,4 @@ export * from './assert.js';
 export * from './template.js';
 export * from './form-body.js';
 export * from './filter.js';
+export * from './soql.js';
