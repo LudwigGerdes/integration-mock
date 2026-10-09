@@ -53,34 +53,31 @@
       "status": 401,
       "body": [
         {
-          "message": "Session expired or invalid",
+          "message": "The specified sessionId is malformed (incorrect length or format) or has expired. Log in again to start a new session.",
           "errorCode": "INVALID_SESSION_ID"
         }
       ],
-      "note": "https://developer.salesforce.com/docs/platform/api-rest/guide/errorcodes.html — 401 for an expired or invalid session or token"
+      "note": "https://developer.salesforce.com/docs/platform/api-rest/guide/errorcodes.html: 401 and the [{message, errorCode}] shape; code and message from the StatusCode list at https://developer.salesforce.com/docs/platform/api/guide/sforce-api-calls-concepts-core-data-objects.html"
     },
     "forbidden": {
       "status": 403,
       "body": [
         {
-          "message": "You do not have access to the requested resource.",
-          "errorCode": "INSUFFICIENT_ACCESS"
+          "message": "You can’t perform the specified action because you don’t have sufficient permissions.",
+          "errorCode": "INSUFFICIENT_ACCESS_OR_READONLY"
         }
       ],
-      "note": "https://developer.salesforce.com/docs/platform/api-rest/guide/errorcodes.html — 403; errorCode and message from observed responses"
+      "note": "https://developer.salesforce.com/docs/platform/api-rest/guide/errorcodes.html: 403 for missing permissions; code and message from the StatusCode list at https://developer.salesforce.com/docs/platform/api/guide/sforce-api-calls-concepts-core-data-objects.html"
     },
     "rateLimit": {
       "status": 403,
-      "headers": {
-        "Sforce-Limit-Info": "api-usage={{limit}}/{{limit}}"
-      },
       "body": [
         {
-          "message": "TotalRequests Limit exceeded.",
+          "message": "The request exceeded either the concurrent request limit or the request rate limit for your org.",
           "errorCode": "REQUEST_LIMIT_EXCEEDED"
         }
       ],
-      "note": "https://developer.salesforce.com/docs/platform/api-rest/guide/headers-api-usage.html — Salesforce answers its request limit with 403 REQUEST_LIMIT_EXCEEDED, not 429, and documents no Retry-After"
+      "note": "https://developer.salesforce.com/docs/platform/api-rest/guide/errorcodes.html: request limits answer 403 REQUEST_LIMIT_EXCEEDED, not 429; message from the StatusCode list. Salesforce documents no Retry-After; integration-mock adds one to every rate-limit answer"
     }
   }
 }

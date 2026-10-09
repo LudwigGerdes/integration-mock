@@ -8,62 +8,56 @@
   "scenarios": {
     "revoked": {
       "status": 401,
-      "headers": {
-        "WWW-Authenticate": "Bearer realm=\"https://accounts.google.com/\""
-      },
       "body": {
         "error": {
-          "code": 401,
-          "message": "Request had invalid authentication credentials.",
           "errors": [
             {
-              "message": "Invalid Credentials",
               "domain": "global",
               "reason": "authError",
-              "location": "Authorization",
-              "locationType": "header"
+              "message": "Invalid Credentials",
+              "locationType": "header",
+              "location": "Authorization"
             }
           ],
-          "status": "UNAUTHENTICATED"
+          "code": 401,
+          "message": "Invalid Credentials"
         }
       },
-      "note": "https://developers.google.com/workspace/gmail/api/guides/handle-errors — reason authError / Invalid Credentials per the docs; status field per https://google.aip.dev/193"
+      "note": "https://developers.google.com/workspace/gmail/api/guides/handle-errors: the documented 401 body"
     },
     "forbidden": {
       "status": 403,
       "body": {
         "error": {
-          "code": 403,
-          "message": "Request had insufficient authentication scopes.",
           "errors": [
             {
-              "message": "Insufficient Permission",
               "domain": "global",
-              "reason": "insufficientPermissions"
+              "reason": "domainPolicy",
+              "message": "The domain administrators have disabled Gmail apps."
             }
           ],
-          "status": "PERMISSION_DENIED"
+          "code": 403,
+          "message": "The domain administrators have disabled Gmail apps."
         }
       },
-      "note": "https://developers.google.com/workspace/gmail/api/guides/handle-errors — insufficientPermissions; message and status field from observed responses, not shown in the docs"
+      "note": "https://developers.google.com/workspace/gmail/api/guides/handle-errors: the documented 403 domainPolicy body, the permission refusal that page shows"
     },
     "rateLimit": {
-      "status": 429,
+      "status": 403,
       "body": {
         "error": {
-          "code": 429,
-          "message": "Rate Limit Exceeded",
           "errors": [
             {
-              "message": "Rate Limit Exceeded",
               "domain": "usageLimits",
-              "reason": "rateLimitExceeded"
+              "reason": "rateLimitExceeded",
+              "message": "Rate Limit Exceeded"
             }
           ],
-          "status": "RESOURCE_EXHAUSTED"
+          "code": 403,
+          "message": "Rate Limit Exceeded"
         }
       },
-      "note": "https://developers.google.com/workspace/gmail/api/guides/handle-errors — Gmail also answers 403 rateLimitExceeded / userRateLimitExceeded; 429 is its concurrent and sending limit"
+      "note": "https://developers.google.com/workspace/gmail/api/guides/handle-errors: the documented 403 rateLimitExceeded body (Gmail also answers 429 for sending, bandwidth and concurrency limits, without a documented body)"
     }
   }
 }

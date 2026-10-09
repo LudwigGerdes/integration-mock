@@ -10,9 +10,10 @@ const rl = { kind: 'rateLimit' as const, retryAfterSec: 7, limit: 100, resetAt: 
 const PACKS = ['slack', 'stripe', 'hubspot', 'salesforce', 'openai', 'gmail', 'google-drive', 'google-sheets'];
 
 describe('shipped scenario shapes', () => {
-	it.each(PACKS)('%s declares all three shapes, each with a note', async (id) => {
+	it.each(PACKS)('%s declares its documented shapes, each citing a source', async (id) => {
 		const s = (await loadShipped(id)).scenarios;
-		for (const k of ['revoked', 'forbidden', 'rateLimit'] as const) {
+		const keys = id === 'openai' ? (['revoked', 'rateLimit'] as const) : (['revoked', 'forbidden', 'rateLimit'] as const);
+		for (const k of keys) {
 			expect(s?.[k]?.note, `${id}.${k}.note`).toMatch(/^https:\/\//);
 		}
 	});
@@ -32,12 +33,18 @@ describe('shipped scenario shapes', () => {
 	it('hubspot rate limit carries its rate-limit headers', async () => {
 		const r = scenarioResponse(rl, (await loadShipped('hubspot')).scenarios, req);
 		expect(r.status).toBe(429);
-		expect(r.headers['x-hubspot-ratelimit-max']).toBe('100');
-		expect(r.headers['x-hubspot-ratelimit-remaining']).toBe('0');
+		expect(r.headers['x-hubspot-ratelimit-daily']).toBe('100');
+		expect(r.headers['x-hubspot-ratelimit-daily-remaining']).toBe('0');
+		expect(r.body).toMatchObject({ errorType: 'RATE_LIMIT', policyName: 'DAILY' });
 	});
 
 	it.each(PACKS)('%s rate limit always carries retry-after', async (id) => {
 		expect(scenarioResponse(rl, (await loadShipped(id)).scenarios, req).headers['retry-after']).toBeDefined();
+	});
+
+	it('openai documents no permission-error body, so forbidden falls back to the generic 403', async () => {
+		const r = scenarioResponse({ kind: 'auth', mode: 'forbidden' }, (await loadShipped('openai')).scenarios, req);
+		expect(r).toMatchObject({ status: 403, body: { error: 'forbidden' } });
 	});
 
 	it('generic-rest has no scenarios block (generic answers)', async () => {

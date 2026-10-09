@@ -10,43 +10,28 @@
       "status": 401,
       "body": {
         "error": {
-          "message": "Incorrect API key provided: sk-proj-****MOCK.",
+          "message": "Incorrect API key provided. You can find your API key at https://platform.openai.com/account/api-keys.",
           "type": "invalid_request_error",
           "param": null,
           "code": "invalid_api_key"
         }
       },
-      "note": "https://developers.openai.com/api/docs/guides/error-codes — 401 Incorrect API Key Provided; body from observed responses"
-    },
-    "forbidden": {
-      "status": 403,
-      "body": {
-        "error": {
-          "message": "Country, region, or territory not supported",
-          "type": "request_forbidden",
-          "param": null,
-          "code": "unsupported_country_region_territory"
-        }
-      },
-      "note": "https://developers.openai.com/api/docs/guides/error-codes — the only documented 403 is Country/Region Not Supported; body from observed responses"
+      "note": "https://developers.openai.com/api/docs/guides/error-codes: 401 Incorrect API key provided; body as recorded from the live API in OpenAI's own SDK tests (openai/openai-dotnet tests/SessionRecords/ChatTests/AuthFailure.json), key fragment removed"
     },
     "rateLimit": {
       "status": 429,
       "headers": {
-        "Retry-After": "{{retryAfter}}",
-        "x-ratelimit-limit-requests": "{{limit}}",
-        "x-ratelimit-remaining-requests": "0",
-        "x-ratelimit-reset-requests": "{{retryAfter}}s"
+        "Retry-After": "{{retryAfter}}"
       },
       "body": {
         "error": {
-          "message": "Rate limit reached for requests. Please try again in {{retryAfter}}s.",
-          "type": "requests",
+          "message": "Your request rate increased too quickly. Please reduce the request rate and gradually increase it again.",
+          "type": "rate_limit_error",
           "param": null,
-          "code": "rate_limit_exceeded"
+          "code": "slow_down"
         }
       },
-      "note": "https://developers.openai.com/api/docs/guides/rate-limits — 429 with Retry-After and x-ratelimit-* headers; body from observed responses"
+      "note": "https://github.com/openai/openai-openapi: the InferenceRateLimited example in OpenAI's own OpenAPI spec; https://developers.openai.com/api/docs/guides/error-codes lists 429 slow_down with type rate_limit_error and Retry-After"
     }
   }
 }

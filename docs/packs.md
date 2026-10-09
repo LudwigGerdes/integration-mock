@@ -220,7 +220,7 @@ A pack can say how its vendor answers a revoked credential, a missing permission
 
 Each entry is a response (`status`, `headers`, `body`) and is always rendered as a template. A rate-limit entry can use `{{retryAfter}}` (seconds), `{{limit}}` (calls per window) and `{{resetAt}}` (epoch seconds). `note` records where the shape comes from and is never sent. A missing entry answers a generic `401 {"error":"unauthorized"}`, `403 {"error":"forbidden"}` or `429 {"error":"rate limited"}`, and a rate-limit answer gets `Retry-After` even when its entry leaves it out. The nearest layer whose pack has a `scenarios` block supplies the shapes, so a project pack that only adds routes keeps the library's.
 
-Slack, Stripe, HubSpot, Salesforce, OpenAI, Gmail, Google Drive and Google Sheets ship their shapes, each citing the vendor documentation it follows.
+Slack, Stripe, HubSpot, Salesforce, OpenAI, Gmail, Google Drive and Google Sheets ship their shapes. Each comes from the vendor's documentation, its official OpenAPI spec or its official SDKs, and its `note` names the source. OpenAI documents no permission-error body, so `auth forbid openai` answers the generic `403`.
 
 ## Generating a pack from OpenAPI
 
