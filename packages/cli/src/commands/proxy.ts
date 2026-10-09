@@ -5,9 +5,38 @@ import { mkdir, readFile, rm, stat, writeFile } from 'node:fs/promises';
 import { existsSync } from 'node:fs';
 import { join } from 'node:path';
 import { fileURLToPath } from 'node:url';
-import { loadProjectConfig, mockHome, type FaultSpec, type LogEntry } from 'integration-mock-core';
+import {
+	loadProjectConfig,
+	mockHome,
+	type FaultSpec,
+	type HttpMethod,
+	type LogEntry,
+	type RateLimitScenario,
+} from 'integration-mock-core';
 import { dataPaths } from 'integration-mock-packs';
 import { AdminClient, ensureCA } from 'integration-mock-proxy';
+
+const UNITS: Record<string, number> = { ms: 1, s: 1000, m: 60_000, h: 3_600_000 };
+
+/** `500ms`, `10s`, `1m`, `1h` → milliseconds. */
+export function parseDuration(s: string): number {
+	const m = /^(\d+)(ms|s|m|h)$/.exec(s.trim());
+	const n = m ? Number(m[1]) * (UNITS[m[2]!] ?? 0) : 0;
+	if (n < 1) throw new Error(`--per must look like 500ms, 10s, 1m or 1h (got "${s}")`);
+	return n;
+}
+
+const ROUTE_METHODS: ReadonlyArray<HttpMethod | '*'> = ['GET', 'POST', 'PUT', 'PATCH', 'DELETE', 'HEAD', 'OPTIONS', '*'];
+
+/** `'POST /path/:id'` → `{ method, path }`. */
+export function parseRouteFilter(s: string): { method: HttpMethod | '*'; path: string } {
+	const [method = '', path = '', ...rest] = s.trim().split(/\s+/);
+	const known = ROUTE_METHODS.find((m) => m === method.toUpperCase());
+	if (known === undefined || !path.startsWith('/') || rest.length) {
+		throw new Error(`--route must look like 'POST /crm/v3/objects/contacts' (got "${s}")`);
+	}
+	return { method: known, path };
+}
 import type { CliIo } from '../index.js';
 import { CLI_VERSION } from '../version.js';
 
@@ -285,6 +314,7 @@ export function registerProxy(p: Command, io: CliIo): void {
 				`snapshot\t${s.activeSnapshot ? `${s.activeSnapshot.workflowId}/${s.activeSnapshot.executionId}` : '(none)'}`,
 			);
 			io.write(`faults\t${JSON.stringify(s.faults)}`);
+			io.write(`scenarios\t${JSON.stringify(s.scenarios)}`);
 		});
 
 	p.command('on')
@@ -364,6 +394,62 @@ export function registerProxy(p: Command, io: CliIo): void {
 		io.write('faults cleared');
 	});
 
+	const enabledClient = async (service: string): Promise<AdminClient> => {
+		const c = await adminClient();
+		if (!(await c.getState()).enabledPacks.includes(service)) {
+			throw new Error(`${service} is not enabled; run: integration-mock packs enable ${service}`);
+		}
+		return c;
+	};
+
+	const auth = p.command('auth').description('make a service reject its credentials');
+	auth
+		.command('revoke <service>')
+		.description("answer every call with the vendor's invalid-credential error")
+		.action(async (service: string) => {
+			await (await enabledClient(service)).setAuthScenario(service, 'revoked');
+			io.write(`auth: ${service} revoked`);
+		});
+	auth
+		.command('forbid <service>')
+		.description("answer every call with the vendor's missing-permission error")
+		.action(async (service: string) => {
+			await (await enabledClient(service)).setAuthScenario(service, 'forbidden');
+			io.write(`auth: ${service} forbidden`);
+		});
+	auth
+		.command('clear [service]')
+		.description('accept credentials again, for one service or all')
+		.action(async (service?: string) => {
+			await (await adminClient()).clearAuthScenario(service);
+			io.write('auth cleared');
+		});
+
+	const limits = p.command('limits').description('rate-limit a service');
+	limits
+		.command('set <service>')
+		.description("answer the vendor's rate-limit error once a service gets too many calls")
+		.requiredOption('--calls <n>', 'calls allowed per window')
+		.requiredOption('--per <duration>', 'window length: 500ms, 10s, 1m, 1h')
+		.option('--route <route>', "limit only one endpoint, e.g. 'POST /crm/v3/objects/contacts'")
+		.action(async (service: string, o: { calls: string; per: string; route?: string }) => {
+			const calls = Number(o.calls);
+			if (!Number.isInteger(calls) || calls < 1) {
+				throw new Error(`--calls must be a whole number >= 1 (got "${o.calls}")`);
+			}
+			const limit: RateLimitScenario = { calls, perMs: parseDuration(o.per) };
+			if (o.route !== undefined) limit.route = parseRouteFilter(o.route);
+			await (await enabledClient(service)).setRateLimit(service, limit);
+			io.write(`limit set: ${service} ${calls} per ${o.per}${o.route ? ` on ${o.route}` : ''}`);
+		});
+	limits
+		.command('clear [service]')
+		.description('remove rate limits from one service, or from all')
+		.action(async (service?: string) => {
+			await (await adminClient()).clearRateLimit(service);
+			io.write('limits cleared');
+		});
+
 	p.command('log')
 		.description('request log')
 		.option('--service <s>', 'filter by service')
@@ -374,7 +460,7 @@ export function registerProxy(p: Command, io: CliIo): void {
 			const print = (entries: LogEntry[]): void => {
 				for (const e of entries) {
 					io.write(
-						`${new Date(e.ts).toISOString()}\t${e.method}\t${e.service}\t${e.path}\t${e.status}\t${e.matchedRoute}${e.fault ? '\tFAULT' : ''}`,
+						`${new Date(e.ts).toISOString()}\t${e.method}\t${e.service}\t${e.path}\t${e.status}\t${e.matchedRoute}${e.fault ? '\tFAULT' : ''}${e.scenario === 'auth' ? '\tAUTH' : e.scenario === 'rate-limit' ? '\tLIMIT' : ''}`,
 					);
 				}
 			};
