@@ -12,6 +12,12 @@ All notable changes to this project are documented here. The format follows
 
 ### Fixed
 
+- A `create` whose body carries an id that already exists answers `conflict` (`409`) instead of storing a second record.
+- An idempotency key now replays the first result even when it was an error (`404`, `409`), as Stripe does; a request refused as malformed is still not saved.
+- A handler-only route in `00-overrides.json` no longer hides the generated route it shares a path with.
+- `packs validate` rejects an `idempotency` block naming neither `header` nor `from`, and a `nextUrl` follow-up route without `nextUrlTemplate` (which ended paging after one page); it no longer warns `no-error-routes` on a pack that declares `scenarios`.
+- `verify` compares only the status of a route whose `respond` entry carries the store op.
+- Admin API fault and scenario paths with extra segments answer `404` instead of acting on the first one.
 - A route in a pack's `routes/00-overrides.json` replaces the generated route with the same method and path, as the docs say. The generated route used to stay in the pack, where it could never answer, and `packs validate` reported it as an error.
 
 ## 0.2.0 — 2026-09-26

@@ -100,6 +100,16 @@ by trying a real spec; none was caught by the fixtures.
 | Vendor publishes many specs, none complete | One spec per API. HubSpot ships 117. | Use the `urls` list (step 3). |
 | Routes land on dated or preview paths | Catalogue version arrays are ordered per API; `versions[0]` is not reliably the stable one. Companies was pinned to a preview while contacts and deals were stable. | Select by `stage == 'STABLE'`, never by array position. |
 
+## Stateful routes and failure shapes
+
+Generated packs answer fixed bodies. To make a vendor stateful, put `store` routes in the
+pack's `00-overrides.json` (see [packs.md](packs.md#stateful-routes)); write that file with
+`packages/packs/scripts/order-overrides.py`, which copies literal generated routes such as
+`/v1/customers/search` ahead of a param override that would otherwise capture them. To give
+`integration-mock auth` and `limits` the vendor's own answers, add a `scenarios` block to
+`pack.json` (see [packs.md](packs.md#failure-scenario-shapes)), taking each body from the
+vendor's documentation, official OpenAPI spec or official SDK, and citing it in `note`.
+
 ## Working in parallel
 
 Sequential work is clean. If several people work at once, these are the

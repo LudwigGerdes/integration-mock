@@ -87,6 +87,13 @@ Make the next call fail, to test an error branch or retry settings:
 integration-mock faults set slack --status 503 --once
 ```
 
+Answer as the vendor does when a key is revoked, or once it rate-limits you:
+
+```bash
+integration-mock auth revoke slack
+integration-mock limits set hubspot --calls 10 --per 10s
+```
+
 Mock an API that has no pack yet:
 
 ```bash

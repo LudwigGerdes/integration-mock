@@ -98,7 +98,7 @@ Each answer is the vendor's own, from the pack's `scenarios` block (see [packs.m
 | `--per <duration>` | Window length: `500ms`, `10s`, `1m` or `1h`. The window opens at the first counted call |
 | `--route '<METHOD> <path>'` | Count and limit only this endpoint. The method may be `*`; the path uses pack-route syntax (`:id` matches one segment) |
 
-Credentials are checked first, then limits, then faults. A rejected or limited call does not count against the limit, and does not use up a fault. Both verbs refuse a service that is not enabled. The log marks these answers `AUTH` and `LIMIT`; `integration-mock status` lists what is switched on. Scenarios last until cleared or the mock restarts; `packs reset` leaves them in place.
+Credentials are checked first, then limits, then faults. A rejected or limited call does not count against the limit, and does not use up a fault. `auth revoke`, `auth forbid` and `limits set` refuse a service that is not enabled. Scenarios, like faults, answer only while the mock is serving: in replay mode and in base-URL mode, not while it is off or recording. The log marks these answers `AUTH` and `LIMIT`; `integration-mock status` lists what is switched on. Scenarios last until cleared or the mock restarts; `packs reset` leaves them in place.
 
 ## The request log
 

@@ -18,7 +18,7 @@ No, unless you run `creds swap --in-place`. In base-URL mode you change a node's
 
 ### Does it need my n8n instance?
 
-Not for mocking. `start`, `packs`, `url`, `faults` and `log` need no instance, no API key and no network. `snapshot`, `diff` and `creds` need an instance you add with `instances add`.
+Not for mocking. `start`, `packs`, `url`, `faults`, `auth`, `limits` and `log` need no instance, no API key and no network. `snapshot`, `diff` and `creds` need an instance you add with `instances add`.
 
 ### Why did my call get a 501?
 
