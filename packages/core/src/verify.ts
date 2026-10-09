@@ -45,7 +45,7 @@ export function compareRoute(route: Route, actual: ActualResponse): RouteFinding
 		];
 	}
 
-	if (route.store !== undefined) {
+	if (route.store !== undefined || route.respond.store !== undefined) {
 		return [
 			{
 				route: route.id,

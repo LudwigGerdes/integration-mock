@@ -40,8 +40,13 @@ const shapeOf = (r: Route): string =>
 		.map((s) => (s.startsWith(':') ? ':' : s))
 		.join('/')}`;
 
-/** Only an unconditional route replaces another; one with a query or body matcher is narrower. */
-const replaces = (r: Route): boolean => r.match.query === undefined && r.match.bodyMatch === undefined;
+/**
+ * Only an unconditional route that answers replaces another: one with a query or
+ * body matcher is narrower, and one with nothing to answer with (a handler only)
+ * would leave the shape unserved.
+ */
+const replaces = (r: Route): boolean =>
+	r.match.query === undefined && r.match.bodyMatch === undefined && (r.respond !== undefined || (r.sequence?.length ?? 0) > 0);
 
 export async function loadPack(dir: string): Promise<ServicePack> {
 	const metaPath = join(dir, 'pack.json');

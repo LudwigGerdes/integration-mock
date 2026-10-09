@@ -119,6 +119,14 @@ describe('route files: an earlier file replaces what it overrides', () => {
 		expect((await loadPack(dir)).routes.map((r) => r.id)).toEqual(['narrow', 'gen-list']);
 	});
 
+	it('keeps a later route when the earlier one has nothing to answer with (handler only)', async () => {
+		const dir = write({
+			'00-overrides.json': [{ id: 'hook', match: { method: 'GET', path: '/things/:id' }, handler: 'custom' }],
+			'10-generated.json': [route('gen-get', 'GET', '/things/:thingId')],
+		});
+		expect((await loadPack(dir)).routes.map((r) => r.id)).toEqual(['hook', 'gen-get']);
+	});
+
 	it('never drops routes within one file', async () => {
 		const dir = write({ 'main.json': [route('a', 'GET', '/x/:id'), route('b', 'GET', '/x/:other')] });
 		expect((await loadPack(dir)).routes.map((r) => r.id)).toEqual(['a', 'b']);
