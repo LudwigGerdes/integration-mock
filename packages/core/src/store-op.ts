@@ -1,6 +1,6 @@
 import { applyFilters, getPath, readInput, type Row } from './filter.js';
 import { isFormRequest, parseFormBody } from './form-body.js';
-import { idempotencyKey } from './idempotency.js';
+import { idempotencyKey, type RememberedResponse } from './idempotency.js';
 import { followToken, paginate, sortRows } from './paginate.js';
 import { applySoql, parseSoql, selectFields, type SoqlQuery } from './soql.js';
 import type { ResourceStore } from './store.js';
@@ -10,6 +10,7 @@ import type { IdSpec, Layer, MockRequest, Resolution, Route, RouteResponse, Serv
 export type StoreOutcome =
 	| { kind: 'ok'; record?: Row; records?: Row[]; page?: Record<string, unknown> }
 	| { kind: 'notFound' }
+	| { kind: 'conflict'; error: string }
 	| { kind: 'badRequest'; error: string };
 
 const isPlain = (v: unknown): v is Row => v !== null && typeof v === 'object' && !Array.isArray(v);
@@ -45,8 +46,13 @@ function objectBody(body: unknown): Row | undefined {
 	return isPlain(body) ? body : undefined;
 }
 
-export function runStoreOp(spec: StoreSpec, req: MockRequest, params: Record<string, string>, store: ResourceStore): StoreOutcome {
-	const body = requestBody(req);
+export function runStoreOp(
+	spec: StoreSpec,
+	req: MockRequest,
+	params: Record<string, string>,
+	store: ResourceStore,
+	body: unknown = requestBody(req),
+): StoreOutcome {
 	if (spec.op === 'list') return listOp(spec, req, params, store, body);
 
 	const collection = spec.collection === undefined ? undefined : store.resolveCollection(spec.collection);
@@ -55,6 +61,10 @@ export function runStoreOp(spec: StoreSpec, req: MockRequest, params: Record<str
 	if (spec.op === 'create') {
 		const item = objectBody(body);
 		if (item === undefined) return { kind: 'badRequest', error: 'expected a JSON object body' };
+		const given = item[store.idField(collection)];
+		if (given !== undefined && given !== null && store.get(collection, String(given)) !== undefined) {
+			return { kind: 'conflict', error: `a record with id ${String(given)} already exists` };
+		}
 		let record = store.create(collection, item);
 		if (spec.stamp !== undefined) {
 			const stamped = renderTemplate(spec.stamp, { request: req, params, count: 1, extra: { record } });
@@ -120,7 +130,7 @@ function listOp(spec: StoreSpec, req: MockRequest, params: Record<string, string
 	}
 	if (collection === undefined) return { kind: 'badRequest', error: 'this route names no collection' };
 
-	let rows = store.list(collection);
+	let rows = [...store.view(collection)];
 	if (soql !== undefined) rows = applySoql(rows, soql);
 	const filtered = applyFilters(rows, spec.filters ?? [], req, body, params);
 	if (!filtered.ok) return { kind: 'badRequest', error: filtered.error };
@@ -134,7 +144,8 @@ function listOp(spec: StoreSpec, req: MockRequest, params: Record<string, string
 		...(soql !== undefined ? { fields: soql.fields } : {}),
 	});
 	if (!paged.ok) return { kind: 'badRequest', error: paged.error };
-	return { kind: 'ok', records: selectFields(paged.rows, soql?.fields ?? '*', idField), page: paged.page };
+	// Filtering ran over the live records; only the page that leaves is copied.
+	return { kind: 'ok', records: structuredClone(selectFields(paged.rows, soql?.fields ?? '*', idField)), page: paged.page };
 }
 
 export interface StoreRouteArgs {
@@ -164,7 +175,8 @@ export function serveStoreRoute(a: StoreRouteArgs): Resolution {
 	const matched = { routeId: a.route.id, layer: a.layer };
 	const base = { request: a.req, params: a.params, count: a.count };
 	const scope = `${a.service}/${a.route.id}`;
-	const key = a.spec.idempotency === undefined ? undefined : idempotencyKey(a.spec.idempotency, a.req, requestBody(a.req));
+	const body = requestBody(a.req);
+	const key = a.spec.idempotency === undefined ? undefined : idempotencyKey(a.spec.idempotency, a.req, body);
 
 	if (key !== undefined) {
 		const seen = a.store.idempotency.lookup(scope, key, a.req.body);
@@ -172,21 +184,32 @@ export function serveStoreRoute(a: StoreRouteArgs): Resolution {
 		if (seen.kind === 'conflict') return { ...render(a.spec.conflict ?? CONFLICT, { ...base, extra: { error: CONFLICT_MESSAGE } }), matched };
 	}
 
-	const outcome = runStoreOp(a.spec, a.req, a.params, a.store);
+	// Stripe saves the result of any request whose endpoint began executing, errors
+	// included, and nothing for one that failed validation
+	// (https://docs.stripe.com/api/idempotent_requests).
+	const remember = (r: RememberedResponse): Resolution => {
+		if (key !== undefined) a.store.idempotency.remember(scope, key, a.req.body, r);
+		return { ...r, matched };
+	};
+
+	const outcome = runStoreOp(a.spec, a.req, a.params, a.store, body);
 	if (outcome.kind === 'notFound') {
-		return { ...render(a.spec.notFound ?? NOT_FOUND, { ...base, extra: { error: 'not found' } }), matched };
+		return remember(render(a.spec.notFound ?? NOT_FOUND, { ...base, extra: { error: 'not found' } }));
+	}
+	if (outcome.kind === 'conflict') {
+		return remember(render(a.spec.conflict ?? { status: 409, body: { error: outcome.error } }, { ...base, extra: { error: outcome.error } }));
 	}
 	if (outcome.kind === 'badRequest') {
 		const resp = a.spec.badRequest ?? { status: 400, body: { error: outcome.error } };
 		return { ...render(resp, { ...base, extra: { error: outcome.error } }), matched };
 	}
 
-	const response = render(a.chosen, {
-		...base,
-		extra: { record: outcome.record, records: outcome.records, page: outcome.page ?? {} },
-	});
-	if (key !== undefined) a.store.idempotency.remember(scope, key, a.req.body, response);
-	return { ...response, matched };
+	return remember(
+		render(a.chosen, {
+			...base,
+			extra: { record: outcome.record, records: outcome.records, page: outcome.page ?? {} },
+		}),
+	);
 }
 
 /** The id field and format of each collection, from the first store spec that names one. */
