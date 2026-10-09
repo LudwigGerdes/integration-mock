@@ -74,3 +74,47 @@ describe('ResourceStore.handle', () => {
 		expect(s().handle(req({ path: '/a/b/c/d' }))).toBeNull();
 	});
 });
+
+describe('store routes support', () => {
+	it('mints ids from a format with a per-collection counter, in the declared id field', () => {
+		const s = new ResourceStore({}, { Opportunity: { field: 'Id', format: '006MOCK{{seq:11}}' } });
+		expect(s.create('Opportunity', { Name: 'A' })).toEqual({ Name: 'A', Id: '006MOCK00000000001' });
+		expect(s.create('Opportunity', { Name: 'B' })['Id']).toBe('006MOCK00000000002');
+		expect(s.idField('Opportunity')).toBe('Id');
+		expect(s.idField('anything-else')).toBe('id');
+	});
+
+	it('keeps seeded ids and mints the missing ones with the format', () => {
+		const s = new ResourceStore({ Account: [{ Id: '001seed', Name: 'S' }, { Name: 'no id' }] }, { Account: { field: 'Id', format: '001X{{seq:2}}' } });
+		expect(s.list('Account').map((a) => a['Id'])).toEqual(['001seed', '001X01']);
+	});
+
+	it('deep-merges an update, keeps the path id, and can replace', () => {
+		const s = new ResourceStore({ contacts: [{ id: 'c1', properties: { email: 'a@x.io', firstname: 'Ada' } }] });
+		expect(s.updateRecord('contacts', 'c1', { id: 'other', properties: { firstname: 'Grace' } }, 'merge')).toEqual({
+			id: 'c1',
+			properties: { email: 'a@x.io', firstname: 'Grace' },
+		});
+		expect(s.updateRecord('contacts', 'c1', { properties: { email: 'b@x.io' } }, 'replace')).toEqual({ id: 'c1', properties: { email: 'b@x.io' } });
+		expect(s.updateRecord('contacts', 'missing', {}, 'merge')).toBeUndefined();
+	});
+
+	it('resolves a collection name case-insensitively to one it knows', () => {
+		const s = new ResourceStore({ Opportunity: [] }, { Contact: { field: 'Id' } });
+		expect(s.resolveCollection('opportunity')).toBe('Opportunity');
+		expect(s.resolveCollection('CONTACT')).toBe('Contact');
+		expect(s.resolveCollection('Lead')).toBe('Lead');
+	});
+
+	it('reset restores the seed and clears counters, page tokens and idempotency entries', () => {
+		const s = new ResourceStore({}, { t: { format: 't{{seq:1}}' } });
+		s.create('t', {});
+		s.tokens.issue({ collection: 't', ids: ['t1'], offset: 0, limit: 1 });
+		s.idempotency.remember('x', 'k', {}, { status: 200, headers: {}, body: {} });
+		s.reset();
+		expect(s.list('t')).toEqual([]);
+		expect(s.create('t', {})['id']).toBe('t1');
+		expect(s.tokens.get('mock000001-0')).toBeUndefined();
+		expect(s.idempotency.lookup('x', 'k', {})).toEqual({ kind: 'miss' });
+	});
+});
