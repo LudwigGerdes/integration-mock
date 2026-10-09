@@ -45,6 +45,16 @@ export function compareRoute(route: Route, actual: ActualResponse): RouteFinding
 		];
 	}
 
+	if (route.store !== undefined) {
+		return [
+			{
+				route: route.id,
+				kind: 'skipped',
+				message: 'store route: the body is computed from stored records, so only the status is compared',
+			},
+		];
+	}
+
 	const diffs = diffShape(route.respond.body, actual.body);
 	if (diffs.length === 0) return [];
 

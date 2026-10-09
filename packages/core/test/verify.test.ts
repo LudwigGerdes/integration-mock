@@ -59,3 +59,17 @@ describe('compareRoute', () => {
 		expect(f.map((x) => x.kind)).toEqual(['status']);
 	});
 });
+
+describe('store routes', () => {
+	const stored = route({ store: { op: 'get', collection: 'Opportunity' }, respond: { status: 200, template: true, body: '{{record}}' } });
+
+	it('skips the body, saying why, when the status agrees', () => {
+		expect(compareRoute(stored, { status: 200, body: { Id: 'real', Extra: 1 } })).toEqual([
+			{ route: 'get-opp', kind: 'skipped', message: 'store route: the body is computed from stored records, so only the status is compared' },
+		]);
+	});
+
+	it('still reports a status difference', () => {
+		expect(compareRoute(stored, { status: 404, body: {} })[0]?.kind).toBe('status');
+	});
+});
