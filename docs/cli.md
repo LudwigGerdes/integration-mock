@@ -33,6 +33,16 @@
 | `faults set <service> [--status n] [--delay ms] [--empty] [--after n] [--once]` | Make calls to a service fail or slow down |
 | `faults clear [service]` | Remove faults |
 
+## Failure scenarios
+
+| Command | What it does |
+|---|---|
+| `auth revoke <service>` | Answer every call with the vendor's invalid-credential error |
+| `auth forbid <service>` | Answer every call with the vendor's missing-permission error |
+| `auth clear [service]` | Accept credentials again |
+| `limits set <service> --calls n --per <duration> [--route '<METHOD> <path>']` | Allow `n` calls per window, then answer the vendor's rate-limit error until the window ends |
+| `limits clear [service]` | Remove rate limits |
+
 ## Proxy mode and recording
 
 | Command | What it does |
@@ -70,6 +80,25 @@ integration-mock faults set slack --status 503 --once
 | `--once` | Remove the fault after it fires |
 
 Faulted calls are marked `FAULT` in the log.
+
+## Failure scenarios in detail
+
+Switch on what a workflow meets when a credential stops working or a vendor rate-limits it:
+
+```bash
+integration-mock auth revoke slack
+integration-mock limits set hubspot --calls 10 --per 10s --route 'POST /crm/v3/objects/contacts'
+```
+
+Each answer is the vendor's own, from the pack's `scenarios` block (see [packs.md](packs.md#failure-scenario-shapes)); a pack without one answers a generic `401`, `403` or `429`. A rate-limit answer always carries `Retry-After`.
+
+| Option | Effect |
+|---|---|
+| `--calls n` | Calls allowed per window (at least 1) |
+| `--per <duration>` | Window length: `500ms`, `10s`, `1m` or `1h`. The window opens at the first counted call |
+| `--route '<METHOD> <path>'` | Count and limit only this endpoint. The method may be `*`; the path uses pack-route syntax (`:id` matches one segment) |
+
+Credentials are checked first, then limits, then faults. A rejected or limited call does not count against the limit, and does not use up a fault. Both verbs refuse a service that is not enabled. The log marks these answers `AUTH` and `LIMIT`; `integration-mock status` lists what is switched on. Scenarios last until cleared or the mock restarts; `packs reset` leaves them in place.
 
 ## The request log
 

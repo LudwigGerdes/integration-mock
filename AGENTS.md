@@ -145,8 +145,8 @@ one build command, no code.
 - TDD with vitest. `core` stays pure; side effects live in `proxy` and `cli`.
 - Strict TypeScript. No `any`; no `as` casts where a type guard will do.
 - **The admin API is the only mutation path.** Runtime state (mode, enabled
-  packs, active snapshot, faults) lives in the proxy process alone. The CLI is a
-  stateless client that finds it through `~/.integration-mock/proxy.json`. Never add a
+  packs, active snapshot, faults, failure scenarios) lives in the proxy
+  process alone. The CLI is a stateless client that finds it through `~/.integration-mock/proxy.json`. Never add a
   second source of truth on disk.
 - **`PUT /packs/enabled` re-reads the user and project layers** (`diskLayers`
   in `packages/proxy/src/daemon.ts` → `MockEngine.replaceLayers`) before

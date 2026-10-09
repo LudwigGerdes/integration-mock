@@ -40,6 +40,10 @@ Only when you ask for it.
 
 No. `packs enable` tells the running mock to re-read your packs.
 
+### How do I test what my workflow does when a credential is revoked or a vendor rate-limits it?
+
+`integration-mock auth revoke <service>` makes every call to that service get the vendor's invalid-credential answer (Slack's `200` with `invalid_auth`, Stripe's `401`, …); `integration-mock limits set <service> --calls 5 --per 10s` answers the vendor's rate-limit error with `Retry-After` once a sixth call arrives within ten seconds. See [Failure scenarios](cli.md#failure-scenarios-in-detail).
+
 ### Where are my API key and the request log stored?
 
 Both are plain text under `~/.integration-mock/`. Credential headers and query parameters, token-shaped strings, JWTs and Basic credentials are redacted in the log, in recorded packs and in `verify --patch` output. See [SECURITY.md](https://github.com/LudwigGerdes/integration-mock/blob/main/SECURITY.md).

@@ -206,6 +206,22 @@ A JSON body must be an object. A form-encoded body (`application/x-www-form-urle
 
 Salesforce (Opportunity, Account, Contact, Lead), HubSpot (contacts, companies, deals) and Stripe (customers, charges) ship with stateful routes. `verify` compares only the status of a stateful route, since its body is computed.
 
+## Failure scenario shapes
+
+A pack can say how its vendor answers a revoked credential, a missing permission and a rate limit. `integration-mock auth` and `integration-mock limits` (see [cli.md](cli.md#failure-scenarios-in-detail)) answer with these:
+
+```json
+"scenarios": {
+  "revoked":   { "status": 200, "body": { "ok": false, "error": "invalid_auth" }, "note": "https://docs.slack.dev/reference/methods/chat.postMessage" },
+  "forbidden": { "status": 200, "body": { "ok": false, "error": "missing_scope" } },
+  "rateLimit": { "status": 429, "headers": { "Retry-After": "{{retryAfter}}" }, "body": { "ok": false, "error": "ratelimited" } }
+}
+```
+
+Each entry is a response (`status`, `headers`, `body`) and is always rendered as a template. A rate-limit entry can use `{{retryAfter}}` (seconds), `{{limit}}` (calls per window) and `{{resetAt}}` (epoch seconds). `note` records where the shape comes from and is never sent. A missing entry answers a generic `401 {"error":"unauthorized"}`, `403 {"error":"forbidden"}` or `429 {"error":"rate limited"}`, and a rate-limit answer gets `Retry-After` even when its entry leaves it out. The nearest layer whose pack has a `scenarios` block supplies the shapes, so a project pack that only adds routes keeps the library's.
+
+Slack, Stripe, HubSpot, Salesforce, OpenAI, Gmail, Google Drive and Google Sheets ship their shapes, each citing the vendor documentation it follows.
+
 ## Generating a pack from OpenAPI
 
 ```bash
