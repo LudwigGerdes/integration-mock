@@ -1,9 +1,25 @@
+import { randomUUID } from 'node:crypto';
 import { nanoid } from 'nanoid';
-import type { MockRequest, Resolution } from './types.js';
+import { IdempotencyCache } from './idempotency.js';
+import { PageTokens } from './paginate.js';
+import type { IdSpec, MockRequest, Resolution } from './types.js';
 
-type Item = Record<string, unknown> & { id: string };
+type Item = Record<string, unknown>;
 
 const clone = <T>(v: T): T => structuredClone(v);
+const isPlain = (v: unknown): v is Item => v !== null && typeof v === 'object' && !Array.isArray(v);
+const UNSAFE = new Set(['__proto__', 'constructor', 'prototype']);
+
+/** Merge `patch` into `base`: plain objects merge key by key; anything else is replaced. */
+export function deepMerge(base: Item, patch: Item): Item {
+	const out: Item = { ...base };
+	for (const [k, v] of Object.entries(patch)) {
+		if (UNSAFE.has(k)) continue;
+		const current = out[k];
+		out[k] = isPlain(v) && isPlain(current) ? deepMerge(current, v) : clone(v);
+	}
+	return out;
+}
 
 /**
  * In-memory collection store with REST-shape inference.
@@ -12,31 +28,73 @@ const clone = <T>(v: T): T => structuredClone(v);
  * handlers: `handle()` recognises `/<collection>` and `/<collection>/<id>`
  * (optionally behind a `/v1`-style or `/api` prefix) and serves list, get,
  * create, update and delete against the seeded data.
+ *
+ * Store routes (`route.store`) use the same collections through the typed
+ * methods below; `idSpecs` says which field holds each collection's id and how
+ * a new one is minted. The page tokens and idempotency entries those routes
+ * issue live here too, so every reset path that recreates the store clears them.
  */
 export class ResourceStore {
 	private seed: Record<string, unknown[]>;
+	private readonly idSpecs: Record<string, IdSpec>;
 	private data = new Map<string, Item[]>();
+	private seq = new Map<string, number>();
+	readonly idempotency = new IdempotencyCache();
+	readonly tokens = new PageTokens();
 
-	constructor(seed: Record<string, unknown[]> = {}) {
+	constructor(seed: Record<string, unknown[]> = {}, idSpecs: Record<string, IdSpec> = {}) {
 		this.seed = clone(seed);
+		this.idSpecs = idSpecs;
 		this.reset();
 	}
 
 	reset(seed?: Record<string, unknown[]>): void {
 		if (seed) this.seed = clone(seed);
 		this.data.clear();
+		this.seq.clear();
+		this.idempotency.clear();
+		this.tokens.clear();
 		for (const [c, items] of Object.entries(this.seed)) {
 			this.data.set(
 				c,
-				items.map((i) => this.withId(i)),
+				items.map((i) => this.withId(c, i)),
 			);
 		}
 	}
 
-	private withId(i: unknown): Item {
-		const o = (i && typeof i === 'object' ? clone(i) : {}) as Record<string, unknown>;
-		if (typeof o.id !== 'string') o.id = nanoid(10);
-		return o as Item;
+	/** The property that holds a collection's ids. */
+	idField(c: string): string {
+		return this.idSpecs[c]?.field ?? 'id';
+	}
+
+	/** Whether the collection exists: seeded, or created during this session. */
+	has(c: string): boolean {
+		return this.data.has(c);
+	}
+
+	/** A collection this store knows, matched case-insensitively (SOQL object names); else the name as given. */
+	resolveCollection(name: string): string {
+		const lower = name.toLowerCase();
+		return [...this.data.keys(), ...Object.keys(this.idSpecs)].find((k) => k.toLowerCase() === lower) ?? name;
+	}
+
+	private mint(c: string): string {
+		const spec = this.idSpecs[c];
+		if (spec === undefined) return nanoid(10);
+		const format = spec.format ?? '{{uuid}}';
+		return format.replace(/\{\{\s*(?:seq:(\d+)|uuid)\s*\}\}/g, (_m, width: string | undefined) => {
+			if (width === undefined) return randomUUID();
+			const n = (this.seq.get(c) ?? 0) + 1;
+			this.seq.set(c, n);
+			return String(n).padStart(Number(width), '0');
+		});
+	}
+
+	private withId(c: string, i: unknown): Item {
+		const o: Item = isPlain(i) ? clone(i) : {};
+		const field = this.idField(c);
+		if (typeof o[field] !== 'string') o[field] = this.mint(c);
+		return o;
 	}
 
 	private coll(c: string): Item[] {
@@ -44,33 +102,49 @@ export class ResourceStore {
 		return this.data.get(c)!;
 	}
 
-	list(c: string): unknown[] {
+	private indexOf(c: string, id: string): number {
+		const field = this.idField(c);
+		return this.coll(c).findIndex((i) => i[field] === id);
+	}
+
+	list(c: string): Item[] {
 		return clone(this.coll(c));
 	}
 
-	get(c: string, id: string): unknown | undefined {
-		const f = this.coll(c).find((i) => i.id === id);
+	get(c: string, id: string): Item | undefined {
+		const f = this.coll(c)[this.indexOf(c, id)];
 		return f && clone(f);
 	}
 
-	create(c: string, item: unknown): unknown {
-		const it = this.withId(item);
+	create(c: string, item: unknown): Item {
+		const it = this.withId(c, item);
 		this.coll(c).push(it);
 		return clone(it);
 	}
 
-	update(c: string, id: string, patch: unknown): unknown | undefined {
+	/** Shallow update, as the generic REST fallback has always done. */
+	update(c: string, id: string, patch: unknown): Item | undefined {
 		const arr = this.coll(c);
-		const idx = arr.findIndex((i) => i.id === id);
+		const idx = this.indexOf(c, id);
 		if (idx < 0) return undefined;
-		const p = (patch && typeof patch === 'object' ? patch : {}) as Record<string, unknown>;
-		arr[idx] = { ...arr[idx]!, ...p, id };
+		const p = isPlain(patch) ? patch : {};
+		arr[idx] = { ...arr[idx]!, ...p, [this.idField(c)]: id };
+		return clone(arr[idx]);
+	}
+
+	/** Store-route update: deep `merge` or `replace`; the id always stays the one asked for. */
+	updateRecord(c: string, id: string, patch: Item, mode: 'merge' | 'replace'): Item | undefined {
+		const arr = this.coll(c);
+		const idx = this.indexOf(c, id);
+		if (idx < 0) return undefined;
+		const field = this.idField(c);
+		arr[idx] = mode === 'replace' ? { ...clone(patch), [field]: id } : { ...deepMerge(arr[idx]!, patch), [field]: id };
 		return clone(arr[idx]);
 	}
 
 	delete(c: string, id: string): boolean {
 		const arr = this.coll(c);
-		const idx = arr.findIndex((i) => i.id === id);
+		const idx = this.indexOf(c, id);
 		if (idx < 0) return false;
 		arr.splice(idx, 1);
 		return true;

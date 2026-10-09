@@ -24,7 +24,7 @@ function assign(target: Record<string, unknown>, path: string[], value: string):
 				return;
 			}
 			const existing: unknown = cur[index];
-			const child = isContainer(existing) ? existing : fresh();
+			const child: Container = isContainer(existing) ? existing : fresh();
 			cur[index] = child;
 			cur = child;
 		} else {
@@ -32,8 +32,8 @@ function assign(target: Record<string, unknown>, path: string[], value: string):
 				cur[key] = value;
 				return;
 			}
-			const existing = cur[key];
-			const child = isContainer(existing) ? existing : fresh();
+			const existing: unknown = cur[key];
+			const child: Container = isContainer(existing) ? existing : fresh();
 			cur[key] = child;
 			cur = child;
 		}
