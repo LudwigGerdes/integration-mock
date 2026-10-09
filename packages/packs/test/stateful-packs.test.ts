@@ -150,3 +150,52 @@ describe('HubSpot', () => {
 		expect((call({ path: `${base}/deals` }).body as { results: unknown[] }).results).toEqual([]);
 	});
 });
+
+describe('Stripe', () => {
+	const form = { 'content-type': 'application/x-www-form-urlencoded' };
+
+	it('validates without errors', async () => {
+		const pack = await loadPack(join(libraryPacksDir(), 'stripe'));
+		expect(validatePack(pack).filter((p) => p.level === 'error')).toEqual([]);
+	});
+
+	it('form-encoded create, idempotent retry, conflict, email filter, paging, delete', async () => {
+		const { call } = await harness('stripe');
+		const create = (body: string, key?: string) =>
+			call({ method: 'POST', path: '/v1/customers', headers: { ...form, ...(key ? { 'idempotency-key': key } : {}) }, body });
+
+		const first = create('email=ada%40example.com&name=Ada&metadata[plan]=pro', 'key-1');
+		expect(first.status).toBe(200);
+		expect(first.body).toMatchObject({ id: 'cus_MOCK000001', object: 'customer', email: 'ada@example.com', metadata: { plan: 'pro' } });
+		expect(create('email=ada%40example.com&name=Ada&metadata[plan]=pro', 'key-1').body).toEqual(first.body);
+		expect(create('email=other%40example.com', 'key-1')).toMatchObject({ status: 409, body: { error: { type: 'idempotency_error' } } });
+
+		create('email=grace%40example.com');
+		create('email=alan%40example.com');
+		const byEmail = call({ path: '/v1/customers', query: { email: 'grace@example.com' } }).body as { data: Array<{ email: string }> };
+		expect(byEmail.data.map((c) => c.email)).toEqual(['grace@example.com']);
+
+		const page1 = call({ path: '/v1/customers', query: { limit: '2' } }).body as { object: string; has_more: boolean; data: Array<{ id: string }> };
+		expect(page1).toMatchObject({ object: 'list', has_more: true });
+		const page2 = call({ path: '/v1/customers', query: { limit: '2', starting_after: page1.data[1]!.id } }).body as { has_more: boolean; data: unknown[] };
+		expect(page2).toMatchObject({ has_more: false });
+		expect(page2.data).toHaveLength(1);
+
+		expect(call({ method: 'DELETE', path: '/v1/customers/cus_MOCK000001' }).body).toEqual({ id: 'cus_MOCK000001', object: 'customer', deleted: true });
+		expect(call({ path: '/v1/customers/cus_MOCK000001' })).toMatchObject({ status: 404, body: { error: { code: 'resource_missing' } } });
+	});
+
+	it('the literal /v1/customers/search route still answers', async () => {
+		const { call } = await harness('stripe');
+		expect(call({ path: '/v1/customers/search', query: { query: "email:'x'" } }).matched).toMatchObject({ routeId: expect.stringMatching(/:literal$/) });
+	});
+
+	it('charges list by customer', async () => {
+		const { call } = await harness('stripe');
+		call({ method: 'POST', path: '/v1/charges', headers: form, body: 'amount=2000&currency=usd&customer=cus_A' });
+		call({ method: 'POST', path: '/v1/charges', headers: form, body: 'amount=500&currency=usd&customer=cus_B' });
+		const list = call({ path: '/v1/charges', query: { customer: 'cus_A' } }).body as { data: Array<{ id: string; amount: string }> };
+		expect(list.data).toHaveLength(1);
+		expect(list.data[0]).toMatchObject({ id: 'ch_MOCK000001', amount: '2000', object: 'charge', status: 'succeeded' });
+	});
+});
