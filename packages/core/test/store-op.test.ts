@@ -1,4 +1,5 @@
-import { describe, it, expect } from 'vitest';
+import { describe, it, expect, vi } from 'vitest';
+import * as formBody from '../src/form-body.js';
 import { resolve, type LayeredPacks } from '../src/layers.js';
 import { ResourceStore } from '../src/store.js';
 import { idSpecsFor } from '../src/store-op.js';
@@ -209,5 +210,67 @@ describe('review fixes', () => {
 		expect(call({}).status).toBe(200);
 		expect(call({ query: '' }).status).toBe(200);
 		expect(call({ query: [] }).status).toBe(200);
+	});
+});
+
+describe('deferred minors', () => {
+	it('a create carrying an id that already exists answers 409 and stores nothing new', () => {
+		const call = harness();
+		const first = call({ method: 'POST', path: '/things', body: { name: 'a' } });
+		const id = (first.body as { id: string }).id;
+		const again = call({ method: 'POST', path: '/things', body: { id, name: 'b' } });
+		expect(again.status).toBe(409);
+		expect(call({ path: `/things/${id}` }).body).toMatchObject({ name: 'a' });
+		expect((call({ path: '/things', query: { limit: '10' } }).body as { total: number }).total).toBe(1);
+	});
+
+	it('replays an executed error for a repeated idempotency key, as Stripe does', () => {
+		const pack: ServicePack = {
+			...acme,
+			routes: [
+				{
+					id: 'upd',
+					match: { method: 'POST', path: '/things/:id' },
+					store: { op: 'update', collection: 'things', idempotency: { header: 'Idempotency-Key' } },
+					respond: { status: 200, template: true, body: '{{record}}' },
+				},
+				acme.routes[0]!,
+			],
+		};
+		const packs: LayeredPacks = { library: [pack], user: [], project: [], snapshot: [] };
+		const store = new ResourceStore({}, idSpecsFor([pack]));
+		const call = (o: Partial<MockRequest>): Resolution =>
+			resolve(packs, 'acme', { method: 'GET', host: 'acme.test', path: '/', query: {}, headers: {}, ...o }, store, new Map());
+		const h = { 'idempotency-key': 'k1' };
+		expect(call({ method: 'POST', path: '/things/t_001', headers: h, body: { name: 'x' } }).status).toBe(404);
+		call({ method: 'POST', path: '/things', body: { name: 'now exists' } });
+		// The same key and body replay the first result, even though the record exists now.
+		expect(call({ method: 'POST', path: '/things/t_001', headers: h, body: { name: 'x' } }).status).toBe(404);
+	});
+
+	it('does not save a validation failure under an idempotency key', () => {
+		const call = harness();
+		const h = { 'idempotency-key': 'k2' };
+		expect(call({ method: 'POST', path: '/things', headers: h, body: 'not an object' }).status).toBe(400);
+		expect(call({ method: 'POST', path: '/things', headers: h, body: { name: 'ok' } }).status).toBe(201);
+	});
+
+	it('lists without copying the whole collection, and the page it returns is still a copy', () => {
+		const packs: LayeredPacks = { library: [acme], user: [], project: [], snapshot: [] };
+		const store = new ResourceStore({}, idSpecsFor([acme]));
+		const req = (o: Partial<MockRequest>): MockRequest => ({ method: 'GET', host: 'acme.test', path: '/', query: {}, headers: {}, ...o });
+		for (const n of ['a', 'b', 'c']) resolve(packs, 'acme', req({ method: 'POST', path: '/things', body: { name: n } }), store);
+		const list = vi.spyOn(store, 'list');
+		const page = resolve(packs, 'acme', req({ path: '/things' }), store).body as { data: Array<{ name: string }> };
+		expect(list).not.toHaveBeenCalled();
+		page.data[0]!.name = 'mutated';
+		expect(store.get('things', 't_001')).toMatchObject({ name: 'a' });
+	});
+
+	it('parses a form body once per request', () => {
+		const call = harness();
+		const spy = vi.spyOn(formBody, 'parseFormBody');
+		call({ method: 'POST', path: '/things', headers: { 'content-type': 'application/x-www-form-urlencoded', 'idempotency-key': 'f1' }, body: 'name=a' });
+		expect(spy).toHaveBeenCalledTimes(1);
 	});
 });

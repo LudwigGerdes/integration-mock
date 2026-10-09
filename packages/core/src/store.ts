@@ -120,6 +120,10 @@ export class ResourceStore {
 	list(c: string): Item[] {
 		return clone(this.data.get(c) ?? []);
 	}
+	/** The live records, uncopied: for read-only filtering. Callers clone what they hand out. */
+	view(c: string): readonly Item[] {
+		return this.data.get(c) ?? [];
+	}
 
 	get(c: string, id: string): Item | undefined {
 		const f = (this.data.get(c) ?? [])[this.indexOf(c, id)];
