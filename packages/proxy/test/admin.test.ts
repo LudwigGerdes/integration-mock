@@ -143,3 +143,37 @@ describe('admin api pack reload', () => {
 		}
 	});
 });
+
+describe('scenarios', () => {
+	it('sets and clears auth modes', async () => {
+		await client.setAuthScenario('weather', 'revoked');
+		await client.setAuthScenario('other', 'forbidden'); // not enabled: the API still accepts it
+		expect((await client.getState()).scenarios.auth).toEqual({ weather: 'revoked', other: 'forbidden' });
+		await client.clearAuthScenario('other');
+		expect((await client.getState()).scenarios.auth).toEqual({ weather: 'revoked' });
+		await client.clearAuthScenario();
+		expect((await client.getState()).scenarios.auth).toEqual({});
+	});
+
+	it('sets and clears rate limits', async () => {
+		await client.setRateLimit('weather', { calls: 3, perMs: 1000, route: { method: 'GET', path: '/x' } });
+		expect(engine.state().scenarios.limits).toEqual({ weather: { calls: 3, perMs: 1000, route: { method: 'GET', path: '/x' } } });
+		await client.clearRateLimit('weather');
+		expect(engine.state().scenarios.limits).toEqual({});
+	});
+
+	it('answers 400 naming the field on a bad body', async () => {
+		const put = (p: string, b: unknown) =>
+			fetch(`http://127.0.0.1:${admin.port}${p}`, { method: 'PUT', body: JSON.stringify(b) });
+		const bad = async (p: string, b: unknown, field: string) => {
+			const r = await put(p, b);
+			expect(r.status).toBe(400);
+			expect(((await r.json()) as { error: string }).error).toContain(field);
+		};
+		await bad('/scenarios/auth/weather', { mode: 'expired' }, 'mode');
+		await bad('/scenarios/limits/weather', { calls: 0, perMs: 1000 }, 'calls');
+		await bad('/scenarios/limits/weather', { calls: 1, perMs: 0 }, 'perMs');
+		await bad('/scenarios/limits/weather', { calls: 1, perMs: 10, route: { method: 'FETCH', path: '/x' } }, 'route.method');
+		await bad('/scenarios/limits/weather', { calls: 1, perMs: 10, route: { method: 'GET' } }, 'route.path');
+	});
+});
