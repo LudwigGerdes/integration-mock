@@ -2,7 +2,7 @@ import Ajv2020 from 'ajv/dist/2020.js';
 import type { ValidateFunction } from 'ajv';
 import { pathSubsumes } from './matcher.js';
 import { PACK_SCHEMA } from './pack-schema.js';
-import type { Route, ServicePack } from './types.js';
+import type { Route, ServicePack, StoreSpec } from './types.js';
 
 interface AjvLike {
 	compile(schema: object): ValidateFunction;
@@ -54,6 +54,53 @@ function covers(a: Route, b: Route): boolean {
 		return JSON.stringify(a.match.bodyMatch) === JSON.stringify(b.match.bodyMatch);
 	}
 	return true;
+}
+
+const paramsOf = (path: string): string[] =>
+	path
+		.split('/')
+		.filter((s) => s.startsWith(':'))
+		.map((s) => s.slice(1));
+
+/** Checks the schema cannot express: what a store op needs from its route and pack. */
+function storeProblems(r: Route, p: ServicePack): PackProblem[] {
+	const out: PackProblem[] = [];
+	const err = (code: string, message: string): void => void out.push({ level: 'error', code, message, route: r.id });
+	if (r.store !== undefined && r.respond === undefined && !(r.sequence?.length)) {
+		err('store-respond', `"${r.id}" has a store block but no respond to render`);
+	}
+	const specs = [r.store, r.respond?.store, ...(r.sequence ?? []).map((s) => s.store)].filter(
+		(s): s is StoreSpec => s !== undefined,
+	);
+	const params = paramsOf(r.match.path);
+	for (const s of specs) {
+		const follow = s.pagination?.style === 'nextUrl' && s.pagination.tokenParam !== undefined;
+		const soql = (s.filters ?? []).some((f) => 'style' in f && f.style === 'soql');
+		if (s.collection === undefined && !(s.op === 'list' && (soql || follow))) {
+			err('store-collection', `"${r.id}" store op ${s.op} names no collection`);
+		}
+		if ((s.op === 'get' || s.op === 'update' || s.op === 'delete') && s.idParam === undefined && params.length !== 1) {
+			err('store-id-param', `"${r.id}" needs idParam: its path has ${params.length} params`);
+		}
+		if (s.idParam !== undefined && !params.includes(s.idParam)) {
+			err('store-id-param', `"${r.id}" idParam "${s.idParam}" is not a param of ${r.match.path}`);
+		}
+		if (s.idempotency !== undefined && s.op !== 'create' && s.op !== 'update') {
+			err('store-idempotency', `"${r.id}" idempotency only applies to create and update, not ${s.op}`);
+		}
+		if (s.pagination?.style === 'nextUrl' && s.pagination.nextUrlTemplate === undefined && s.pagination.tokenParam === undefined) {
+			err('store-next-url', `"${r.id}" nextUrl paging needs nextUrlTemplate (to issue) or tokenParam (to follow)`);
+		}
+		if (s.op === 'list' && s.pagination === undefined && s.collection !== undefined && (p.seed?.[s.collection]?.length ?? 0) > 100) {
+			out.push({
+				level: 'warning',
+				code: 'unpaged-list',
+				message: `"${r.id}" lists ${p.seed?.[s.collection]?.length} seeded ${s.collection} without pagination`,
+				route: r.id,
+			});
+		}
+	}
+	return out;
 }
 
 export function validatePack(
@@ -113,6 +160,8 @@ export function validatePack(
 				route: r.id,
 			});
 		}
+
+		problems.push(...storeProblems(r, p));
 	}
 
 	for (const other of opts.others ?? []) {
