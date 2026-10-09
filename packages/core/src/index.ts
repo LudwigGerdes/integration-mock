@@ -20,3 +20,4 @@ export * from './test-file.js';
 export * from './assert.js';
 export * from './template.js';
 export * from './form-body.js';
+export * from './filter.js';
