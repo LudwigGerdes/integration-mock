@@ -164,6 +164,9 @@
 					"items": {
 						"$ref": "#/$defs/respond"
 					}
+				},
+				"store": {
+					"$ref": "#/$defs/store"
 				}
 			}
 		},
@@ -222,8 +225,215 @@
 				"template": {
 					"description": "Render {{\u2026}} placeholders in body and headers from the request: request.body.x, request.query.x, request.params.x, request.headers.x, request.path, request.method, uuid, now, timestamp, counter. Off by default.",
 					"type": "boolean"
+				},
+				"store": {
+					"$ref": "#/$defs/store"
 				}
 			}
+		},
+		"store": {
+			"description": "Act on the service's resource store; respond is rendered with record, records and page.",
+			"type": "object",
+			"required": [
+				"op"
+			],
+			"additionalProperties": false,
+			"properties": {
+				"op": {
+					"enum": [
+						"create",
+						"get",
+						"update",
+						"delete",
+						"list"
+					]
+				},
+				"collection": {
+					"type": "string",
+					"minLength": 1
+				},
+				"idParam": {
+					"type": "string",
+					"minLength": 1
+				},
+				"id": {
+					"type": "object",
+					"additionalProperties": false,
+					"properties": {
+						"field": {
+							"type": "string",
+							"minLength": 1
+						},
+						"format": {
+							"type": "string",
+							"minLength": 1
+						}
+					}
+				},
+				"update": {
+					"enum": [
+						"merge",
+						"replace"
+					]
+				},
+				"stamp": {
+					"type": "object"
+				},
+				"notFound": {
+					"$ref": "#/$defs/respond"
+				},
+				"badRequest": {
+					"$ref": "#/$defs/respond"
+				},
+				"conflict": {
+					"$ref": "#/$defs/respond"
+				},
+				"pagination": {
+					"$ref": "#/$defs/pagination"
+				},
+				"filters": {
+					"type": "array",
+					"items": {
+						"$ref": "#/$defs/filter"
+					}
+				},
+				"idempotency": {
+					"type": "object",
+					"additionalProperties": false,
+					"properties": {
+						"header": {
+							"type": "string",
+							"minLength": 1
+						},
+						"from": {
+							"type": "string",
+							"pattern": "^(query|body|params)\\."
+						}
+					}
+				}
+			}
+		},
+		"pagination": {
+			"type": "object",
+			"required": [
+				"style"
+			],
+			"additionalProperties": false,
+			"properties": {
+				"style": {
+					"enum": [
+						"cursor",
+						"offset",
+						"page",
+						"nextUrl"
+					]
+				},
+				"cursorParam": {
+					"type": "string"
+				},
+				"offsetParam": {
+					"type": "string"
+				},
+				"pageParam": {
+					"type": "string"
+				},
+				"limitParam": {
+					"type": "string"
+				},
+				"in": {
+					"enum": [
+						"query",
+						"body"
+					]
+				},
+				"defaultLimit": {
+					"type": "integer",
+					"minimum": 1
+				},
+				"maxLimit": {
+					"type": "integer",
+					"minimum": 1
+				},
+				"sort": {
+					"type": "object",
+					"required": [
+						"field"
+					],
+					"additionalProperties": false,
+					"properties": {
+						"field": {
+							"type": "string",
+							"minLength": 1
+						},
+						"direction": {
+							"enum": [
+								"asc",
+								"desc"
+							]
+						}
+					}
+				},
+				"nextUrlTemplate": {
+					"type": "string"
+				},
+				"tokenParam": {
+					"type": "string"
+				}
+			}
+		},
+		"filter": {
+			"oneOf": [
+				{
+					"type": "object",
+					"required": [
+						"from",
+						"field"
+					],
+					"additionalProperties": false,
+					"properties": {
+						"from": {
+							"type": "string",
+							"pattern": "^(query|body|params)\\."
+						},
+						"field": {
+							"type": "string",
+							"minLength": 1
+						},
+						"op": {
+							"enum": [
+								"eq",
+								"ne",
+								"gt",
+								"gte",
+								"lt",
+								"lte",
+								"contains",
+								"in"
+							]
+						}
+					}
+				},
+				{
+					"type": "object",
+					"required": [
+						"from",
+						"style"
+					],
+					"additionalProperties": false,
+					"properties": {
+						"from": {
+							"type": "string",
+							"pattern": "^(query|body|params)\\."
+						},
+						"style": {
+							"enum": [
+								"hubspot",
+								"soql"
+							]
+						}
+					}
+				}
+			]
 		}
 	}
 }

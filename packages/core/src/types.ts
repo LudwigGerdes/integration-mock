@@ -13,6 +13,8 @@ export interface RouteResponse {
 	body?: unknown;
 	/** Render `{{…}}` placeholders in body and headers from the request (see template.ts). Off by default. */
 	template?: boolean;
+	/** A sequence entry's own store op (see store-op.ts). */
+	store?: StoreSpec;
 }
 
 export interface Route {
@@ -25,6 +27,8 @@ export interface Route {
 	 * repeats. Counts reset with `packs reset`.
 	 */
 	sequence?: RouteResponse[];
+	/** Act on the service's resource store; `respond` is rendered with the result (see store-op.ts). */
+	store?: StoreSpec;
 	handler?: string;
 	/** Where this route came from — a doc section for authored packs. */
 	note?: string;
@@ -146,3 +150,71 @@ export interface SnapshotProvenance {
 }
 
 export type Mode = 'off' | 'replay' | 'record';
+
+/** How a store-backed route names and mints a record's id. */
+export interface IdSpec {
+	/** The property that holds the id. Default `id`. */
+	field?: string;
+	/** Literal text plus `{{seq:N}}` (zero-padded per-collection counter) or `{{uuid}}`. Default `{{uuid}}`. */
+	format?: string;
+}
+
+export type StoreOpName = 'create' | 'get' | 'update' | 'delete' | 'list';
+
+export type PaginationStyle = 'cursor' | 'offset' | 'page' | 'nextUrl';
+
+export interface PaginationSpec {
+	style: PaginationStyle;
+	cursorParam?: string;
+	offsetParam?: string;
+	pageParam?: string;
+	limitParam?: string;
+	/** Where the paging params are read from. Default `query`. */
+	in?: 'query' | 'body';
+	defaultLimit?: number;
+	maxLimit?: number;
+	sort?: { field: string; direction?: 'asc' | 'desc' };
+	/** `nextUrl`, issuing route: the URL of the next page; `{{token}}` is the page token. */
+	nextUrlTemplate?: string;
+	/** `nextUrl`, follow-up route: the path param (or query param) holding the token. */
+	tokenParam?: string;
+}
+
+export type FilterOp = 'eq' | 'ne' | 'gt' | 'gte' | 'lt' | 'lte' | 'contains' | 'in';
+
+/** One request input compared with one record field. `from` is `query.<name>`, `body.<path>` or `params.<name>`. */
+export interface FlatFilter {
+	from: string;
+	field: string;
+	op?: FilterOp;
+}
+
+/** A structured filter in a vendor's own shape. */
+export interface StyledFilter {
+	from: string;
+	style: 'hubspot' | 'soql';
+}
+
+export type FilterSpec = FlatFilter | StyledFilter;
+
+export interface IdempotencySpec {
+	/** Request header holding the key, e.g. `Idempotency-Key`. Matched case-insensitively. */
+	header?: string;
+	/** `body.<path>` holding the key. */
+	from?: string;
+}
+
+export interface StoreSpec {
+	op: StoreOpName;
+	collection?: string;
+	idParam?: string;
+	id?: IdSpec;
+	update?: 'merge' | 'replace';
+	stamp?: Record<string, unknown>;
+	notFound?: RouteResponse;
+	badRequest?: RouteResponse;
+	conflict?: RouteResponse;
+	pagination?: PaginationSpec;
+	filters?: FilterSpec[];
+	idempotency?: IdempotencySpec;
+}

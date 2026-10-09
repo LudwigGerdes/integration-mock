@@ -130,3 +130,55 @@ describe('shadowing through the pattern grammar', () => {
 		expect(validatePack(pack([specific, general])).map((p) => p.code)).not.toContain('shadowed-route');
 	});
 });
+
+describe('store routes in the schema', () => {
+	const storeRoute = {
+		id: 'things:create',
+		match: { method: 'POST', path: '/things' },
+		store: {
+			op: 'create',
+			collection: 'things',
+			id: { field: 'id', format: 't_{{seq:3}}' },
+			stamp: { object: 'thing' },
+			idempotency: { header: 'Idempotency-Key' },
+		},
+		respond: { status: 201, template: true, body: '{{record}}' },
+	};
+	const listRoute = {
+		id: 'things:list',
+		match: { method: 'GET', path: '/things' },
+		store: {
+			op: 'list',
+			collection: 'things',
+			filters: [{ from: 'query.email', field: 'email' }, { from: 'body.filterGroups', style: 'hubspot' }],
+			pagination: { style: 'cursor', cursorParam: 'after', limitParam: 'limit', defaultLimit: 10, maxLimit: 100 },
+		},
+		respond: { status: 200, template: true, body: { data: '{{records}}' } },
+	};
+
+	it('accepts a create and a list route', () => {
+		expect(codes({ ...base, routes: [...base.routes, storeRoute, listRoute] })).toEqual([]);
+	});
+
+	it('rejects an unknown op, pagination style or filter style', () => {
+		expect(codes({ ...base, routes: [{ ...storeRoute, store: { op: 'upsert', collection: 'things' } }] })).toContain('schema');
+		expect(
+			codes({ ...base, routes: [{ ...listRoute, store: { ...listRoute.store, pagination: { style: 'keyset' } } }] }),
+		).toContain('schema');
+		expect(
+			codes({ ...base, routes: [{ ...listRoute, store: { ...listRoute.store, filters: [{ from: 'query.q', style: 'graphql' }] } }] }),
+		).toContain('schema');
+	});
+
+	it('accepts a store block on a sequence entry', () => {
+		const seq = {
+			id: 'things:once',
+			match: { method: 'POST', path: '/once' },
+			sequence: [
+				{ status: 201, template: true, body: '{{record}}', store: { op: 'create', collection: 'things' } },
+				{ status: 409, body: { error: 'exists' } },
+			],
+		};
+		expect(codes({ ...base, routes: [...base.routes, seq] })).toEqual([]);
+	});
+});
