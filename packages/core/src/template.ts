@@ -25,6 +25,8 @@ export interface TemplateContext {
 	count: number;
 	now?: () => Date;
 	uuid?: () => string;
+	/** Further top-level names: `record`, `records`, `page`, `token`, `error` on store routes. */
+	extra?: Record<string, unknown>;
 }
 
 const PLACEHOLDER = /\{\{\s*([A-Za-z0-9_.\-[\]]+)\s*\}\}/g;
@@ -71,7 +73,9 @@ function evaluate(name: string, ctx: TemplateContext): unknown {
 			}
 		}
 		default:
-			return undefined;
+			return ctx.extra !== undefined && head !== undefined && Object.prototype.hasOwnProperty.call(ctx.extra, head)
+				? lookup(ctx.extra[head], rest)
+				: undefined;
 	}
 }
 

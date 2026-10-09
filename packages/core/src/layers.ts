@@ -1,4 +1,5 @@
 import { matchPath, matchRoute } from './matcher.js';
+import { serveStoreRoute } from './store-op.js';
 import { renderTemplate } from './template.js';
 import type { Layer, MockRequest, Resolution, RouteResponse, ServicePack } from './types.js';
 import type { ResourceStore } from './store.js';
@@ -85,7 +86,14 @@ export function resolve(
 				const chosen: RouteResponse | undefined =
 					route.sequence?.[count - 1] ?? route.respond ?? route.sequence?.at(-1);
 				if (chosen === undefined) continue;
-				const ctx = { request: req, params: matchPath(route.match.path, req.path) ?? {}, count };
+				const params = matchPath(route.match.path, req.path) ?? {};
+				// A sequence entry carries its own store op; the route-level one
+				// belongs to `respond` (and to a route with no sequence).
+				const storeSpec = chosen.store ?? (chosen === route.respond ? route.store : undefined);
+				if (storeSpec !== undefined) {
+					return serveStoreRoute({ service, route, chosen, spec: storeSpec, req, params, store, count, layer });
+				}
+				const ctx = { request: req, params, count };
 				const body = chosen.template === true ? renderTemplate(chosen.body, ctx) : chosen.body;
 				const headers =
 					chosen.template === true
