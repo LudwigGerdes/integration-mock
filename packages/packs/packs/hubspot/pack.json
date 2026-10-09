@@ -4,5 +4,52 @@
     "api.hubapi.com"
   ],
   "prefix": "/hubspot",
-  "source": "openapi"
+  "source": "openapi",
+  "scenarios": {
+    "revoked": {
+      "status": 401,
+      "body": {
+        "status": "error",
+        "message": "Authentication credentials not found.",
+        "correlationId": "{{uuid}}",
+        "category": "INVALID_AUTHENTICATION"
+      },
+      "note": "https://developers.hubspot.com/docs/api-reference/error-handling — 401 and the error shape; category and message from observed responses"
+    },
+    "forbidden": {
+      "status": 403,
+      "body": {
+        "status": "error",
+        "message": "This app hasn't been granted all required scopes to make this call.",
+        "correlationId": "{{uuid}}",
+        "errors": [
+          {
+            "message": "One or more of the following scopes are required.",
+            "context": {
+              "requiredGranularScopes": [
+                "crm.objects.contacts.read"
+              ]
+            }
+          }
+        ],
+        "category": "MISSING_SCOPES"
+      },
+      "note": "https://developers.hubspot.com/docs/api-reference/error-handling — 403 for a token without the required scope; body from observed responses"
+    },
+    "rateLimit": {
+      "status": 429,
+      "headers": {
+        "X-HubSpot-RateLimit-Max": "{{limit}}",
+        "X-HubSpot-RateLimit-Remaining": "0"
+      },
+      "body": {
+        "status": "error",
+        "message": "You have reached your ten secondly limit.",
+        "errorType": "RATE_LIMIT",
+        "correlationId": "{{uuid}}",
+        "policyName": "TEN_SECONDLY_ROLLING"
+      },
+      "note": "https://developers.hubspot.com/docs/developer-tooling/platform/usage-guidelines — body shape and X-HubSpot-RateLimit-* headers; policyName for the per-10s limit from observed responses (the docs show DAILY)"
+    }
+  }
 }

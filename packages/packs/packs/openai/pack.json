@@ -4,5 +4,49 @@
     "api.openai.com"
   ],
   "prefix": "/openai",
-  "source": "openapi"
+  "source": "openapi",
+  "scenarios": {
+    "revoked": {
+      "status": 401,
+      "body": {
+        "error": {
+          "message": "Incorrect API key provided: sk-proj-****MOCK.",
+          "type": "invalid_request_error",
+          "param": null,
+          "code": "invalid_api_key"
+        }
+      },
+      "note": "https://developers.openai.com/api/docs/guides/error-codes — 401 Incorrect API Key Provided; body from observed responses"
+    },
+    "forbidden": {
+      "status": 403,
+      "body": {
+        "error": {
+          "message": "Country, region, or territory not supported",
+          "type": "request_forbidden",
+          "param": null,
+          "code": "unsupported_country_region_territory"
+        }
+      },
+      "note": "https://developers.openai.com/api/docs/guides/error-codes — the only documented 403 is Country/Region Not Supported; body from observed responses"
+    },
+    "rateLimit": {
+      "status": 429,
+      "headers": {
+        "Retry-After": "{{retryAfter}}",
+        "x-ratelimit-limit-requests": "{{limit}}",
+        "x-ratelimit-remaining-requests": "0",
+        "x-ratelimit-reset-requests": "{{retryAfter}}s"
+      },
+      "body": {
+        "error": {
+          "message": "Rate limit reached for requests. Please try again in {{retryAfter}}s.",
+          "type": "requests",
+          "param": null,
+          "code": "rate_limit_exceeded"
+        }
+      },
+      "note": "https://developers.openai.com/api/docs/guides/rate-limits — 429 with Retry-After and x-ratelimit-* headers; body from observed responses"
+    }
+  }
 }

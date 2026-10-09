@@ -4,5 +4,66 @@
     "www.googleapis.com"
   ],
   "prefix": "/google-drive",
-  "source": "openapi"
+  "source": "openapi",
+  "scenarios": {
+    "revoked": {
+      "status": 401,
+      "headers": {
+        "WWW-Authenticate": "Bearer realm=\"https://accounts.google.com/\""
+      },
+      "body": {
+        "error": {
+          "code": 401,
+          "message": "Request had invalid authentication credentials.",
+          "errors": [
+            {
+              "message": "Invalid Credentials",
+              "domain": "global",
+              "reason": "authError",
+              "location": "Authorization",
+              "locationType": "header"
+            }
+          ],
+          "status": "UNAUTHENTICATED"
+        }
+      },
+      "note": "https://developers.google.com/workspace/drive/api/guides/handle-errors — reason authError / Invalid Credentials per the docs; status field per https://google.aip.dev/193"
+    },
+    "forbidden": {
+      "status": 403,
+      "body": {
+        "error": {
+          "code": 403,
+          "message": "Request had insufficient authentication scopes.",
+          "errors": [
+            {
+              "message": "Insufficient Permission",
+              "domain": "global",
+              "reason": "insufficientPermissions"
+            }
+          ],
+          "status": "PERMISSION_DENIED"
+        }
+      },
+      "note": "https://developers.google.com/workspace/drive/api/guides/handle-errors — insufficientPermissions; message and status field from observed responses, not shown in the docs"
+    },
+    "rateLimit": {
+      "status": 429,
+      "body": {
+        "error": {
+          "code": 429,
+          "message": "Rate Limit Exceeded",
+          "errors": [
+            {
+              "message": "Rate Limit Exceeded",
+              "domain": "usageLimits",
+              "reason": "rateLimitExceeded"
+            }
+          ],
+          "status": "RESOURCE_EXHAUSTED"
+        }
+      },
+      "note": "https://developers.google.com/workspace/drive/api/guides/handle-errors — 429 rateLimitExceeded body as documented (Drive also answers 403 userRateLimitExceeded)"
+    }
+  }
 }
