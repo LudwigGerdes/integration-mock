@@ -4,5 +4,49 @@
     "api.stripe.com"
   ],
   "prefix": "/stripe",
-  "source": "openapi"
+  "source": "openapi",
+  "scenarios": {
+    "revoked": {
+      "status": 401,
+      "headers": {
+        "Request-Id": "req_mock"
+      },
+      "body": {
+        "error": {
+          "message": "Invalid API Key provided: sk_test_****MOCK",
+          "type": "invalid_request_error"
+        }
+      },
+      "note": "https://docs.stripe.com/api/errors — 401 'No valid API key provided'; https://docs.stripe.com/keys says an invalid key is an invalid request error"
+    },
+    "forbidden": {
+      "status": 403,
+      "headers": {
+        "Request-Id": "req_mock"
+      },
+      "body": {
+        "error": {
+          "message": "The provided key 'rk_test_****MOCK' does not have the required permissions for this endpoint.",
+          "type": "invalid_request_error"
+        }
+      },
+      "note": "https://docs.stripe.com/api/errors — 403 'The API key doesn't have permissions'; the error type enum has no permission type, so invalid_request_error; message from observed responses"
+    },
+    "rateLimit": {
+      "status": 429,
+      "headers": {
+        "Stripe-Rate-Limited-Reason": "global-rate",
+        "Request-Id": "req_mock"
+      },
+      "body": {
+        "error": {
+          "code": "rate_limit",
+          "doc_url": "https://stripe.com/docs/error-codes/rate-limit",
+          "message": "Too many requests hit the API too quickly. We recommend an exponential backoff of your requests.",
+          "type": "invalid_request_error"
+        }
+      },
+      "note": "https://docs.stripe.com/rate-limits — 429 with Stripe-Rate-Limited-Reason; code rate_limit per https://docs.stripe.com/error-codes. Stripe documents no Retry-After; the mock sends one anyway"
+    }
+  }
 }

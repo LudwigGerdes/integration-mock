@@ -125,13 +125,13 @@ export const PACK_INDEX: Record<string, PackIndexEntry> = {
 				"gmail.googleapis.com"
 			],
 			"prefix": "/gmail",
-			"bytes": 47131,
+			"bytes": 49163,
 			"files": [
 				"pack.json",
 				"routes/10-generated.json"
 			],
 			"sha256": {
-				"pack.json": "e0a2985650da1f8226849e0c34e0f18cff37da46eb76df34b4a9a5132b87a621",
+				"pack.json": "626db94674953d0733d578a27f6c283ddc093ad8b7203ad62969cc3db0128c1d",
 				"routes/10-generated.json": "f32ec373a709918503203e896a483fdc2a15ec708193dfe5405194e4526a714f"
 			}
 		},
@@ -140,13 +140,13 @@ export const PACK_INDEX: Record<string, PackIndexEntry> = {
 				"www.googleapis.com"
 			],
 			"prefix": "/google-drive",
-			"bytes": 91372,
+			"bytes": 93386,
 			"files": [
 				"pack.json",
 				"routes/10-generated.json"
 			],
 			"sha256": {
-				"pack.json": "36c7d659fd97346a3e2967ff2b537f2580eaa03c5859b0ab7986cb972e884b56",
+				"pack.json": "c6c03212bdc4f6bf748357857e8f49ab92d253d6550ac98a265107c0ecb873f1",
 				"routes/10-generated.json": "a52fde43eab53977963be2e2ce5a1b42ce3ba31d3920a3bad7592dc6076e1855"
 			}
 		},
@@ -155,13 +155,13 @@ export const PACK_INDEX: Record<string, PackIndexEntry> = {
 				"sheets.googleapis.com"
 			],
 			"prefix": "/google-sheets",
-			"bytes": 48178,
+			"bytes": 50137,
 			"files": [
 				"pack.json",
 				"routes/10-generated.json"
 			],
 			"sha256": {
-				"pack.json": "e927d1f9bfa379574cdc8813a2f91ae8cd12e7387f1ec3027ec75ba7ec57e48e",
+				"pack.json": "8e529ac66eedaa7d2a71669e78e0abb3f30aacc936efebbfffb34cb87a659e83",
 				"routes/10-generated.json": "add2584eadb63573675e91a23e587bd958e5cc90e1b47ca40e0fc410565c5b10"
 			}
 		},
@@ -170,14 +170,14 @@ export const PACK_INDEX: Record<string, PackIndexEntry> = {
 				"api.hubapi.com"
 			],
 			"prefix": "/hubspot",
-			"bytes": 43016,
+			"bytes": 44750,
 			"files": [
 				"pack.json",
 				"routes/00-overrides.json",
 				"routes/10-generated.json"
 			],
 			"sha256": {
-				"pack.json": "961ef61ff3d85c6b3cf8cff8a8b12d4a39263271bd060555d708e5c16fb6b6c8",
+				"pack.json": "f61d954766ce078c2241d776614fbf97c4aa0fc788b74aa15544f06605ce60e5",
 				"routes/00-overrides.json": "ae5a9fe58516b61fe510d825d13aa073d31f1e6ec9091c69668a940c0aa33ba3",
 				"routes/10-generated.json": "1eed273aef04890a335df1e7199306cf083097ab7440e2a3e1b68750a1402c5f"
 			}
@@ -249,13 +249,13 @@ export const PACK_INDEX: Record<string, PackIndexEntry> = {
 				"api.openai.com"
 			],
 			"prefix": "/openai",
-			"bytes": 8091,
+			"bytes": 9646,
 			"files": [
 				"pack.json",
 				"routes/10-generated.json"
 			],
 			"sha256": {
-				"pack.json": "0c528b4b973c3edeed171231be448471ea5404e89289a9946125479ed248b79a",
+				"pack.json": "a2a9e2112353164bc4ef15201059646f43943905b175544f30e2917b0b31f014",
 				"routes/10-generated.json": "a5e4fc454626c475bd76e97ef9f79c61d2da9c5b225977bb19336cf8609ad2ec"
 			}
 		},
@@ -311,13 +311,13 @@ export const PACK_INDEX: Record<string, PackIndexEntry> = {
 				"test.salesforce.com"
 			],
 			"prefix": "/salesforce",
-			"bytes": 17584,
+			"bytes": 18791,
 			"files": [
 				"pack.json",
 				"routes/main.json"
 			],
 			"sha256": {
-				"pack.json": "1d2e33b020db19ca357f3863f01254c407cd45701849f7a7086d728a089e6bf0",
+				"pack.json": "fd60f78834dfc26cded041ce0b6abdd2ae0679a5cd3f935cd183a6bf06d8574b",
 				"routes/main.json": "f084af211a5c10f33956827009f1c6c080c2953bdf0d26a80dab51d7a25ff61d"
 			}
 		},
@@ -341,13 +341,13 @@ export const PACK_INDEX: Record<string, PackIndexEntry> = {
 				"slack.com"
 			],
 			"prefix": "/slack",
-			"bytes": 107190,
+			"bytes": 108179,
 			"files": [
 				"pack.json",
 				"routes/10-generated.json"
 			],
 			"sha256": {
-				"pack.json": "3ef6f2d6f12e88d0da6094087ca1e34fd7ccf6ac62c0eda3272a04ff7f98cbd5",
+				"pack.json": "1a9c4d9f24ec91dfb56a1813311c47a57588d5ca78506dd4451a2930e558b196",
 				"routes/10-generated.json": "a371dcf4bc13fc760666b553729c43ea923b2e22bc3ad28463033d4d0dfa0365"
 			}
 		},
@@ -371,14 +371,14 @@ export const PACK_INDEX: Record<string, PackIndexEntry> = {
 				"api.stripe.com"
 			],
 			"prefix": "/stripe",
-			"bytes": 1281531,
+			"bytes": 1283199,
 			"files": [
 				"pack.json",
 				"routes/00-overrides.json",
 				"routes/10-generated.json"
 			],
 			"sha256": {
-				"pack.json": "ccdd7f3c6b724b170b21bac0313cc2188bc8350b9c462fb0d1c66c0f18874bb7",
+				"pack.json": "92296e49bc8390badcdf20ed6b44f627a39a6fdaa5f74fcec54f1444f874f65d",
 				"routes/00-overrides.json": "13393041ed2bfc12290077bb1c8b3431d8f8ad3d8ec46f084c490f52d838a7b5",
 				"routes/10-generated.json": "1a8339c5c5768f4af5f9d88cad26f43b9537e568ee631c9e0dc4addba6924db1"
 			}

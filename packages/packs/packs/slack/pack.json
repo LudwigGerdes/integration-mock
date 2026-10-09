@@ -4,5 +4,34 @@
     "slack.com"
   ],
   "prefix": "/slack",
-  "source": "openapi"
+  "source": "openapi",
+  "scenarios": {
+    "revoked": {
+      "status": 200,
+      "body": {
+        "ok": false,
+        "error": "invalid_auth"
+      },
+      "note": "https://docs.slack.dev/reference/methods/chat.postMessage — invalid_auth (token_revoked, account_inactive and not_authed are the other credential errors); Slack answers HTTP 200 with ok:false"
+    },
+    "forbidden": {
+      "status": 200,
+      "body": {
+        "ok": false,
+        "error": "missing_scope"
+      },
+      "note": "https://docs.slack.dev/reference/methods/chat.postMessage — missing_scope; live answers also carry needed/provided, which the docs do not list"
+    },
+    "rateLimit": {
+      "status": 429,
+      "headers": {
+        "Retry-After": "{{retryAfter}}"
+      },
+      "body": {
+        "ok": false,
+        "error": "ratelimited"
+      },
+      "note": "https://docs.slack.dev/apis/web-api/rate-limits — 429 with Retry-After; the docs show no body, ratelimited is the documented error string"
+    }
+  }
 }
