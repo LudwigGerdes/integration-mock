@@ -3,6 +3,16 @@
 All notable changes to this project are documented here. The format follows
 [Keep a Changelog](https://keepachangelog.com/en/1.1.0/).
 
+## [Unreleased]
+
+### Added
+
+- Stateful routes: a route's `store` block creates, reads, updates, deletes and lists records in the mock's store, with vendor-style paging (`cursor`, `offset`, `page`, `nextUrl`), filtering (flat comparisons, HubSpot `filterGroups`, a SOQL subset), idempotency keys and form-encoded bodies. Salesforce (Opportunity, Account, Contact), HubSpot (contacts, companies, deals) and Stripe (customers, charges) ship with stateful routes. `packs validate` checks store routes; `verify` compares only their status.
+
+### Fixed
+
+- A route in a pack's `routes/00-overrides.json` replaces the generated route with the same method and path, as the docs say. The generated route used to stay in the pack, where it could never answer, and `packs validate` reported it as an error.
+
 ## 0.2.0 — 2026-09-26
 
 ### Added

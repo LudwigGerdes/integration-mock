@@ -71,3 +71,7 @@ cannot exercise the branch of the workflow that matters most under pressure.
   against real workflow calls
 - A short note of what you did not cover, so the gap is known rather than
   discovered at cutover
+
+## Stateful routes
+
+When the service creates records a workflow later reads, lists or deletes, write store routes instead of fixed bodies: one route per operation, each with a `store` block (`op`, `collection`, and `id` on the create route) and a `respond` with `"template": true` whose body uses `{{record}}`, `{{records}}` and `{{page.*}}`. Copy the service's real envelope (for example Salesforce's `{id, success, errors}` on create) into `respond`, its error bodies into `notFound`/`badRequest`/`conflict`, and its paging style into `pagination`. Run `integration-mock packs validate <service> --json` until it reports no errors. The `Stateful routes` section of docs/packs.md lists every key.
