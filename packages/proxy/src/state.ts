@@ -19,6 +19,7 @@ import {
 	type ServicePack,
 	type Snapshot,
 	type CallCounters,
+	idSpecsFor,
 } from 'integration-mock-core';
 
 export interface ProxyState {
@@ -177,9 +178,9 @@ export class MockEngine {
 	private store(service: string): ResourceStore {
 		let st = this.stores.get(service);
 		if (!st) {
-			const seed = LAYERS.flatMap((l) => this.packs[l]).find((p) => p.id === service && p.seed)
-				?.seed;
-			st = new ResourceStore(seed);
+			const packs = LAYERS.flatMap((l) => this.packs[l]).filter((p) => p.id === service);
+			const seed = packs.find((p) => p.seed)?.seed;
+			st = new ResourceStore(seed, idSpecsFor(packs));
 			this.stores.set(service, st);
 		}
 		return st;

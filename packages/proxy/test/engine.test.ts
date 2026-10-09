@@ -203,6 +203,38 @@ describe('MockEngine', () => {
 		engine.activateSnapshot(undefined);
 		expect((await engine.handleReplay('slack', req({}))).body).toEqual({ ok: true });
 	});
+
+	it('serves store routes statefully, and packs reset restores the seed', async () => {
+		const acme: ServicePack = {
+			id: 'acme',
+			domains: ['acme.com'],
+			prefix: '/acme',
+			source: 'authored',
+			routes: [
+				{
+					id: 'create',
+					match: { method: 'POST', path: '/things' },
+					store: { op: 'create', collection: 'things', id: { field: 'thingId', format: 't_{{seq:3}}' } },
+					respond: { status: 201, template: true, body: '{{record}}' },
+				},
+				{
+					id: 'get',
+					match: { method: 'GET', path: '/things/:id' },
+					store: { op: 'get', collection: 'things' },
+					respond: { status: 200, template: true, body: '{{record}}' },
+				},
+			],
+			seed: { things: [{ thingId: 't_seed', name: 'seeded' }] },
+		};
+		const { engine } = mk({ library: [acme] }, ['acme']);
+		expect((await engine.handleReplay('acme', req({ host: 'acme.com', path: '/things/t_seed' }))).body).toEqual({ thingId: 't_seed', name: 'seeded' });
+		const created = await engine.handleReplay('acme', req({ method: 'POST', host: 'acme.com', path: '/things', body: { name: 'a' } }));
+		expect(created.body).toEqual({ name: 'a', thingId: 't_001' });
+		engine.resetStores();
+		expect((await engine.handleReplay('acme', req({ host: 'acme.com', path: '/things/t_001' }))).status).toBe(404);
+		const again = await engine.handleReplay('acme', req({ method: 'POST', host: 'acme.com', path: '/things', body: { name: 'b' } }));
+		expect((again.body as { thingId: string }).thingId).toBe('t_001');
+	});
 });
 
 describe('serviceForBaseUrl', () => {
