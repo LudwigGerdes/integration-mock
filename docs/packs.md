@@ -131,6 +131,80 @@ A static body cannot test a workflow that creates a record and then reads it bac
 
 Templating is off unless the route asks for it, so a recorded body that happens to contain `{{…}}` replays as it was. An unknown placeholder is left as written.
 
+## Stateful routes
+
+A route with a `store` block reads and writes the mock's records instead of answering a fixed body, so a workflow that creates a record can read it back, list it, page through it and delete it. Its `respond` is rendered with `template: true` and these names:
+
+| Name | Holds |
+|---|---|
+| `record` | The record a `create`, `get`, `update` or `delete` acted on |
+| `records` | The current page of a `list` |
+| `page` | Paging values (below) |
+
+```json
+{
+  "id": "acme:create-order",
+  "match": { "method": "POST", "path": "/orders" },
+  "store": {
+    "op": "create",
+    "collection": "orders",
+    "id": { "field": "id", "format": "ord_{{seq:6}}" },
+    "stamp": { "object": "order", "created": "{{timestamp}}" },
+    "idempotency": { "header": "Idempotency-Key" }
+  },
+  "respond": { "status": 201, "template": true, "body": "{{record}}" }
+}
+```
+
+| Key | Meaning |
+|---|---|
+| `op` | `create`, `get`, `update`, `delete` or `list` |
+| `collection` | Which records. Seeded from `seed` in `pack.json` |
+| `idParam` | The path param holding the id. Needed only when the path has more than one param |
+| `id` | `field` holds the id (default `id`); `format` mints new ones: literal text plus `{{seq:N}}` (a counter, zero-padded to N) or `{{uuid}}` |
+| `stamp` | Fields added to a new record, rendered as a template (`{{record.id}}`, `{{now}}`, `{{timestamp}}`) |
+| `update` | `merge` (default; nested objects merge key by key) or `replace` |
+| `notFound`, `badRequest`, `conflict` | The vendor's own error responses. `{{error}}` holds the reason |
+
+A JSON body must be an object. A form-encoded body (`application/x-www-form-urlencoded`) is read with brackets: `metadata[plan]=pro` is `{ "metadata": { "plan": "pro" } }`.
+
+### Paging
+
+```json
+"pagination": { "style": "cursor", "cursorParam": "after", "limitParam": "limit", "defaultLimit": 10, "maxLimit": 100 }
+```
+
+| `style` | Reads | `page` holds |
+|---|---|---|
+| `cursor` | `cursorParam`: the id of the last record served | `next` (empty on the last page), `hasMore`, `total` |
+| `offset` | `offsetParam` | `offset`, `nextOffset` (`null` on the last page), `hasMore`, `total` |
+| `page` | `pageParam`, from 1 | `number`, `nextNumber`, `totalPages`, `hasMore`, `total` |
+| `nextUrl` | a token in a URL the mock issued | `nextUrl` (empty when done), `done`, `total` |
+
+`in: "body"` reads the params from a JSON body, for search endpoints. A `nextUrl` route sets `nextUrlTemplate` (with `{{token}}`), and the route that serves the next page sets `tokenParam`. A cursor naming a record that no longer exists, `limit=0` and non-numeric values answer `400`.
+
+### Filtering
+
+```json
+"filters": [
+  { "from": "query.email", "field": "email" },
+  { "from": "query.created[gte]", "field": "created", "op": "gte" },
+  { "from": "body.filterGroups", "style": "hubspot" },
+  { "from": "query.q", "style": "soql" }
+]
+```
+
+`from` is `query.<name>`, `body.<path>` or `params.<name>`; a filter whose input is absent is skipped. `op` is `eq` (default), `ne`, `gt`, `gte`, `lt`, `lte`, `contains` or `in` (comma-separated). Two vendor styles:
+
+- `hubspot` reads `filterGroups` (groups OR'd, filters within a group AND'd) with `EQ`, `NEQ`, `GT`, `GTE`, `LT`, `LTE` and `CONTAINS_TOKEN` on `properties.<name>`.
+- `soql` reads `SELECT … FROM <Type> [WHERE a = 'x' AND b > 5] [ORDER BY f DESC] [LIMIT n]`. `FROM` picks the collection, so one route serves every object. `OR`, parentheses, functions, relationship fields and `IN` answer `400` naming the construct.
+
+### Idempotency
+
+`"idempotency": { "header": "Idempotency-Key" }` on a `create` or `update`: the same key with the same body returns the first response again; with a different body it answers `conflict` (`409`). `packs reset` clears records, counters, page tokens and keys.
+
+Salesforce (Opportunity, Account, Contact), HubSpot (contacts, companies, deals) and Stripe (customers, charges) ship with stateful routes. `verify` compares only the status of a stateful route, since its body is computed.
+
 ## Generating a pack from OpenAPI
 
 ```bash
@@ -148,7 +222,7 @@ integration-mock packs build stripe --fetch                    # download the sp
 | File | Purpose |
 |---|---|
 | `routes/10-generated.json` | Written by `packs build`. Do not edit it |
-| `routes/00-overrides.json` | Your fixes. It sorts first, so it wins |
+| `routes/00-overrides.json` | Your fixes. It sorts first, so it wins: a route there replaces the generated route with the same method and path |
 
 To edit a shipped pack, copy it into your project first:
 

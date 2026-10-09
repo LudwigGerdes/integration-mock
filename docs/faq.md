@@ -55,6 +55,6 @@ Both are plain text under `~/.integration-mock/`. Credential headers and query p
 
 ## Limitations
 
-- A route answers the same way every time unless it has a `sequence` or `template: true` (see [Packs](https://workflowtools.dev/integration-mock/packs)). A recorded pack has neither, so a node that posted three different messages replays the first response three times.
+- A route answers the same way every time unless it has a `sequence`, `template: true` or a `store` block (see [Packs](https://workflowtools.dev/integration-mock/packs)). Recorded packs have none of these, so a node that posted three different messages replays the first response three times. Salesforce, HubSpot and Stripe ship with stateful routes.
 - Pagination is recorded as a single page, with a warning.
 - The mock port has no authentication and serves plain HTTP. Do not expose it to the internet as it is.
