@@ -5,6 +5,7 @@ import { join } from 'node:path';
 import { RequestLog, FaultController } from 'integration-mock-core';
 import { MockEngine, startAdmin } from 'integration-mock-proxy';
 import { buildProgram } from '../src/index.js';
+import { parseDuration, parseRouteFilter } from '../src/commands/proxy.js';
 
 let admin: Awaited<ReturnType<typeof startAdmin>>;
 let engine: MockEngine;
@@ -148,5 +149,66 @@ describe('packs enable reaches a running proxy', () => {
 		} finally {
 			process.chdir(prev);
 		}
+	});
+});
+
+
+describe('failure scenario cli', () => {
+	it('auth revoke / forbid / clear', async () => {
+		engine.setEnabledPacks(['slack']);
+		await run(['auth', 'revoke', 'slack']);
+		expect(engine.state().scenarios.auth).toEqual({ slack: 'revoked' });
+		await run(['auth', 'forbid', 'slack']);
+		expect(engine.state().scenarios.auth).toEqual({ slack: 'forbidden' });
+		await run(['auth', 'clear']);
+		expect(engine.state().scenarios.auth).toEqual({});
+	});
+
+	it('limits set / clear with --per and --route', async () => {
+		engine.setEnabledPacks(['slack']);
+		await run(['limits', 'set', 'slack', '--calls', '10', '--per', '1m', '--route', 'POST /api/chat.postMessage']);
+		expect(engine.state().scenarios.limits).toEqual({
+			slack: { calls: 10, perMs: 60_000, route: { method: 'POST', path: '/api/chat.postMessage' } },
+		});
+		await run(['limits', 'clear', 'slack']);
+		expect(engine.state().scenarios.limits).toEqual({});
+	});
+
+	it('refuses a service that is not enabled, naming packs enable', async () => {
+		engine.setEnabledPacks([]);
+		await expect(run(['auth', 'revoke', 'stripe'])).rejects.toThrow(/integration-mock packs enable stripe/);
+		expect(engine.state().scenarios.auth).toEqual({});
+	});
+
+	it('status lists scenarios; log marks AUTH and LIMIT', async () => {
+		engine.setEnabledPacks(['slack']);
+		await run(['auth', 'revoke', 'slack']);
+		expect(await run(['status'])).toMatch(/scenarios\s+.*"slack":"revoked"/);
+		await run(['auth', 'clear']);
+		for (const scenario of ['auth', 'rate-limit'] as const) {
+			engine.logRef.append({
+				service: 'slack', method: 'GET', url: 'u', path: '/p', query: {}, reqHeaders: {},
+				status: 429, resHeaders: {}, latencyMs: 1, matchedRoute: 'unmatched', scenario,
+			});
+		}
+		const out = await run(['log', '--service', 'slack']);
+		expect(out).toMatch(/\tAUTH$/m);
+		expect(out).toMatch(/\tLIMIT$/m);
+	});
+
+	it('parseDuration', () => {
+		expect(parseDuration('500ms')).toBe(500);
+		expect(parseDuration('10s')).toBe(10_000);
+		expect(parseDuration('1m')).toBe(60_000);
+		expect(parseDuration('1h')).toBe(3_600_000);
+		expect(() => parseDuration('10')).toThrow(/--per/);
+		expect(() => parseDuration('0s')).toThrow(/--per/);
+	});
+
+	it('parseRouteFilter', () => {
+		expect(parseRouteFilter('post /crm/v3/objects/:type')).toEqual({ method: 'POST', path: '/crm/v3/objects/:type' });
+		expect(parseRouteFilter('* /x')).toEqual({ method: '*', path: '/x' });
+		expect(() => parseRouteFilter('/x')).toThrow(/--route/);
+		expect(() => parseRouteFilter('FETCH /x')).toThrow(/--route/);
 	});
 });
