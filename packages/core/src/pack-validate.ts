@@ -105,11 +105,11 @@ export function validatePack(
 		}
 		earlier.push(r);
 
-		if (r.respond === undefined && r.handler === undefined) {
+		if (r.respond === undefined && r.handler === undefined && !(r.sequence?.length)) {
 			problems.push({
 				level: 'warning',
 				code: 'inert-route',
-				message: `"${r.id}" has neither respond nor handler`,
+				message: `"${r.id}" has neither respond, sequence nor handler`,
 				route: r.id,
 			});
 		}
