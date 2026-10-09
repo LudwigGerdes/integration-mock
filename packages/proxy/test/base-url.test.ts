@@ -88,3 +88,18 @@ describe('base-URL mode', () => {
 		expect(res.status).toBe(200);
 	});
 });
+
+describe('base-URL mode failure scenarios', () => {
+	it('a route-filtered limit matches the vendor path, not the /<prefix> path', async () => {
+		engine.scenariosRef.setLimit('weather', { calls: 1, perMs: 60_000, route: { method: 'GET', path: '/dev/weather' } });
+		try {
+			expect((await get('/weather/dev/weather')).status).toBe(200);
+			const limited = await get('/weather/dev/weather');
+			expect(limited.status).toBe(429);
+			expect(limited.headers.get('retry-after')).toBe('60');
+			expect((await get('/weather/dev/other')).status).not.toBe(429);
+		} finally {
+			engine.scenariosRef.clearLimit();
+		}
+	});
+});

@@ -12,6 +12,8 @@ import {
 	type Snapshot,
 } from 'integration-mock-core';
 import { MockEngine } from '../src/state.js';
+import { ScenarioController } from 'integration-mock-core';
+import type { MockRequest as ScenarioRequest, ServicePack as ScenarioPack } from 'integration-mock-core';
 
 const req = (o: Partial<MockRequest>): MockRequest => ({
 	method: 'GET',
@@ -344,5 +346,60 @@ describe('MockEngine.replaceLayers', () => {
 		const res = await engine.handleReplay('slack', req({ path: '/api/a' }));
 		expect(res.status).toBe(200);
 		expect(res.body).toEqual({ a: 1 });
+	});
+});
+
+
+describe('failure scenarios', () => {
+	const slack: ScenarioPack = {
+		id: 'slack', domains: ['slack.com'], prefix: '/slack', source: 'library',
+		scenarios: { revoked: { status: 200, body: { ok: false, error: 'invalid_auth' } } },
+		routes: [{ id: 'slack:post', match: { method: 'POST', path: '/api/chat.postMessage' }, respond: { status: 200, body: { ok: true } } }],
+	};
+	const call = (path = '/api/chat.postMessage'): ScenarioRequest => ({ method: 'POST', host: 'slack.com', path, query: {}, headers: {} });
+	const make = (now = () => 0) => {
+		const log = new RequestLog();
+		const faults = new FaultController();
+		const engine = new MockEngine({
+			packs: { library: [slack], user: [], project: [], snapshot: [] },
+			log, faults, scenarios: new ScenarioController(now), enabledPacks: ['slack'],
+		});
+		return { engine, log, faults };
+	};
+
+	it('answers the vendor shape while revoked, logs AUTH, and recovers when cleared', async () => {
+		const { engine, log } = make();
+		engine.scenariosRef.setAuth('slack', 'revoked');
+		expect(await engine.handleReplay('slack', call())).toMatchObject({ status: 200, body: { ok: false, error: 'invalid_auth' } });
+		expect(log.list().at(-1)).toMatchObject({ scenario: 'auth', status: 200 });
+		engine.scenariosRef.clearAuth('slack');
+		expect(await engine.handleReplay('slack', call())).toMatchObject({ body: { ok: true } });
+	});
+
+	it('rate-limits with a string retry-after header and logs rate-limit', async () => {
+		const { engine, log } = make();
+		engine.scenariosRef.setLimit('slack', { calls: 1, perMs: 3_000 });
+		await engine.handleReplay('slack', call());
+		const r = await engine.handleReplay('slack', call());
+		expect(r.status).toBe(429);
+		expect(r.headers['retry-after']).toBe('3');
+		expect(log.list().at(-1)).toMatchObject({ scenario: 'rate-limit' });
+	});
+
+	it('a scenario hit does not consume a fault', async () => {
+		const { engine, faults } = make();
+		faults.set('slack', { status: 503, once: true });
+		engine.scenariosRef.setAuth('slack', 'revoked');
+		await engine.handleReplay('slack', call());
+		engine.scenariosRef.clearAuth();
+		expect((await engine.handleReplay('slack', call())).status).toBe(503);
+	});
+
+	it('survives packs reset and appears in state()', async () => {
+		const { engine } = make();
+		engine.scenariosRef.setAuth('slack', 'forbidden');
+		engine.resetStores();
+		expect(engine.state().scenarios).toEqual({ auth: { slack: 'forbidden' }, limits: {} });
+		expect((await engine.handleReplay('slack', call())).status).toBe(403);
 	});
 });
