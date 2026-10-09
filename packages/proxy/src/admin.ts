@@ -1,7 +1,27 @@
 import { createServer, type IncomingMessage, type ServerResponse } from 'node:http';
-import type { FaultSpec, LogEntry, Mode, Snapshot } from 'integration-mock-core';
+import type { AuthMode, FaultSpec, HttpMethod, LogEntry, Mode, RateLimitScenario, Snapshot } from 'integration-mock-core';
 import { readBody } from './http-parse.js';
 import type { MockEngine, ProxyState } from './state.js';
+
+const ROUTE_METHODS: ReadonlyArray<HttpMethod | '*'> = ['GET', 'POST', 'PUT', 'PATCH', 'DELETE', 'HEAD', 'OPTIONS', '*'];
+const isRouteMethod = (v: unknown): v is HttpMethod | '*' => ROUTE_METHODS.some((m) => m === v);
+const isRecord = (v: unknown): v is Record<string, unknown> => typeof v === 'object' && v !== null;
+const isWholeAtLeastOne = (v: unknown): v is number => typeof v === 'number' && Number.isInteger(v) && v >= 1;
+
+/** A rate-limit body, or the reason it is unusable. */
+function rateLimitFrom(b: unknown): RateLimitScenario | string {
+	if (!isRecord(b)) return 'body required';
+	if (!isWholeAtLeastOne(b.calls)) return 'calls must be an integer >= 1';
+	if (!isWholeAtLeastOne(b.perMs)) return 'perMs must be an integer >= 1';
+	const limit: RateLimitScenario = { calls: b.calls, perMs: b.perMs };
+	if (b.route !== undefined) {
+		const r = b.route;
+		if (!isRecord(r) || !isRouteMethod(r.method)) return 'route.method must be an HTTP method or *';
+		if (typeof r.path !== 'string' || !r.path.startsWith('/')) return 'route.path must start with /';
+		limit.route = { method: r.method, path: r.path };
+	}
+	return limit;
+}
 
 /** The active snapshot is reduced on the wire — callers want its identity, not its packs. */
 export type StateWire = Omit<ProxyState, 'activeSnapshot'> & {
@@ -88,6 +108,33 @@ export async function startAdmin(opts: {
 			if (m === 'POST' && p === '/packs/reset') {
 				engine.resetStores();
 				return json(res, 204);
+			}
+			if (p.startsWith('/scenarios/')) {
+				const [, , kind, service] = p.split('/');
+				const one = service === undefined || service === '' ? undefined : service;
+				if (m === 'DELETE' && kind === 'auth') {
+					engine.scenariosRef.clearAuth(one);
+					return json(res, 204);
+				}
+				if (m === 'DELETE' && kind === 'limits') {
+					engine.scenariosRef.clearLimit(one);
+					return json(res, 204);
+				}
+				if (m === 'PUT' && one !== undefined && kind === 'auth') {
+					const b = await body();
+					const mode = isRecord(b) ? b.mode : undefined;
+					if (mode !== 'revoked' && mode !== 'forbidden') {
+						return json(res, 400, { error: 'mode must be "revoked" or "forbidden"' });
+					}
+					engine.scenariosRef.setAuth(one, mode);
+					return json(res, 204);
+				}
+				if (m === 'PUT' && one !== undefined && kind === 'limits') {
+					const limit = rateLimitFrom(await body());
+					if (typeof limit === 'string') return json(res, 400, { error: limit });
+					engine.scenariosRef.setLimit(one, limit);
+					return json(res, 204);
+				}
 			}
 			if (p.startsWith('/faults')) {
 				const service = p.split('/')[2];
@@ -183,6 +230,18 @@ export class AdminClient {
 	}
 	clearFaults(service?: string): Promise<void> {
 		return this.call<void>('DELETE', service !== undefined ? `/faults/${service}` : '/faults');
+	}
+	setAuthScenario(service: string, mode: AuthMode): Promise<void> {
+		return this.call<void>('PUT', `/scenarios/auth/${service}`, { mode });
+	}
+	clearAuthScenario(service?: string): Promise<void> {
+		return this.call<void>('DELETE', service !== undefined ? `/scenarios/auth/${service}` : '/scenarios/auth');
+	}
+	setRateLimit(service: string, limit: RateLimitScenario): Promise<void> {
+		return this.call<void>('PUT', `/scenarios/limits/${service}`, limit);
+	}
+	clearRateLimit(service?: string): Promise<void> {
+		return this.call<void>('DELETE', service !== undefined ? `/scenarios/limits/${service}` : '/scenarios/limits');
 	}
 	getLog(f: LogFilter = {}): Promise<LogEntry[]> {
 		const q = new URLSearchParams(
