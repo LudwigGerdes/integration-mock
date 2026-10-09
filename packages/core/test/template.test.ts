@@ -50,3 +50,13 @@ describe('renderTemplate', () => {
 		});
 	});
 });
+
+describe('extra names', () => {
+	it('resolves record, records and page from extra; a whole placeholder keeps the value', () => {
+		const out = renderTemplate(
+			{ id: '{{record.Id}}', data: '{{records}}', more: '{{page.hasMore}}', missing: '{{record.none}}' },
+			{ ...ctx, extra: { record: { Id: 'x1' }, records: [{ Id: 'x1' }], page: { hasMore: false } } },
+		);
+		expect(out).toEqual({ id: 'x1', data: [{ Id: 'x1' }], more: false, missing: '{{record.none}}' });
+	});
+});

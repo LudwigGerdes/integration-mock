@@ -24,3 +24,4 @@ export * from './filter.js';
 export * from './soql.js';
 export * from './paginate.js';
 export * from './idempotency.js';
+export * from './store-op.js';
