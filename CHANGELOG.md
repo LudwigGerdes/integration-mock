@@ -8,6 +8,7 @@ All notable changes to this project are documented here. The format follows
 ### Added
 
 - Stateful routes: a route's `store` block creates, reads, updates, deletes and lists records in the mock's store, with vendor-style paging (`cursor`, `offset`, `page`, `nextUrl`), filtering (flat comparisons, HubSpot `filterGroups`, a SOQL subset), idempotency keys and form-encoded bodies. Salesforce (Opportunity, Account, Contact, Lead), HubSpot (contacts, companies, deals) and Stripe (customers, charges) ship with stateful routes. `packs validate` checks store routes; `verify` compares only their status. `coerce` types form-encoded fields (Stripe `amount` is a number), and a filter declared `unsupported` answers 400 instead of being ignored.
+- Failure scenarios: `integration-mock auth revoke|forbid|clear` makes a service reject its credentials, and `integration-mock limits set|clear` rate-limits it (optionally one route) with `Retry-After`. Answers come in the vendor's shape from a pack's new `scenarios` block; Slack, Stripe, HubSpot, Salesforce, OpenAI, Gmail, Google Drive and Google Sheets ship theirs. The log marks these calls `AUTH` and `LIMIT`.
 
 ### Fixed
 
