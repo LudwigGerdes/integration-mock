@@ -1,0 +1,650 @@
+[
+  {
+    "id": "stripe:GET:/v1/charges/search#0:literal",
+    "match": {
+      "method": "GET",
+      "path": "/v1/charges/search"
+    },
+    "respond": {
+      "status": 200,
+      "body": {
+        "data": [
+          {
+            "amount": 257,
+            "amount_captured": 256,
+            "amount_refunded": 895,
+            "application": "s84730",
+            "application_fee": "s327716",
+            "application_fee_amount": 906,
+            "balance_transaction": "s730900",
+            "billing_details": {
+              "address": {},
+              "email": "s383920",
+              "name": "s30259",
+              "phone": "s281066"
+            },
+            "calculated_statement_descriptor": "s937810",
+            "captured": false,
+            "created": 875,
+            "currency": "s29256",
+            "customer": "s754677",
+            "description": "s939866",
+            "disputed": true,
+            "failure_balance_transaction": "s165958",
+            "failure_code": "s510202",
+            "failure_message": "s972700",
+            "fraud_details": {
+              "stripe_report": "s863743",
+              "user_report": "s503553"
+            },
+            "id": "s400109",
+            "invoice": "s945174",
+            "livemode": true,
+            "metadata": {},
+            "object": "charge",
+            "on_behalf_of": "s919010",
+            "outcome": {
+              "network_status": "s748507",
+              "reason": "s774917",
+              "risk_level": "s290013",
+              "risk_score": 158,
+              "rule": {},
+              "seller_message": "s938968",
+              "type": "s960141"
+            },
+            "paid": false,
+            "payment_intent": "s110403",
+            "payment_method": "s206683",
+            "payment_method_details": {
+              "ach_credit_transfer": {},
+              "ach_debit": {},
+              "acss_debit": {},
+              "affirm": {},
+              "afterpay_clearpay": {},
+              "alipay": {},
+              "au_becs_debit": {},
+              "bacs_debit": {},
+              "bancontact": {},
+              "blik": {},
+              "boleto": {},
+              "card": {},
+              "card_present": {},
+              "customer_balance": {},
+              "eps": {},
+              "fpx": {},
+              "giropay": {},
+              "grabpay": {},
+              "ideal": {},
+              "interac_present": {},
+              "klarna": {},
+              "konbini": {},
+              "link": {},
+              "multibanco": {},
+              "oxxo": {},
+              "p24": {},
+              "paynow": {},
+              "pix": {},
+              "promptpay": {},
+              "sepa_debit": {},
+              "sofort": {},
+              "stripe_account": {},
+              "type": "s460784",
+              "us_bank_account": {},
+              "wechat": {},
+              "wechat_pay": {}
+            },
+            "radar_options": {
+              "session": "s50405"
+            },
+            "receipt_email": "s855282",
+            "receipt_number": "s688284",
+            "receipt_url": "s887751",
+            "refunded": false,
+            "refunds": {
+              "data": [
+                {
+                  "amount": {},
+                  "balance_transaction": {},
+                  "charge": {},
+                  "created": {},
+                  "currency": {},
+                  "description": {},
+                  "failure_balance_transaction": {},
+                  "failure_reason": {},
+                  "id": {},
+                  "instructions_email": {},
+                  "metadata": {},
+                  "next_action": {},
+                  "object": {},
+                  "payment_intent": {},
+                  "reason": {},
+                  "receipt_number": {},
+                  "source_transfer_reversal": {},
+                  "status": {},
+                  "transfer_reversal": {}
+                }
+              ],
+              "has_more": true,
+              "object": "list",
+              "url": "s499754"
+            },
+            "review": "s173426",
+            "shipping": {
+              "address": {},
+              "carrier": "s582546",
+              "name": "s83967",
+              "phone": "s13212",
+              "tracking_number": "s26150"
+            },
+            "source_transfer": "s691589",
+            "statement_descriptor": "s233687",
+            "statement_descriptor_suffix": "s993567",
+            "status": "failed",
+            "transfer": "s628576",
+            "transfer_data": {
+              "amount": 882,
+              "destination": {}
+            },
+            "transfer_group": "s470415"
+          }
+        ],
+        "has_more": true,
+        "next_page": "s441816",
+        "object": "search_result",
+        "total_count": 987,
+        "url": "s655630"
+      }
+    },
+    "note": "Copied ahead of the stateful overrides so this literal path keeps answering."
+  },
+  {
+    "id": "stripe:GET:/v1/customers/search#0:literal",
+    "match": {
+      "method": "GET",
+      "path": "/v1/customers/search"
+    },
+    "respond": {
+      "status": 200,
+      "body": {
+        "data": [
+          {
+            "address": {
+              "city": "s442867",
+              "country": "s625435",
+              "line1": "s310732",
+              "line2": "s240494",
+              "postal_code": "s893308",
+              "state": "s805411"
+            },
+            "balance": 339,
+            "cash_balance": {
+              "available": {},
+              "customer": "s493490",
+              "livemode": false,
+              "object": {},
+              "settings": {}
+            },
+            "created": 16,
+            "currency": "s137946",
+            "default_source": "s125138",
+            "delinquent": false,
+            "description": "s238391",
+            "discount": {
+              "checkout_session": "s506848",
+              "coupon": {},
+              "customer": {},
+              "end": 724,
+              "id": "s887176",
+              "invoice": "s976087",
+              "invoice_item": "s740598",
+              "object": {},
+              "promotion_code": {},
+              "start": 811,
+              "subscription": "s26068"
+            },
+            "email": "s714665",
+            "id": "s5060",
+            "invoice_credit_balance": {},
+            "invoice_prefix": "s921855",
+            "invoice_settings": {
+              "custom_fields": [
+                {
+                  "name": {},
+                  "value": {}
+                }
+              ],
+              "default_payment_method": "s831953",
+              "footer": "s706100",
+              "rendering_options": {}
+            },
+            "livemode": true,
+            "metadata": {},
+            "name": "s232594",
+            "next_invoice_sequence": 188,
+            "object": "customer",
+            "phone": "s95057",
+            "preferred_locales": [
+              "s942596"
+            ],
+            "shipping": {
+              "address": {},
+              "carrier": "s748660",
+              "name": "s9423",
+              "phone": "s807226",
+              "tracking_number": "s64005"
+            },
+            "sources": {
+              "data": [
+                {}
+              ],
+              "has_more": true,
+              "object": "list",
+              "url": "s853892"
+            },
+            "subscriptions": {
+              "data": [
+                {
+                  "application": {},
+                  "application_fee_percent": {},
+                  "automatic_tax": {},
+                  "billing_cycle_anchor": {},
+                  "billing_thresholds": {},
+                  "cancel_at": {},
+                  "cancel_at_period_end": {},
+                  "canceled_at": {},
+                  "cancellation_details": {},
+                  "collection_method": {},
+                  "created": {},
+                  "currency": {},
+                  "current_period_end": {},
+                  "current_period_start": {},
+                  "customer": {},
+                  "days_until_due": {},
+                  "default_payment_method": {},
+                  "default_source": {},
+                  "default_tax_rates": {},
+                  "description": {},
+                  "discount": {},
+                  "ended_at": {},
+                  "id": {},
+                  "items": {},
+                  "latest_invoice": {},
+                  "livemode": {},
+                  "metadata": {},
+                  "next_pending_invoice_item_invoice": {},
+                  "object": {},
+                  "on_behalf_of": {},
+                  "pause_collection": {},
+                  "payment_settings": {},
+                  "pending_invoice_item_interval": {},
+                  "pending_setup_intent": {},
+                  "pending_update": {},
+                  "schedule": {},
+                  "start_date": {},
+                  "status": {},
+                  "test_clock": {},
+                  "transfer_data": {},
+                  "trial_end": {},
+                  "trial_settings": {},
+                  "trial_start": {}
+                }
+              ],
+              "has_more": false,
+              "object": "list",
+              "url": "s187900"
+            },
+            "tax": {
+              "automatic_tax": "failed",
+              "ip_address": "s691103",
+              "location": {}
+            },
+            "tax_exempt": "exempt",
+            "tax_ids": {
+              "data": [
+                {
+                  "country": {},
+                  "created": {},
+                  "customer": {},
+                  "id": {},
+                  "livemode": {},
+                  "object": {},
+                  "type": {},
+                  "value": {},
+                  "verification": {}
+                }
+              ],
+              "has_more": false,
+              "object": "list",
+              "url": "s918872"
+            },
+            "test_clock": "s470696"
+          }
+        ],
+        "has_more": false,
+        "next_page": "s878664",
+        "object": "search_result",
+        "total_count": 897,
+        "url": "s562381"
+      }
+    },
+    "note": "Copied ahead of the stateful overrides so this literal path keeps answering."
+  },
+  {
+    "id": "stripe:customers-create",
+    "match": {
+      "method": "POST",
+      "path": "/v1/customers"
+    },
+    "store": {
+      "op": "create",
+      "collection": "customers",
+      "id": {
+        "field": "id",
+        "format": "cus_MOCK{{seq:6}}"
+      },
+      "stamp": {
+        "object": "customer",
+        "created": "{{timestamp}}",
+        "livemode": false
+      },
+      "idempotency": {
+        "header": "Idempotency-Key"
+      },
+      "conflict": {
+        "status": 409,
+        "headers": {
+          "content-type": "application/json"
+        },
+        "body": {
+          "error": {
+            "type": "idempotency_error",
+            "message": "Keys for idempotent requests can only be used with the same parameters they were first used with."
+          }
+        }
+      }
+    },
+    "respond": {
+      "status": 200,
+      "template": true,
+      "headers": {
+        "content-type": "application/json"
+      },
+      "body": "{{record}}"
+    }
+  },
+  {
+    "id": "stripe:customers-list",
+    "match": {
+      "method": "GET",
+      "path": "/v1/customers"
+    },
+    "store": {
+      "op": "list",
+      "collection": "customers",
+      "filters": [
+        {
+          "from": "query.email",
+          "field": "email"
+        }
+      ],
+      "pagination": {
+        "style": "cursor",
+        "cursorParam": "starting_after",
+        "limitParam": "limit",
+        "defaultLimit": 10,
+        "maxLimit": 100
+      }
+    },
+    "respond": {
+      "status": 200,
+      "template": true,
+      "headers": {
+        "content-type": "application/json"
+      },
+      "body": {
+        "object": "list",
+        "url": "/v1/customers",
+        "has_more": "{{page.hasMore}}",
+        "data": "{{records}}"
+      }
+    }
+  },
+  {
+    "id": "stripe:customers-get",
+    "match": {
+      "method": "GET",
+      "path": "/v1/customers/:customer"
+    },
+    "store": {
+      "op": "get",
+      "collection": "customers",
+      "notFound": {
+        "status": 404,
+        "headers": {
+          "content-type": "application/json"
+        },
+        "template": true,
+        "body": {
+          "error": {
+            "type": "invalid_request_error",
+            "code": "resource_missing",
+            "param": "id",
+            "message": "No such customer: '{{request.params.customer}}'"
+          }
+        }
+      }
+    },
+    "respond": {
+      "status": 200,
+      "template": true,
+      "headers": {
+        "content-type": "application/json"
+      },
+      "body": "{{record}}"
+    }
+  },
+  {
+    "id": "stripe:customers-update",
+    "match": {
+      "method": "POST",
+      "path": "/v1/customers/:customer"
+    },
+    "store": {
+      "op": "update",
+      "collection": "customers",
+      "notFound": {
+        "status": 404,
+        "headers": {
+          "content-type": "application/json"
+        },
+        "template": true,
+        "body": {
+          "error": {
+            "type": "invalid_request_error",
+            "code": "resource_missing",
+            "param": "id",
+            "message": "No such customer: '{{request.params.customer}}'"
+          }
+        }
+      },
+      "idempotency": {
+        "header": "Idempotency-Key"
+      },
+      "conflict": {
+        "status": 409,
+        "headers": {
+          "content-type": "application/json"
+        },
+        "body": {
+          "error": {
+            "type": "idempotency_error",
+            "message": "Keys for idempotent requests can only be used with the same parameters they were first used with."
+          }
+        }
+      }
+    },
+    "respond": {
+      "status": 200,
+      "template": true,
+      "headers": {
+        "content-type": "application/json"
+      },
+      "body": "{{record}}"
+    }
+  },
+  {
+    "id": "stripe:customers-delete",
+    "match": {
+      "method": "DELETE",
+      "path": "/v1/customers/:customer"
+    },
+    "store": {
+      "op": "delete",
+      "collection": "customers",
+      "notFound": {
+        "status": 404,
+        "headers": {
+          "content-type": "application/json"
+        },
+        "template": true,
+        "body": {
+          "error": {
+            "type": "invalid_request_error",
+            "code": "resource_missing",
+            "param": "id",
+            "message": "No such customer: '{{request.params.customer}}'"
+          }
+        }
+      }
+    },
+    "respond": {
+      "status": 200,
+      "template": true,
+      "headers": {
+        "content-type": "application/json"
+      },
+      "body": {
+        "id": "{{record.id}}",
+        "object": "customer",
+        "deleted": true
+      }
+    }
+  },
+  {
+    "id": "stripe:charges-create",
+    "match": {
+      "method": "POST",
+      "path": "/v1/charges"
+    },
+    "store": {
+      "op": "create",
+      "collection": "charges",
+      "id": {
+        "field": "id",
+        "format": "ch_MOCK{{seq:6}}"
+      },
+      "stamp": {
+        "object": "charge",
+        "created": "{{timestamp}}",
+        "livemode": false,
+        "paid": true,
+        "captured": true,
+        "status": "succeeded"
+      },
+      "idempotency": {
+        "header": "Idempotency-Key"
+      },
+      "conflict": {
+        "status": 409,
+        "headers": {
+          "content-type": "application/json"
+        },
+        "body": {
+          "error": {
+            "type": "idempotency_error",
+            "message": "Keys for idempotent requests can only be used with the same parameters they were first used with."
+          }
+        }
+      }
+    },
+    "respond": {
+      "status": 200,
+      "template": true,
+      "headers": {
+        "content-type": "application/json"
+      },
+      "body": "{{record}}"
+    }
+  },
+  {
+    "id": "stripe:charges-list",
+    "match": {
+      "method": "GET",
+      "path": "/v1/charges"
+    },
+    "store": {
+      "op": "list",
+      "collection": "charges",
+      "filters": [
+        {
+          "from": "query.customer",
+          "field": "customer"
+        }
+      ],
+      "pagination": {
+        "style": "cursor",
+        "cursorParam": "starting_after",
+        "limitParam": "limit",
+        "defaultLimit": 10,
+        "maxLimit": 100
+      }
+    },
+    "respond": {
+      "status": 200,
+      "template": true,
+      "headers": {
+        "content-type": "application/json"
+      },
+      "body": {
+        "object": "list",
+        "url": "/v1/charges",
+        "has_more": "{{page.hasMore}}",
+        "data": "{{records}}"
+      }
+    }
+  },
+  {
+    "id": "stripe:charges-get",
+    "match": {
+      "method": "GET",
+      "path": "/v1/charges/:charge"
+    },
+    "store": {
+      "op": "get",
+      "collection": "charges",
+      "notFound": {
+        "status": 404,
+        "headers": {
+          "content-type": "application/json"
+        },
+        "template": true,
+        "body": {
+          "error": {
+            "type": "invalid_request_error",
+            "code": "resource_missing",
+            "param": "id",
+            "message": "No such charge: '{{request.params.charge}}'"
+          }
+        }
+      }
+    },
+    "respond": {
+      "status": 200,
+      "template": true,
+      "headers": {
+        "content-type": "application/json"
+      },
+      "body": "{{record}}"
+    }
+  }
+]

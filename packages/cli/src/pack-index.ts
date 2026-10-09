@@ -371,13 +371,15 @@ export const PACK_INDEX: Record<string, PackIndexEntry> = {
 				"api.stripe.com"
 			],
 			"prefix": "/stripe",
-			"bytes": 1262908,
+			"bytes": 1280397,
 			"files": [
 				"pack.json",
+				"routes/00-overrides.json",
 				"routes/10-generated.json"
 			],
 			"sha256": {
 				"pack.json": "ccdd7f3c6b724b170b21bac0313cc2188bc8350b9c462fb0d1c66c0f18874bb7",
+				"routes/00-overrides.json": "cad5ff5d4b70e3237c9cb58355ea55164b6ff7a6580cd066b908598090c0e50f",
 				"routes/10-generated.json": "1a8339c5c5768f4af5f9d88cad26f43b9537e568ee631c9e0dc4addba6924db1"
 			}
 		},
