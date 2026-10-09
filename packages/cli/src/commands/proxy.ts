@@ -15,6 +15,8 @@ import {
 } from 'integration-mock-core';
 import { dataPaths } from 'integration-mock-packs';
 import { AdminClient, ensureCA } from 'integration-mock-proxy';
+import type { CliIo } from '../index.js';
+import { CLI_VERSION } from '../version.js';
 
 const UNITS: Record<string, number> = { ms: 1, s: 1000, m: 60_000, h: 3_600_000 };
 
@@ -37,8 +39,6 @@ export function parseRouteFilter(s: string): { method: HttpMethod | '*'; path: s
 	}
 	return { method: known, path };
 }
-import type { CliIo } from '../index.js';
-import { CLI_VERSION } from '../version.js';
 
 export interface ProxyInfo {
 	port: number;

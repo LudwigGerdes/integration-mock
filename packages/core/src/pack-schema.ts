@@ -13,7 +13,7 @@ export const PACK_SCHEMA = {
 		"$schema": "https://json-schema.org/draft/2020-12/schema",
 		"$id": "https://github.com/LudwigGerdes/integration-mock/schema/integration-mock.pack.schema.json",
 		"title": "integration-mock service pack",
-		"description": "One mocked service: its domains, its base-URL prefix, and its routes. Describes the ASSEMBLED pack as loadPack returns it — on disk, pack.json omits routes and savePack splits them into routes/*.json. Owner: integration-mock.",
+		"description": "One mocked service: its domains, its base-URL prefix, and its routes. Describes the ASSEMBLED pack as loadPack returns it \u2014 on disk, pack.json omits routes and savePack splits them into routes/*.json. Owner: integration-mock.",
 		"type": "object",
 		"required": [
 			"id",

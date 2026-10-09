@@ -5,6 +5,7 @@ import { join } from 'node:path';
 import {
 	RequestLog,
 	FaultController,
+	ScenarioController,
 	loadPack,
 	type LayeredPacks,
 	type MockRequest,
@@ -12,8 +13,6 @@ import {
 	type Snapshot,
 } from 'integration-mock-core';
 import { MockEngine } from '../src/state.js';
-import { ScenarioController } from 'integration-mock-core';
-import type { MockRequest as ScenarioRequest, ServicePack as ScenarioPack } from 'integration-mock-core';
 
 const req = (o: Partial<MockRequest>): MockRequest => ({
 	method: 'GET',
@@ -351,12 +350,12 @@ describe('MockEngine.replaceLayers', () => {
 
 
 describe('failure scenarios', () => {
-	const slack: ScenarioPack = {
+	const slack: ServicePack = {
 		id: 'slack', domains: ['slack.com'], prefix: '/slack', source: 'library',
 		scenarios: { revoked: { status: 200, body: { ok: false, error: 'invalid_auth' } } },
 		routes: [{ id: 'slack:post', match: { method: 'POST', path: '/api/chat.postMessage' }, respond: { status: 200, body: { ok: true } } }],
 	};
-	const call = (path = '/api/chat.postMessage'): ScenarioRequest => ({ method: 'POST', host: 'slack.com', path, query: {}, headers: {} });
+	const call = (path = '/api/chat.postMessage'): MockRequest => ({ method: 'POST', host: 'slack.com', path, query: {}, headers: {} });
 	const make = (now = () => 0) => {
 		const log = new RequestLog();
 		const faults = new FaultController();
