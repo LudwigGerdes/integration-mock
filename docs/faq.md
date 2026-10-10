@@ -20,6 +20,15 @@ No, unless you run `creds swap --in-place`. In base-URL mode you change a node's
 
 Not for mocking. `start`, `packs`, `url`, `faults`, `auth`, `limits` and `log` need no instance, no API key and no network. `snapshot`, `diff` and `creds` need an instance you add with `instances add`.
 
+### Does it need the other tools?
+
+No. integration-mock installs and runs on its own, without [workflow-lint](https://workflowtools.dev/workflow-lint), [workflow-tester](https://workflowtools.dev/workflow-tester) or [workflow-render](https://workflowtools.dev/workflow-render). Two other tools can use what it provides:
+
+| Tool | Uses | Without integration-mock |
+|---|---|---|
+| workflow-tester | `run --live` sets packs and faults through the admin port and checks the calls the mock saw | `run` reports the cases that need the mock as needing a real run and does not fail them; every other case runs |
+| workflow-render, workflow-tester | The redacted `<execution id>.export.json` that `snapshot` saves | They read an execution you export from n8n's API |
+
 ### Why did my call get a 501?
 
 No enabled pack has a route for that method and path. The `hint` in the response says what to do: record the call, or add a route to the pack in `./.integration-mock/packs/<service>/`.

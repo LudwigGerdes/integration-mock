@@ -26,7 +26,7 @@ integration-mock diff
 
 Each snapshot file carries a `provenance` block: the integration-mock release that wrote it, the workflow's id, name, `versionId` and active flag, the execution's id, status, start and stop times and mode, and `redacted: true`. The instance is recorded by its saved name, never its URL or key.
 
-Beside each snapshot, `<execution id>.export.json` holds the execution as n8n's API returned it (`GET /executions/:id?includeData=true`), redacted with the same rules, so workflow-render can draw the run and workflow-tester can capture it without a second call to the instance.
+Beside each snapshot, `<execution id>.export.json` holds the execution as n8n's API returned it (`GET /executions/:id?includeData=true`), redacted with the same rules, so workflow-render can draw the run and workflow-tester can capture it without a second call to the instance. The file is written whether or not you have either tool.
 
 ### What `snapshot` does
 
