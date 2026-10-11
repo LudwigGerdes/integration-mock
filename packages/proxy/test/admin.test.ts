@@ -118,6 +118,22 @@ describe('admin api', () => {
 		expect(await bad.json()).toEqual({ error: 'url must be an absolute http(s) URL' });
 	});
 
+	it('POST /serve says what is wrong with a bad body, and a malformed URL is a 400', async () => {
+		const post = (body: unknown) =>
+			fetch(`http://127.0.0.1:${admin.port}/serve`, { method: 'POST', headers: { 'content-type': 'application/json' }, body: JSON.stringify(body) });
+		const cases: Array<[unknown, string]> = [
+			[{ method: 'GET', url: 'http://[' }, 'url must be an absolute http(s) URL'],
+			[{ url: 'https://x.io' }, 'method must be an HTTP method'],
+			[{ method: 'FETCH', url: 'https://x.io' }, 'method must be an HTTP method'],
+			[{ method: 'GET', url: 'https://x.io', headers: { a: 1 } }, 'headers must map names to strings'],
+		];
+		for (const [body, error] of cases) {
+			const res = await post(body);
+			expect(res.status, JSON.stringify(body)).toBe(400);
+			expect(await res.json()).toEqual({ error });
+		}
+	});
+
 	it('PUT /stores/<service> seeds a store; unknown service 404; bad body 400', async () => {
 		await client.seedStore('weather', { cities: [{ id: 'c1' }] });
 		const put = (path: string, body: unknown) =>

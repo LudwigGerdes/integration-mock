@@ -8,12 +8,26 @@ const isRouteMethod = (v: unknown): v is HttpMethod | '*' => ROUTE_METHODS.some(
 const isRecord = (v: unknown): v is Record<string, unknown> => typeof v === 'object' && v !== null;
 const isSeed = (v: unknown): v is Record<string, unknown[]> =>
 	isRecord(v) && !Array.isArray(v) && Object.values(v).every((x) => Array.isArray(x));
-const isServeInput = (v: unknown): v is ServeInput =>
-	isRecord(v) &&
-	typeof v.method === 'string' &&
-	typeof v.url === 'string' &&
-	/^https?:\/\//.test(v.url) &&
-	(v.headers === undefined || (isRecord(v.headers) && Object.values(v.headers).every((h) => typeof h === 'string')));
+/** What is wrong with a `POST /serve` body, or undefined when it can be served. */
+function serveProblem(v: unknown): string | undefined {
+	if (!isRecord(v)) return 'url must be an absolute http(s) URL';
+	let url: URL | undefined;
+	try {
+		url = typeof v.url === 'string' ? new URL(v.url) : undefined;
+	} catch {
+		url = undefined;
+	}
+	if (url === undefined || (url.protocol !== 'http:' && url.protocol !== 'https:')) return 'url must be an absolute http(s) URL';
+	const method = typeof v.method === 'string' ? v.method.toUpperCase() : '';
+	if (!ROUTE_METHODS.some((m) => m !== '*' && m === method)) {
+		return 'method must be an HTTP method';
+	}
+	if (v.headers !== undefined && !(isRecord(v.headers) && Object.values(v.headers).every((h) => typeof h === 'string'))) {
+		return 'headers must map names to strings';
+	}
+	return undefined;
+}
+const isServeInput = (v: unknown): v is ServeInput => serveProblem(v) === undefined;
 const isWholeAtLeastOne = (v: unknown): v is number => typeof v === 'number' && Number.isInteger(v) && v >= 1;
 
 /** A rate-limit body, or the reason it is unusable. */
@@ -178,7 +192,7 @@ export async function startAdmin(opts: {
 			}
 			if (m === 'POST' && p === '/serve') {
 				const b = await body();
-				if (!isServeInput(b)) return json(res, 400, { error: 'url must be an absolute http(s) URL' });
+				if (!isServeInput(b)) return json(res, 400, { error: serveProblem(b) });
 				const r = await engine.serve(b);
 				return json(res, 200, { status: r.status, headers: r.headers, body: r.body });
 			}
