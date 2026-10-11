@@ -108,6 +108,17 @@ integration-mock log --limit 3
 
 Each line has the time, method, service, path, status and the route that answered. A call that no route matched shows `unmatched`.
 
+## Admin API
+
+`start` also opens the admin port (`--admin-port`, default 8081). The CLI drives the mock through it; other tools can too. On loopback it needs no token. Bound anywhere else (`INTEGRATION_MOCK_ADMIN_BIND`), it generates one at start, writes it to `~/.integration-mock/proxy.json`, and requires it as a bearer token.
+
+Two endpoints exist for tools that run a workflow themselves, such as workflow-tester:
+
+| Endpoint | Does |
+|---|---|
+| `PUT /stores/<service>` | Replaces that service's records for this session, body `{ "<collection>": [records] }`. `POST /packs/reset` brings back the pack's own seed. 404 for a service no pack provides |
+| `POST /serve` | Answers one request, body `{ "method", "url", "headers"?, "body"? }`, as if it had been intercepted: faults, scenarios, records and the request log apply. Reply `{ "status", "headers", "body" }`. It never passes through: a URL no enabled pack claims gets a 501, logged as unmatched |
+
 ## Where files live
 
 | Path | Contents | Commit it? |
