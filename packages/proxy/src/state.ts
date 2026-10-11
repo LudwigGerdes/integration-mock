@@ -151,6 +151,18 @@ export class MockEngine {
 		this.counters.clear();
 	}
 
+	/**
+	 * Replace one service's records for this session. The next `resetStores`
+	 * discards the store, so it rebuilds from the pack's own seed: a test's
+	 * records never outlive the test.
+	 */
+	seedStore(service: string, seed: Record<string, unknown[]>): boolean {
+		const packs = LAYERS.flatMap((l) => this.packs[l]).filter((p) => p.id === service);
+		if (packs.length === 0) return false;
+		this.stores.set(service, new ResourceStore(seed, idSpecsFor(packs)));
+		return true;
+	}
+
 	/** Service id when this host should be intercepted, else `null` (raw tunnel). */
 	shouldIntercept(host: string): string | null {
 		if (this.mode === 'off') return null;
