@@ -108,6 +108,16 @@ describe('admin api', () => {
 		engine.setEnabledPacks(['weather']);
 		expect((await client.getState()).packPrefixes).toEqual({ weather: '/weather' });
 	});
+	it('POST /serve answers through the engine; a relative url is 400', async () => {
+		const reply = await client.serve({ method: 'GET', url: 'https://api.github.com/user' });
+		expect(reply.status).toBe(501);
+		const bad = await fetch(`http://127.0.0.1:${admin.port}/serve`, {
+			method: 'POST', headers: { 'content-type': 'application/json' }, body: JSON.stringify({ method: 'GET', url: '/x' }),
+		});
+		expect(bad.status).toBe(400);
+		expect(await bad.json()).toEqual({ error: 'url must be an absolute http(s) URL' });
+	});
+
 	it('PUT /stores/<service> seeds a store; unknown service 404; bad body 400', async () => {
 		await client.seedStore('weather', { cities: [{ id: 'c1' }] });
 		const put = (path: string, body: unknown) =>
