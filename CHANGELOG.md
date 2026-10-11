@@ -3,6 +3,12 @@
 All notable changes to this project are documented here. The format follows
 [Keep a Changelog](https://keepachangelog.com/en/1.1.0/).
 
+## Unreleased
+
+### Added
+
+- Admin API: `PUT /stores/<service>` replaces one service's records for the session (`POST /packs/reset` restores the pack seed), and `POST /serve` answers one request as if intercepted, never passing it through. workflow-tester uses both for `given.seed` and offline runs.
+
 ## 0.3.0 — 2026-10-09
 
 ### Added

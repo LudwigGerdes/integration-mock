@@ -26,7 +26,7 @@ No. integration-mock installs and runs on its own, without [workflow-lint](https
 
 | Tool | Uses | Without integration-mock |
 |---|---|---|
-| workflow-tester | `run --live` sets packs and faults through the admin port and checks the calls the mock saw | `run` reports the cases that need the mock as needing a real run and does not fail them; every other case runs |
+| workflow-tester | `run --live` sets packs, faults, records and snapshots through the admin port and checks the calls the mock saw; `run --mock` sends HTTP Request nodes' calls to `POST /serve` | `run` reports the cases that need the mock as needing a real run and does not fail them; every other case runs |
 | workflow-render, workflow-tester | The redacted `<execution id>.export.json` that `snapshot` saves | They read an execution you export from n8n's API |
 
 ### Why did my call get a 501?
