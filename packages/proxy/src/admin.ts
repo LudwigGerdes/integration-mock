@@ -6,6 +6,8 @@ import type { MockEngine, ProxyState } from './state.js';
 const ROUTE_METHODS: ReadonlyArray<HttpMethod | '*'> = ['GET', 'POST', 'PUT', 'PATCH', 'DELETE', 'HEAD', 'OPTIONS', '*'];
 const isRouteMethod = (v: unknown): v is HttpMethod | '*' => ROUTE_METHODS.some((m) => m === v);
 const isRecord = (v: unknown): v is Record<string, unknown> => typeof v === 'object' && v !== null;
+const isSeed = (v: unknown): v is Record<string, unknown[]> =>
+	isRecord(v) && !Array.isArray(v) && Object.values(v).every((x) => Array.isArray(x));
 const isWholeAtLeastOne = (v: unknown): v is number => typeof v === 'number' && Number.isInteger(v) && v >= 1;
 
 /** A rate-limit body, or the reason it is unusable. */
@@ -168,6 +170,15 @@ export async function startAdmin(opts: {
 					return json(res, 204);
 				}
 			}
+			if (m === 'PUT' && p.startsWith('/stores/') && p.split('/').length === 3) {
+				const service = decodeURIComponent(p.split('/')[2] ?? '');
+				const b = await body();
+				if (!isSeed(b)) return json(res, 400, { error: 'seed must be an object of arrays' });
+				if (!engine.seedStore(service, b)) {
+					return json(res, 404, { error: `no pack provides "${service}"` });
+				}
+				return json(res, 204);
+			}
 			if (p === '/snapshot') {
 				if (m === 'PUT') {
 					engine.activateSnapshot((await body()) as Snapshot);
@@ -263,5 +274,8 @@ export class AdminClient {
 	}
 	resetPacks(): Promise<void> {
 		return this.call<void>('POST', '/packs/reset');
+	}
+	seedStore(service: string, seed: Record<string, unknown[]>): Promise<void> {
+		return this.call<void>('PUT', `/stores/${encodeURIComponent(service)}`, seed);
 	}
 }

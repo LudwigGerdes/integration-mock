@@ -108,6 +108,16 @@ describe('admin api', () => {
 		engine.setEnabledPacks(['weather']);
 		expect((await client.getState()).packPrefixes).toEqual({ weather: '/weather' });
 	});
+	it('PUT /stores/<service> seeds a store; unknown service 404; bad body 400', async () => {
+		await client.seedStore('weather', { cities: [{ id: 'c1' }] });
+		const put = (path: string, body: unknown) =>
+			fetch(`http://127.0.0.1:${admin.port}${path}`, { method: 'PUT', headers: { 'content-type': 'application/json' }, body: JSON.stringify(body) });
+		const missing = await put('/stores/nope', { cities: [] });
+		expect(missing.status).toBe(404);
+		expect(await missing.json()).toEqual({ error: 'no pack provides "nope"' });
+		expect((await put('/stores/weather', { cities: 'x' })).status).toBe(400);
+		expect((await put('/stores/weather', [1])).status).toBe(400);
+	});
 });
 
 describe('admin api pack reload', () => {

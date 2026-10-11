@@ -236,6 +236,30 @@ describe('MockEngine', () => {
 		const again = await engine.handleReplay('acme', req({ method: 'POST', host: 'acme.com', path: '/things', body: { name: 'b' } }));
 		expect((again.body as { thingId: string }).thingId).toBe('t_001');
 	});
+	it('seeds one service store for the session; reset brings back the pack seed', async () => {
+		const acme: ServicePack = {
+			id: 'acme',
+			domains: ['acme.com'],
+			prefix: '/acme',
+			source: 'authored',
+			routes: [
+				{
+					id: 'get',
+					match: { method: 'GET', path: '/things/:id' },
+					store: { op: 'get', collection: 'things' },
+					respond: { status: 200, template: true, body: '{{record}}' },
+				},
+			],
+			seed: { things: [{ id: 't_seed', name: 'seeded' }] },
+		};
+		const { engine } = mk({ library: [acme] }, ['acme']);
+		expect(engine.seedStore('acme', { things: [{ id: 't_test', name: 'from test' }] })).toBe(true);
+		expect((await engine.handleReplay('acme', req({ host: 'acme.com', path: '/things/t_test' }))).body).toEqual({ id: 't_test', name: 'from test' });
+		expect((await engine.handleReplay('acme', req({ host: 'acme.com', path: '/things/t_seed' }))).status).toBe(404);
+		engine.resetStores();
+		expect((await engine.handleReplay('acme', req({ host: 'acme.com', path: '/things/t_seed' }))).body).toEqual({ id: 't_seed', name: 'seeded' });
+		expect(engine.seedStore('nope', { things: [] })).toBe(false);
+	});
 });
 
 describe('serviceForBaseUrl', () => {
