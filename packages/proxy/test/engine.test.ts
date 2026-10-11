@@ -260,6 +260,33 @@ describe('MockEngine', () => {
 		expect((await engine.handleReplay('acme', req({ host: 'acme.com', path: '/things/t_seed' }))).body).toEqual({ id: 't_seed', name: 'seeded' });
 		expect(engine.seedStore('nope', { things: [] })).toBe(false);
 	});
+	it('serve answers by host, by base-URL prefix, and never passes through', async () => {
+		const fetchSpy = vi.spyOn(globalThis, 'fetch');
+		const { engine, log } = mk();
+		// Mode is irrelevant: serving is explicit, like base-URL mode.
+		expect(engine.state().mode).toBe('off');
+		const byHost = await engine.serve({ method: 'GET', url: 'https://slack.com/api/x' });
+		expect(byHost.body).toEqual({ ok: true });
+		const byPrefix = await engine.serve({ method: 'GET', url: 'http://127.0.0.1:8080/slack/api/x' });
+		expect(byPrefix.body).toEqual({ ok: true });
+		const elsewhere = await engine.serve({ method: 'GET', url: 'https://api.github.com/user' });
+		expect(elsewhere.status).toBe(501);
+		expect(log.list().map((e) => e.matchedRoute)).toEqual(['x', 'x', 'unmatched']);
+		expect(log.list()[2]!.service).toBe('api.github.com');
+		expect(fetchSpy).not.toHaveBeenCalled();
+		fetchSpy.mockRestore();
+	});
+
+	it('serve applies faults and keeps query and body', async () => {
+		const { engine, faults, log } = mk();
+		faults.set('slack', { status: 503 });
+		expect((await engine.serve({ method: 'GET', url: 'https://slack.com/api/x' })).status).toBe(503);
+		await engine.serve({ method: 'POST', url: 'https://slack.com/api/y?a=1', headers: { 'Content-Type': 'application/json' }, body: { k: 'v' } });
+		const last = log.list().at(-1)!;
+		expect(last.query).toEqual({ a: '1' });
+		expect(last.reqBody).toEqual({ k: 'v' });
+		expect(last.reqHeaders['content-type']).toBe('application/json');
+	});
 });
 
 describe('serviceForBaseUrl', () => {

@@ -24,6 +24,8 @@ import {
 	type Snapshot,
 	type CallCounters,
 	idSpecsFor,
+	unmatched,
+	type HttpMethod,
 } from 'integration-mock-core';
 
 export interface ProxyState {
@@ -32,6 +34,14 @@ export interface ProxyState {
 	activeSnapshot?: Snapshot;
 	faults: Faults;
 	scenarios: ScenarioState;
+}
+
+/** One request handed to `MockEngine.serve` over the admin API. */
+export interface ServeInput {
+	method: string;
+	url: string;
+	headers?: Record<string, string>;
+	body?: unknown;
 }
 
 const sleep = (ms: number): Promise<void> => new Promise((r) => setTimeout(r, ms));
@@ -262,6 +272,38 @@ export class MockEngine {
 			res = resolve(this.packs, service, req, this.store(service), this.counters);
 		}
 		this.logCall(service, req, res, started, fault);
+		return res;
+	}
+
+	/**
+	 * Answer one request handed over the admin API, as if it had been
+	 * intercepted. Explicit, so mode does not matter (as with base-URL mode),
+	 * and never forwarded: a URL no enabled pack claims gets the same loud 501
+	 * an unmatched route gets. workflow-tester's offline runs depend on this
+	 * never reaching a real service.
+	 */
+	async serve(input: ServeInput): Promise<Resolution> {
+		const u = new URL(input.url);
+		const headers: Record<string, string> = {};
+		for (const [k, v] of Object.entries(input.headers ?? {})) headers[k.toLowerCase()] = v;
+		const base = {
+			method: input.method.toUpperCase() as HttpMethod,
+			query: Object.fromEntries(u.searchParams),
+			headers,
+			body: input.body,
+		};
+		const byHost = serviceForHost(this.packs, u.hostname);
+		if (byHost !== null && this.enabled.has(byHost)) {
+			return this.handleReplay(byHost, { ...base, host: u.hostname, path: u.pathname });
+		}
+		const byPrefix = this.serviceForBaseUrl(u.pathname);
+		if (byPrefix !== null) {
+			return this.handleReplay(byPrefix.service, { ...base, host: byPrefix.host, path: byPrefix.rest });
+		}
+		const started = Date.now();
+		const req: MockRequest = { ...base, host: u.hostname, path: u.pathname };
+		const res = unmatched(u.hostname, req);
+		this.logCall(u.hostname, req, res, started);
 		return res;
 	}
 

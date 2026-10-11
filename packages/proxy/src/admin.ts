@@ -1,13 +1,19 @@
 import { createServer, type IncomingMessage, type ServerResponse } from 'node:http';
 import type { AuthMode, FaultSpec, HttpMethod, LogEntry, Mode, RateLimitScenario, Snapshot } from 'integration-mock-core';
 import { readBody } from './http-parse.js';
-import type { MockEngine, ProxyState } from './state.js';
+import type { MockEngine, ProxyState, ServeInput } from './state.js';
 
 const ROUTE_METHODS: ReadonlyArray<HttpMethod | '*'> = ['GET', 'POST', 'PUT', 'PATCH', 'DELETE', 'HEAD', 'OPTIONS', '*'];
 const isRouteMethod = (v: unknown): v is HttpMethod | '*' => ROUTE_METHODS.some((m) => m === v);
 const isRecord = (v: unknown): v is Record<string, unknown> => typeof v === 'object' && v !== null;
 const isSeed = (v: unknown): v is Record<string, unknown[]> =>
 	isRecord(v) && !Array.isArray(v) && Object.values(v).every((x) => Array.isArray(x));
+const isServeInput = (v: unknown): v is ServeInput =>
+	isRecord(v) &&
+	typeof v.method === 'string' &&
+	typeof v.url === 'string' &&
+	/^https?:\/\//.test(v.url) &&
+	(v.headers === undefined || (isRecord(v.headers) && Object.values(v.headers).every((h) => typeof h === 'string')));
 const isWholeAtLeastOne = (v: unknown): v is number => typeof v === 'number' && Number.isInteger(v) && v >= 1;
 
 /** A rate-limit body, or the reason it is unusable. */
@@ -170,6 +176,12 @@ export async function startAdmin(opts: {
 					return json(res, 204);
 				}
 			}
+			if (m === 'POST' && p === '/serve') {
+				const b = await body();
+				if (!isServeInput(b)) return json(res, 400, { error: 'url must be an absolute http(s) URL' });
+				const r = await engine.serve(b);
+				return json(res, 200, { status: r.status, headers: r.headers, body: r.body });
+			}
 			if (m === 'PUT' && p.startsWith('/stores/') && p.split('/').length === 3) {
 				const service = decodeURIComponent(p.split('/')[2] ?? '');
 				const b = await body();
@@ -274,6 +286,9 @@ export class AdminClient {
 	}
 	resetPacks(): Promise<void> {
 		return this.call<void>('POST', '/packs/reset');
+	}
+	serve(input: ServeInput): Promise<{ status: number; headers: Record<string, string>; body: unknown }> {
+		return this.call('POST', '/serve', input);
 	}
 	seedStore(service: string, seed: Record<string, unknown[]>): Promise<void> {
 		return this.call<void>('PUT', `/stores/${encodeURIComponent(service)}`, seed);
